@@ -18,5 +18,5 @@ La idea de l'aplicació és estalviar als usuaris llegir o buscar a internet els
 <hr>
 
 ## Horaris de l'equip:
-- Reunió amb el professor els dilluns: 11:15h - 11:30h
+- Reunió amb el professor els dilluns: 11:15h - 11:30h (https://acortar.link/Iv8wgP)
 - Sessió de pràctiques els dimecres: 15:00h - 17:00h
