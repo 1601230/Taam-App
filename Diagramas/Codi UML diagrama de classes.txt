@@ -1,0 +1,129 @@
+@startuml
+
+   skinparam classAttributeIconSize 0
+
+   class "Client"
+   {
+        + {static} main() : void
+   }
+
+   class "Taam App"
+   {
+        - {static} instance : Taam App
+        + {static} getInstance() : Taam App
+   }
+
+   class "Buscador"
+   {
+        - nomElementBuscat : String
+        - codiBarres : Integer
+        + Buscador(nomElementBuscat: String, codiDeBarres : Integer) : void
+        + buscarProductePelNom(nomElementBuscat : String) : Producte
+        + buscarProductePelCodiBarres(codiBarres : Integer) : Producte
+        + buscarIngredient(nomElementBuscat : String) : boolean
+   }
+
+   class "Configuració"
+   {
+        - {static} instance : Filtre
+        - idioma : String
+        + {static} getInstance() : Filtre
+   }
+
+   class "Restricció"
+   {
+        - preferencies : String
+   }
+
+   class "Producte"
+   {
+        - nomDelProducte : String
+        - codiBarres : Integer
+   }
+   
+   class "Ingredient"
+   {
+        - nomDelIngredient : String
+        - identificador : Integer
+   }
+
+   enum "Comestible" 
+   {
+        APTE
+        DUBTOS
+        NO APTE
+   }
+
+   class "Resultat"
+   {
+        - cercaExitosa : Boolean
+        - resultat : Comestible
+   }
+
+   class "Recomanacions"
+   {
+   }
+
+   interface "Visitor"
+   {
+     + {abstract} comprovarProducte(llistaIngredients: Ingredient) : Resultat
+     + {abstract} comprovarIngredient(ingredient: Ingredient) : Resultat
+   }
+
+   class "Vega"
+   {
+     + comprovarProducte(llistaIngredients: Ingredient) : Resultat
+     + comprovarIngredient(ingredient: Ingredient) : Resultat
+   }
+
+   class "Vegetarià"
+   {
+     + comprovarProducte(llistaIngredients: Ingredient) : Resultat
+     + comprovarIngredient(ingredient: Ingredient) : Resultat
+   }
+
+   class "Al·lèrgic al gluten"
+   {
+     + comprovarProducte(llistaIngredients: Ingredient) : Resultat
+     + comprovarIngredient(ingredient: Ingredient) : Resultat
+   }
+
+   class "Al·lèrgic a la lactosa"
+   {
+     + comprovarProducte(llistaIngredients: Ingredient) : Resultat
+     + comprovarIngredient(ingredient: Ingredient) : Resultat
+   }
+
+   class "Al·lèrgic a fruits secs"
+   {
+     + comprovarProducte(llistaIngredients: Ingredient) : Resultat
+     + comprovarIngredient(ingredient: Ingredient) : Resultat
+   }
+
+   class "Abstèmia"
+   {
+     + comprovarProducte(llistaIngredients: Ingredient) : Resultat
+     + comprovarIngredient(ingredient: Ingredient) : Resultat
+   }
+
+   
+   "Client" .. "Taam App" : instantiates
+   "Taam App" --> "Configuració"
+   "Taam App" --> "Buscador"
+   "Taam App" --> "Visitor"
+   "Taam App" --> "Recomanacions"
+   "Taam App" --> "Resultat" : resultatComprovació
+   "Taam App" --> "Producte" : producteBuscat
+   "Configuració" o-->"1..*" "Restricció" : llistaRestriccionsUsuari
+   "Vega" --|> "Visitor" 
+   "Vegetarià" --|> "Visitor"
+   "Al·lèrgic al gluten" --|> "Visitor"
+   "Al·lèrgic a la lactosa" --|> "Visitor"
+   "Al·lèrgic a fruits secs" --|> "Visitor"
+   "Abstèmia" --|> "Visitor"
+   "Recomanacions" o-->"0..*" "Producte" : llistaProductesRecomanats
+   "Producte" o-->"1..*" "Ingredient" : llistaIngredientsProducte
+   "Resultat" o-->"0..*" "Ingredient" : llistaIngredientsNoAptes
+   "Resultat" o-->"0..*" "Ingredient" : llistaIngredientsDubtosos
+
+@enduml
