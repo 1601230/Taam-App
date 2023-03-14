@@ -1,5 +1,5 @@
 -- Generado por Oracle SQL Developer Data Modeler 21.2.0.183.1957
---   en:        2023-03-13 17:16:42 CET
+--   en:        2023-03-14 16:55:13 CET
 --   sitio:      Oracle Database 11g
 --   tipo:      Oracle Database 11g
 
@@ -29,14 +29,16 @@ CREATE TABLE incidents (
 ALTER TABLE incidents ADD CONSTRAINT incidents_pk PRIMARY KEY ( id );
 
 CREATE TABLE ingredients (
-    id         INTEGER NOT NULL,
-    name       CLOB,
-    vegan      CHAR(1),
-    vegetarian CHAR(1),
-    celiac     CHAR(1) NOT NULL,
-    lactose    CHAR(1),
-    nuts       CHAR(1),
-    teetotal   CHAR(1)
+    id          INTEGER NOT NULL,
+    namespanish CLOB,
+    namecatalan CLOB,
+    nameenglish CLOB,
+    vegan       CHAR(1),
+    vegetarian  CHAR(1),
+    celiac      CHAR(1) NOT NULL,
+    lactose     CHAR(1),
+    nuts        CHAR(1),
+    teetotal    CHAR(1)
 );
 
 ALTER TABLE ingredients ADD CONSTRAINT ingredients_pk PRIMARY KEY ( id );
