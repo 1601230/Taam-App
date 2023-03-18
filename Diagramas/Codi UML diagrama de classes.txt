@@ -13,117 +13,117 @@
         + {static} getInstance() : Taam App
    }
 
-   class "Buscador"
+   class "Searcher"
    {
-        - nomElementBuscat : String
-        - codiBarres : Integer
-        + Buscador(nomElementBuscat: String, codiDeBarres : Integer) : void
-        + buscarProductePelNom(nomElementBuscat : String) : Producte
-        + buscarProductePelCodiBarres(codiBarres : Integer) : Producte
-        + buscarIngredient(nomElementBuscat : String) : boolean
+        - elementName : String
+        - barcode : Integer
+        + Searcher(elementName: String, barcode : Integer) : void
+        + searchProductByName(elementName : String) : Product
+        + searchProductByBarcode(barcode : Integer) : Product
+        + searchIngredient(elementName : String) : boolean
    }
 
-   class "Configuració"
+   class "Configuration"
    {
-        - {static} instance : Filtre
-        - idioma : String
-        + {static} getInstance() : Filtre
+        - {static} instance : Filter
+        - language : String
+        + {static} getInstance() : Filter
    }
 
-   class "Restricció"
+   class "Restriction"
    {
-        - preferencies : String
+        - preferences : String
    }
 
-   class "Producte"
+   class "Product"
    {
-        - nomDelProducte : String
-        - codiBarres : Integer
+        - productName : String
+        - barcode : Integer
    }
    
    class "Ingredient"
    {
-        - nomDelIngredient : String
-        - identificador : Integer
+        - ingredientName : String
+        - identifier : Integer
    }
 
-   enum "Comestible" 
+   enum "Edible" 
    {
-        APTE
-        DUBTOS
-        NO APTE
+        SUITABLE
+        DOUBTFUL
+        UNSUITABLE
    }
 
-   class "Resultat"
+   class "Result"
    {
-        - cercaExitosa : Boolean
-        - resultat : Comestible
+        - successfulSearch : boolean
+        - result : Edible
    }
 
-   class "Recomanacions"
+   class "Recommendations"
    {
    }
 
    interface "Visitor"
    {
-     + {abstract} comprovarProducte(llistaIngredients: Ingredient) : Resultat
-     + {abstract} comprovarIngredient(ingredient: Ingredient) : Resultat
+     + {abstract} checkProduct(ingredientList: Ingredient) : Result
+     + {abstract} checkIngredient(ingredient: Ingredient) : Result
    }
 
-   class "Vega"
+   class "Vegan"
    {
-     + comprovarProducte(llistaIngredients: Ingredient) : Resultat
-     + comprovarIngredient(ingredient: Ingredient) : Resultat
+     + checkProduct(ingredientList: Ingredient) : Result
+     + checkIngredient(ingredient: Ingredient) : Result
    }
 
-   class "Vegetarià"
+   class "Vegetarian"
    {
-     + comprovarProducte(llistaIngredients: Ingredient) : Resultat
-     + comprovarIngredient(ingredient: Ingredient) : Resultat
+     + checkProduct(ingredientList: Ingredient) : Result
+     + checkIngredient(ingredient: Ingredient) : Result
    }
 
-   class "Al·lèrgic al gluten"
+   class "Gluten Allergic"
    {
-     + comprovarProducte(llistaIngredients: Ingredient) : Resultat
-     + comprovarIngredient(ingredient: Ingredient) : Resultat
+     + checkProduct(ingredientList: Ingredient) : Result
+     + checkIngredient(ingredient: Ingredient) : Result
    }
 
-   class "Al·lèrgic a la lactosa"
+   class "Lactose Allergic"
    {
-     + comprovarProducte(llistaIngredients: Ingredient) : Resultat
-     + comprovarIngredient(ingredient: Ingredient) : Resultat
+     + checkProduct(ingredientList: Ingredient) : Result
+     + checkIngredient(ingredient: Ingredient) : Result
    }
 
-   class "Al·lèrgic a fruits secs"
+   class "Tree Nut Allergic"
    {
-     + comprovarProducte(llistaIngredients: Ingredient) : Resultat
-     + comprovarIngredient(ingredient: Ingredient) : Resultat
+     + checkProduct(ingredientList: Ingredient) : Result
+     + checkIngredient(ingredient: Ingredient) : Result
    }
 
-   class "Abstèmia"
+   class "Teetotal"
    {
-     + comprovarProducte(llistaIngredients: Ingredient) : Resultat
-     + comprovarIngredient(ingredient: Ingredient) : Resultat
+     + checkProduct(ingredientList: Ingredient) : Result
+     + checkIngredient(ingredient: Ingredient) : Result
    }
 
    
    "Client" .. "Taam App" : instantiates
-   "Taam App" --> "Configuració"
-   "Taam App" --> "Buscador"
+   "Taam App" --> "Configuration"
+   "Taam App" --> "Searcher"
    "Taam App" --> "Visitor"
-   "Taam App" --> "Recomanacions"
-   "Taam App" --> "Resultat" : resultatComprovació
-   "Taam App" --> "Producte" : producteBuscat
-   "Configuració" o-->"1..*" "Restricció" : llistaRestriccionsUsuari
-   "Vega" --|> "Visitor" 
-   "Vegetarià" --|> "Visitor"
-   "Al·lèrgic al gluten" --|> "Visitor"
-   "Al·lèrgic a la lactosa" --|> "Visitor"
-   "Al·lèrgic a fruits secs" --|> "Visitor"
-   "Abstèmia" --|> "Visitor"
-   "Recomanacions" o-->"0..*" "Producte" : llistaProductesRecomanats
-   "Producte" o-->"1..*" "Ingredient" : llistaIngredientsProducte
-   "Resultat" o-->"0..*" "Ingredient" : llistaIngredientsNoAptes
-   "Resultat" o-->"0..*" "Ingredient" : llistaIngredientsDubtosos
+   "Taam App" --> "Recommendations"
+   "Taam App" --> "Result" : searchResult
+   "Taam App" --> "Product" : searchedProduct
+   "Configuration" o--> "1..*" "Restriction" : userRestrictionsList
+   "Vegan" --|> "Visitor" 
+   "Vegetarian" --|> "Visitor"
+   "Gluten Allergic" --|> "Visitor"
+   "Lactose Allergic" --|> "Visitor"
+   "Tree Nut Allergic" --|> "Visitor"
+   "Teetotal" --|> "Visitor"
+   "Recommendations" o--> "0..*" "Producte" : recommendedProductsList
+   "Product" o--> "1..*" "Ingredient" : productIngredientsList
+   "Result" o--> "0..*" "Ingredient" : nonSuitableIngredientsList
+   "Result" o--> "0..*" "Ingredient" : doubtfulIngredientsList
 
-@enduml
+@endumlTeetotal
