@@ -1,0 +1,105 @@
+version: "3"
+
+networks:
+  Frontend:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.10.0/29
+  Backend:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.20.0/29
+  Management:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.30.0/29
+services:
+  LoadBalancer:
+    image: nginx
+    container_name: LoadBalancer
+    hostname: LoadBalancer
+    ports:
+      - "10000:80" # forward host port 10000 to container port 80
+    networks:
+      Frontend:
+        ipv4_address: 172.28.10.2
+    volumes:
+      - C:\Users\joela\UAB\3r Curs\LIS\practica_lis_bd\nginx.conf:/etc/nginx/nginx.conf 
+      # mount local directory to container directory
+      # before ":" you must add your own path adding \nginx.conf at last
+    restart: always
+
+  WebServer1:
+    build: 
+      context: .
+      dockerfile: DockerfileApache.Dockerfile
+    image: apachephp
+    container_name: WebServer1
+    hostname: WebServer1
+    ports:
+      - "80"
+    networks:
+      Frontend:
+        ipv4_address: 172.28.10.3
+      Backend:
+        ipv4_address: 172.28.20.3
+    restart: always
+
+  WebServer2:
+    image: apachephp
+    container_name: WebServer2
+    hostname: WebServer2
+    ports:
+      - "80"
+    networks:
+      Frontend:
+        ipv4_address: 172.28.10.4
+      Backend:
+        ipv4_address: 172.28.20.4
+    restart: always
+
+  WebServer3:
+    image: apachephp
+    container_name: WebServer3
+    hostname: WebServer3
+    ports:
+      - "80"
+    networks:
+      Frontend:
+        ipv4_address: 172.28.10.5
+      Backend:
+        ipv4_address: 172.28.20.5
+    restart: always
+
+  Database:
+    build:
+      context: .
+      dockerfile: DockerfilePostgres.Dockerfile
+    image: postgres_image
+    container_name: DataBaseTaamApp
+    hostname: Database
+    ports:
+      - "5432:5432"
+    networks:
+      Backend:
+        ipv4_address: 172.28.20.2
+      Management:
+        ipv4_address: 172.28.30.2
+    restart: always
+
+  DatabaseManagement:
+    image: dpage/pgadmin4
+    container_name: DatabaseManagement
+    hostname: DatabaseManagement
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin123@domain.com
+      PGADMIN_DEFAULT_PASSWORD: pgadmin123
+    ports:
+      - "10001:80" 
+    networks:
+      Management:
+        ipv4_address: 172.28.30.3
+    restart: always
