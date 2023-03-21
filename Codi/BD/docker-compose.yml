@@ -27,7 +27,7 @@ services:
       Frontend:
         ipv4_address: 172.28.10.2
     volumes:
-      - C:\Users\joela\UAB\3r Curs\LIS\practica_lis_bd\nginx.conf:/etc/nginx/nginx.conf 
+      - ../BD/nginx.conf:/etc/nginx 
       # mount local directory to container directory
       # before ":" you must add your own path adding \nginx.conf at last
     restart: always
