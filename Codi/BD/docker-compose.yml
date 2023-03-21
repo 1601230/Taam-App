@@ -29,7 +29,6 @@ services:
     volumes:
       - ../BD/nginx.conf:/etc/nginx/nginx.conf 
       # mount local directory to container directory
-      # before ":" you must add your own path adding \nginx.conf at last
     restart: always
 
   WebServer1:
