@@ -1,0 +1,74 @@
+1. Vamos a nuestro proyecto backend. Dentro del package "Core" creamos un fichero "java" llamado "ConnectDB.java". La idea de este fichero es que establezca la
+   conexión con la base de datos local que tenemos.
+   CURIOSIDAD: La clase que creamos en este fichero aplica el patrón "singleton".
+
+2. Dentro del fichero ponemos el siguiente código:
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    package Core;
+    
+    import java.sql.*;
+    
+    public class ConnectDB {
+        private static ConnectDB instance = null;
+        private static Connection conn = null;
+        private final String url = "jdbc:postgresql://localhost:5432/TaamAppDB";
+        private final String user = "taamapp";
+        private final String password = "taamapp";
+    
+        private ConnectDB() {
+            try {
+                conn = DriverManager.getConnection(url, user, password);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    
+        public static Connection getConnection() {
+            if (instance == null) {
+                instance = new ConnectDB();
+            }
+            return conn;
+        }
+    }
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+   EXPLICACIÓN: El código tiene una variable estática del mismo tipo que la clase que implementa, así tenemos en la clase guardada la instancia única de la clase.
+   Otra variable es "conn" que sirve para guardar los datos que permiten conectarse a la BD una vez establecida la conexión. También podemos ver la "url", "user",
+   "password" que son datos necesarios para implementar la conexión. Tenemos un constructor privado para impedir que nadie pueda crear una instancia de la clase
+   (patrón singleton), en esta clase lo que se hace es establecer la conexión con nuestra base de datos local. Finalmente, tenemos el método "getConnection" que se
+   puede llamar desde cualquier sitio, en caso de que la instancia no está creada se crea y después (cuando la instancia ya está creada) retorna la variable "conn" para
+   que se pueda ejecutar comandas "sql"
+
+3. Ahora vamos al fichero "main.java", aquí eliminamos el contenido del método "main" y lo sustituimos por el siguiente código:
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    public static void main(String[] args) throws SQLException {
+        Connection conn = ConnectDB.getConnection();
+        String sql = "SELECT id, namespanish FROM public.ingredients;";
+
+        ResultSet result = null;
+        try {
+            Statement statement = conn.createStatement();
+            result = statement.executeQuery(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        while (result.next()) {
+            int id = result.getInt("id");
+            String name = result.getString("namespanish");
+            System.out.println("ID: " + id + " Nombre en español: " + name);
+        }
+    }
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+   EXPLICACIÓN: En este código lo que se hace es recuperar la variable "conn" usando el método "getConnection" para que más tarde podamos conectarnos a la BD y enviar
+   nuestra comanda SQL. Después generamos la comanda "sql" que en este caso lo que hace es recuperar todas las "id" y nombre de ingrediente en español de la tabla
+   "ingredients". Seguidamente, creamos un objeto Statement, que es una interfaz que se usa para enviar comandos SQL a la base de datos. Después se usa este último
+   objeto para ejecutar nuestra comanda y guardar el resultado en "result". Finalmente, en el bucle "while", se recorren todas las filas que se han retornado de la
+   comanda y se muestra por pantalla.
+
+4. Antes de ejecutar el código para comprobar que funciona correctamente, lo que hacemos es instalar la librería JDBC que nos permite establecer la conexión.
+   Lo que debemos hacer es ir a la web "https://jdbc.postgresql.org/download/" e instalar la versión para JAVA 8 (se instalara un archivo .jar). Después vamos a
+   "File > Project Structure > Libraries", aquí le damos al "+" y seleccionamos el fichero .jar que hemos instalado. Seguidamente, aplicamos los cambios (Apply) y le
+   damos al "OK".
+
+5. Finalmente, si todo ha ido bien, podréis ejecutar y ver como todo función. OJO, previamente debéis tener creado y en ejecución la BD.
+
