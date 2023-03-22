@@ -1,0 +1,67 @@
+Pasos para crear un proyecto flutter:
+---------------------------------------
+1. Instalar el flutter sdk: https://docs.flutter.dev/get-started/install/windows, después extraer el contenido de la carpeta zip descargada.
+
+2. Descargar e instalar Android Studio.
+
+3. Dentro de Android Studio instalar el Android SDK (intentar poder escoger la ruta que conozcáis para instalar el SDK para más adelante, si 
+   no podéis tener en cuenta que la ruta por defecto es: "C:\Users\NombreUsuario\AppData\Local\Android\Sdk" si usáis Windows, 
+   "/Users/NombreUsuario/Library/Android/sdk" si usáis MacOs, "/home/NombreUsuario/Android/Sdk" si usáis Linux).
+
+4. Crear un proyecto de flutter desde Intellij.
+
+5. Después metemos los datos de nuestro proyecto (ubicación, nombre, etc.).
+   OJO, los nombres no tiene que tener espacios y mayúsculas para evitar errores (se puede usar _ para indicar espacios).
+   A la hora de crear el proyecto os debéis de asegurar que la opción "Plataforms" estén todas las plataformas seleccionadas para que la aplicación funcione en todas.
+   Al configurar todo hay que clicar en "Create".
+
+6. Una vez dentro del proyecto vamos a la opción "File" (parte superior izquierda) y después vamos a la opción "Project Structure".
+
+7. En la pantalla se verá un desplegable llamado "SDK" que en principio no tendrá nada seleccionada, ahí lo que haremos es desplegarlo y seleccionar la 
+   opción que ponga "Android API 33, ..." sí nos aparece. En caso de que no aparezca tenemos que darle a la opción "Add SDK" y después a 
+   "Android SDK" para indicar la ruta donde tenéis instalado el "AndroidSDK". En caso de que os salga un error al intentar hacer esto último 
+   del estilo que no tenéis un JDK versión 1.5, 1.6 o 1.7; lo que tendréis que hacer antes de indicar la ruta del "Android SDK" es: clicar en 
+   la opción "Add SDK" del desplegable, después a "Download JDK" y finalmente en la pestaña que se abra indicarle la versión "1.8" y después 
+   darle a "Download". Ahora volver a intentar a instalar el "Andorid SDK". Cuando esté instalado el "Android SDK" ya os aparecerá la opción 
+   "Android API 33, ...", la seleccionáis y le dais a "OK".
+
+8. Ahora vamos a la opción "Tools" (parte superior más o menos a la derecha). Ahí clicamos a la opción "Android", 
+   se desplegara una lista de opciones. Si aparece la opcion "Device Manager" activa podeis pasar al punto 9, sino se debe clicar la opción "SDK Manager".
+
+9. Dentro de "SDK Manager" seleccionaremos la ubicación donde hemos instalador Android SDK, al hacerlo nos dirá que ya tenemos un Android SDK instalado.
+   Este paso sirve para descargar algún fichero que falta a nuestro Andorid SDK y también para que nuestro proyecto flutter lo pueda ubicar en nuestro ordenador.
+   Una vez todo seleccionado le damos a "Next" y después a "OK" cuando haya acabado todo. Finalmente damos a "OK" para salir de la pestaña que tenemos abierta.
+
+10. Una vez hecho eso lo que procedemos a hacer es volver a ir a "Tools > Android" pero esta vez clicaremos en "Device Manager". Aquí podemos escoger dos opciones,
+    tener la aplicación en nuestro móvil físico (en caso Android funciona, pero en caso de iOs no lo sé, aunque me consta que hay algún compañero de nuestro grupo
+    que lo ha conseguido) o usar un emulador de Android en nuestro portátil. Yo explicaré ambas opciones para que podáis escoger.
+
+    10.1 Usar un emulador:
+    ----------------------
+    - En la pestaña que se nos abre al clicar en "Device Manager" veremos que estamos dentro del apartado "Virtual" (en la parte superior de la pestaña). 
+      Ahí clicamos en la opción "Create Device". 
+    - Dentro de la pestaña que se nos abre podremos escoger el tipo de dispositivo que queremos, escoger el "Pixel 3" para así que tengamos todos lo mismo.
+      Después le damos a "Next"
+    - En la pestaña que se nos abra seleccionamos "API 33" como imagen de nuestro sistema, si no lo tenéis descargado lo descargáis. 
+      Después (cuando ya esta descargado) le damos a "Next".
+    - Le ponemos un nombre si queremos a nuestro dispositivo y le damos a "Finish". Con esto tendríamos nuestro emulador de Android descargado.
+    - Seguidamente lo que se tiene que hacer es cerrar y volver a abrir el IntelliJ para que se aplique la configuración hecha.
+    - En la parte superior, donde hay un telefono dibujado y que se puede desplegar, se podra escoger el emulador que hemos creado y ejecutarlo
+    10.2 Usar un teléfono físico:
+    -----------------------------
+    - La ventaja de tener la aplicación en un teléfono físico y no en un emulador es que es más fácil de depurar y ejecutar, un emulador es 
+      bastante más lento y da muchos errores.
+    - En la pestaña que se nos abre al clicar en "Device Manager" veremos que estamos dentro del apartado "Virtual" (en la parte superior de la pestaña). 
+      Lo que debemos hacer es clicar en la pestaña que pone "Physical".
+    - Después cogemos nuestro dispositivo móvil y vamos a "ajustes", dentro de este vamos al apartado de "Sobre el teléfono". Aquí clicamos muchas veces
+      en la opción "Versión de MIUI" muchas veces para activar la opción de desarrollador. Esto para el caso de Xiaomi, cada uno tiene que mirar como hacerlo
+      con su teléfono para activar esta opción.
+    - Después vamos a "Ajustes adicionales" ahí entramos en el apartado de "Opciones de desarrollador". Repito, cada uno tiene que ver donde tiene esta opción.
+    - Dentro de la opción debemos activar la depuración por USB (esto permite que al ejecutar la aplicación en "intellij" se apliquen los cambios en nuestro 
+      teléfono para que después podemos usar la aplicación).
+    - También habilitamos la opción de instalar vía USB para que se pueda instalar en nuestro teléfono la aplicación la primera vez que la ejecutamos.
+    - Con esto ya nos detectará nuestro teléfono, ahora solo toca ejecutar la aplicación dándole al play, al hacer eso nos saldrá en nuestro teléfono una 
+      notificación que nos pide permiso para instalar, tendremos que aceptar.
+    - Una vez hecho esto ya tendríamos la aplicación en el teléfono. Cuando se hagan cambios solo basta con tener el teléfono, conectar, darle al "play" y se 
+      aplicaran los cambios en nuestro teléfono.
+    - OBSERVACIONES: Para aplicar los cambios hay que tener la aplicación abierta y el dispositivo conectado por USB con las opciones necesarias habilitadas.

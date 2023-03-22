@@ -1,0 +1,224 @@
+1. Creamos un proyecto JAVA (File > New > Project -> New Project).
+
+2. Vamos a File > Settings > Plugins, ahí instalamos el plugin de flutter o lo actualizamos si ya lo tenemos instalado (en caso que haga falta).
+
+3. Dentro de la carpets "src" creamos un paquete llamado "WebServer". El resto de logica que tengamos que no tenga nada que ver con el webserver 
+   lo metemos en otro paquete llamado "Core".
+
+4. Dentro del "WebServer" creamos dos fichero. El primero se llama "MainWebServer.java" y contiene el siguiente codigo:
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    package WebServer;
+    
+    public class MainWebServer {
+        public static void main(String[] args) {
+            WebServer server = new WebServer();
+            server.start();
+        }
+    }
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+   El otro se llama "WebServer.java" y contiene el siguiente codigo:
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    package WebServer;
+
+    import java.io.BufferedReader;
+    import java.io.IOException;
+    import java.io.InputStreamReader;
+    import java.io.PrintWriter;
+    import java.net.ServerSocket;
+    import java.net.Socket;
+    import java.util.StringTokenizer;
+
+    public class WebServer {
+        private static final int PORT = 8080; // port to listen to
+
+        public void start() {
+            try {
+                ServerSocket serverConnect = new ServerSocket(PORT);
+                System.out.println("Server started.\nListening for connections on port : " + PORT + " ...\n");
+                // we listen until user halts server execution
+                while (true) {
+                    // each client connection will be managed in a dedicated Thread
+                    new SocketThread(serverConnect.accept());
+                    // create dedicated thread to manage the client connection
+                }
+            } catch (IOException e) {
+                System.err.println("Server Connection error : " + e.getMessage());
+            }
+        }
+
+        private class SocketThread extends Thread {
+            // SocketThread sees WebServer attributes
+            private final Socket insocked;
+            // Client Connection via Socket Class
+
+            SocketThread(Socket insocket) {
+                this.insocked = insocket;
+                this.start();
+            }
+
+            @Override
+            public void run() {
+                // we manage our particular client connection
+                BufferedReader in;
+                PrintWriter out;
+                String resource;
+
+                try {
+                    // we read characters from the client via input stream on the socket
+                    in = new BufferedReader(new InputStreamReader(insocked.getInputStream()));
+                    // we get character output stream to client
+                    out = new PrintWriter(insocked.getOutputStream());
+                    // get first line of the request from the client
+                    String input = in.readLine();
+                    // we parse the request with a string tokenizer
+
+                    System.out.println("sockedthread : " + input);
+
+                    StringTokenizer parse = new StringTokenizer(input);
+                    String method = parse.nextToken().toUpperCase();
+                    // we get the HTTP method of the client
+                    if (!method.equals("GET")) {
+                        System.out.println("501 Not Implemented : " + method + " method.");
+                    } else {
+                        // what comes after "localhost:8080"
+                        resource = parse.nextToken();
+                        System.out.println("input " + input);
+                        System.out.println("method " + method);
+                        System.out.println("resource " + resource);
+
+                        parse = new StringTokenizer(resource, "/[?]=&");
+                        int i = 0;
+                        String[] tokens = new String[20];
+                        // more than the actual number of parameters
+                        while (parse.hasMoreTokens()) {
+                            tokens[i] = parse.nextToken();
+                            System.out.println("token " + i + "=" + tokens[i]);
+                            i++;
+                        }
+
+                        // Make the answer as a JSON string, to be sent to the Javascript client
+                        String answer = makeHeaderAnswer() + makeBodyAnswer(tokens);
+                        System.out.println("answer\n" + answer);
+                        // Here we send the response to the client
+                        out.println(answer);
+                        out.flush(); // flush character output stream buffer
+                    }
+
+                    in.close();
+                    out.close();
+                    insocked.close(); // we close socket connection
+                } catch (Exception e) {
+                    System.err.println("Exception : " + e);
+                }
+            }
+
+
+            private int makeBodyAnswer(String[] tokens) {
+                String body = tokens[0];
+                int num = Integer.parseInt(body);
+                System.out.println(num);
+                num = num + 5;
+                return num;
+            }
+
+            private String makeHeaderAnswer() {
+                String answer = "";
+                answer += "HTTP/1.0 200 OK\r\n";
+                answer += "Content-type: application/json\r\n";
+                //answer += "Access-Control-Allow-Origin: *\r\n";
+                // IMPORTANT: you may need to uncomment the preceding
+                // sentence in order to avoid the CORS error :
+                // "Cross-Origin Request Blocked: The Same Origin
+                // Policy disallows reading the remote resource..."
+                answer += "\r\n";
+                // blank line between headers and content, very
+                // important !
+                return answer;
+            }
+        } // SocketThread
+
+    } // WebServer   
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+   EXPLICACIÓN: 
+               "MainWebServer" es la clase que se tiene que ejecutar siempre que queremos encender el servidor. Lo que hace la función "main" 
+               de esta clase es crear una variable "WebServer" y lo inicia (así se levanta el servidor). 
+    
+               "WebServer" tiene la lógica del servidor, aquí indicamos que vamos a recibir la peticiones por el puerto 8080 y lo que hace es (gracias 
+               a los "sockets" y los "threads") aceptar diferentes peticiones de diferentes clientes en paralelo. La función importante aquí es "makeBodyAnswer" 
+               que es donde tendremos que implementar la lógica que nos interesa, en el código se puede ver un ejemplo que lo que hace es coger el primer parámetro 
+               (tokens[0]) y devolverlo al cliente para comprobar que el servidor funciona bien.
+   OBSERVACIÓN: 
+               Podéis probar que os vaya el servidor ejecutándolo y comprobando en un navegador vuestro que al introducir el URL "localhost:8080/hello" os retorne 
+               la palabra "hello".
+
+5. Después de haber configurado el servidor Java, volvemos al proyecto de Flutter que hemos creado anteriormente para conectarlo al servidor.
+   Lo primero que hacemos es crear un archivo llamado "requests.dart" en la carpeta "lib" del proyecto Flutter, en este archivo pondremos el siguiente código: 
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    import 'dart:convert';
+    import 'package:http/http.dart' as http;
+    
+    final http.Client client = http.Client();
+    const String baseUrl = "http://192.168.1.139:8080";
+    
+    
+    Future<int> calculateNumber(int n) async {
+      String uri = "$baseUrl/$n";
+      final response = await client.get(Uri.parse(uri));
+    
+      if (response.statusCode == 200) {
+        final valorInteger = jsonDecode(response.body);
+        print("statusCode=$response.statusCode");
+        return valorInteger;
+      } else {
+        print("statusCode=$response.statusCode");
+        throw Exception('Failed to get children');
+      }
+    }
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+   El anterior código lo que hace es permitir al Flutter enviar peticiones al puerto "8080" del host que está conectado a la misma red que nosotros y con IP 
+   "192.168.1.139", en el caso de cada uno de vosotros debéis poner la IP de vuestro servidor en caso de que uséis móvil físico para ejecutar la aplicación o 
+   "localhost" en caso de que uséis un emulador. En concreto, solo hay un método (de prueba) que envía una petición de cálculo al servidor y se queda a la espera. 
+   de que el backend responda con un valor numérico.
+
+6. Ahora toca ir al archivo de nuestro proyecto Flutter llamado "pubspec.yaml" y sustituyamos la parte que pone:
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    dependencies:
+      flutter:
+        sdk: flutter
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+   por las siguientes líneas:
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    dependencies:
+      http: ^0.13.0
+      intl: ^0.17.0
+      flutter:
+        sdk: flutter
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+   Estas lineas nos permiten añadir la dependencia de la biblioteca http.
+   Ahora vamos al "main.dart", ahí vamos a cambiar el método "_incrementCounter" que en vez de sumar en el "Flutter" de uno en uno lo que haga es hacer una petición 
+   al servidor y este suma de 5 en 5 y retorna el resultado. Para conseguir esto hacemos los siguientes cambios. 
+   Lo primero que hacemos es añadir el siguiente import al "main.dart", OJO el "projecte_prova" varia dependiendo de como habeis llamado al proyecto 
+   (Flutter os puede ayudar a ubicar el archivo "requests.dart".
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+     import 'package:projecte_prova/requests.dart';   
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+   Ahora sustituimos el metodo "_incrementCounter" con el siguiente metodo
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+      void _incrementCounter() async{
+      int aux = await calculateNumber(_counter);
+      setState(() {
+        _counter = aux;
+      });
+    }
+   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+   Lo que hace el método anterior es llamar al método "calculateNumber" que hemos creado en el archivo "requests.dart", recordamos que este método se conecta
+   con el servidor para obtener el resultado de un cálculo (en este caso la suma de n + 5).
+   El await le permite esperar hasta que el servidor responda para seguir con la ejecución, después con el valor retornado lo guardamos en _counter y para que
+   se vean los cambios en pantalla la igualación la hacemos en "setState".
+
+6. Ahora toca encender el servidor, después ejecutar nuestra aplicación (si tenemos la aplicación en el teléfono debemos recordar conectar el teléfono para
+   actualizar con los cambios). Si todo ha ido bien, la aplicación ya se conecta con el servidor y podemos verlo en los "logs" del server.
+
+CURIOSIDAD: si queréis quitar la marca que se ve en la pantalla de la aplicación en la parte superior izquierda que pone "debug" basta con poner la línea de 
+código "debugShowCheckedModeBanner: false," justo debajo de "return MaterialApp(" que podemos encontrar en el "main.dart" casi al inicio del código.
+
