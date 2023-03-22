@@ -1,3 +1,14 @@
+DROP TABLE IF EXISTS public.incidents CASCADE;
+
+DROP TABLE IF EXISTS public.ingredients CASCADE;
+
+DROP TABLE IF EXISTS public.notfound CASCADE; 
+
+DROP TABLE IF EXISTS public.products CASCADE; 
+
+DROP TABLE IF EXISTS public.products_ingredients CASCADE; 
+
+
 CREATE TABLE IF NOT EXISTS public.incidents
 (
     id SERIAL PRIMARY KEY,
@@ -36,7 +47,7 @@ CREATE TABLE IF NOT EXISTS public.products
 
 CREATE TABLE IF NOT EXISTS public.products_ingredients
 (
-    product_id integer NOT NULL,
+    product_id text NOT NULL,
     ingredient_id integer NOT NULL,
     PRIMARY KEY (product_id, ingredient_id)
 );
