@@ -5,6 +5,6 @@ import java.util.List;
 
 public class Product {
     private String productName;
-    private Integer barCode;
+    private Integer barcode;
     List<Ingredient> productIngredientsList = new ArrayList<>();
 }

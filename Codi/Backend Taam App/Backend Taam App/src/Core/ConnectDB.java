@@ -2,6 +2,7 @@ package Core;
 
 import java.sql.*;
 
+
 public class ConnectDB {
     private static ConnectDB instance = null;
     private static Connection conn = null;

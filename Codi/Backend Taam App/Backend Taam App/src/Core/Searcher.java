@@ -22,7 +22,7 @@ public class Searcher {
      */
     public Product searchProductByName(String productName)
     {
-        productName = this.productName;
+        this.productName = productName;
         barcode = null;
         ingredientName = null;
         return null;
@@ -36,7 +36,7 @@ public class Searcher {
     public Product searchProductByBarcode(Integer barcode)
     {
         productName = null;
-        barcode = this.barcode;
+        this.barcode = barcode;
         ingredientName = null;
         return null;
     }
@@ -46,11 +46,11 @@ public class Searcher {
      * Attributes "productName" and "barcode" are set to "null" except attribute "ingredientName", in this way we know
      * at any moment what the user is looking for.
      */
-    public boolean searchIngredient(String ingredientName)
+    public Ingredient searchIngredient(String ingredientName)
     {
         productName = null;
         barcode = null;
         ingredientName = this.ingredientName;
-        return false;
+        return null;
     }
 }

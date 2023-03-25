@@ -23,12 +23,12 @@ CREATE TABLE IF NOT EXISTS public.ingredients
     namespanish text,
     namecatalan text,
     nameenglish text,
-    vegan boolean,
-    vegetarian boolean,
-    celiac boolean,
-    lactose boolean,
-    nuts boolean,
-    teetotal boolean
+    vegan integer,
+    vegetarian integer,
+    celiac integer,
+    lactose integer,
+    nuts integer,
+    teetotal integer
 );
 
 CREATE TABLE IF NOT EXISTS public.notfound
