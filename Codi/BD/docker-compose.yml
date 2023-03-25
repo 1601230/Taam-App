@@ -94,8 +94,8 @@ services:
     container_name: DatabaseManagement
     hostname: DatabaseManagement
     environment:
-      PGADMIN_DEFAULT_EMAIL: pgadmin123@domain.com
-      PGADMIN_DEFAULT_PASSWORD: pgadmin123
+      PGADMIN_DEFAULT_EMAIL: taamApp@domain.com
+      PGADMIN_DEFAULT_PASSWORD: taamApp
     ports:
       - "10001:80" 
     networks:
