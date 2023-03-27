@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 final http.Client client = http.Client();
-const String baseUrl = "http://192.168.43.247:8080";
+const String baseUrl = "http://79.153.202.24:8080";
 
 
 Future<int> calculateNumber(int n) async {
