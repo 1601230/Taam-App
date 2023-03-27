@@ -1,0 +1,16 @@
+1. Nos dirigimos al navegador y ponemos la primera ip de nuestra red local par poder entrar en la configuración del router. Normalmente en todas las compañías es: 192.168.1.1
+2. Ponemos la contraseña que nos pide, que no es la contraseña que se utiliza para conectarnos de normal al router (la podremos encontrar debajo de nuestro router)
+3. Una vez entramos en la configuración del router, nos dirigimos al apartado de puertos
+4. Abrimos un nuevo puerto en el que tendremos que indicar:
+	Nombre --> el que queramos.
+	Dirección IP --> IP del ordenador en la que está corriendo el servidor JAVA.
+		Para saber esta, entramos en el powerShell de Windows y ponemos "ipconfig", en este se nos mostrará la ip de nuestro ordenador.
+	Protocolo --> TCP
+	Abrir Puerto/Rango Externo (WAN): 8080:8080
+	Abrir Puerto/Rango Interno (LAN): 8080
+6. Una vez tenemos el puerto abierto, nos dirigimos a Flutter, abrimos la carpeta lib y abrimos el fichero requests.dart
+	.Cambiamos el baseUrl por: "http://ipRouter:8080". Ejemplo: "http://79.153.201.29:8080"
+		Para saber la ip de nuestro router es tan fácil como ir al navegador y entrar en esta web: https://www.cualesmiip.com/
+7. Siguiendo estos pasos ya podríamos hacer peticiones al servidor JAVA desde una red externa.
+	Para comprobar que funciona es tan simple como ejecutar el servidor JAVA y en el navegador poner: http://ipRouter:8080. 
+		Si funciona, el server JAVA recibirá una petición http. Esta la podremos visualizar en la consola de este.
