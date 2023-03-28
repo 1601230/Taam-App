@@ -1,0 +1,6 @@
+#Descartats
+*.cc
+*.h
+*.cmake
+*.xml
+*.swift
