@@ -108,6 +108,20 @@ INSERT INTO public.products(id, name) VALUES ('8480000183118', 'Filetes de Cabal
 
 INSERT INTO public.products(id, name) VALUES ('3245414658769', 'Tiramisu - Carrefour');
 
+INSERT INTO public.products(id, name) VALUES ('7613039490266', 'Nesquik - Nestle');
+
+INSERT INTO public.products(id, name) VALUES ('4008400811727', 'Mon cheri');
+
+INSERT INTO public.products(id, name) VALUES ('787692838349', 'White Chocolaty Macadamia');
+
+INSERT INTO public.products(id, name) VALUES ('4025700001962', 'Chocolate blanco - Milka');
+
+INSERT INTO public.products(id, name) VALUES ('8480000120373', 'Chocolate con almendras - Hacendado');
+
+INSERT INTO public.products(id, name) VALUES ('3560070118373', 'Vikoroff vodka');
+
+INSERT INTO public.products(id, name) VALUES ('704039019803', 'Fudge - Jack Daniels');
+
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('azucar blanco', 'sucre blanc', 'white sugar', 0, 0, 1, 1, 1, 0);
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('plantas oleaginosas (girasol, maiz)', 'plantes oleaginoses (gira-sol, blat de moro)', 'oil plants (sunflower, corn)', 0, 0, 1, 1, 0, 0);
@@ -228,7 +242,7 @@ INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, veg
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('almendras blanqueadas', 'ametlles blanquejades', 'blanched almonds', 0, 0, 1, 1, 0, 0);
 
-INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('cultivos microbianos', 'cultius microbians', 'mimicrobial cultures', 2, 1, 1, 0, 1, 0);
+INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('cultivos microbianos', 'cultius microbians', 'microbial cultures', 2, 1, 1, 0, 1, 0);
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('cuajo microbiano', 'quall microbia', 'microbial rennet', 2, 1, 1, 0, 1, 0);
 
@@ -286,5 +300,274 @@ INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, veg
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('whisky', 'whisky', 'whiskey', 0, 0, 1, 1, 2, 1);
 
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8410714102129', 1);
 
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5053990156009', 2);
 
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5053990156009', 3);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5053990156009', 4);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5053990156009', 5);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5053990156009', 6);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5053990156009', 7);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5053990156009', 8);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5053990156009', 9);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5053990156009', 10);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5053990156009', 11);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5053827206730', 12);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5053827206730', 13);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5053827206730', 14);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5053827206730', 8);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000156112', 15);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000156112', 13);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000156112', 8);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000156112', 16);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000156112', 5);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000156112', 17);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8412598000010', 14);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8412598000010', 18);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8412598000010', 12);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8412598000010', 19);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8412598000010', 20);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8410184030137', 21);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8410184030137', 22);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8410184030137', 23);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8410184030137', 8);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8410184030137', 24);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8410184030137', 18);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5013665111610', 12);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5013665111610', 25);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8410076481597', 26);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8410076481597', 27);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8410076481597', 8);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8057432464032', 28);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8057432464032', 29);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8057432464032', 30);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8057432464032', 31);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8057432464032', 32);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8057432464032', 33);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5060490400259', 12);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5060490400259', 49);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5060490400259', 34);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5060490400259', 35);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5060490400259', 36);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5060490400259', 25);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3046920029759', 37);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3046920029759', 38);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3046920029759', 39);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3046920029759', 13);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3046920029759', 40);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5060283760003', 41);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5060283760003', 42);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('5060283760003', 25);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000171320', 43);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000171320', 49);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000171320', 13);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000171320', 44);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000171320', 8);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000171320', 35);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000171320', 45);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8076800376999', 46);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8076800376999', 47);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8710411045058', 48);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8710411045058', 49);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8710411045058', 13);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8710411045058', 50);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8710411045058', 8);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8710411045058', 51);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3228022170175', 52);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3228022170175', 8);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3228022170175', 53);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000205124', 54);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000205124', 55);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000205124', 56);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000205124', 53);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('20816445', 57);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('20816445', 58);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('20816445', 59);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('20816445', 60);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('20131968', 54);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('20131968', 8);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('20131968', 61);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('20131968', 62);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('20034658', 63);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('20034658', 8);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('20034658', 64);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000183118', 65);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000183118', 29);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3245414658769', 18);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3245414658769', 66);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3245414658769', 67);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3245414658769', 68);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3245414658769', 47);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3245414658769', 20);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3245414658769', 13);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3245414658769', 69);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('7613039490266', 13);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('7613039490266', 70);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('7613039490266', 8);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('7613039490266', 71);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('7613039490266', 72);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('7613039490266', 73);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('7613039490266', 74);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('7613039490266', 75);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('4008400811727', 76);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('4008400811727', 77);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('4008400811727', 78);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('4008400811727', 13);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('787692838349', 79);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('787692838349', 68);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('787692838349', 80);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('4025700001962', 13);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('4025700001962', 38);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('4025700001962', 56);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('4025700001962', 82);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('4025700001962', 83);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('4025700001962', 74);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('4025700001962', 73);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000120373', 13);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000120373', 84);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000120373', 85);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000120373', 38);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000120373', 37);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8480000120373', 74);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3560070118373', 86);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('704039019803', 13);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('704039019803', 66);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('704039019803', 87);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('704039019803', 88);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('704039019803', 89);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('704039019803', 33);
+
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('704039019803', 8);
