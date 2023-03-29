@@ -1,6 +1,6 @@
     package WebServer;
 
-    import Core.Taam_App;
+    import Core.*;
 
     import java.io.BufferedReader;
     import java.io.IOException;
@@ -8,6 +8,9 @@
     import java.io.PrintWriter;
     import java.net.ServerSocket;
     import java.net.Socket;
+    import java.util.ArrayList;
+    import java.util.Arrays;
+    import java.util.List;
     import java.util.StringTokenizer;
 
     public class WebServer {
@@ -94,8 +97,63 @@
                 }
             }
 
-            private int makeBodyAnswer(String[] tokens) {
-                return 0;
+            private int makeBodyAnswer(String[] tokens)
+            {
+                int numberOfKeys = tokens.length;
+                int counter = 0;
+
+                while (counter < numberOfKeys)
+                {
+                    switch(tokens[counter])
+                    {
+                        case "restrictions":
+                            String token = tokens[counter + 1];
+                            String[] restrictionsToken = token.split(", ");
+                            List<String> restrictionsList = new ArrayList<>();
+
+                            for (String restriction : restrictionsToken)
+                            {
+                                restriction = restriction.replaceAll("(^\"|\"$|%5B|%5D|%20)", "");
+                                restrictionsList.add(restriction);
+                            }
+
+                            Configuration.getInstance().setUserRestrictionsList(restrictionsList);
+                            counter = counter + 2;
+
+                        case "language":
+                            String language = tokens[counter + 1];
+                            Configuration.getInstance().setLanguage(language);
+                            counter = counter + 2;
+
+                        case "barcode":
+                            String barcode = tokens[counter + 1];
+                            int intBarcode = Integer.parseInt(barcode);
+                            Product productBarcode = Taam_App.getInstance().getSearcher().searchProductByBarcode(intBarcode);
+                            //TO DO: coprovar si el producto existe
+
+                            List<String> restrictions = Configuration.getInstance().getUserRestrictionsList();
+                            for (String restriction : restrictions)
+                            {
+                                Visitor visitor = Configuration.getInstance().createConfiguration(restriction);
+                                Taam_App.getInstance().setVisitor(visitor);
+
+                                //TO DO: se debe aplicar por cada restriccion una comprovacion
+                            }
+
+                        case "name":
+                            String name = tokens[counter + 1];
+                            Product productName = Taam_App.getInstance().getSearcher().searchProductByName(name);
+
+                            if (productName == null)
+                            {
+                                Ingredient ingredient = Taam_App.getInstance().getSearcher().searchIngredient(name);
+                            }
+
+                        case "notFound":
+
+                    }
+                }
+                return 1;
             }
 
             private String makeHeaderAnswer() {

@@ -56,4 +56,9 @@ public class Taam_App {
     {
         return visitor;
     }
+
+    public void setVisitor(Visitor visitor)
+    {
+        this.visitor = visitor;
+    }
 }
