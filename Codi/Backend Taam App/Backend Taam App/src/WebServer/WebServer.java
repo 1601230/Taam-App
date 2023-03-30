@@ -8,10 +8,9 @@
     import java.io.PrintWriter;
     import java.net.ServerSocket;
     import java.net.Socket;
-    import java.util.ArrayList;
-    import java.util.Arrays;
-    import java.util.List;
-    import java.util.StringTokenizer;
+    import java.sql.SQLException;
+    import java.time.temporal.TemporalAmount;
+    import java.util.*;
 
     public class WebServer {
         private static final int PORT = 8080; // port to listen to
@@ -97,8 +96,7 @@
                 }
             }
 
-            private int makeBodyAnswer(String[] tokens)
-            {
+            private int makeBodyAnswer(String[] tokens) throws SQLException {
                 int numberOfKeys = tokens.length;
                 int counter = 0;
 
@@ -117,8 +115,22 @@
                             counter = counter + 2;
 
                         case "barcode":
-                            //TODO
-                            //checkBarcode
+                            String barcode = tokens[counter + 1];
+                            Map<String, Object> result = Taam_App.getInstance().checkBarcode(barcode);
+                            counter = counter + 2;
+
+                            if (result == null)
+                            {
+                                System.out.println("no esta");
+                            }
+                            else
+                            {
+                                System.out.println("si esta");
+                                System.out.println(result.get("Name") + "\n");
+                                System.out.println(result.get("Barcode") + "\n");
+                                System.out.println(result.get("Ingredients") + "\n");
+                            }
+
 
                         case "name":
                             //TODO

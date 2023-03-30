@@ -1,7 +1,10 @@
 package Core;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The "Taam App" class is the main module of the project. It is the class responsible for calling all the necessary
@@ -11,8 +14,9 @@ import java.util.List;
  */
 public class Taam_App {
     private static Taam_App instance = null;
-    public static Searcher searcher;
-    public static Product product;
+    public static Searcher searcher = new Searcher();
+    public static Product product = new Product();
+
     public static Result result;
     public static Recommendations recommendations;
     public static Visitor visitor;
@@ -63,9 +67,35 @@ public class Taam_App {
         Configuration.getInstance().setUserRestrictionsList(restrictionsList);
     }
 
-    public Product checkBarcode(String barcode)
-    {
-        return null;
+    public Map<String, Object> checkBarcode(String barcode) throws SQLException {
+
+        if (barcode.isEmpty())
+        {
+            return null;
+        } else
+        {
+            barcode = barcode.replaceAll("(^\"|\"$|%5B|%5D|%22|%20)", "");
+
+            product = searcher.searchProductByBarcode(barcode);
+
+            if (product != null){
+                Map<String, Object> resultToBeReturnedToFlutter = new HashMap<String, Object>();
+
+                List<String> ingredientList = new ArrayList<>();
+                for (Ingredient auxiliaryIngredient : product.getProductIngredientsList())
+                {
+                    ingredientList.add(auxiliaryIngredient.getIngredient());
+                }
+
+                resultToBeReturnedToFlutter.put("Name", product.getProductName());
+                resultToBeReturnedToFlutter.put("Barcode", product.getBarcode());
+                resultToBeReturnedToFlutter.put("Ingredients", ingredientList);
+
+                return resultToBeReturnedToFlutter;
+            }else {
+                return null;
+            }
+        }
     }
 
     public Object checkName(String name)
