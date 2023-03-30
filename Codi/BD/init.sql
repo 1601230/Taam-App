@@ -35,7 +35,8 @@ CREATE TABLE IF NOT EXISTS public.notfound
 (
     id SERIAL PRIMARY KEY,
     barcode text,
-    productname text
+    productname text,
+    ingredientname text
 );
 
 CREATE TABLE IF NOT EXISTS public.products
