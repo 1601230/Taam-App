@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import static Core.Edible.*;
 
 /**
  * The "Taam App" class is the main module of the project. It is the class responsible for calling all the necessary
@@ -77,12 +78,29 @@ public class Taam_App {
             resultToBeReturnedToFlutter.put("Barcode", product.getBarcode());
             resultToBeReturnedToFlutter.put("Ingredients", ingredientList);
 
-
+            boolean suitable = true;
+            int i = 0;
             List<String> userRestrictionsList = Configuration.getInstance().getUserRestrictionsList();
-            for (String userRestriction : userRestrictionsList) {
-                visitor = Configuration.getInstance().createConfiguration(userRestriction);
+
+            while(i < userRestrictionsList.size() && suitable) {
+                visitor = Configuration.getInstance().createConfiguration(userRestrictionsList.get(i));
                 result = visitor.checkProduct(product.getProductIngredientsList());
+
+                if (result.getResult() != SUITABLE)
+                {
+                    suitable = false;
+                }else {
+                    i++;
+                }
             }
+
+            resultToBeReturnedToFlutter.put("Edible", result.getResult().toString());
+            if (result.getResult() != SUITABLE)
+            {
+                resultToBeReturnedToFlutter.put("ListIngredientsDOUBTFUL", result.getDoubtfulIngredientsList());
+                resultToBeReturnedToFlutter.put("ListIngredientsUNSUITABLE", result.getNonSuitableIngredientsList());
+            }
+
             return resultToBeReturnedToFlutter;
         }else {
             return null;
