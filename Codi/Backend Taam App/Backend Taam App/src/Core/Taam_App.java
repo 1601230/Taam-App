@@ -1,5 +1,8 @@
 package Core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The "Taam App" class is the main module of the project. It is the class responsible for calling all the necessary
  * methods to control the execution flow of the application in order to achieve its main purpose. "Taam App" applies
@@ -40,25 +43,38 @@ public class Taam_App {
     {
         return searcher;
     }
-    public Product getProduct()
-    {
-        return product;
-    }
-    public Result getResult()
-    {
-        return result;
-    }
-    public Recommendations getRecommendations()
-    {
-        return recommendations;
-    }
-    public Visitor getVisitor()
-    {
-        return visitor;
-    }
 
     public void setVisitor(Visitor visitor)
     {
         this.visitor = visitor;
+    }
+
+    public void setRestrictions(String token)
+    {
+        String[] restrictionsToken = token.split(", ");
+        List<String> restrictionsList = new ArrayList<>();
+
+        for (String restriction : restrictionsToken)
+        {
+            restriction = restriction.replaceAll("(^\"|\"$|%5B|%5D|%20)", "");
+            restrictionsList.add(restriction);
+        }
+
+        Configuration.getInstance().setUserRestrictionsList(restrictionsList);
+    }
+
+    public Product checkBarcode(String barcode)
+    {
+        return null;
+    }
+
+    public Object checkName(String name)
+    {
+        return null;
+    }
+
+    public void notFound()
+    {
+
     }
 }

@@ -108,16 +108,7 @@
                     {
                         case "restrictions":
                             String token = tokens[counter + 1];
-                            String[] restrictionsToken = token.split(", ");
-                            List<String> restrictionsList = new ArrayList<>();
-
-                            for (String restriction : restrictionsToken)
-                            {
-                                restriction = restriction.replaceAll("(^\"|\"$|%5B|%5D|%20)", "");
-                                restrictionsList.add(restriction);
-                            }
-
-                            Configuration.getInstance().setUserRestrictionsList(restrictionsList);
+                            Taam_App.getInstance().setRestrictions(token);
                             counter = counter + 2;
 
                         case "language":
@@ -126,30 +117,16 @@
                             counter = counter + 2;
 
                         case "barcode":
-                            String barcode = tokens[counter + 1];
-                            int intBarcode = Integer.parseInt(barcode);
-                            Product productBarcode = Taam_App.getInstance().getSearcher().searchProductByBarcode(intBarcode);
-                            //TO DO: coprovar si el producto existe
-
-                            List<String> restrictions = Configuration.getInstance().getUserRestrictionsList();
-                            for (String restriction : restrictions)
-                            {
-                                Visitor visitor = Configuration.getInstance().createConfiguration(restriction);
-                                Taam_App.getInstance().setVisitor(visitor);
-
-                                //TO DO: se debe aplicar por cada restriccion una comprovacion
-                            }
+                            //TODO
+                            //checkBarcode
 
                         case "name":
-                            String name = tokens[counter + 1];
-                            Product productName = Taam_App.getInstance().getSearcher().searchProductByName(name);
-
-                            if (productName == null)
-                            {
-                                Ingredient ingredient = Taam_App.getInstance().getSearcher().searchIngredient(name);
-                            }
+                            //TODO
+                            //checkName
 
                         case "notFound":
+                            //TODO
+                            //notFound
 
                     }
                 }
