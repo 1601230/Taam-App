@@ -119,9 +119,9 @@
 
                         case "name":
                             String name = tokens[counter + 1];
-                            Map<String, Object> result = Taam_App.getInstance().checkName(name);
+                            Map<String, Object> result = Taam_App.getInstance().checkProductIngredientName(name);
                             counter = counter + 2;
-                            
+
                         case "notFound":
                             //TODO
                             //notFound

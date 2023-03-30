@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static Core.Edible.*;
+
 /**
  * The "Taam App" class is the main module of the project. It is the class responsible for calling all the necessary
  * methods to control the execution flow of the application in order to achieve its main purpose. "Taam App" applies
@@ -43,15 +45,7 @@ public class Taam_App {
 
         return instance;
     }
-    public Searcher getSearcher()
-    {
-        return searcher;
-    }
 
-    public void setVisitor(Visitor visitor)
-    {
-        this.visitor = visitor;
-    }
 
     public void setRestrictions(String token)
     {
@@ -90,8 +84,8 @@ public class Taam_App {
 
             if (ingredient != null)
             {
-                resultToBeReturnedToFlutter.put("Name", ingredient.getIngredient());
-                resultToBeReturnedToFlutter.put("Id", ingredient.getId());
+                resultToBeReturnedToFlutter.put("Type", "Ingredient");
+                resultToBeReturnedToFlutter.put("Element", ingredient);
 
                 return resultToBeReturnedToFlutter;
             }
@@ -102,15 +96,8 @@ public class Taam_App {
         }
         else
         {
-            List<String> ingredientList = new ArrayList<>();
-            for (Ingredient auxiliaryIngredient : product.getProductIngredientsList())
-            {
-                ingredientList.add(auxiliaryIngredient.getIngredient());
-            }
-
-            resultToBeReturnedToFlutter.put("Name", product.getProductName());
-            resultToBeReturnedToFlutter.put("Barcode", product.getBarcode());
-            resultToBeReturnedToFlutter.put("Ingredients", ingredientList);
+            resultToBeReturnedToFlutter.put("Type", "Product");
+            resultToBeReturnedToFlutter.put("Element", product);
 
             return resultToBeReturnedToFlutter;
         }
@@ -118,5 +105,89 @@ public class Taam_App {
     public void notFound()
     {
 
+    }
+
+    public Map<String, Object> checkProductIngredientName(String name) throws SQLException {
+        Map<String, Object> resultToBeReturnedToFlutter = new HashMap<String, Object>();
+        Map<String, Object> returnCheckName = new HashMap<String, Object>();
+        returnCheckName = checkName(name);
+
+        if (returnCheckName != null)
+        {
+            if (returnCheckName.get("Type") == "Product")
+            {
+                product = (Product) returnCheckName.get("Element");
+
+                List<String> ingredientList = new ArrayList<>();
+                for (Ingredient auxiliaryIngredient : product.getProductIngredientsList())
+                {
+                    ingredientList.add(auxiliaryIngredient.getIngredient());
+                }
+
+                resultToBeReturnedToFlutter.put("Name", product.getProductName());
+                resultToBeReturnedToFlutter.put("Barcode", product.getBarcode());
+                resultToBeReturnedToFlutter.put("Ingredients", ingredientList);
+
+                List<String> restrictions = Configuration.getInstance().getUserRestrictionsList();
+
+                boolean suitable = true;
+                int counter = 0;
+                while ((counter < restrictions.size()) && (suitable == true))
+                {
+                    visitor = Configuration.getInstance().createConfiguration(restrictions.get(counter));
+                    result = visitor.checkProduct(product.productIngredientsList);
+
+                    if (result.getResult() != SUITABLE)
+                    {
+                        suitable = false;
+                    }
+                    else
+                    {
+                        counter = counter + 1;
+                    }
+                }
+
+                resultToBeReturnedToFlutter.put("Edible", result.getResult().toString());
+                if (result.getResult() != SUITABLE)
+                {
+                    resultToBeReturnedToFlutter.put("ListIngredientsDOUBTFUL", result.getDoubtfulIngredientsList());
+                    resultToBeReturnedToFlutter.put("ListIngredientsUNSUITABLE", result.getNonSuitableIngredientsList());
+                }
+            }
+            else
+            {
+                ingredient = (Ingredient) returnCheckName.get("Element");
+
+                resultToBeReturnedToFlutter.put("Name", ingredient.getIngredient());
+                resultToBeReturnedToFlutter.put("Id", ingredient.getId());
+
+                List<String> restrictions = Configuration.getInstance().getUserRestrictionsList();
+
+                boolean suitable = true;
+                int counter = 0;
+                while ((counter < restrictions.size()) && (suitable == true))
+                {
+                    visitor = Configuration.getInstance().createConfiguration(restrictions.get(counter));
+                    result = visitor.checkIngredient(ingredient);
+
+                    if (result.getResult() != SUITABLE)
+                    {
+                        suitable = false;
+                    }
+                    else
+                    {
+                        counter = counter + 1;
+                    }
+                }
+
+                resultToBeReturnedToFlutter.put("Edible", result.getResult().toString());
+            }
+
+            return resultToBeReturnedToFlutter;
+        }
+        else
+        {
+            return null;
+        }
     }
 }
