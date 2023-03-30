@@ -7,8 +7,7 @@ public class Ingredient {
     public Ingredient() {
 
     }
-
-    Ingredient(String ingredient, int id)
+    Ingredient(String ingredient, Integer id)
     {
         this.ingredient = ingredient;
         this.id = id;

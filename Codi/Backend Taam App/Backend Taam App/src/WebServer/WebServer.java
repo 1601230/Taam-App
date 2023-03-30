@@ -114,12 +114,13 @@
                             counter = counter + 2;
 
                         case "barcode":
-                            //TODO
-                            //checkBarcode
+                            String barcode = tokens[counter + 1];
+                            Map<String, Object> resultBarcode = Taam_App.getInstance().checkProductBarcode(barcode);
+                            counter = counter + 2;
 
                         case "name":
                             String name = tokens[counter + 1];
-                            Map<String, Object> result = Taam_App.getInstance().checkProductIngredientName(name);
+                            Map<String, Object> resultName = Taam_App.getInstance().checkProductIngredientName(name);
                             counter = counter + 2;
 
                         case "notFound":

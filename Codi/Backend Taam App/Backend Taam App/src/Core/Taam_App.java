@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import static Core.Edible.*;
+
 
 /**
  * The "Taam App" class is the main module of the project. It is the class responsible for calling all the necessary
@@ -46,7 +46,6 @@ public class Taam_App {
         return instance;
     }
 
-
     public void setRestrictions(String token)
     {
         String[] restrictionsToken = token.split(", ");
@@ -60,15 +59,22 @@ public class Taam_App {
 
         Configuration.getInstance().setUserRestrictionsList(restrictionsList);
     }
-
     public void setLanguage(String language)
     {
         Configuration.getInstance().setLanguage(language);
     }
 
-    public Product checkBarcode(String barcode)
-    {
-        return null;
+
+    public Product checkBarcode(String barcode) throws SQLException {
+
+        if (barcode.isEmpty())
+        {
+            return null;
+        } else
+        {
+            barcode = barcode.replaceAll("(^\"|\"$|%5B|%5D|%22|%20)", "");
+            return searcher.searchProductByBarcode(barcode);
+        }
     }
     public Map<String, Object> checkName(String name) throws SQLException {
         name = name.replaceAll("(^\"|\"$|%5B|%5D|%22)", "");
@@ -107,6 +113,32 @@ public class Taam_App {
 
     }
 
+    public Map<String, Object> checkProductBarcode(String barcode) throws SQLException {
+        product = Taam_App.getInstance().checkBarcode(barcode);
+
+        if (product != null) {
+            Map<String, Object> resultToBeReturnedToFlutter = new HashMap<String, Object>();
+
+            List<String> ingredientList = new ArrayList<>();
+            for (Ingredient auxiliaryIngredient : product.getProductIngredientsList()) {
+                ingredientList.add(auxiliaryIngredient.getIngredient());
+            }
+
+            resultToBeReturnedToFlutter.put("Name", product.getProductName());
+            resultToBeReturnedToFlutter.put("Barcode", product.getBarcode());
+            resultToBeReturnedToFlutter.put("Ingredients", ingredientList);
+
+
+            List<String> userRestrictionsList = Configuration.getInstance().getUserRestrictionsList();
+            for (String userRestriction : userRestrictionsList) {
+                visitor = Configuration.getInstance().createConfiguration(userRestriction);
+                result = visitor.checkProduct(product.getProductIngredientsList());
+            }
+            return resultToBeReturnedToFlutter;
+        }else {
+            return null;
+        }
+    }
     public Map<String, Object> checkProductIngredientName(String name) throws SQLException {
         Map<String, Object> resultToBeReturnedToFlutter = new HashMap<String, Object>();
         Map<String, Object> returnCheckName = new HashMap<String, Object>();
