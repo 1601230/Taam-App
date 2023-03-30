@@ -8,10 +8,8 @@
     import java.io.PrintWriter;
     import java.net.ServerSocket;
     import java.net.Socket;
-    import java.util.ArrayList;
-    import java.util.Arrays;
-    import java.util.List;
-    import java.util.StringTokenizer;
+    import java.sql.SQLException;
+    import java.util.*;
 
     public class WebServer {
         private static final int PORT = 8080; // port to listen to
@@ -97,8 +95,7 @@
                 }
             }
 
-            private int makeBodyAnswer(String[] tokens)
-            {
+            private int makeBodyAnswer(String[] tokens) throws SQLException {
                 int numberOfKeys = tokens.length;
                 int counter = 0;
 
@@ -113,7 +110,7 @@
 
                         case "language":
                             String language = tokens[counter + 1];
-                            Configuration.getInstance().setLanguage(language);
+                            Taam_App.getInstance().setLanguage(language);
                             counter = counter + 2;
 
                         case "barcode":
@@ -121,9 +118,10 @@
                             //checkBarcode
 
                         case "name":
-                            //TODO
-                            //checkName
-
+                            String name = tokens[counter + 1];
+                            Map<String, Object> result = Taam_App.getInstance().checkName(name);
+                            counter = counter + 2;
+                            
                         case "notFound":
                             //TODO
                             //notFound
