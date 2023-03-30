@@ -116,10 +116,10 @@
 
                         case "barcode":
                             String barcode = tokens[counter + 1];
-                            Map<String, Object> result = Taam_App.getInstance().checkBarcode(barcode);
+                            Map<String, Object> result = Taam_App.getInstance().checkProductBarcode(barcode);
                             counter = counter + 2;
 
-                            if (result == null)
+                            /*if (result == null)
                             {
                                 System.out.println("no esta");
                             }
@@ -129,7 +129,7 @@
                                 System.out.println(result.get("Name") + "\n");
                                 System.out.println(result.get("Barcode") + "\n");
                                 System.out.println(result.get("Ingredients") + "\n");
-                            }
+                            }*/
 
 
                         case "name":
