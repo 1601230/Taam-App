@@ -136,27 +136,59 @@ public class Taam_App {
             resultToBeReturnedToFlutter.put("Barcode", product.getBarcode());
             resultToBeReturnedToFlutter.put("Ingredients", ingredientList);
 
-
+            int resultEdible = 0;
+            List<String> nonSuitableIngredientsList = new ArrayList<>();
+            List<String> doubtfulIngredientsList = new ArrayList<>();
             List<String> userRestrictionsList = Configuration.getInstance().getUserRestrictionsList();
-            for (String userRestriction : userRestrictionsList) {
-                visitor = Configuration.getInstance().createConfiguration(userRestriction);
+            for (int counter = 0; counter < userRestrictionsList.size(); counter++) {
+                visitor = Configuration.getInstance().createConfiguration(userRestrictionsList.get(counter));
                 result = visitor.checkProduct(product.getProductIngredientsList());
-            }
 
-            resultToBeReturnedToFlutter.put("Edible", result.getResult().toString());
+                resultToBeReturnedToFlutter.put("Restriction" + (counter+1), userRestrictionsList.get(counter));
+                resultToBeReturnedToFlutter.put("RestrictionEdible" + (counter+1), result.getResult().toString());
 
-            if (result.getResult() != SUITABLE)
-            {
-                List<String> nonSuitableIngredientsList = new ArrayList<>();
-                for(Ingredient ingredient : result.nonSuitableIngredientsList)
+                if (result.getResult() != SUITABLE)
                 {
-                    nonSuitableIngredientsList.add(ingredient.getIngredient());
+                    for (Ingredient auxiliaryIngredient : result.getNonSuitableIngredientsList())
+                    {
+                        if (!nonSuitableIngredientsList.contains(auxiliaryIngredient.getIngredient()))
+                        {
+                            nonSuitableIngredientsList.add(auxiliaryIngredient.getIngredient());
+                        }
+                    }
+
+                    for (Ingredient auxiliaryIngredient : result.getDoubtfulIngredientsList())
+                    {
+                        if (!doubtfulIngredientsList.contains(auxiliaryIngredient.getIngredient()))
+                        {
+                            doubtfulIngredientsList.add(auxiliaryIngredient.getIngredient());
+                        }
+                    }
                 }
 
-                List<String> doubtfulIngredientsList = new ArrayList<>();
-                for(Ingredient ingredient : result.doubtfulIngredientsList)
+                if ((resultEdible != 1) && (result.getResult() == UNSUITABLE))
                 {
-                    doubtfulIngredientsList.add(ingredient.getIngredient());
+                    resultEdible = 1;
+                }
+                else if ((resultEdible != 1) && (result.getResult() == DOUBTFUL))
+                {
+                    resultEdible = 2;
+                }
+            }
+
+            if (resultEdible == 0)
+            {
+                resultToBeReturnedToFlutter.put("Edible", SUITABLE);
+            }
+            else
+            {
+                if (resultEdible == 1)
+                {
+                    resultToBeReturnedToFlutter.put("Edible", UNSUITABLE);
+                }
+                else
+                {
+                    resultToBeReturnedToFlutter.put("Edible", DOUBTFUL);
                 }
 
                 resultToBeReturnedToFlutter.put("ListIngredientsUNSUITABLE", nonSuitableIngredientsList);
@@ -165,7 +197,8 @@ public class Taam_App {
 
             return resultToBeReturnedToFlutter;
 
-        }else {
+        }else
+        {
             return null;
         }
     }
@@ -192,39 +225,64 @@ public class Taam_App {
 
                 List<String> restrictions = Configuration.getInstance().getUserRestrictionsList();
 
-                boolean suitable = true;
-                int counter = 0;
-                while ((counter < restrictions.size()) && (suitable == true))
+                int resultEdible = 0;
+                List<String> nonSuitableIngredientsList = new ArrayList<>();
+                List<String> doubtfulIngredientsList = new ArrayList<>();
+                List<String> userRestrictionsList = Configuration.getInstance().getUserRestrictionsList();
+                for (int counter = 0; counter < userRestrictionsList.size(); counter++)
                 {
                     visitor = Configuration.getInstance().createConfiguration(restrictions.get(counter));
                     result = visitor.checkProduct(product.productIngredientsList);
 
+                    resultToBeReturnedToFlutter.put("Restriction" + (counter+1), userRestrictionsList.get(counter));
+                    resultToBeReturnedToFlutter.put("RestrictionEdible" + (counter+1), result.getResult().toString());
+
                     if (result.getResult() != SUITABLE)
                     {
-                        suitable = false;
+                        for (Ingredient auxiliaryIngredient : result.getNonSuitableIngredientsList())
+                        {
+                            if (!nonSuitableIngredientsList.contains(auxiliaryIngredient.getIngredient()))
+                            {
+                                nonSuitableIngredientsList.add(auxiliaryIngredient.getIngredient());
+                            }
+                        }
+
+                        for (Ingredient auxiliaryIngredient : result.getDoubtfulIngredientsList())
+                        {
+                            if (!doubtfulIngredientsList.contains(auxiliaryIngredient.getIngredient()))
+                            {
+                                doubtfulIngredientsList.add(auxiliaryIngredient.getIngredient());
+                            }
+                        }
                     }
-                    else
+
+                    if ((resultEdible != 1) && (result.getResult() == UNSUITABLE))
                     {
-                        counter = counter + 1;
+                        resultEdible = 1;
+                    }
+                    else if ((resultEdible != 1) && (result.getResult() == DOUBTFUL))
+                    {
+                        resultEdible = 2;
                     }
                 }
 
-                resultToBeReturnedToFlutter.put("Edible", result.getResult().toString());
-                if (result.getResult() != SUITABLE)
+                if (resultEdible == 0)
                 {
-                    List<String> doubtfulIngredientList = new ArrayList<>();
-                    for (Ingredient auxiliaryIngredient : result.getDoubtfulIngredientsList())
+                    resultToBeReturnedToFlutter.put("Edible", SUITABLE);
+                }
+                else
+                {
+                    if (resultEdible == 1)
                     {
-                        doubtfulIngredientList.add(auxiliaryIngredient.getIngredient());
+                        resultToBeReturnedToFlutter.put("Edible", UNSUITABLE);
                     }
-                    List<String> nonSuitableIngredientList = new ArrayList<>();
-                    for (Ingredient auxiliaryIngredient : result.getNonSuitableIngredientsList())
+                    else
                     {
-                        nonSuitableIngredientList.add(auxiliaryIngredient.getIngredient());
+                        resultToBeReturnedToFlutter.put("Edible", DOUBTFUL);
                     }
 
-                    resultToBeReturnedToFlutter.put("ListIngredientsDOUBTFUL", doubtfulIngredientList);
-                    resultToBeReturnedToFlutter.put("ListIngredientsUNSUITABLE", nonSuitableIngredientList);
+                    resultToBeReturnedToFlutter.put("ListIngredientsUNSUITABLE", nonSuitableIngredientsList);
+                    resultToBeReturnedToFlutter.put("ListIngredientsDOUBTFUL", doubtfulIngredientsList);
                 }
             }
             else
@@ -236,24 +294,38 @@ public class Taam_App {
 
                 List<String> restrictions = Configuration.getInstance().getUserRestrictionsList();
 
-                boolean suitable = true;
-                int counter = 0;
-                while ((counter < restrictions.size()) && (suitable == true))
+                int resultEdible = 0;
+                List<String> userRestrictionsList = Configuration.getInstance().getUserRestrictionsList();
+                for (int counter = 0; counter < userRestrictionsList.size(); counter++)
                 {
                     visitor = Configuration.getInstance().createConfiguration(restrictions.get(counter));
                     result = visitor.checkIngredient(ingredient);
 
-                    if (result.getResult() != SUITABLE)
+                    resultToBeReturnedToFlutter.put("Restriction" + (counter+1), userRestrictionsList.get(counter));
+                    resultToBeReturnedToFlutter.put("RestrictionEdible" + (counter+1), result.getResult().toString());
+
+                    if ((resultEdible != 1) && (result.getResult() == UNSUITABLE))
                     {
-                        suitable = false;
+                        resultEdible = 1;
                     }
-                    else
+                    else if ((resultEdible != 1) && (result.getResult() == DOUBTFUL))
                     {
-                        counter = counter + 1;
+                        resultEdible = 2;
                     }
                 }
 
-                resultToBeReturnedToFlutter.put("Edible", result.getResult().toString());
+                if (resultEdible == 0)
+                {
+                    resultToBeReturnedToFlutter.put("Edible", SUITABLE);
+                }
+                else if (resultEdible == 1)
+                {
+                    resultToBeReturnedToFlutter.put("Edible", UNSUITABLE);
+                }
+                else
+                {
+                    resultToBeReturnedToFlutter.put("Edible", DOUBTFUL);
+                }
             }
 
             return resultToBeReturnedToFlutter;
