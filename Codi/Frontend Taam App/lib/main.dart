@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taam_app/requests.dart';
+import 'package:taam_app/page_configuration.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: PageConfiguration(), //home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
