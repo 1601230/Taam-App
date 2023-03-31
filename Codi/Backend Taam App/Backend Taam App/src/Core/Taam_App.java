@@ -48,12 +48,12 @@ public class Taam_App {
 
     public void setRestrictions(String token)
     {
-        String[] restrictionsToken = token.split(", ");
+        String[] restrictionsToken = token.split(",");
         List<String> restrictionsList = new ArrayList<>();
 
         for (String restriction : restrictionsToken)
         {
-            restriction = restriction.replaceAll("(^\"|\"$|%5B|%5D|%20)", "");
+            restriction = restriction.replaceAll("(^\"|\"$|%5B|%5D|%20|%22|\\s)", "");
             restrictionsList.add(restriction);
         }
 
