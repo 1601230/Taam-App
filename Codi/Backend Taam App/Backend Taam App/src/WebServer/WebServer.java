@@ -96,10 +96,9 @@ public class WebServer {
         }
 
         private int makeBodyAnswer(String[] tokens) throws SQLException {
-            int numberOfKeys = tokens.length;
             int counter = 0;
 
-            while (counter < numberOfKeys)
+            while (!tokens[counter].equals("end"))
             {
                 switch(tokens[counter])
                 {
@@ -107,26 +106,47 @@ public class WebServer {
                         String token = tokens[counter + 1];
                         Taam_App.getInstance().setRestrictions(token);
                         counter = counter + 2;
+                        break;
 
                     case "language":
                         String language = tokens[counter + 1];
                         Taam_App.getInstance().setLanguage(language);
                         counter = counter + 2;
+                        break;
 
                     case "barcode":
                         String barcode = tokens[counter + 1];
                         Map<String, Object> resultBarcode = Taam_App.getInstance().checkProductBarcode(barcode);
                         counter = counter + 2;
+                        break;
 
                     case "name":
                         String name = tokens[counter + 1];
-                        Map<String, Object> resultName = Taam_App.getInstance().checkProductIngredientName(name);
+                        //Map<String, Object> resultName = Taam_App.getInstance().checkProductIngredientName(name);
+                        Map<String, Object> resultName = Taam_App.getInstance().checkName(name);
+
+                        if (resultName == null)
+                        {
+                            System.out.println("no existe");
+                        }
+                        else
+                        {
+                            System.out.println(resultName.get("Type"));
+                            Product p = (Product) resultName.get("Element");
+                            System.out.println(p.getProductName());
+                            System.out.println(p.getBarcode());
+                            System.out.println(p.getProductIngredientsList());
+                        }
                         counter = counter + 2;
+                        break;
 
                     case "notFound":
                         //TODO
                         //notFound
-
+                        counter = counter + 1;
+                        break;
+                    default:
+                        return 0;
                 }
             }
             return 1;
