@@ -48,12 +48,12 @@ public class Taam_App {
 
     public void setRestrictions(String token)
     {
-        String[] restrictionsToken = token.split(", ");
+        String[] restrictionsToken = token.split(",");
         List<String> restrictionsList = new ArrayList<>();
 
         for (String restriction : restrictionsToken)
         {
-            restriction = restriction.replaceAll("(^\"|\"$|%5B|%5D|%20)", "");
+            restriction = restriction.replaceAll("(^\"|\"$|%5B|%5D|%20|%22|\\s)", "");
             restrictionsList.add(restriction);
         }
 
@@ -142,7 +142,29 @@ public class Taam_App {
                 visitor = Configuration.getInstance().createConfiguration(userRestriction);
                 result = visitor.checkProduct(product.getProductIngredientsList());
             }
+
+            resultToBeReturnedToFlutter.put("Edible", result.getResult().toString());
+
+            if (result.getResult() != SUITABLE)
+            {
+                List<String> nonSuitableIngredientsList = new ArrayList<>();
+                for(Ingredient ingredient : result.nonSuitableIngredientsList)
+                {
+                    nonSuitableIngredientsList.add(ingredient.getIngredient());
+                }
+
+                List<String> doubtfulIngredientsList = new ArrayList<>();
+                for(Ingredient ingredient : result.doubtfulIngredientsList)
+                {
+                    doubtfulIngredientsList.add(ingredient.getIngredient());
+                }
+
+                resultToBeReturnedToFlutter.put("ListIngredientsUNSUITABLE", nonSuitableIngredientsList);
+                resultToBeReturnedToFlutter.put("ListIngredientsDOUBTFUL", doubtfulIngredientsList);
+            }
+
             return resultToBeReturnedToFlutter;
+
         }else {
             return null;
         }

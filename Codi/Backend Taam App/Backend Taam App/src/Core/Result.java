@@ -8,8 +8,7 @@ public class Result {
     List<Ingredient> nonSuitableIngredientsList = new ArrayList<>();
     List<Ingredient> doubtfulIngredientsList = new ArrayList<>();
 
-    public Edible getResult()
-    {
+    public Edible getResult(){
         return result;
     }
     public List<Ingredient> getNonSuitableIngredientsList()
@@ -20,7 +19,6 @@ public class Result {
     {
         return doubtfulIngredientsList;
     }
-
     public void setResult(Edible result)
     {
         this.result = result;

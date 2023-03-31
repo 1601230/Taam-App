@@ -96,6 +96,7 @@ public class Searcher {
                                     .replaceAll("(%c3%b3|%c3%b6|%c3%b2|%c3%b4|%c3%93|%c3%94|%c3%92|%c3%96)", "o")
                                     .replaceAll("(%c3%99|%c3%9a|%c3%9b|%c3%9c|%c3%b9|%c3%ba|%c3%bb|%c3%bc)", "u");
 
+
             if (auxiliaryName.equals(nameSearched))
             {
                 productFound = true;
