@@ -88,8 +88,6 @@ public class Taam_App {
                                 .replaceAll("(%c3%b3|%c3%b6|%c3%b2|%c3%b4|%c3%93|%c3%94|%c3%92|%c3%96)", "o")
                                 .replaceAll("(%c3%99|%c3%9a|%c3%9b|%c3%9c|%c3%b9|%c3%ba|%c3%bb|%c3%bc)", "u");
 
-        System.out.println(nameSearched);
-
         Map<String, Object> resultToBeReturnedToFlutter = new HashMap<String, Object>();
 
         product = searcher.searchProductByName(nameSearched);
@@ -192,8 +190,19 @@ public class Taam_App {
                 resultToBeReturnedToFlutter.put("Edible", result.getResult().toString());
                 if (result.getResult() != SUITABLE)
                 {
-                    resultToBeReturnedToFlutter.put("ListIngredientsDOUBTFUL", result.getDoubtfulIngredientsList());
-                    resultToBeReturnedToFlutter.put("ListIngredientsUNSUITABLE", result.getNonSuitableIngredientsList());
+                    List<String> doubtfulIngredientList = new ArrayList<>();
+                    for (Ingredient auxiliaryIngredient : result.getDoubtfulIngredientsList())
+                    {
+                        doubtfulIngredientList.add(auxiliaryIngredient.getIngredient());
+                    }
+                    List<String> nonSuitableIngredientList = new ArrayList<>();
+                    for (Ingredient auxiliaryIngredient : result.getNonSuitableIngredientsList())
+                    {
+                        nonSuitableIngredientList.add(auxiliaryIngredient.getIngredient());
+                    }
+
+                    resultToBeReturnedToFlutter.put("ListIngredientsDOUBTFUL", doubtfulIngredientList);
+                    resultToBeReturnedToFlutter.put("ListIngredientsUNSUITABLE", nonSuitableIngredientList);
                 }
             }
             else
