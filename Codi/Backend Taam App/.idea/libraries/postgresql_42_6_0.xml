@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="postgresql-42.6.0">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../../postgresql-42.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Backend Taam App/.idea/libraries/postgresql-42.6.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
