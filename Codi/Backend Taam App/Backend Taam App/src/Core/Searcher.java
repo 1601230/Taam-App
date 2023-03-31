@@ -81,7 +81,6 @@ public class Searcher {
         Connection conn = ConnectDB.getConnection();
         String sql = "SELECT id, name FROM public.products;";
         PreparedStatement stringSTMT = conn.prepareStatement(sql);
-        //stringSTMT.setString(1, productName);
         ResultSet result = stringSTMT.executeQuery();
 
         boolean productFound = false;
@@ -156,7 +155,6 @@ public class Searcher {
         Connection conn = ConnectDB.getConnection();
         String sql = "SELECT id, name" + Configuration.getInstance().getLanguage() + " FROM public.ingredients;";
         PreparedStatement stringSTMT = conn.prepareStatement(sql);
-        //stringSTMT.setString(1, ingredientName);
         ResultSet result = stringSTMT.executeQuery();
 
         boolean ingredientFound = false;

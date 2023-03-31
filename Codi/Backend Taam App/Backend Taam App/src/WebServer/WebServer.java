@@ -120,22 +120,7 @@
 
                         case "name":
                             String name = tokens[counter + 1];
-                            //Map<String, Object> resultName = Taam_App.getInstance().checkProductIngredientName(name);
-                            Map<String, Object> resultName = Taam_App.getInstance().checkName(name);
-
-                            if (resultName == null)
-                            {
-                                System.out.println("no existe");
-                            }
-                            else
-                            {
-                                System.out.println(resultName.get("Type"));
-                                Product p = (Product) resultName.get("Element");
-                                System.out.println(p.getProductName());
-                                System.out.println(p.getBarcode());
-                                System.out.println(p.getProductIngredientsList());
-                            }
-
+                            Map<String, Object> resultName = Taam_App.getInstance().checkProductIngredientName(name);
                             counter = counter + 2;
 
                         case "notFound":
