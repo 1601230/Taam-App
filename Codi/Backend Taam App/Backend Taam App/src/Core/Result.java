@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Result {
-    private boolean successfulSearch;
     private Edible result;
     List<Ingredient> nonSuitableIngredientsList = new ArrayList<>();
     List<Ingredient> doubtfulIngredientsList = new ArrayList<>();
@@ -19,6 +18,10 @@ public class Result {
     public List<Ingredient> getDoubtfulIngredientsList()
     {
         return doubtfulIngredientsList;
+    }
+    public void setResult(Edible result)
+    {
+        this.result = result;
     }
 
 }

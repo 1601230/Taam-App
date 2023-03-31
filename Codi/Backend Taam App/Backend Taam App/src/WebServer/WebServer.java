@@ -95,8 +95,9 @@ public class WebServer {
             }
         }
 
-        private int makeBodyAnswer(String[] tokens) throws SQLException {
+        private Map<String,Object> makeBodyAnswer(String[] tokens) throws SQLException {
             int counter = 0;
+            Map<String, Object> result = null;
 
             while (!tokens[counter].equals("end"))
             {
@@ -116,27 +117,13 @@ public class WebServer {
 
                     case "barcode":
                         String barcode = tokens[counter + 1];
-                        Map<String, Object> resultBarcode = Taam_App.getInstance().checkProductBarcode(barcode);
+                        result = Taam_App.getInstance().checkProductBarcode(barcode);
                         counter = counter + 2;
                         break;
 
                     case "name":
                         String name = tokens[counter + 1];
-                        //Map<String, Object> resultName = Taam_App.getInstance().checkProductIngredientName(name);
-                        Map<String, Object> resultName = Taam_App.getInstance().checkName(name);
-
-                        if (resultName == null)
-                        {
-                            System.out.println("no existe");
-                        }
-                        else
-                        {
-                            System.out.println(resultName.get("Type"));
-                            Product p = (Product) resultName.get("Element");
-                            System.out.println(p.getProductName());
-                            System.out.println(p.getBarcode());
-                            System.out.println(p.getProductIngredientsList());
-                        }
+                        result = Taam_App.getInstance().checkProductIngredientName(name);
                         counter = counter + 2;
                         break;
 
@@ -146,10 +133,10 @@ public class WebServer {
                         counter = counter + 1;
                         break;
                     default:
-                        return 0;
+                        return null;
                 }
             }
-            return 1;
+            return result;
         }
 
         private String makeHeaderAnswer() {

@@ -15,12 +15,12 @@ public class Configuration {
     public Visitor createConfiguration(String configuration)
     {
          switch (configuration){
-             case "Vegan": return new Vegan();
-             case "Vegetarian": return new Vegetarian();
-             case "Gluten Allergic": return new Gluten_Allergic();
-             case "Lactose Allergic": return new Lactose_Allergic();
-             case "Tree Nut Allergic": return new Tree_Nut_Allergic();
-             case "Teetotal": return new Teetotal();
+             case "vegan": return new Vegan();
+             case "vegetarian": return new Vegetarian();
+             case "gluten": return new Gluten_Allergic();
+             case "lactose": return new Lactose_Allergic();
+             case "treenut": return new Tree_Nut_Allergic();
+             case "teetotal": return new Teetotal();
              default: return null;
          }
     }
