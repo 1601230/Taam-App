@@ -6,13 +6,11 @@ import java.util.List;
 public class Product {
     private String productName;
     private String barcode;
-
     List<Ingredient> productIngredientsList = new ArrayList<>();
 
-    Product() {}
+    public Product() {
 
-    void setProductName(String productName) { this.productName = productName; }
-    void setBarcode(String barcode) { this.barcode = barcode; }
+    }
 
     public String getProductName() {
         return productName;
@@ -25,4 +23,14 @@ public class Product {
     public List<Ingredient> getProductIngredientsList() {
         return productIngredientsList;
     }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
 }
+

@@ -132,6 +132,7 @@ public class WebServer {
                         //notFound
                         counter = counter + 1;
                         break;
+
                     default:
                         return null;
                 }
