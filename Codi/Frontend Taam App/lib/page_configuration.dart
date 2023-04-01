@@ -139,8 +139,6 @@ class _PageConfigurationState extends State<PageConfiguration> {
       ),
     );
   }
-
-  void setFromTo(String selectionThemeMessage) {}
 }
 
 
