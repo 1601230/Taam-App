@@ -12,7 +12,14 @@ class PageConfiguration extends StatefulWidget {
 }
 
 class _PageConfigurationState extends State<PageConfiguration> {
-  List<int> _selectedValuesLanguage = [];
+  List<String> _selectedValuesFoodPreferences = ['Vegetariano', 'Vegano', 'Celiaco'];
+
+  List<String> _appLanguage = ['Español', 'Catalán', 'Inglés'];
+  String _selectionLanguageMessage = 'Español';
+
+  List<String> _appThemeItems = ['Claro','Oscuro'];
+  String _selectionThemeMessage = 'Claro';
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,19 +37,110 @@ class _PageConfigurationState extends State<PageConfiguration> {
           },
         ),
       ),
-      body: ListView(
-        children: [
-          MultiSelectDialogField( //https://www.youtube.com/watch?v=Ldg_TO988no&ab_channel=dbestech
-            items: [
-
-            ],
-            onConfirm: (List<Object?> ) {  },
-          )
-        ],
+      body: Container(
+        margin: EdgeInsets.all(5),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ///Container de cambio de idioma
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    child: const Text(
+                        'Tema de la aplicación',
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: DropdownButton(
+                      items: _appLanguage.map((String itemsValues) {
+                        return DropdownMenuItem(
+                          value: itemsValues,
+                          child: Text(itemsValues),
+                        );
+                      }).toList(),
+                      value: _selectionLanguageMessage,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _selectionLanguageMessage = value!;
+                        });
+                      },
+                    ),
+                  )
+                ],
+              ),
+            ),
+            ///Container preferencias alimentarias
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    child: const Text(
+                        'Preferencias alimentarias',
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: MultiSelectDialogField(
+                      title: Text('Selecciona las preferencias alimentarias'),
+                      buttonText: Text('Selecciona tus preferencias'),
+                      confirmText: const Text('Confirmar'),
+                      cancelText: const Text('Cancelar'),
+                      items: _selectedValuesFoodPreferences.map((option) => MultiSelectItem<String>(option, option)).toList(),
+                      onConfirm: (selectedItems) {
+                        print(selectedItems);
+                      },
+                    )
+                  )
+                ],
+              ),
+            ),
+            ///Container tema de la aplicación
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    child: const Text(
+                        'Tema de la aplicación',
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: DropdownButton(
+                      items: _appThemeItems.map((String itemsValues) {
+                        return DropdownMenuItem(
+                          value: itemsValues,
+                          child: Text(itemsValues),
+                        );
+                      }).toList(),
+                      value: _selectionThemeMessage,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _selectionThemeMessage = value!;
+                        });
+                      },
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
-
     );
   }
+
+  void setFromTo(String selectionThemeMessage) {}
 }
 
 
