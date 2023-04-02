@@ -133,6 +133,11 @@ public class WebServer {
                         counter = counter + 1;
                         break;
 
+                    case "incident":
+                        //TODO
+                        counter = counter + 2;
+                        break;
+
                     default:
                         return null;
                 }
