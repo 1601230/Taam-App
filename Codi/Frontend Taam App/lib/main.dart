@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
         brightness: _brightness,
       ),
-      home: PageConfiguration(setBrightness: setBrightness, brightness: _brightness), //home: const MyHomePage(title: 'Flutter Demo Home Page'),     home: PageConfiguration()
+      home: ///Pagina inicial (para debugar, podeis poner la pagina que esteis desarollando aqui y asi la podreis visualizar a la hora de ejecutar el emulador) (aqui debera ir a pagina principal de la aplicación)
     );
   }
 }
