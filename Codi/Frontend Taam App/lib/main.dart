@@ -15,6 +15,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Brightness _brightness = Brightness.light;
+  late List<String> _selectedValuesFoodPreferences;
+  late String _appLanguage;
 
   void setBrightness(Brightness? brightness) {
     setState(() {
