@@ -33,6 +33,25 @@ class _PageConfigurationState extends State<PageConfiguration> {
   List<String> _appThemeItems = ['Claro','Oscuro'];
   String _selectionThemeMessage = 'Claro';
 
+  ///Inicializamos los valores de los diferentes campos con los valores pasados
+  ///por parametro en el constructor, para que así aparezcan los valores correspondientes
+  ///a la configuración indicada por el usuario, es a decir, que si el usuario tiene
+  ///la aplicación en Catalán, que en el campo del idioma ponga Catalán
+  void initState() {
+    super.initState();
+
+    ///Ponemos los correspondientes mensajes de Idioma y preferencias alimentarias
+    _selectionLanguageMessage = widget.language!;
+    _selectedFoodPreferences = widget.foodPreferences!;
+
+    ///Para el mensaje dle tema, debemos verificar que tipo de tema es y poner su
+    ///correspondiente string.
+    if (widget.brightness == Brightness.light) {
+      _selectionThemeMessage = 'Claro';
+    } else if (widget.brightness == Brightness.dark){
+      _selectionThemeMessage = 'Oscuro';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +74,7 @@ class _PageConfigurationState extends State<PageConfiguration> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ///Container de cambio de idioma
+            ///Columna de cambio de idioma
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -79,13 +98,15 @@ class _PageConfigurationState extends State<PageConfiguration> {
                     onChanged: (String? value) {
                       setState(() {
                         _selectionLanguageMessage = value!;
+                        ///Actualizamos el idioma en el main
+                        widget.setLanguage!(_selectionLanguageMessage);
                       });
                     },
                   ),
                 )
               ],
             ),
-            ///Container preferencias alimentarias
+            ///Columna preferencias alimentarias
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -106,13 +127,14 @@ class _PageConfigurationState extends State<PageConfiguration> {
                       initialValue: _selectedFoodPreferences,
                       items: _valuesFoodPreferences.map((option) => MultiSelectItem<String>(option, option)).toList(),
                       onConfirm: (selectedItems) {
-                        print(selectedItems);
+                        ///Actualizamos las preferencias en el main
+                        widget.setFoodPreferences!(_valuesFoodPreferences);
                       },
                     )
                 )
               ],
             ),
-            ///Container tema de la aplicación
+            ///Columna tema de la aplicación
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -136,6 +158,7 @@ class _PageConfigurationState extends State<PageConfiguration> {
                     onChanged: (String? value) {
                       setState(() {
                         _selectionThemeMessage = value!;
+                        ///Actualizamos el tema en el main
                         if (_selectionThemeMessage == 'Claro') {
                           widget.setBrightness!(Brightness.light);
                         } else {
