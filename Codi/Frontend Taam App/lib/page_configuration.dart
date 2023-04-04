@@ -6,15 +6,26 @@ import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 class PageConfiguration extends StatefulWidget {
   final void Function(Brightness?)? setBrightness;
-  final Brightness brightness;
-  const PageConfiguration({Key? key, required this.setBrightness, required this.brightness}) : super(key: key);
+  final Brightness? brightness;
+
+  final void Function(String?)? setLanguage;
+  final String? language;
+
+  final void Function(List<String>?)? setFoodPreferences;
+  final List<String>? foodPreferences;
+
+  const PageConfiguration({Key? key,
+    required this.setBrightness, required this.brightness,
+    required this.setLanguage, required this.language,
+    required this.setFoodPreferences, required this.foodPreferences}) : super(key: key);
 
   @override
   State<PageConfiguration> createState() => _PageConfigurationState();
 }
 
 class _PageConfigurationState extends State<PageConfiguration> {
-  List<String> _selectedValuesFoodPreferences = ['Vegetariano', 'Vegano', 'Celiaco'];
+  List<String> _valuesFoodPreferences = ['Vegetariano', 'Vegano', 'Celiaco'];
+  List<String> _selectedFoodPreferences = [];
 
   List<String> _appLanguage = ['Español', 'Catalán', 'Inglés'];
   String _selectionLanguageMessage = 'Español';
@@ -86,17 +97,18 @@ class _PageConfigurationState extends State<PageConfiguration> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10),
-                  child: MultiSelectDialogField(
-                    title: Text('Selecciona las preferencias alimentarias'),
-                    buttonText: Text('Selecciona tus preferencias'),
-                    confirmText: const Text('Confirmar'),
-                    cancelText: const Text('Cancelar'),
-                    items: _selectedValuesFoodPreferences.map((option) => MultiSelectItem<String>(option, option)).toList(),
-                    onConfirm: (selectedItems) {
-                      print(selectedItems);
-                    },
-                  )
+                    padding: EdgeInsets.all(10),
+                    child: MultiSelectDialogField(
+                      title: Text('Selecciona las preferencias alimentarias'),
+                      buttonText: Text('Selecciona tus preferencias'),
+                      confirmText: const Text('Confirmar'),
+                      cancelText: const Text('Cancelar'),
+                      initialValue: _selectedFoodPreferences,
+                      items: _valuesFoodPreferences.map((option) => MultiSelectItem<String>(option, option)).toList(),
+                      onConfirm: (selectedItems) {
+                        print(selectedItems);
+                      },
+                    )
                 )
               ],
             ),
@@ -152,6 +164,3 @@ class _PageConfigurationState extends State<PageConfiguration> {
     );
   }
 }
-
-
-

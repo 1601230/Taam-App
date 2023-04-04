@@ -14,13 +14,25 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Brightness _brightness = Brightness.light;
-  late List<String> _selectedValuesFoodPreferences;
-  late String _appLanguage;
+  late Brightness? _brightness = Brightness.light;
+  late List<String>? _foodPreferences = [];
+  late String? _appLanguage = 'Español';
 
   void setBrightness(Brightness? brightness) {
     setState(() {
       _brightness = brightness!;
+    });
+  }
+
+  void setLanguage(String? language) {
+    setState(() {
+      _appLanguage = language!;
+    });
+  }
+
+  void setFoodPreferences(List<String>? foodPreferences) {
+    setState(() {
+      _foodPreferences = foodPreferences!;
     });
   }
 
@@ -32,7 +44,9 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
         brightness: _brightness,
       ),
-      home: PageConfiguration(setBrightness: setBrightness, brightness: _brightness), //home: const MyHomePage(title: 'Flutter Demo Home Page'),     home: PageConfiguration()
+      home: PageConfiguration(setBrightness: setBrightness, brightness: _brightness,
+        setLanguage: setLanguage, language: _appLanguage,
+        setFoodPreferences: setFoodPreferences, foodPreferences: _foodPreferences,), //home: const MyHomePage(title: 'Flutter Demo Home Page'),     home: PageConfiguration()
     );
   }
 }
