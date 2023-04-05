@@ -119,6 +119,17 @@ public class Taam_App {
     public void notFound()
     {
 
+        {
+            sql = "INSERT INTO public.notfound(barcode) VALUES (" + product.getBarcode()+ ")";
+            stringSTMT = conn.prepareStatement(sql);
+            result = stringSTMT.executeQuery();
+        }
+        else if(product.getProductName() != null)
+        {
+            sql = "INSERT INTO public.notfound(name) VALUES (" + product.getProductName()+ ")";
+            stringSTMT = conn.prepareStatement(sql);
+            result = stringSTMT.executeQuery();
+        }
     }
 
     public Map<String, Object> checkProductBarcode(String barcode) throws SQLException {
