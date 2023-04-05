@@ -118,7 +118,7 @@ public class Taam_App {
     }
     public void notFound()
     {
-
+        if (product.getBarcode() != null)
         {
             sql = "INSERT INTO public.notfound(barcode) VALUES (" + product.getBarcode()+ ")";
             stringSTMT = conn.prepareStatement(sql);
