@@ -1,10 +1,11 @@
 package Core;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import static Core.Edible.*;
 
 
@@ -20,7 +21,7 @@ public class Taam_App {
     public static Product product = new Product();
     public static Ingredient ingredient = new Ingredient();
     public static Result result;
-    public static Recommendations recommendations;
+    List<Product> recommendedProductsList = new ArrayList<>();
     public static Visitor visitor;
 
     /**
@@ -334,5 +335,79 @@ public class Taam_App {
         {
             return null;
         }
+    }
+
+    public Map<String, Object> recommendedProducts() throws SQLException {
+        Map<String, Object> recommendedProductsMap = new HashMap<String, Object>();
+        Map<String, Object> auxiliaryMap = new HashMap<String, Object>();
+        recommendedProductsList.clear();
+
+        Connection conn = ConnectDB.getConnection();
+        String sql = "SELECT id FROM public.products;";
+        PreparedStatement stringSTMT = conn.prepareStatement(sql);
+        ResultSet result = stringSTMT.executeQuery();
+
+        while (result.next())
+        {
+            auxiliaryMap = this.checkProductBarcode(result.getString("id"));
+            if (auxiliaryMap.get("Edible") == SUITABLE)
+            {
+                Product auxiliaryProduct = new Product();
+                auxiliaryProduct.setProductName((String) auxiliaryMap.get("Name"));
+                auxiliaryProduct.setBarcode((String) auxiliaryMap.get("Barcode"));
+
+                recommendedProductsList.add(auxiliaryProduct);
+            }
+        }
+
+        int counter = 0;
+        while ((counter < recommendedProductsList.size()) && (counter < 10))
+        {
+            //recommendedProductsMap.put("Product" + (counter+1), recommendedProductsList.get(counter));
+            recommendedProductsMap.put("Product" + (counter+1), recommendedProductsList.get(counter).getProductName());
+            counter = counter + 1;
+        }
+
+        return recommendedProductsMap;
+    }
+    public Map<String, Object> refreshRecommendedProducts()
+    {
+        Map<String, Object> recommendedProductsMap = new HashMap<String, Object>();
+        Random random = new Random();
+        List<Integer> indexList = new ArrayList<>();
+        int randomIndex;
+
+        if (recommendedProductsList.size() < 10)
+        {
+            for (int counter = 0; counter < recommendedProductsList.size(); counter++)
+            {
+                randomIndex = random.nextInt(recommendedProductsList.size());
+                while (indexList.contains(randomIndex))
+                {
+                    randomIndex = random.nextInt(recommendedProductsList.size());
+                }
+                indexList.add(randomIndex);
+                //recommendedProductsMap.put("Product" + (counter+1), recommendedProductsList.get(randomIndex));
+                recommendedProductsMap.put("Product" + (counter+1), recommendedProductsList.get(randomIndex).getProductName());
+            }
+        }
+        else
+        {
+            int counter = 0;
+            while (counter < 10)
+            {
+                randomIndex = random.nextInt(recommendedProductsList.size());
+                while (indexList.contains(randomIndex))
+                {
+                    randomIndex = random.nextInt(recommendedProductsList.size());
+                }
+                indexList.add(randomIndex);
+                //recommendedProductsMap.put("Product" + (counter+1), recommendedProductsList.get(randomIndex));
+                recommendedProductsMap.put("Product" + (counter+1), recommendedProductsList.get(counter).getProductName());
+                counter = counter + 1;
+            }
+        }
+
+        return recommendedProductsMap;
     }
 }
