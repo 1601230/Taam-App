@@ -134,6 +134,28 @@ public class Taam_App {
         }
     }
 
+    public void incident(String observation)
+    {
+        if (searcher.getBarcode() != null)
+        {
+            sql = "INSERT INTO public.incident(observation, type_element, product_id) VALUES ('" + observation + "', 'product', '" + searcher.getBarcode() + "')";
+            stringSTMT = conn.prepareStatement(sql);
+            result = stringSTMT.executeQuery();
+        }
+        else if(searcher.getProductName() != null)
+        {
+            sql = "INSERT INTO public.incident(observation, type_element, product_id) VALUES ('" + observation + "', 'product', '" + product.getBarcode() + "')";
+            stringSTMT = conn.prepareStatement(sql);
+            result = stringSTMT.executeQuery();
+        }
+        else
+        {
+            sql = "INSERT INTO public.incident(observation, type_element, product_id) VALUES ('" + observation + "', 'ingredient', '" + ingredient.getId() + "')";
+            stringSTMT = conn.prepareStatement(sql);
+            result = stringSTMT.executeQuery();
+        }
+    }
+
     public Map<String, Object> checkProductBarcode(String barcode) throws SQLException {
         product = Taam_App.getInstance().checkBarcode(barcode);
 
