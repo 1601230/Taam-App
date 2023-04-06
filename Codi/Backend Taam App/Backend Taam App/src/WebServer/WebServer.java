@@ -129,13 +129,13 @@ public class WebServer {
                         break;
 
                     case "notFound":
-                        //TODO
-                        //notFound
+                        Taam_App.getInstance().notFound();
                         counter = counter + 1;
                         break;
 
                     case "incident":
-                        //TODO
+                        String observation = tokens[counter + 1];
+                        Taam_App.getInstance().incident(observation);
                         counter = counter + 2;
                         break;
 

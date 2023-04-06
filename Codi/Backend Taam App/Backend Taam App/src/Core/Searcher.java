@@ -18,6 +18,17 @@ public class Searcher {
     {
     }
 
+    public String getProductName(){
+        return productName;
+    }
+
+    public String getBarcode(){
+        return barcode;
+    }
+
+    public String getIngredientName(){
+        return ingredientName;
+    }
     /**
      * This is the search engine for a product by barcode. This method allows the user to search in the database for the
      * ingredients of a product by its barcode.

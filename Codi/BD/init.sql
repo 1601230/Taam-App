@@ -12,8 +12,8 @@ DROP TABLE IF EXISTS public.products_ingredients CASCADE;
 CREATE TABLE IF NOT EXISTS public.incidents
 (
     id SERIAL PRIMARY KEY,
-    result text,
     observation text,
+    type_element text,
     product_id text NOT NULL
 );
 
