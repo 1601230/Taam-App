@@ -28,7 +28,8 @@ class MySearchProduct extends StatefulWidget {
 
 class _MySearchProduct extends State<MySearchProduct> {
   var _productName;
-  bool loading = false;
+  bool loadingScreen = false;
+  bool loadingRecommendations = false;
   final _productController = TextEditingController();
   final _barcodeController = TextEditingController();
   final _focusNodeProduct = FocusNode();
@@ -63,14 +64,27 @@ class _MySearchProduct extends State<MySearchProduct> {
 
   Future<void> _searchProduct() async {
     setState(() {
-      loading = true;
+      loadingScreen = true;
     });
 
     // Aquí va la tarea asincrónica de búsqueda de productos o ingredientes
     await Future.delayed(Duration(seconds: 2));
 
     setState(() {
-      loading = false;
+      loadingScreen = false;
+    });
+  }
+
+  Future<void> _reloadRecommendations() async {
+    setState(() {
+      loadingRecommendations = true;
+    });
+
+    // Aquí va la tarea asincrónica de búsqueda de productos o ingredientes
+    await Future.delayed(Duration(seconds: 2));
+
+    setState(() {
+      loadingRecommendations = false;
     });
   }
 
@@ -95,8 +109,8 @@ class _MySearchProduct extends State<MySearchProduct> {
               ),
               IconButton(
                 icon: Icon(Icons.settings),
-                onPressed: () {
-                  //Aqui se agrega la navegación a la pantalla de Configuración
+                onPressed: () async {
+                  await _searchProduct();
                 },
               ),
             ],
@@ -104,7 +118,12 @@ class _MySearchProduct extends State<MySearchProduct> {
         ),
       ),
       body: Center(
-        child: Padding(
+        child: loadingScreen == true ? Center(child: Container(
+          width: 30,
+          height: 30,
+          child: CircularProgressIndicator(),
+        ),)
+            : Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
                 children: [
@@ -173,8 +192,6 @@ class _MySearchProduct extends State<MySearchProduct> {
                             fontSize: 16.0
                         );
                       }
-                      _productController
-                          .clear(); //Esto limpia el contenido de la barra de búsqueda*/
                     },
                   ),
                   Padding(
@@ -217,9 +234,9 @@ class _MySearchProduct extends State<MySearchProduct> {
                         ),
                       ),
                       keyboardType: TextInputType.number,
-                      onEditingComplete: () {
+                      onEditingComplete: () async {
                         _focusNodeBarcode.unfocus();
-
+                        await _searchProduct();
                         if(_productController.text.isEmpty) {
                           Fluttertoast.showToast(
                             msg: "Product Name is empty",
@@ -232,8 +249,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                           );
                         } else {
                           Fluttertoast.showToast(
-                              msg: "Product Barcode is ${_barcodeController
-                                  .text}",
+                              msg: "Product Barcode is ${_barcodeController.text}",
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.CENTER,
                               timeInSecForIosWeb: 1,
@@ -242,7 +258,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                               fontSize: 16.0
                           );
                         }
-                        _barcodeController.clear(); //Esto limpia el contenido de la barra de búsqueda
+                        //_barcodeController.clear(); //Esto limpia el contenido de la barra de búsqueda
                       },
                     )
                   ),
@@ -254,18 +270,32 @@ class _MySearchProduct extends State<MySearchProduct> {
                       color: Colors.grey, // Color de la línea
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.symmetric(vertical: 8.0),
-                    child: Text(
-                      "Recomanacions",
-                      style: TextStyle(
-                        fontSize: 30.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(right: 30.0),
+                          child: Text(
+                            "Recomanacions",
+                            style: TextStyle(
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            _reloadRecommendations();
+                          },
+                          icon: Icon(Icons.refresh),
+                        ),
+                      ],
                     ),
                   ),
                   Expanded(
-                      child: loading == true ? Center(child: Container(
+                      child: loadingRecommendations == true ? Center(child: Container(
                         width: 30,
                         height: 30,
                         child: CircularProgressIndicator(),
@@ -276,8 +306,9 @@ class _MySearchProduct extends State<MySearchProduct> {
                                 return Padding(
                                   padding: EdgeInsets.symmetric(vertical: 4.0),
                                   child: GestureDetector(
-                                    onTap: () {
+                                    onTap: () async {
                                       //Añadir navegación a la pantalla del producto
+                                      await _searchProduct();
                                       Fluttertoast.showToast(
                                           msg: "${myData[index].title} Seleccionado",
                                           toastLength: Toast.LENGTH_SHORT,

@@ -45,12 +45,14 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.brown,
         brightness: _brightness,
       ),
-      home: MyHomePage(), ///Pagina inicial (para debugar, podeis poner la pagina que esteis desarollando aqui y asi la podreis visualizar a la hora de ejecutar el emulador) (aqui debera ir a pagina principal de la aplicación)
+      home: const MyHomePage(), ///Pagina inicial (para debugar, podeis poner la pagina que esteis desarollando aqui y asi la podreis visualizar a la hora de ejecutar el emulador) (aqui debera ir a pagina principal de la aplicación)
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +65,6 @@ class MyHomePage extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.settings),
                 onPressed: () {
-
                   //Aqui se agrega la navegación a la pantalla de Configuración
                 },
               ),
