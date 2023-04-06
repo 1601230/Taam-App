@@ -118,15 +118,17 @@ public class Taam_App {
     }
     public void notFound()
     {
-        if (product.getBarcode() != null)
+        Connection conn = ConnectDB.getConnection();
+
+        if (searcher.getBarcode() != null)
         {
-            sql = "INSERT INTO public.notfound(barcode) VALUES (" + product.getBarcode()+ ")";
+            sql = "INSERT INTO public.notfound(barcode) VALUES ('" + searcher.getBarcode()+ "')";
             stringSTMT = conn.prepareStatement(sql);
             result = stringSTMT.executeQuery();
         }
-        else if(product.getProductName() != null)
+        else
         {
-            sql = "INSERT INTO public.notfound(name) VALUES (" + product.getProductName()+ ")";
+            sql = "INSERT INTO public.notfound(name) VALUES ('" + searcher.getProductName()+ "')";
             stringSTMT = conn.prepareStatement(sql);
             result = stringSTMT.executeQuery();
         }
