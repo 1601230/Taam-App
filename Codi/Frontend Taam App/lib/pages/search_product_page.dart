@@ -28,8 +28,11 @@ class MySearchProduct extends StatefulWidget {
 
 class _MySearchProduct extends State<MySearchProduct> {
   var _productName;
+  bool loading = false;
   final _productController = TextEditingController();
   final _barcodeController = TextEditingController();
+  final _focusNodeProduct = FocusNode();
+  final _focusNodeBarcode = FocusNode();
   
   @override
   void initState() {
@@ -50,15 +53,25 @@ class _MySearchProduct extends State<MySearchProduct> {
     });
   }
 
-  final _focusNodeProduct = FocusNode();
-  final _focusNodeBarcode = FocusNode();
-
   @override
   void dispose() {
     // Limpia el FocusNode cuando el widget se elimina
     _focusNodeProduct.dispose();
     _focusNodeBarcode.dispose();
     super.dispose();
+  }
+
+  Future<void> _searchProduct() async {
+    setState(() {
+      loading = true;
+    });
+
+    // Aquí va la tarea asincrónica de búsqueda de productos o ingredientes
+    await Future.delayed(Duration(seconds: 2));
+
+    setState(() {
+      loading = false;
+    });
   }
 
   @override
@@ -101,19 +114,20 @@ class _MySearchProduct extends State<MySearchProduct> {
                     decoration: InputDecoration(
                       hintText: 'Buscar producte/ingredient...',
                       hintStyle: const TextStyle(color: Colors.grey),
-                      prefixIcon: IconButton(
-                          onPressed: () {
-                            Fluttertoast.showToast(
-                                msg: "Search clicked",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.red,
-                                textColor: Colors.white,
-                                fontSize: 16.0
-                            );
-                          },
-                          icon: const Icon(Icons.search)),
+                      prefixIcon:  IconButton(
+                        onPressed: () {
+                          Fluttertoast.showToast(
+                              msg: "Product Name is empty",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0
+                          );
+                        },
+                        icon: const Icon(Icons.search),
+                      ),
                       suffixIcon: _productController.text.isEmpty
                           ? null
                           : InkWell(
@@ -132,22 +146,35 @@ class _MySearchProduct extends State<MySearchProduct> {
                         borderSide: BorderSide(color: Colors.grey, width: 2),
                       ),
                     ),
-
                     keyboardType: TextInputType.text,
 
-                    onEditingComplete: () {
+                    onEditingComplete: () async {
                       _focusNodeProduct.unfocus();
-
-                      Fluttertoast.showToast(
-                          msg: "Product Name is ${_productController.text}",
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.CENTER,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.red,
-                          textColor: Colors.white,
-                          fontSize: 16.0
-                      );
-                      _productController.clear(); //Esto limpia el contenido de la barra de búsqueda
+                      await _searchProduct();
+                      //_productController.text
+                      if (_productController.text.isEmpty) {
+                        Fluttertoast.showToast(
+                            msg: "Product Name is empty",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                            fontSize: 16.0
+                        );
+                      } else {
+                        Fluttertoast.showToast(
+                            msg: "Product Name is ${_productController.text}",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                            fontSize: 16.0
+                        );
+                      }
+                      _productController
+                          .clear(); //Esto limpia el contenido de la barra de búsqueda*/
                     },
                   ),
                   Padding(
@@ -193,15 +220,28 @@ class _MySearchProduct extends State<MySearchProduct> {
                       onEditingComplete: () {
                         _focusNodeBarcode.unfocus();
 
-                        Fluttertoast.showToast(
-                            msg: "Product Barcode is ${_barcodeController.text}",
+                        if(_productController.text.isEmpty) {
+                          Fluttertoast.showToast(
+                            msg: "Product Name is empty",
                             toastLength: Toast.LENGTH_SHORT,
                             gravity: ToastGravity.CENTER,
                             timeInSecForIosWeb: 1,
                             backgroundColor: Colors.red,
                             textColor: Colors.white,
                             fontSize: 16.0
-                        );
+                          );
+                        } else {
+                          Fluttertoast.showToast(
+                              msg: "Product Barcode is ${_barcodeController
+                                  .text}",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0
+                          );
+                        }
                         _barcodeController.clear(); //Esto limpia el contenido de la barra de búsqueda
                       },
                     )
@@ -225,80 +265,85 @@ class _MySearchProduct extends State<MySearchProduct> {
                     ),
                   ),
                   Expanded(
-                      child: ListView.builder(
-                        itemCount: myData.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(vertical: 4.0),
-                            child: GestureDetector(
-                              onTap: () {
-                                //Añadir navegación a la pantalla del producto
-                                Fluttertoast.showToast(
-                                    msg: "${myData[index].title} Seleccionado",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.CENTER,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0
-                                );
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey, width: 1.0),
-                                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Image.asset(
-                                      myData[index].subtitle,
-                                      width: 100.0,
-                                      height: 100.0,
-                                    ),
-                                    Text(
-                                      myData[index].title,
-                                      style: const TextStyle(
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold,
+                      child: loading == true ? Center(child: Container(
+                        width: 30,
+                        height: 30,
+                        child: CircularProgressIndicator(),
+                      ),)
+                          : ListView.builder(
+                              itemCount: myData.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 4.0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      //Añadir navegación a la pantalla del producto
+                                      Fluttertoast.showToast(
+                                          msg: "${myData[index].title} Seleccionado",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.CENTER,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0
+                                      );
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey, width: 1.0),
+                                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Image.asset(
+                                            myData[index].subtitle,
+                                            width: 100.0,
+                                            height: 100.0,
+                                          ),
+                                          Text(
+                                            myData[index].title,
+                                            style: const TextStyle(
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Column(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(bottom: 2.0, top: 4.0),
+                                                child: Image.asset(
+                                                  "assets/vegan_stamp.png",
+                                                  width: 33.0,
+                                                  height: 33.0,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.all(2.0),
+                                                child: Image.asset(
+                                                  "assets/glutenfree_stamp.png",
+                                                  width: 33.0,
+                                                  height: 33.0,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(bottom: 4.0, top: 2.0),
+                                                child: Image.asset(
+                                                  "assets/vegan_stamp.png",
+                                                  width: 33.0,
+                                                  height: 33.0,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(bottom: 2.0, top: 4.0),
-                                          child: Image.asset(
-                                            "assets/vegan_stamp.png",
-                                            width: 33.0,
-                                            height: 33.0,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.all(2.0),
-                                          child: Image.asset(
-                                            "assets/glutenfree_stamp.png",
-                                            width: 33.0,
-                                            height: 33.0,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(bottom: 4.0, top: 2.0),
-                                          child: Image.asset(
-                                            "assets/vegan_stamp.png",
-                                            width: 33.0,
-                                            height: 33.0,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      )
+                                  ),
+                                );
+                              },
+                            )
                   )
                 ]
             )
