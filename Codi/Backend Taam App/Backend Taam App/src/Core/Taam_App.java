@@ -91,7 +91,7 @@ public class Taam_App {
 
         Map<String, Object> resultToBeReturnedToFlutter = new HashMap<String, Object>();
 
-        product = searcher.searchProductByName(nameSearched);
+        product = searcher.searchProductByName(nameSearched); //patata
 
         if (product == null)
         {
@@ -131,7 +131,7 @@ public class Taam_App {
         {
             String sql = "INSERT INTO public.notfound(name) VALUES (?)";
             PreparedStatement stringSTMT = conn.prepareStatement(sql);
-            stringSTMT.setString(1, searcher.getProductName());
+            stringSTMT.setString(1, searcher.getIngredientName());
             stringSTMT.executeUpdate();
         }
     }
@@ -151,29 +151,26 @@ public class Taam_App {
 
         if (searcher.getBarcode() != null)
         {
-            String sql = "INSERT INTO public.incidents(observation, type_element, product_id) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO public.incidents(observation, product_id) VALUES (?, ?)";
             PreparedStatement stringSTMT = conn.prepareStatement(sql);
             stringSTMT.setString(1, observation);
-            stringSTMT.setString(2, "product");
-            stringSTMT.setString(3, searcher.getBarcode());
+            stringSTMT.setString(2, searcher.getBarcode());
             stringSTMT.executeUpdate();
         }
         else if(searcher.getProductName() != null)
         {
-            String sql = "INSERT INTO public.incidents(observation, type_element, product_id) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO public.incidents(observation, product_id) VALUES (?, ?)";
             PreparedStatement stringSTMT = conn.prepareStatement(sql);
             stringSTMT.setString(1, observation);
-            stringSTMT.setString(2, "product");
-            stringSTMT.setString(3, product.getBarcode());
+            stringSTMT.setString(2, product.getBarcode());
             stringSTMT.executeUpdate();
         }
         else
         {
-            String sql = "INSERT INTO public.incidents(observation, type_element, product_id) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO public.incidents(observation, ingredient_id) VALUES (?, ?)";
             PreparedStatement stringSTMT = conn.prepareStatement(sql);
             stringSTMT.setString(1, observation);
-            stringSTMT.setString(2, "ingredient");
-            stringSTMT.setString(3, String.valueOf(ingredient.getId()));
+            stringSTMT.setInt(2, ingredient.getId());
             stringSTMT.executeUpdate();
         }
     }

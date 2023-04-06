@@ -11,10 +11,10 @@ DROP TABLE IF EXISTS public.products_ingredients CASCADE;
 
 CREATE TABLE IF NOT EXISTS public.incidents
 (
-    id SERIAL PRIMARY KEY,
-    observation text,
-    type_element text,
-    product_id text NOT NULL
+    id SERIAL PRIMARY KEY,           
+    observation text,                              
+    product_id text,                 
+    ingredient_id integer           
 );
 
 CREATE TABLE IF NOT EXISTS public.ingredients
@@ -51,10 +51,6 @@ CREATE TABLE IF NOT EXISTS public.products_ingredients
     ingredient_id integer NOT NULL,
     PRIMARY KEY (product_id, ingredient_id)
 );
-
-ALTER TABLE incidents
-    ADD CONSTRAINT incidents_products_fk FOREIGN KEY ( product_id )
-        REFERENCES products ( id );
 
 ALTER TABLE products_ingredients
     ADD CONSTRAINT ingredients_fk FOREIGN KEY ( ingredient_id )
