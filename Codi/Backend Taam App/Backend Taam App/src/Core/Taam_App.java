@@ -116,43 +116,43 @@ public class Taam_App {
             return resultToBeReturnedToFlutter;
         }
     }
-    public void notFound()
+    public void notFound() throws SQLException
     {
         Connection conn = ConnectDB.getConnection();
 
         if (searcher.getBarcode() != null)
         {
-            sql = "INSERT INTO public.notfound(barcode) VALUES ('" + searcher.getBarcode()+ "')";
-            stringSTMT = conn.prepareStatement(sql);
-            result = stringSTMT.executeQuery();
+            String sql = "INSERT INTO public.notfound(barcode) VALUES ('" + searcher.getBarcode()+ "')";
+            PreparedStatement stringSTMT = conn.prepareStatement(sql);
+            ResultSet result = stringSTMT.executeQuery();
         }
         else
         {
-            sql = "INSERT INTO public.notfound(name) VALUES ('" + searcher.getProductName()+ "')";
-            stringSTMT = conn.prepareStatement(sql);
-            result = stringSTMT.executeQuery();
+            String sql = "INSERT INTO public.notfound(name) VALUES ('" + searcher.getProductName()+ "')";
+            PreparedStatement stringSTMT = conn.prepareStatement(sql);
+            ResultSet result = stringSTMT.executeQuery();
         }
     }
 
-    public void incident(String observation)
+    public void incident(String observation) throws SQLException
     {
         if (searcher.getBarcode() != null)
         {
-            sql = "INSERT INTO public.incident(observation, type_element, product_id) VALUES ('" + observation + "', 'product', '" + searcher.getBarcode() + "')";
-            stringSTMT = conn.prepareStatement(sql);
-            result = stringSTMT.executeQuery();
+            String sql = "INSERT INTO public.incident(observation, type_element, product_id) VALUES ('" + observation + "', 'product', '" + searcher.getBarcode() + "')";
+            PreparedStatement stringSTMT = conn.prepareStatement(sql);
+            ResultSet result = stringSTMT.executeQuery();
         }
         else if(searcher.getProductName() != null)
         {
-            sql = "INSERT INTO public.incident(observation, type_element, product_id) VALUES ('" + observation + "', 'product', '" + product.getBarcode() + "')";
-            stringSTMT = conn.prepareStatement(sql);
-            result = stringSTMT.executeQuery();
+            String sql = "INSERT INTO public.incident(observation, type_element, product_id) VALUES ('" + observation + "', 'product', '" + product.getBarcode() + "')";
+            PreparedStatement stringSTMT = conn.prepareStatement(sql);
+            ResultSet result = stringSTMT.executeQuery();
         }
         else
         {
-            sql = "INSERT INTO public.incident(observation, type_element, product_id) VALUES ('" + observation + "', 'ingredient', '" + ingredient.getId() + "')";
-            stringSTMT = conn.prepareStatement(sql);
-            result = stringSTMT.executeQuery();
+            String sql = "INSERT INTO public.incident(observation, type_element, product_id) VALUES ('" + observation + "', 'ingredient', '" + ingredient.getId() + "')";
+            PreparedStatement stringSTMT = conn.prepareStatement(sql);
+            ResultSet result = stringSTMT.executeQuery();
         }
     }
 
