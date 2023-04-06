@@ -419,8 +419,8 @@ public class Taam_App {
         int counter = 0;
         while ((counter < recommendedProductsList.size()) && (counter < 10))
         {
-            //recommendedProductsMap.put("Product" + (counter+1), recommendedProductsList.get(counter));
-            recommendedProductsMap.put("Product" + (counter+1), recommendedProductsList.get(counter).getProductName());
+            recommendedProductsMap.put("Product" + (counter+1),
+                    List.of(recommendedProductsList.get(counter).getProductName(), recommendedProductsList.get(counter).getBarcode()));
             counter = counter + 1;
         }
 
@@ -443,8 +443,8 @@ public class Taam_App {
                     randomIndex = random.nextInt(recommendedProductsList.size());
                 }
                 indexList.add(randomIndex);
-                //recommendedProductsMap.put("Product" + (counter+1), recommendedProductsList.get(randomIndex));
-                recommendedProductsMap.put("Product" + (counter+1), recommendedProductsList.get(randomIndex).getProductName());
+                recommendedProductsMap.put("Product" + (counter+1),
+                        List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode()));
             }
         }
         else
@@ -458,8 +458,8 @@ public class Taam_App {
                     randomIndex = random.nextInt(recommendedProductsList.size());
                 }
                 indexList.add(randomIndex);
-                //recommendedProductsMap.put("Product" + (counter+1), recommendedProductsList.get(randomIndex));
-                recommendedProductsMap.put("Product" + (counter+1), recommendedProductsList.get(counter).getProductName());
+                recommendedProductsMap.put("Product" + (counter+1),
+                        List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode()));
                 counter = counter + 1;
             }
         }
