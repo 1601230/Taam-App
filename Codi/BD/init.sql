@@ -125,6 +125,38 @@ INSERT INTO public.products(id, name) VALUES ('3560070118373', 'Vikoroff vodka')
 
 INSERT INTO public.products(id, name) VALUES ('704039019803', 'Fudge - Jack Daniels');
 
+INSERT INTO public.products(id, name) VALUES ('20150907', 'Arándanos deshidratados - Alesto');
+
+INSERT INTO public.products(id, name) VALUES ('7300400481595', 'Tartine croustillante Authentique - Wasa');
+
+INSERT INTO public.products(id, name) VALUES ('3033491588136', 'HIPRO protéines - Danone');
+
+INSERT INTO public.products(id, name) VALUES ('7300400481588', 'Tostadas crujientes de fibra - Wasa');
+
+INSERT INTO public.products(id, name) VALUES ('20047238', 'Mix de frutos secos al natural - Alesto');
+
+INSERT INTO public.products(id, name) VALUES ('3225350000501', 'Pulco Lemon');
+
+INSERT INTO public.products(id, name) VALUES ('8076802085738', 'Penne rigate - Barilla');
+
+INSERT INTO public.products(id, name) VALUES ('8076809529419', 'Espagueti integral - Barilla');
+
+INSERT INTO public.products(id, name) VALUES ('5411188110835', 'Alpro Almond');
+
+INSERT INTO public.products(id, name) VALUES ('8480000633224', 'Delicias de Pollo - Hacendado');
+
+INSERT INTO public.products(id, name) VALUES ('8715035110106', 'Salsa de soja - Kikkoman');
+
+INSERT INTO public.products(id, name) VALUES ('8423352861402', 'Bebida de avena - ALITEY ');
+
+INSERT INTO public.products(id, name) VALUES ('8480000633231', 'Nuggets de pollo - Hacendado');
+
+INSERT INTO public.products(id, name) VALUES ('8437017032984', 'Nuggets originales - Heura');
+
+INSERT INTO public.products(id, name) VALUES ('8480000561695', 'Pechuga pollo braseada finas lonchas - Hacendado');
+
+INSERT INTO public.products(id, name) VALUES ('8436021411396', 'Burger de pavo y pollo - Mercadona');
+
 /* INSERTs table ingredients */
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('azucar blanco', 'sucre blanc', 'white sugar', 0, 0, 1, 1, 1, 0);
