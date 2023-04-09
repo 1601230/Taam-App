@@ -157,6 +157,34 @@ INSERT INTO public.products(id, name) VALUES ('8480000561695', 'Pechuga pollo br
 
 INSERT INTO public.products(id, name) VALUES ('8436021411396', 'Burger de pavo y pollo - Mercadona');
 
+INSERT INTO public.products(id, name) VALUES ('8480000809421', 'Tortillas de trigo integrales - Hacendado');
+
+INSERT INTO public.products(id, name) VALUES ('8000430133035', 'Mozarella - Galbani');
+
+INSERT INTO public.products(id, name) VALUES ('8431876038385', 'Turrón trufado con pasas al licor - Carrefour');
+
+INSERT INTO public.products(id, name) VALUES ('13179515', 'Carne picada vacuno');
+
+INSERT INTO public.products(id, name) VALUES ('8480000061423', 'Tortelloni de carne - Hacendado');
+
+INSERT INTO public.products(id, name) VALUES ('3270190192794', 'Naranja sin pulpa - Carrefour');
+
+INSERT INTO public.products(id, name) VALUES ('8480000349613', 'Chía - Hacendado');
+
+INSERT INTO public.products(id, name) VALUES ('8410422111048', 'Allioli - Chovi');
+
+INSERT INTO public.products(id, name) VALUES ('8480000531001', 'Salchicha estilo frankfurt con queso - Hacendado');
+
+INSERT INTO public.products(id, name) VALUES ('8480000152039', 'Piña en su Jugo - Hacendado');
+
+INSERT INTO public.products(id, name) VALUES ('8423352800159', 'Leche De Almendras - Almendrola');
+
+INSERT INTO public.products(id, name) VALUES ('8480000158109', 'Light - Hacendado');
+
+INSERT INTO public.products(id, name) VALUES ('20408923', 'Buttercookies - Sondey');
+
+INSERT INTO public.products(id, name) VALUES ('20413422', 'Anacardos tostados y salados - Alesto');
+
 /* INSERTs table ingredients */
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('azucar blanco', 'sucre blanc', 'white sugar', 0, 0, 1, 1, 1, 0);
