@@ -125,11 +125,11 @@ INSERT INTO public.products(id, name) VALUES ('3560070118373', 'Vikoroff vodka')
 
 INSERT INTO public.products(id, name) VALUES ('704039019803', 'Fudge - Jack Daniels');
 
-INSERT INTO public.products(id, name) VALUES ('20150907', 'Arándanos deshidratados - Alesto');
+INSERT INTO public.products(id, name) VALUES ('20150907', 'Arandanos deshidratados - Alesto');
 
 INSERT INTO public.products(id, name) VALUES ('7300400481595', 'Tartine croustillante Authentique - Wasa');
 
-INSERT INTO public.products(id, name) VALUES ('3033491588136', 'HIPRO protéines - Danone');
+INSERT INTO public.products(id, name) VALUES ('3033491588136', 'HIPRO proteines - Danone');
 
 INSERT INTO public.products(id, name) VALUES ('7300400481588', 'Tostadas crujientes de fibra - Wasa');
 
@@ -161,7 +161,7 @@ INSERT INTO public.products(id, name) VALUES ('8480000809421', 'Tortillas de tri
 
 INSERT INTO public.products(id, name) VALUES ('8000430133035', 'Mozarella - Galbani');
 
-INSERT INTO public.products(id, name) VALUES ('8431876038385', 'Turrón trufado con pasas al licor - Carrefour');
+INSERT INTO public.products(id, name) VALUES ('8431876038385', 'Turron trufado con pasas al licor - Carrefour');
 
 INSERT INTO public.products(id, name) VALUES ('13179515', 'Carne picada vacuno');
 
@@ -169,7 +169,7 @@ INSERT INTO public.products(id, name) VALUES ('8480000061423', 'Tortelloni de ca
 
 INSERT INTO public.products(id, name) VALUES ('3270190192794', 'Naranja sin pulpa - Carrefour');
 
-INSERT INTO public.products(id, name) VALUES ('8480000349613', 'Chía - Hacendado');
+INSERT INTO public.products(id, name) VALUES ('8480000349613', 'Chia - Hacendado');
 
 INSERT INTO public.products(id, name) VALUES ('8410422111048', 'Allioli - Chovi');
 
@@ -390,7 +390,7 @@ INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, veg
 /*100*/
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('germen de trigo', 'germen de blat', 'wheat germ', 0, 0, 0, 1, 1, 0);
 
-INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('jugo concentrado: limón', 'suc concentrat: llimona', 'concentrated juice: lemon', 0, 0, 1, 1, 1, 0);
+INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('jugo concentrado: limon', 'suc concentrat: llimona', 'concentrated juice: lemon', 0, 0, 1, 1, 1, 0);
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('jugo concentrado: naranja', 'suc concentrat: taronja', 'concentrated juice: orange', 0, 0, 1, 1, 1, 0);
 
