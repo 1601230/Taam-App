@@ -6,7 +6,7 @@ const String baseUrl = "http://localhost:8080";
 
 
 Future<int> methodName(int n) async {
-  String uri = "$baseUrl/$n";
+  String uri = "$baseUrl/language/english/name/salmon ahumado/end";
   final response = await client.get(Uri.parse(uri));
 
   if (response.statusCode == 200) {
