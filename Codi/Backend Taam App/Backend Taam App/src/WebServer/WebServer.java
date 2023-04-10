@@ -106,6 +106,7 @@ public class WebServer {
                     case "restrictions":
                         String token = tokens[counter + 1];
                         Taam_App.getInstance().setRestrictions(token);
+                        result = Taam_App.getInstance().recommendedProducts();
                         counter = counter + 2;
                         break;
 
@@ -128,8 +129,18 @@ public class WebServer {
                         break;
 
                     case "notFound":
-                        //TODO
-                        //notFound
+                        Taam_App.getInstance().notFound();
+                        counter = counter + 1;
+                        break;
+
+                    case "incident":
+                        String observation = tokens[counter + 1];
+                        Taam_App.getInstance().incident(observation);
+                        counter = counter + 2;
+                        break;
+
+                    case "refresh":
+                        result = Taam_App.getInstance().refreshRecommendedProducts();
                         counter = counter + 1;
                         break;
 

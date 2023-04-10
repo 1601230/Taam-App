@@ -1,10 +1,11 @@
 package Core;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import static Core.Edible.*;
 
 
@@ -20,7 +21,7 @@ public class Taam_App {
     public static Product product = new Product();
     public static Ingredient ingredient = new Ingredient();
     public static Result result;
-    public static Recommendations recommendations;
+    List<Product> recommendedProductsList = new ArrayList<>();
     public static Visitor visitor;
 
     /**
@@ -90,7 +91,7 @@ public class Taam_App {
 
         Map<String, Object> resultToBeReturnedToFlutter = new HashMap<String, Object>();
 
-        product = searcher.searchProductByName(nameSearched);
+        product = searcher.searchProductByName(nameSearched); //patata
 
         if (product == null)
         {
@@ -116,9 +117,62 @@ public class Taam_App {
             return resultToBeReturnedToFlutter;
         }
     }
-    public void notFound()
-    {
+    public void notFound() throws SQLException {
+        Connection conn = ConnectDB.getConnection();
 
+        if (searcher.getBarcode() != null)
+        {
+            String sql = "INSERT INTO public.notfound(barcode) VALUES (?)";
+            PreparedStatement stringSTMT = conn.prepareStatement(sql);
+            stringSTMT.setString(1, searcher.getBarcode());
+            stringSTMT.executeUpdate();
+        }
+        else
+        {
+            String sql = "INSERT INTO public.notfound(name) VALUES (?)";
+            PreparedStatement stringSTMT = conn.prepareStatement(sql);
+            stringSTMT.setString(1, searcher.getIngredientName());
+            stringSTMT.executeUpdate();
+        }
+    }
+
+    public void incident(String observation) throws SQLException {
+        Connection conn = ConnectDB.getConnection();
+
+        observation = observation.replaceAll("(^\"|\"$|%5B|%5D|%22)", "");
+        observation = observation.replace("%20", " ");
+
+        observation = observation.toLowerCase()
+                .replaceAll("(%c3%a1|%c3%a4|%c3%a0|%c3%a2|%c3%81|%c3%84|%c3%80|%c3%82)", "a")
+                .replaceAll("(%c3%a9|%c3%ab|%c3%a8|%c3%aa|%c3%89|%c3%8b|%c3%88|%c3%8a)", "e")
+                .replaceAll("(%c3%ac|%c3%ad|%c3%ae|%c3%af|%c3%8c|%c3%8d|%c3%8e|%c3%8f)", "i")
+                .replaceAll("(%c3%b3|%c3%b6|%c3%b2|%c3%b4|%c3%93|%c3%94|%c3%92|%c3%96)", "o")
+                .replaceAll("(%c3%99|%c3%9a|%c3%9b|%c3%9c|%c3%b9|%c3%ba|%c3%bb|%c3%bc)", "u");
+
+        if (searcher.getBarcode() != null)
+        {
+            String sql = "INSERT INTO public.incidents(observation, product_id) VALUES (?, ?)";
+            PreparedStatement stringSTMT = conn.prepareStatement(sql);
+            stringSTMT.setString(1, observation);
+            stringSTMT.setString(2, searcher.getBarcode());
+            stringSTMT.executeUpdate();
+        }
+        else if(searcher.getProductName() != null)
+        {
+            String sql = "INSERT INTO public.incidents(observation, product_id) VALUES (?, ?)";
+            PreparedStatement stringSTMT = conn.prepareStatement(sql);
+            stringSTMT.setString(1, observation);
+            stringSTMT.setString(2, product.getBarcode());
+            stringSTMT.executeUpdate();
+        }
+        else
+        {
+            String sql = "INSERT INTO public.incidents(observation, ingredient_id) VALUES (?, ?)";
+            PreparedStatement stringSTMT = conn.prepareStatement(sql);
+            stringSTMT.setString(1, observation);
+            stringSTMT.setInt(2, ingredient.getId());
+            stringSTMT.executeUpdate();
+        }
     }
 
     public Map<String, Object> checkProductBarcode(String barcode) throws SQLException {
@@ -333,5 +387,79 @@ public class Taam_App {
         {
             return null;
         }
+    }
+
+    public Map<String, Object> recommendedProducts() throws SQLException {
+        Map<String, Object> recommendedProductsMap = new HashMap<String, Object>();
+        Map<String, Object> auxiliaryMap = new HashMap<String, Object>();
+        recommendedProductsList.clear();
+
+        Connection conn = ConnectDB.getConnection();
+        String sql = "SELECT id FROM public.products;";
+        PreparedStatement stringSTMT = conn.prepareStatement(sql);
+        ResultSet result = stringSTMT.executeQuery();
+
+        while (result.next())
+        {
+            auxiliaryMap = this.checkProductBarcode(result.getString("id"));
+            if (auxiliaryMap.get("Edible") == SUITABLE)
+            {
+                Product auxiliaryProduct = new Product();
+                auxiliaryProduct.setProductName((String) auxiliaryMap.get("Name"));
+                auxiliaryProduct.setBarcode((String) auxiliaryMap.get("Barcode"));
+
+                recommendedProductsList.add(auxiliaryProduct);
+            }
+        }
+
+        int counter = 0;
+        while ((counter < recommendedProductsList.size()) && (counter < 10))
+        {
+            recommendedProductsMap.put("Product" + (counter+1),
+                    List.of(recommendedProductsList.get(counter).getProductName(), recommendedProductsList.get(counter).getBarcode()));
+            counter = counter + 1;
+        }
+
+        return recommendedProductsMap;
+    }
+    public Map<String, Object> refreshRecommendedProducts()
+    {
+        Map<String, Object> recommendedProductsMap = new HashMap<String, Object>();
+        Random random = new Random();
+        List<Integer> indexList = new ArrayList<>();
+        int randomIndex;
+
+        if (recommendedProductsList.size() < 10)
+        {
+            for (int counter = 0; counter < recommendedProductsList.size(); counter++)
+            {
+                randomIndex = random.nextInt(recommendedProductsList.size());
+                while (indexList.contains(randomIndex))
+                {
+                    randomIndex = random.nextInt(recommendedProductsList.size());
+                }
+                indexList.add(randomIndex);
+                recommendedProductsMap.put("Product" + (counter+1),
+                        List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode()));
+            }
+        }
+        else
+        {
+            int counter = 0;
+            while (counter < 10)
+            {
+                randomIndex = random.nextInt(recommendedProductsList.size());
+                while (indexList.contains(randomIndex))
+                {
+                    randomIndex = random.nextInt(recommendedProductsList.size());
+                }
+                indexList.add(randomIndex);
+                recommendedProductsMap.put("Product" + (counter+1),
+                        List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode()));
+                counter = counter + 1;
+            }
+        }
+
+        return recommendedProductsMap;
     }
 }
