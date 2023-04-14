@@ -7,4 +7,6 @@ public class Product {
     private String productName;
     private Integer barcode;
     List<Ingredient> productIngredientsList = new ArrayList<>();
+
+
 }

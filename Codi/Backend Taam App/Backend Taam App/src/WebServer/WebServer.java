@@ -1,6 +1,6 @@
     package WebServer;
 
-    import Core.Taam_App;
+    import Core.*;
 
     import java.io.BufferedReader;
     import java.io.IOException;
@@ -8,6 +8,9 @@
     import java.io.PrintWriter;
     import java.net.ServerSocket;
     import java.net.Socket;
+    import java.util.ArrayList;
+    import java.util.Arrays;
+    import java.util.List;
     import java.util.StringTokenizer;
 
     public class WebServer {
@@ -94,8 +97,40 @@
                 }
             }
 
-            private int makeBodyAnswer(String[] tokens) {
-                return 0;
+            private int makeBodyAnswer(String[] tokens)
+            {
+                int numberOfKeys = tokens.length;
+                int counter = 0;
+
+                while (counter < numberOfKeys)
+                {
+                    switch(tokens[counter])
+                    {
+                        case "restrictions":
+                            String token = tokens[counter + 1];
+                            Taam_App.getInstance().setRestrictions(token);
+                            counter = counter + 2;
+
+                        case "language":
+                            String language = tokens[counter + 1];
+                            Configuration.getInstance().setLanguage(language);
+                            counter = counter + 2;
+
+                        case "barcode":
+                            //TODO
+                            //checkBarcode
+
+                        case "name":
+                            //TODO
+                            //checkName
+
+                        case "notFound":
+                            //TODO
+                            //notFound
+
+                    }
+                }
+                return 1;
             }
 
             private String makeHeaderAnswer() {

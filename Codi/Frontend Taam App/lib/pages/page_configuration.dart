@@ -44,7 +44,7 @@ class _PageConfigurationState extends State<PageConfiguration> {
     _selectionLanguageMessage = widget.language!;
     _selectedFoodPreferences = widget.foodPreferences!;
 
-    ///Para el mensaje dle tema, debemos verificar que tipo de tema es y poner su
+    ///Para el mensaje del tema, debemos verificar que tipo de tema es y poner su
     ///correspondiente string.
     if (widget.brightness == Brightness.light) {
       _selectionThemeMessage = 'Claro';

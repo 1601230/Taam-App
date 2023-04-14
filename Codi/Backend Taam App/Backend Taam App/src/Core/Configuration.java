@@ -6,11 +6,23 @@ import java.util.List;
 public class Configuration {
     private static Configuration instance = null;
     private String language = "spanish";
-    private List<Restriction> userRestrictionsList = new ArrayList<>();
+    private List<String> userRestrictionsList = new ArrayList<>();
 
     private Configuration()
     {
 
+    }
+    public Visitor createConfiguration(String configuration)
+    {
+         switch (configuration){
+             case "Vegan": return new Vegan();
+             case "Vegetarian": return new Vegetarian();
+             case "Gluten Allergic": return new Gluten_Allergic();
+             case "Lactose Allergic": return new Lactose_Allergic();
+             case "Tree Nut Allergic": return new Tree_Nut_Allergic();
+             case "Teetotal": return new Teetotal();
+             default: return null;
+         }
     }
 
     public static Configuration getInstance()
@@ -19,5 +31,24 @@ public class Configuration {
             instance = new Configuration();
         }
         return instance;
+    }
+
+    public List<String> getUserRestrictionsList()
+    {
+        return userRestrictionsList;
+    }
+
+    public void setUserRestrictionsList(List<String> userRestrictionsList)
+    {
+        this.userRestrictionsList = userRestrictionsList;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language)
+    {
+        this.language = language;
     }
 }
