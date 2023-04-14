@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Main',
       theme: ThemeData(
-        primarySwatch: Colors.brown,
+        primarySwatch: Colors.deepPurple,
         brightness: _brightness,
       ),
       home: const MyHomePage(), ///Pagina inicial (para debugar, podeis poner la pagina que esteis desarollando aqui y asi la podreis visualizar a la hora de ejecutar el emulador) (aqui debera ir a pagina principal de la aplicación)
