@@ -128,7 +128,7 @@ class _PageConfigurationState extends State<PageConfiguration> {
                       items: _valuesFoodPreferences.map((option) => MultiSelectItem<String>(option, option)).toList(),
                       onConfirm: (selectedItems) {
                         ///Actualizamos las preferencias en el main
-                        widget.setFoodPreferences!(_valuesFoodPreferences);
+                        widget.setFoodPreferences!(selectedItems);
                       },
                     )
                 )
