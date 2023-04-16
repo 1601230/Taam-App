@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:taam_app/pages/page_configuration.dart';
 
 class MyData {
   String title;
@@ -110,7 +111,10 @@ class _MySearchProduct extends State<MySearchProduct> {
               IconButton(
                 icon: Icon(Icons.settings),
                 onPressed: () async {
-                  await _searchProduct();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PageConfiguration()),
+                  );
                 },
               ),
             ],
