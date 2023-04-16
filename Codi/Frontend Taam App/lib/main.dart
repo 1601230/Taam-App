@@ -22,10 +22,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<TextProvider>(create: (_) => TextProvider())
+        ChangeNotifierProvider<SettingsProvider>(create: (_) => SettingsProvider())
       ],
       builder: (context,_) {
-        final watch = Provider.of<TextProvider>(context);
+        final watch = Provider.of<SettingsProvider>(context);
         return MaterialApp(
           title: 'Main',
           theme: ThemeData(
@@ -47,7 +47,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-        ChangeNotifierProvider<TextProvider>(create: (_) => TextProvider())
+        ChangeNotifierProvider<SettingsProvider>(create: (_) => SettingsProvider())
     ],
     builder: (context,_) {
       return Scaffold(

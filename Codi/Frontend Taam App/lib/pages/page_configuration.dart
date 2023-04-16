@@ -31,7 +31,7 @@ class _PageConfigurationState extends State<PageConfiguration> {
 
   @override
   Widget build(BuildContext context) {
-      final watch = Provider.of<TextProvider>(context);
+      final watch = Provider.of<SettingsProvider>(context);
 
       _selectedFoodPreferences = watch.foodPreferences;
       _selectionLanguageMessage = watch.appLanguage;

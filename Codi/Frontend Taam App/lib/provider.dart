@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-class TextProvider with ChangeNotifier {
+class SettingsProvider with ChangeNotifier {
   Brightness _brightness = Brightness.light;
   List<String> _foodPreferences = [];
   String _appLanguage = 'Español';
