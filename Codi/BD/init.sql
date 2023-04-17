@@ -222,7 +222,7 @@ INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, veg
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('lupulo', 'llupol', 'hops', 0, 0, 1, 1, 0, 0);
 
-INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('alcohol', 'alcohol', 'alcohol', 0, 0, 1, 1, 0, 0);
+INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('pimienta', 'pebre', 'pepper', 0, 0, 1, 1, 1, 0);
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('quinoa blanca', 'quinoa blanca', 'white-quinoa', 0, 0, 1, 1, 1, 0);
 
@@ -234,7 +234,7 @@ INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, veg
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('sal marina', 'sal marina', 'sea salt', 0, 0, 1, 1, 1, 0);
 
-INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('granos de maiz enteros', 'grans de blat de moro sencers', 'whole corn kernels', 0, 0, 2, 1, 2, 1);
+INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('granos de maiz enteros', 'grans de blat de moro sencers', 'whole corn kernels', 0, 0, 2, 1, 2, 0);
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('aceite de girasol alto oleico', 'oli de gira-sol alt oleic', 'high oleic sunflower oil', 0, 0, 2, 1, 1, 0);
 
@@ -252,21 +252,21 @@ INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, veg
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('pimenton', 'pebre roig', 'paprika', 0, 0, 1, 1, 2, 0);
 
-INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('cebolla', 'ceba', 'onion', 0, 0, 1, 1, 2, 0);
+INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('cebolla', 'ceba', 'onion', 0, 0, 1, 1, 1, 0);
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('ajo', 'all', 'garlic', 0, 0, 1, 1, 1, 0);
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('masa de cacao', 'massa de cacau', 'cocoa mass', 0, 0, 2, 2, 1, 0);
 
-INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('manteca de cacao', 'mantega de cacau', 'cocoa butter', 0, 0, 2, 2, 2, 0);
+INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('manteca de cacao', 'mantega de cacau', 'cocoa butter', 0, 0, 2, 2, 1, 0);
 
-INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('cacao en polvo bajo en grasas', 'cacau en pols baixa en greixos', 'low fat cocoa powder', 0, 0, 2, 2, 2, 0);
+INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('cacao en polvo bajo en grasas', 'cacau en pols baixa en greixos', 'low fat cocoa powder', 0, 0, 2, 2, 1, 0);
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('vainilla', 'vainilla', 'vanilla', 0, 0, 2, 1, 2, 0);
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('palomitas de maiz', 'crispetes de blat de moro', 'hand popped corn', 0, 0, 2, 1, 1, 0);
 
-INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('aceite de colza', 'oli de colza', 'rapeseed oil', 1, 1, 0, 0, 0, 1);
+INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('aceite de colza', 'oli de colza', 'rapeseed oil', 0, 0, 1, 1, 1, 0);
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('tomate', 'tomaquet', 'tomato', 0, 0, 1, 1, 1, 0);
 
@@ -274,7 +274,7 @@ INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, veg
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('conservante (sorbato potasico)', 'conservant (sorbato potassic)', 'preservative (potassium sorbate)', 0, 0, 1, 1, 1, 0);
 
-INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('semola de trigo duro', 'semola de blat dur', 'durum wheat semolina', 0, 0, 1, 1, 1, 0);
+INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('semola de trigo duro', 'semola de blat dur', 'durum wheat semolina', 0, 0, 0, 1, 2, 0);
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('huevos', 'ous', 'eggs', 1, 0, 1, 1, 1, 0);
 
@@ -288,7 +288,7 @@ INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, veg
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('leche cruda', 'llet crua', 'raw milk', 1, 0, 1, 0, 1, 0);
 
-INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('fermentos lacteos', 'fermentos lactis', 'dairy ferments', 1, 1, 2, 0, 2, 0);
+INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('fermentos lacteos', 'fermentos lactis', 'dairy ferments', 1, 0, 2, 0, 2, 0);
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('leche entera', 'llet sencera', 'whole milk', 1, 0, 1, 0, 1, 0);
 
@@ -428,7 +428,7 @@ INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, veg
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('zumo de piña', 'suc de pinya', 'pineapple juice', 0, 0, 1, 1, 1, 0);
 
-INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('harina de patata', 'farina de patata', 'potato flour', 0, 0, 1, 2, 1, 0);
+INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('harina de patata', 'farina de patata', 'potato flour', 0, 0, 1, 1, 1, 0);
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('gamba blanca', 'gamba blanca', 'white shrimp', 1, 1, 1, 1, 1, 0);
 
@@ -484,7 +484,7 @@ INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8412
 
 INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8412598000010', 19);
 
-INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8412598000010', 20);
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8412598000010', 114);
 
 INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8410184030137', 21);
 
@@ -630,7 +630,7 @@ INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3245
 
 INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3245414658769', 47);
 
-INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3245414658769', 20);
+INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3245414658769', 114);
 
 INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('3245414658769', 13);
 
