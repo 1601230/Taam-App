@@ -67,61 +67,61 @@ INSERT INTO public.products(id, name, image) VALUES ('8410714102129', 'White sug
 
 INSERT INTO public.products(id, name, image) VALUES ('5053990156009', 'Chips Pringels Originals', '1BMBKbNCPyCL751eQOwJZwcgMA5YDE-z3');
 
-INSERT INTO public.products(id, name, image) VALUES ('5053827206730', 'Kelloggs Corn Flakes', '');
+INSERT INTO public.products(id, name, image) VALUES ('5053827206730', 'Kelloggs Corn Flakes', '1kLpaCUKYLpX6MuJ9SzAxG5LJexliN6gd');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000156112', 'Cereales Avena Crunchy 85% Avena Integral y Bajo Contenido en Azucar - Hacendado', '');
+INSERT INTO public.products(id, name, image) VALUES ('8480000156112', 'Cereales Avena Crunchy 85% Avena Integral y Bajo Contenido en Azucar - Hacendado', '1UNGVikXXXNvqXCVFxRCShA8gYeti7i7P');
 
-INSERT INTO public.products(id, name, image) VALUES ('8412598000010', 'Special beer - Estrella Galicia', '');
+INSERT INTO public.products(id, name, image) VALUES ('8412598000010', 'Special beer - Estrella Galicia', '1i861b1pagpixaEvB2uw3JHbvRBpr5dl1');
 
-INSERT INTO public.products(id, name, image) VALUES ('8410184030137', 'White and red quinoa - Brillante', '');
+INSERT INTO public.products(id, name, image) VALUES ('8410184030137', 'White and red quinoa - Brillante', '1sBY0VqC0abWlnYEOZCCsQqG_X6P67x00');
 
-INSERT INTO public.products(id, name, image) VALUES ('5013665111610', 'Lightly Salted Low Fat Corn Cakes', '');
+INSERT INTO public.products(id, name, image) VALUES ('5013665111610', 'Lightly Salted Low Fat Corn Cakes', '1Mi7QxaAlsVTBAoFk6ruhHNiaBqZFShno');
 
-INSERT INTO public.products(id, name, image) VALUES ('8410076481597', 'Tortilla Nachips Original-Old El Paso', '');
+INSERT INTO public.products(id, name, image) VALUES ('8410076481597', 'Tortilla Nachips Original-Old El Paso', '1K5e8U0OLCt6uPS7UZgRA7CgrrFmPLtrH');
 
-INSERT INTO public.products(id, name, image) VALUES ('8057432464032', 'Grissini Breadsticks', '');
+INSERT INTO public.products(id, name, image) VALUES ('8057432464032', 'Grissini Breadsticks', '1vsJ67GFha9c4AYWcR6uwOznCTsVsWzr8');
 
-INSERT INTO public.products(id, name, image) VALUES ('5060490400259', 'Corn Smoked BBQ Crunchy Corn', '');
+INSERT INTO public.products(id, name, image) VALUES ('5060490400259', 'Corn Smoked BBQ Crunchy Corn', '1G7krUXXtJeGg_8Szud10GWp14B_3vbnv');
 
-INSERT INTO public.products(id, name, image) VALUES ('3046920029759', 'Dark Chocolate 90% cocoa - Lindt', '');
+INSERT INTO public.products(id, name, image) VALUES ('3046920029759', 'Dark Chocolate 90% cocoa - Lindt', '1-JyPgfTAJ4xV9h30PNNtFRyYuk1hvnFv');
 
-INSERT INTO public.products(id, name, image) VALUES ('5060283760003', 'Proper Corn', '');
+INSERT INTO public.products(id, name, image) VALUES ('5060283760003', 'Proper Corn', '1GB0Y4YH4QHAy_gJ71VB7dD-q1ebrWreP');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000171320', 'Tomate Frito', '');
+INSERT INTO public.products(id, name, image) VALUES ('8480000171320', 'Tomate Frito', '16BAYmRe6Q4aDHxjkpuccqtEwXLWz5LwK');
 
-INSERT INTO public.products(id, name, image) VALUES ('8076800376999', 'Lasagne alluovo', '');
+INSERT INTO public.products(id, name, image) VALUES ('8076800376999', 'Lasagne alluovo', '1SkM8zFMK6S0pP4T7u5d3MVaCTXHNYAC3');
 
-INSERT INTO public.products(id, name, image) VALUES ('8710411045058', 'Pate darachide', '');
+INSERT INTO public.products(id, name, image) VALUES ('8710411045058', 'Pate darachide', '14dPgDNudg_hc6J721XfbC0bVzCmGKQmS');
 
-INSERT INTO public.products(id, name, image) VALUES ('3228022170175', 'Comte Le Montarlier', '');
+INSERT INTO public.products(id, name, image) VALUES ('3228022170175', 'Comte Le Montarlier', '1pdEOXGa8AJl8gREqiiaE4johcPxqKpbi');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000205124', 'Yogur griego natural', '');
+INSERT INTO public.products(id, name, image) VALUES ('8480000205124', 'Yogur griego natural', '1KbCRYS8o-G8rlzfHaCm3sMlXFYX32YI8');
 
-INSERT INTO public.products(id, name, image) VALUES ('20816445', 'Nuts Royal', '');
+INSERT INTO public.products(id, name, image) VALUES ('20816445', 'Nuts Royal', '1KJFU9TSfa0QZ_fdILcXshR_gz9IcqPRk');
 
-INSERT INTO public.products(id, name, image) VALUES ('20131968', 'Requeson tipo cottage light', '');
+INSERT INTO public.products(id, name, image) VALUES ('20131968', 'Requeson tipo cottage light', '1anBKDbrcrqT5og-kUHIU7tl1Veikqvd_');
 
-INSERT INTO public.products(id, name, image) VALUES ('20034658', 'Salmon ahumado', '');
+INSERT INTO public.products(id, name, image) VALUES ('20034658', 'Salmon ahumado', '16KPFl4ytZPSBVa2R3YX3YdyoR7Sgnx8t');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000183118', 'Filetes de Caballa del Sur en Aceite de Oliva Bajo en sal', '');
+INSERT INTO public.products(id, name, image) VALUES ('8480000183118', 'Filetes de Caballa del Sur en Aceite de Oliva Bajo en sal', '1gN4i60-YzA4vYB9IViMBMfccRxQkYkfC');
 
-INSERT INTO public.products(id, name, image) VALUES ('3245414658769', 'Tiramisu - Carrefour', '');
+INSERT INTO public.products(id, name, image) VALUES ('3245414658769', 'Tiramisu - Carrefour', '1BAaJxM2VQ51Y0Kw29tIgtaVHgS1gU1BW');
 
-INSERT INTO public.products(id, name, image) VALUES ('7613039490266', 'Nesquik - Nestle', '');
+INSERT INTO public.products(id, name, image) VALUES ('7613039490266', 'Nesquik - Nestle', '11WDCTDpI6uqL_MKQD92KcDeJcq6-ATVw');
 
-INSERT INTO public.products(id, name, image) VALUES ('4008400811727', 'Mon cheri', '');
+INSERT INTO public.products(id, name, image) VALUES ('4008400811727', 'Mon cheri', '1ke9uD5AUBIM8sP6iCCOwv1_GN-X3wMtq');
 
-INSERT INTO public.products(id, name, image) VALUES ('787692838349', 'White Chocolaty Macadamia', '');
+INSERT INTO public.products(id, name, image) VALUES ('787692838349', 'White Chocolaty Macadamia', '10D4H6NEhAcDKIriX3XDWY9s9g5YtDuu2');
 
-INSERT INTO public.products(id, name, image) VALUES ('4025700001962', 'Chocolate blanco - Milka', '');
+INSERT INTO public.products(id, name, image) VALUES ('4025700001962', 'Chocolate blanco - Milka', '1usWRQsaA81Cm2ouA-TGdJg8fPNkKcq_1');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000120373', 'Chocolate con almendras - Hacendado', '');
+INSERT INTO public.products(id, name, image) VALUES ('8480000120373', 'Chocolate con almendras - Hacendado', '1PyItvJAj03LZmu7tqx97qXUNk4iUqELw');
 
-INSERT INTO public.products(id, name, image) VALUES ('3560070118373', 'Vikoroff vodka', '');
+INSERT INTO public.products(id, name, image) VALUES ('3560070118373', 'Vikoroff vodka', '1vw1QdgQXhAVVVlMA7sSQ7-BBRv3qBRHY');
 
-INSERT INTO public.products(id, name, image) VALUES ('704039019803', 'Fudge - Jack Daniels', '');
+INSERT INTO public.products(id, name, image) VALUES ('704039019803', 'Fudge - Jack Daniels', '1EqEQzl7xyTA296nQBstsELcExDChfP0q');
 
-INSERT INTO public.products(id, name, image) VALUES ('20150907', 'Arandanos deshidratados - Alesto', '');
+INSERT INTO public.products(id, name, image) VALUES ('20150907', 'Arandanos deshidratados - Alesto', '1TD5RSTadzdr4HbpMJxiuC6pui8vrRXd1');
 
 /*
 INSERT INTO public.products(id, name, image) VALUES ('7300400481595', 'Tartine croustillante Authentique - Wasa', '');
@@ -183,6 +183,8 @@ INSERT INTO public.products(id, name, image) VALUES ('20408923', 'Buttercookies 
 INSERT INTO public.products(id, name, image) VALUES ('20413422', 'Anacardos tostados y salados - Alesto', '');
 
 INSERT INTO public.products(id, name, image) VALUES ('8431876272086', 'Gamba cocida mediterraneo - Carrefour', '');
+
+*/
 
 /* INSERTs table ingredients */
 
@@ -715,6 +717,8 @@ INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('2015
 INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('20150907', 13);
 
 INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('20150907', 49);
+
+/*
 
 INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('7300400481595', 91);
 
