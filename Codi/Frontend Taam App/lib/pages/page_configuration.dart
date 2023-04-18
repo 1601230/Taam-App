@@ -46,15 +46,6 @@ class _PageConfigurationState extends State<PageConfiguration> {
         appBar: AppBar(
           title: Text('Configuración'),
           //Icono para volver a la pagina anterior
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_outlined),
-            onPressed: () {
-              //Solo permitimos volver atrás en el caso de que se pueda, para evitar errores
-              while (Navigator.of(context).canPop()) {
-                Navigator.pop(context);
-              }
-            },
-          ),
         ),
         body: Container(
           margin: EdgeInsets.all(5),
@@ -88,10 +79,6 @@ class _PageConfigurationState extends State<PageConfiguration> {
                       onChanged: (String? value) {
                         setState(() {
                           _selectionLanguageMessage = value!;
-
-                          ///Actualizamos el idioma en el main
-                          watch.setLanguage!(
-                              _selectionLanguageMessage);
                         });
                       },
                     ),
