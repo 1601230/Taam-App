@@ -6,7 +6,6 @@ import 'package:taam_app/pages/foodInformationScreen.dart';
 import 'package:taam_app/requests.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'pages/search_product_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 
 void main() async {

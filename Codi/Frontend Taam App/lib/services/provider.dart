@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taam_app/services/local_storage.dart';
 
 
@@ -26,19 +25,4 @@ class SettingsProvider with ChangeNotifier {
     _foodPreferences = foodPreferences;
     notifyListeners();
   }
-
-  /*void savePreferences() async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString('brightness', _brightness.toString());
-    prefs.setStringList('foodPreferences', _foodPreferences);
-    prefs.setString('appLanguage', _appLanguage);
-  }
-
-  void loadPreferences() async {
-    final prefs = await SharedPreferences.getInstance();
-    _brightness = prefs.getString('brightness') == Brightness.light.toString() ? Brightness.light : Brightness.dark;
-    _foodPreferences = prefs.getStringList('foodPreferences') ?? [];
-    _appLanguage = prefs.getString('appLanguage') ?? 'Español';
-    notifyListeners();
-  }*/
 }
