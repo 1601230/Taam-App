@@ -86,6 +86,8 @@ class _PageConfigurationState extends State<PageConfiguration> {
                       onChanged: (String? value) {
                         setState(() {
                           _selectionLanguageMessage = value!;
+
+                          watch.setLanguage(_selectionLanguageMessage);
                         });
                       },
                     ),
