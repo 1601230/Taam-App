@@ -44,15 +44,22 @@ class _PageConfigurationState extends State<PageConfiguration> {
 
       return Scaffold(
         appBar: AppBar(
-          title: Text('Configuración'),
-          //Icono para volver a la pagina anterior
+          title: Center (
+            child: Row (
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(""),
+                Text('Configuración'),
+                Text("        ")
+              ],
+            )
+          )
         ),
         body: Container(
           margin: EdgeInsets.all(5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               ///Columna de cambio de idioma
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
