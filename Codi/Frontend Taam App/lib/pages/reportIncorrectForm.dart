@@ -3,6 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:taam_app/pages/foodInformationScreen.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 
+import '../main.dart';
+
 
 class NonExistentFoodPage extends StatelessWidget{
 
@@ -19,8 +21,10 @@ class NonExistentFoodPage extends StatelessWidget{
                       alignment: Alignment.topCenter,
                       icon: Image.asset('assets/Logo_TaamApp_Home.png'),
                       onPressed: () {
-                        Navigator.pop(context);
-                        // Aqui se agrega la navegación a la pantalla de inicio
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(builder: (context)=> MyApp()),
+                                (route)=>route.isFirst
+                        );
                       },
                     ),
                     IconButton(

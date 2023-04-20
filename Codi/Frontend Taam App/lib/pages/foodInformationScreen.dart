@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:taam_app/main.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'package:taam_app/pages/reportIncorrectForm.dart';
 
@@ -49,8 +50,10 @@ class _MyFoodScreen extends State<MyFoodScreen> {
                     alignment: Alignment.topCenter,
                     icon: Image.asset('assets/Logo_TaamApp_Home.png'),
                     onPressed: () {
-                      Navigator.pop(context);
-                      // Aqui se agrega la navegación a la pantalla de inicio
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (context)=> MyApp()),
+                          (route)=>route.isFirst
+                      );
                     },
                   ),
                   IconButton(
@@ -143,7 +146,7 @@ class _MyFoodScreen extends State<MyFoodScreen> {
                 child: SizedBox(
                   height: 50,
                   width: 50,
-                  child: Image.asset("assets/report.jpg"),
+                  child: Image.asset("assets/glutenfree_stamp.png"),
                 ),
               )
             ],

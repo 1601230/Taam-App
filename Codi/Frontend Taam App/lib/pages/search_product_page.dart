@@ -4,6 +4,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:taam_app/pages/foodInformationScreen.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 
+import '../main.dart';
+
 
 class MyData {
   String title;
@@ -106,8 +108,10 @@ class _MySearchProduct extends State<MySearchProduct> {
                 alignment: Alignment.topCenter,
                 icon: Image.asset('assets/Logo_TaamApp_Home.png'),
                 onPressed: () {
-                  Navigator.pop(context);
-                  // Aqui se agrega la navegación a la pantalla de inicio
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context)=> MyHomePage()),
+                          (route)=>route.isFirst
+                  );
                 },
               ),
               IconButton(
@@ -320,15 +324,6 @@ class _MySearchProduct extends State<MySearchProduct> {
                                       );
 
                                       await _searchProduct();
-                                      /*Fluttertoast.showToast(
-                                          msg: "${myData[index].title} Seleccionado",
-                                          toastLength: Toast.LENGTH_SHORT,
-                                          gravity: ToastGravity.CENTER,
-                                          timeInSecForIosWeb: 1,
-                                          backgroundColor: Colors.red,
-                                          textColor: Colors.white,
-                                          fontSize: 16.0
-                                      );*/
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(

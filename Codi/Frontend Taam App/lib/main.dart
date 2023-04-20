@@ -32,7 +32,10 @@ class _MyAppState extends State<MyApp> {
             primarySwatch: Colors.deepPurple,
             brightness: watch.brightness,
           ),
-          home: MyHomePage(myAppState: this),///Pagina inicial (para debugar, podeis poner la pagina que esteis desarollando aqui y asi la podreis visualizar a la hora de ejecutar el emulador) (aqui debera ir a pagina principal de la aplicación)
+          routes: {
+            '/homePage': (BuildContext context) => const MyHomePage(),
+          },
+          home: const MyHomePage(),///Pagina inicial (para debugar, podeis poner la pagina que esteis desarollando aqui y asi la podreis visualizar a la hora de ejecutar el emulador) (aqui debera ir a pagina principal de la aplicación)
         );
       }
     );
@@ -40,8 +43,7 @@ class _MyAppState extends State<MyApp> {
 }
 
 class MyHomePage extends StatelessWidget {
-  final _MyAppState myAppState;
-  const MyHomePage({Key? key, required this.myAppState}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
