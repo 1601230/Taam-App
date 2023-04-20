@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../provider.dart';
+import '../services/local_storage.dart';
+import '../services/provider.dart';
 
 //Para crear un StatefulWidget automáticamente, poner stful
 
@@ -84,10 +85,11 @@ class _PageConfigurationState extends State<PageConfiguration> {
                       ///value: _selectionLanguageMessage,
                       value: watch.appLanguage,
                       onChanged: (String? value) {
-                        setState(() {
+                        setState(() async {
                           _selectionLanguageMessage = value!;
 
                           watch.setLanguage(_selectionLanguageMessage);
+                          await LocalStorage.setLanguage(_selectionLanguageMessage);
                         });
                       },
                     ),
@@ -119,10 +121,10 @@ class _PageConfigurationState extends State<PageConfiguration> {
                         items: _valuesFoodPreferences.map((option) =>
                             MultiSelectItem<String>(option, option))
                             .toList(),
-                        onConfirm: (selectedItems) {
+                        onConfirm: (selectedItems) async {
                           ///Actualizamos las preferencias en el main
-                          watch.setFoodPreferences!(
-                              selectedItems);
+                          watch.setFoodPreferences!(selectedItems);
+                          await LocalStorage.setFoodPreferences(selectedItems);
                         },
                       )
                   )
@@ -152,14 +154,17 @@ class _PageConfigurationState extends State<PageConfiguration> {
                       }).toList(),
                       value: _selectionThemeMessage,
                       onChanged: (String? value) {
-                        setState(() {
+                        setState(() async {
                           _selectionThemeMessage = value!;
 
                           ///Actualizamos el tema en el main
                           if (_selectionThemeMessage == 'Claro') {
                             watch.setBrightness!(Brightness.light);
+                            await LocalStorage.setBrightness(Brightness.light);
                           } else {
                             watch.setBrightness!(Brightness.dark);
+                            await LocalStorage.setBrightness(Brightness.dark);
+
                           }
                         });
                       },

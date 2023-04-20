@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:taam_app/provider.dart';
+import 'package:taam_app/services/local_storage.dart';
+import 'package:taam_app/services/provider.dart';
 import 'package:taam_app/pages/foodInformationScreen.dart';
 import 'package:taam_app/requests.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'pages/search_product_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await LocalStorage.init();
+
   runApp(const MyApp());
 }
 
@@ -18,6 +25,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
 @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -32,9 +45,6 @@ class _MyAppState extends State<MyApp> {
             primarySwatch: Colors.deepPurple,
             brightness: watch.brightness,
           ),
-          routes: {
-            '/homePage': (BuildContext context) => const MyHomePage(),
-          },
           home: const MyHomePage(),///Pagina inicial (para debugar, podeis poner la pagina que esteis desarollando aqui y asi la podreis visualizar a la hora de ejecutar el emulador) (aqui debera ir a pagina principal de la aplicación)
         );
       }
