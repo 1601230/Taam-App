@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:taam_app/pages/foodInformationScreen.dart';
 import 'package:taam_app/pages/page_configuration.dart';
+
 
 class MyData {
   String title;
@@ -312,8 +314,13 @@ class _MySearchProduct extends State<MySearchProduct> {
                                   child: GestureDetector(
                                     onTap: () async {
                                       //Añadir navegación a la pantalla del producto
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context)=> MyFoodScreen(productName: myData[index].title, productImage: myData[index].subtitle))
+                                      );
+
                                       await _searchProduct();
-                                      Fluttertoast.showToast(
+                                      /*Fluttertoast.showToast(
                                           msg: "${myData[index].title} Seleccionado",
                                           toastLength: Toast.LENGTH_SHORT,
                                           gravity: ToastGravity.CENTER,
@@ -321,7 +328,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                                           backgroundColor: Colors.red,
                                           textColor: Colors.white,
                                           fontSize: 16.0
-                                      );
+                                      );*/
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(

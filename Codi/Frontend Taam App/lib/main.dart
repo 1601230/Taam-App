@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:taam_app/provider.dart';
+import 'package:taam_app/pages/foodInformationScreen.dart';
 import 'package:taam_app/requests.dart';
 import 'package:taam_app/pages/page_configuration.dart';
-
 import 'pages/search_product_page.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
+@override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
@@ -47,60 +47,60 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-        ChangeNotifierProvider<SettingsProvider>(create: (_) => SettingsProvider())
-    ],
-    builder: (context,_) {
-      return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Spacer(),
-              IconButton(
-                icon: Icon(Icons.settings),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PageConfiguration()),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 120.0),
-              child: Image.asset(
-                'assets/Logo_TaamApp.png',
-                width: 200,
-                height: 200,
+          ChangeNotifierProvider<SettingsProvider>(create: (_) => SettingsProvider())
+        ],
+        builder: (context,_) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Spacer(),
+                    IconButton(
+                      icon: Icon(Icons.settings),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PageConfiguration()),
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 8, bottom: 100.0),
-              child: Text("El seu selector de menjar de confiança"),
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 120.0),
+                    child: Image.asset(
+                      'assets/Logo_TaamApp.png',
+                      width: 200,
+                      height: 200,
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 8, bottom: 100.0),
+                    child: Text("El seu selector de menjar de confiança"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context)=> const MySearchProduct())
+                      );
+                    },
+                    child: const Text('INICIAR'),
+                  ),
+                  const SizedBox(height: 30),
+                ],
+              ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context)=> const MySearchProduct())
-                );
-              },
-              child: const Text('INICIAR'),
-            ),
-            const SizedBox(height: 30),
-          ],
-        ),
-      ),
-    );
-    }
+          );
+        }
     );
   }
 }
