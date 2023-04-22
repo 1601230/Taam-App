@@ -1,0 +1,10 @@
+{
+  "language": "Español",
+  "@language": {
+    "description": "The current Language"
+  },
+  "textBienvenida": "Su selector de comida de confianza",
+  "@textBienvenida": {
+    "description": "Frase de bienvenida de la aplicación"
+  }
+}

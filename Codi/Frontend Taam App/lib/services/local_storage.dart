@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorage {
@@ -8,6 +9,7 @@ class LocalStorage {
   static const _keyLanguage = 'appLanguage';
   static const _keyBrightness = 'brightness';
   static const _keyFoodPreferences = 'foodPreferences';
+  static const _keyLocale = 'appLocale';
 
   static Future init() async =>
     _preferences = await SharedPreferences.getInstance();
@@ -21,8 +23,21 @@ class LocalStorage {
   static Future setFoodPreferences(List<String> foodPreferences) async =>
       await _preferences.setStringList(_keyFoodPreferences, foodPreferences);
 
+  static Future setLocale(Locale locale) async =>
+    await _preferences.setString(_keyLocale, locale.toString());
 
-  static String? getLanguage() => _preferences.getString(_keyLanguage);
+
+  static String? getLanguage() {
+    if (_preferences.getString(_keyLanguage) != null) {
+      return _preferences.getString(_keyLanguage);
+    } else {
+      switch(window.locale.languageCode) {
+        case 'es': return 'Español';
+        case 'en': return 'English';
+        case 'ca': return 'Català';
+      }
+    }
+  }
 
   static Brightness getBrightness() {
     if (_preferences.getString(_keyBrightness) == Brightness.light.toString()) {
@@ -36,4 +51,18 @@ class LocalStorage {
 
   static List<String>? getFoodPreferences() =>
     _preferences.getStringList(_keyFoodPreferences);
+
+  static Locale getLocale() {
+    final localeString = _preferences.getString(_keyLocale);
+    switch (localeString) {
+      case 'en':
+        return const Locale('en');
+      case 'ca':
+        return const Locale('ca');
+      case 'es':
+        return const Locale('es');
+      default:
+        return Locale(window.locale.languageCode);
+    }
+  }
 }
