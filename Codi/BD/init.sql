@@ -124,37 +124,37 @@ INSERT INTO public.products(id, name, image) VALUES ('704039019803', 'Fudge - Ja
 INSERT INTO public.products(id, name, image) VALUES ('20150907', 'Arandanos deshidratados - Alesto', '1TD5RSTadzdr4HbpMJxiuC6pui8vrRXd1');
 
 /*
-INSERT INTO public.products(id, name, image) VALUES ('7300400481595', 'Tartine croustillante Authentique - Wasa', '');
+INSERT INTO public.products(id, name, image) VALUES ('7300400481595', 'Tartine croustillante Authentique - Wasa', '1T2CM8d8-viUtCCTIEosthLZ4Z_iT3rUt');
 
-INSERT INTO public.products(id, name, image) VALUES ('3033491588136', 'HIPRO proteines - Danone', '');
+INSERT INTO public.products(id, name, image) VALUES ('3033491588136', 'HIPRO proteines - Danone', '15LP-SmVKyVX8ayHj1_IwL3RkfdDAjnYy');
 
-INSERT INTO public.products(id, name, image) VALUES ('7300400481588', 'Tostadas crujientes de fibra - Wasa', '');
+INSERT INTO public.products(id, name, image) VALUES ('7300400481588', 'Tostadas crujientes de fibra - Wasa', '1i9N-c7KJkYuiIWup-3vNOUR4IcKMLIEt');
 
-INSERT INTO public.products(id, name, image) VALUES ('20047238', 'Mix de frutos secos al natural - Alesto', '');
+INSERT INTO public.products(id, name, image) VALUES ('20047238', 'Mix de frutos secos al natural - Alesto', '153EdUbS-fvt-tMJCBan0muKnT7BMKQOQ');
 
-INSERT INTO public.products(id, name, image) VALUES ('3225350000501', 'Pulco Lemon', '');
+INSERT INTO public.products(id, name, image) VALUES ('3225350000501', 'Pulco Lemon', '1if9ciGmWlUblN4w8iMMJMlfUd652_iJo');
 
-INSERT INTO public.products(id, name, image) VALUES ('8076802085738', 'Penne rigate - Barilla', '');
+INSERT INTO public.products(id, name, image) VALUES ('8076802085738', 'Penne rigate - Barilla', '1JctkUjqdggkFX-5KlgwLgqAw1b6oXdiM');
 
-INSERT INTO public.products(id, name, image) VALUES ('8076809529419', 'Espagueti integral - Barilla', '');
+INSERT INTO public.products(id, name, image) VALUES ('8076809529419', 'Espagueti integral - Barilla', '1L4IsAA2enSkjk96gr9GjugVgC4h5AA7h');
 
-INSERT INTO public.products(id, name, image) VALUES ('5411188110835', 'Alpro Almond', '');
+INSERT INTO public.products(id, name, image) VALUES ('5411188110835', 'Alpro Almond', '1FEYfj9FQVQJEn0tLg3MiEulE-C4lgVbH');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000633224', 'Delicias de Pollo - Hacendado', '');
+INSERT INTO public.products(id, name, image) VALUES ('8480000633224', 'Delicias de Pollo - Hacendado', '1PwfnV2uwBopocopIxXx86URtzmo2J4xw');
 
-INSERT INTO public.products(id, name, image) VALUES ('8715035110106', 'Salsa de soja - Kikkoman', '');
+INSERT INTO public.products(id, name, image) VALUES ('8715035110106', 'Salsa de soja - Kikkoman', '13owxelNM9lP-Xo4xzaUdtb7BrHdFcKaP');
 
-INSERT INTO public.products(id, name, image) VALUES ('8423352861402', 'Bebida de avena - ALITEY ', '');
+INSERT INTO public.products(id, name, image) VALUES ('8423352861402', 'Bebida de avena - ALITEY ', '1V_QbetsleVe3fYWH5lFybl4BpCJC8PDS');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000633231', 'Nuggets de pollo - Hacendado', '');
+INSERT INTO public.products(id, name, image) VALUES ('8480000633231', 'Nuggets de pollo - Hacendado', '15kRulx8dbU4wnUdO3WHbktMW3Z61yih4');
 
-INSERT INTO public.products(id, name, image) VALUES ('8437017032984', 'Nuggets originales - Heura', '');
+INSERT INTO public.products(id, name, image) VALUES ('8437017032984', 'Nuggets originales - Heura', '14o7BRzqDBtOOEX-bFZwOuwSy4cLTH5Oa');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000561695', 'Pechuga pollo braseada finas lonchas - Hacendado', '');
+INSERT INTO public.products(id, name, image) VALUES ('8480000561695', 'Pechuga pollo braseada finas lonchas - Hacendado', '1BNTMU-f5Uzbeu335cvaPaggdjrt7ikyh');
 
-INSERT INTO public.products(id, name, image) VALUES ('8436021411396', 'Burger de pavo y pollo - Mercadona', '');
+INSERT INTO public.products(id, name, image) VALUES ('8436021411396', 'Burger de pavo y pollo - Mercadona', '1nOcE_jCrWrIBVaZ8aCxDXnlpzi-0am50');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000809421', 'Tortillas de trigo integrales - Hacendado', '');
+INSERT INTO public.products(id, name, image) VALUES ('8480000809421', 'Tortillas de trigo integrales - Hacendado', '1gaABhCXtioevKAw8G2mzkRynUo3M3OVS');
 
 INSERT INTO public.products(id, name, image) VALUES ('8000430133035', 'Mozarella - Galbani', '');
 
