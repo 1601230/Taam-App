@@ -6,5 +6,36 @@
   "textBienvenida": "Su selector de comida de confianza",
   "@textBienvenida": {
     "description": "Frase de bienvenida de la aplicación"
-  }
+  },
+
+  "titleConfig": "Configuración",
+  "titleIdiomaConfig": "Idioma",
+  "titlePreferenciasConfig": "Preferencias alimentarias",
+  "textSeleccionaPrefsConfig": "Selecciona tus preferencias",
+  "textSeleccionaPrefsDialog": "Selecciona tus preferencias alimentarias",
+  "textVegetarianoDialog": "Vegetariano",
+  "textVeganoDialog": "Vegano",
+  "textCeliacoDialog": "Celiaco",
+  "textConfirmarDialog": "Confirmar",
+  "textCancelarDialog": "Cancelar",
+  "titleTemaAppConfig": "Tema de la aplicación",
+  "textClaro": "Claro",
+  "textOscuro": "Oscuro",
+
+  "textBuscadorProducto": "Buscar producto/ingrediente...",
+  "textBuscadorCodigo": "Introducir código de barras...",
+  "titleRecomendaciones": "Recomendaciones",
+
+  "textInfoConsumicion": "Información sobre la consumición",
+
+  "titleFormProdIncorrecto": "Formulario del Producto",
+  "titleIntroduceNombreForm": "Introduce el nombre del Producto",
+  "labelTextNombreProd": "Nombre del producto",
+  "titleProporcionaInfoForm": "Proporciona las siguientes imagenes:",
+  "labeltextImagenProd": "Imagen del producto",
+  "labeltextImagenCodigo": "Imagen del codigo de barras",
+  "labeltextImagenIngredientes": "Imagen ingredientes",
+  "titleInfoAdicional": "Información adicional:",
+  "labeltextInfoAdicional": "Información Adicional",
+  "textBotonEnviarForm": "Enviar Formulario"
 }

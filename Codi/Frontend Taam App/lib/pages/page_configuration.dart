@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../services/local_storage.dart';
 import '../services/locale_provider.dart';
@@ -17,13 +18,14 @@ class PageConfiguration extends StatefulWidget {
 }
 
 class _PageConfigurationState extends State<PageConfiguration> {
-  List<String> _valuesFoodPreferences = ['Vegetariano', 'Vegano', 'Celiaco'];
+  List<String> _valuesFoodPreferences = [];
+
   List<String> _selectedFoodPreferences = [];
 
   List<String> _appLanguage = ['Español', 'Català', 'English'];
   String _selectionLanguageMessage = '';
 
-  List<String> _appThemeItems = ['Claro', 'Oscuro'];
+  List<String> _appThemeItems = [];
   String _selectionThemeMessage = '';
 
   ///Inicializamos los valores de los diferentes campos con los valores pasados
@@ -41,11 +43,21 @@ class _PageConfigurationState extends State<PageConfiguration> {
           _selectedFoodPreferences = settingsProvider.foodPreferences;
           _selectionLanguageMessage = settingsProvider.appLanguage!;
 
+          _valuesFoodPreferences.clear();
+          _valuesFoodPreferences.add(AppLocalizations.of(context)!.textVegetarianoDialog);
+          _valuesFoodPreferences.add(AppLocalizations.of(context)!.textVeganoDialog);
+          _valuesFoodPreferences.add(AppLocalizations.of(context)!.textCeliacoDialog);
+
+          _appThemeItems.clear();
+
           if (settingsProvider.brightness == Brightness.light) {
-            _selectionThemeMessage = 'Claro';
+            _selectionThemeMessage = AppLocalizations.of(context)!.textClaro;
           } else {
-            _selectionThemeMessage = 'Oscuro';
+            _selectionThemeMessage = AppLocalizations.of(context)!.textOscuro;
           }
+
+          _appThemeItems.add(AppLocalizations.of(context)!.textClaro);
+          _appThemeItems.add(AppLocalizations.of(context)!.textOscuro);
 
           return Scaffold(
             appBar: AppBar(
@@ -54,7 +66,7 @@ class _PageConfigurationState extends State<PageConfiguration> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(""),
-                        Text('Configuración'),
+                        Text(AppLocalizations.of(context)!.titleConfig),
                         Text("        ")
                       ],
                     )
@@ -72,8 +84,8 @@ class _PageConfigurationState extends State<PageConfiguration> {
                     children: [
                       Container(
                         margin: EdgeInsets.all(10),
-                        child: const Text(
-                            'Idioma',
+                        child: Text(
+                            AppLocalizations.of(context)!.titleIdiomaConfig,
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold)
                         ),
@@ -123,8 +135,8 @@ class _PageConfigurationState extends State<PageConfiguration> {
                     children: [
                       Container(
                         margin: EdgeInsets.all(10),
-                        child: const Text(
-                            'Preferencias alimentarias',
+                        child: Text(
+                            AppLocalizations.of(context)!.titlePreferenciasConfig,
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold)
                         ),
@@ -133,8 +145,8 @@ class _PageConfigurationState extends State<PageConfiguration> {
                           padding: EdgeInsets.all(10),
                           child: MultiSelectDialogField(
                             title: Text(
-                                'Selecciona las preferencias alimentarias'),
-                            buttonText: Text('Selecciona tus preferencias'),
+                                AppLocalizations.of(context)!.textSeleccionaPrefsDialog),
+                            buttonText: Text(AppLocalizations.of(context)!.textSeleccionaPrefsConfig),
                             confirmText: const Text('Confirmar'),
                             cancelText: const Text('Cancelar'),
                             initialValue: _selectedFoodPreferences,
@@ -158,8 +170,8 @@ class _PageConfigurationState extends State<PageConfiguration> {
                     children: [
                       Container(
                         margin: EdgeInsets.all(10),
-                        child: const Text(
-                            'Tema de la aplicación',
+                        child: Text(
+                            AppLocalizations.of(context)!.titleTemaAppConfig,
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold)
                         ),
@@ -179,14 +191,12 @@ class _PageConfigurationState extends State<PageConfiguration> {
                               _selectionThemeMessage = value!;
 
                               ///Actualizamos el tema en el main
-                              if (_selectionThemeMessage == 'Claro') {
+                              if (_selectionThemeMessage == AppLocalizations.of(context)!.textClaro) {
                                 settingsProvider.setBrightness!(Brightness.light);
-                                await LocalStorage.setBrightness(
-                                    Brightness.light);
+                                await LocalStorage.setBrightness(Brightness.light);
                               } else {
                                 settingsProvider.setBrightness!(Brightness.dark);
-                                await LocalStorage.setBrightness(
-                                    Brightness.dark);
+                                await LocalStorage.setBrightness(Brightness.dark);
                               }
                             });
                           },

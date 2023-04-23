@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:taam_app/pages/foodInformationScreen.dart';
 import 'package:taam_app/pages/page_configuration.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../main.dart';
 
@@ -46,7 +47,7 @@ class NonExistentFoodPage extends StatelessWidget{
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Formulari del Producte',
+                        AppLocalizations.of(context)!.titleFormProdIncorrecto,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 24.0, color: Colors.black.withOpacity(0.7),
@@ -56,7 +57,7 @@ class NonExistentFoodPage extends StatelessWidget{
                       ),
                       SizedBox(height: 25),
                       Text(
-                        'Introdueix el nom del Producte',
+                        AppLocalizations.of(context)!.titleIntroduceNombreForm,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 15.0, color: Colors.black.withOpacity(0.7),
@@ -67,13 +68,13 @@ class NonExistentFoodPage extends StatelessWidget{
                         style: TextStyle(fontSize: 16.0),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(1.0),),
-                          labelText: 'Nom del producte',
+                          labelText: AppLocalizations.of(context)!.labelTextNombreProd,
 
                         ),
                       ),
                       SizedBox(height: 15),
                       Text(
-                        'Proporciona les següents imatges:',
+                        AppLocalizations.of(context)!.titleProporcionaInfoForm,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 15.0, color: Colors.black.withOpacity(0.7),
@@ -84,7 +85,7 @@ class NonExistentFoodPage extends StatelessWidget{
                         style: TextStyle(fontSize: 16.0),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(1.0),),
-                          labelText: 'Imatge del producte',
+                          labelText: AppLocalizations.of(context)!.labeltextImagenProd,
 
                         ),
                       ),
@@ -93,7 +94,7 @@ class NonExistentFoodPage extends StatelessWidget{
                         style: TextStyle(fontSize: 16.0),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(1.0),),
-                          labelText: 'Imatge de codi de barres',
+                          labelText: AppLocalizations.of(context)!.labeltextImagenCodigo,
 
                         ),
                       ),
@@ -102,12 +103,12 @@ class NonExistentFoodPage extends StatelessWidget{
                         style: TextStyle(fontSize: 16.0),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(1.0),),
-                          labelText: 'Imatge ingredients',
+                          labelText: AppLocalizations.of(context)!.labeltextImagenIngredientes,
                         ),
                       ),
                       SizedBox(height: 15),
                       Text(
-                        'Informació adicional:',
+                        AppLocalizations.of(context)!.titleInfoAdicional,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 15.0, color: Colors.black.withOpacity(0.7),
@@ -118,7 +119,7 @@ class NonExistentFoodPage extends StatelessWidget{
                         style: TextStyle(fontSize: 16.0),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(1.0),),
-                          labelText: 'Informació Adicional',
+                          labelText: AppLocalizations.of(context)!.labeltextInfoAdicional,
                         ),
                       ),
                       SizedBox(height: 25),
@@ -133,11 +134,9 @@ class NonExistentFoodPage extends StatelessWidget{
                                 backgroundColor: MaterialStateProperty.all<Color>(Colors.grey)
                             ),
                             onPressed: (){},
-                            child: Text("Enviar formulari"),)
+                            child: Text(AppLocalizations.of(context)!.textBotonEnviarForm),)
 
                       ),
-
-
                     ]
                 )
             )

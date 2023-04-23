@@ -1,4 +1,35 @@
 {
   "language": "English",
-  "textBienvenida": "Your trusted food selector"
+  "textBienvenida": "Your trusted food selector",
+
+  "titleConfig": "Settings",
+  "titleIdiomaConfig": "Language",
+  "titlePreferenciasConfig": "Dietary preferences",
+  "titleTemaAppConfig": "App theme",
+  "textSeleccionaPrefsConfig": "Select your preferences",
+  "textSeleccionaPrefsDialog": "Select your dietary preferences",
+  "textVegetarianoDialog": "Vegetarian",
+  "textVeganoDialog": "Vegan",
+  "textCeliacoDialog": "Gluten-free",
+  "textConfirmarDialog": "Confirm",
+  "textCancelarDialog": "Cancel",
+  "textClaro": "Light",
+  "textOscuro": "Dark",
+
+  "textBuscadorProducto": "Search for product/ingredient...",
+  "textBuscadorCodigo": "Enter barcode...",
+  "titleRecomendaciones": "Recommendations",
+
+  "textInfoConsumicion": "Consumption information",
+
+  "titleFormProdIncorrecto": "Product Form",
+  "titleIntroduceNombreForm": "Enter the Product Name",
+  "labelTextNombreProd": "Product Name",
+  "titleProporcionaInfoForm": "Provide the following images:",
+  "labeltextImagenProd": "Product Image",
+  "labeltextImagenCodigo": "Barcode Image",
+  "labeltextImagenIngredientes": "Ingredients Image",
+  "titleInfoAdicional": "Additional Information:",
+  "labeltextInfoAdicional": "Additional Information",
+  "textBotonEnviarForm": "Send Form"
 }

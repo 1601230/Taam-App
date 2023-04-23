@@ -1,4 +1,35 @@
 {
   "language": "Català",
-  "textBienvenida": "El seu selector de menjar de confiança"
+  "textBienvenida": "El seu selector de menjar de confiança",
+
+  "titleConfig": "Configuració",
+  "titleIdiomaConfig": "Llengua",
+  "titlePreferenciasConfig": "Preferències alimentàries",
+  "titleTemaAppConfig": "Tema de l'aplicació",
+  "textSeleccionaPrefsConfig": "Selecciona les teves preferències",
+  "textSeleccionaPrefsDialog": "Selecciona les teves preferències alimentàries",
+  "textVegetarianoDialog": "Vegetarià",
+  "textVeganoDialog": "Vegà",
+  "textCeliacoDialog": "Celíac",
+  "textConfirmarDialog": "Confirmar",
+  "textCancelarDialog": "Cancel·lar",
+  "textClaro": "Clar",
+  "textOscuro": "Fosc",
+
+  "textBuscadorProducto": "Cercar producte/ingredient...",
+  "textBuscadorCodigo": "Introduir codi de barres...",
+  "titleRecomendaciones": "Recomanacions",
+
+  "textInfoConsumicion": "Informació sobre la consumició",
+
+  "titleFormProdIncorrecto": "Formulari del Producte",
+  "titleIntroduceNombreForm": "Introdueix el nom del Producte",
+  "labelTextNombreProd": "Nom del producte",
+  "titleProporcionaInfoForm": "Proporciona les següents imatges:",
+  "labeltextImagenProd": "Imatge del producte",
+  "labeltextImagenCodigo": "Imatge del codi de barres",
+  "labeltextImagenIngredientes": "Imatge ingredients",
+  "titleInfoAdicional": "Informació addicional:",
+  "labeltextInfoAdicional": "Informació Addicional",
+  "textBotonEnviarForm": "Enviar Formulari"
 }

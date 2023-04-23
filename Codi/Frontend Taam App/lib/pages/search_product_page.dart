@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:taam_app/pages/foodInformationScreen.dart';
 import 'package:taam_app/pages/page_configuration.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../main.dart';
 
@@ -141,7 +142,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                     controller: _productController,
                     focusNode: _focusNodeProduct,
                     decoration: InputDecoration(
-                      hintText: 'Buscar producte/ingredient...',
+                      hintText: AppLocalizations.of(context)!.textBuscadorProducto,
                       hintStyle: const TextStyle(color: Colors.grey),
                       prefixIcon:  IconButton(
                         onPressed: () {
@@ -210,7 +211,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                       controller: _barcodeController,
                       focusNode: _focusNodeBarcode,
                       decoration: InputDecoration(
-                        hintText: 'Introduir codi...',
+                        hintText: AppLocalizations.of(context)!.textBuscadorProducto,
                         hintStyle: const TextStyle(color: Colors.grey),
                         prefixIcon: IconButton(
                           onPressed: () {
@@ -285,10 +286,10 @@ class _MySearchProduct extends State<MySearchProduct> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(right: 30.0),
                           child: Text(
-                            "Recomanacions",
+                            AppLocalizations.of(context)!.titleRecomendaciones,
                             style: TextStyle(
                               fontSize: 30.0,
                               fontWeight: FontWeight.bold,

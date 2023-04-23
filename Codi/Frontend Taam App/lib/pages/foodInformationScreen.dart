@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:taam_app/main.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'package:taam_app/pages/reportIncorrectForm.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Ingredients {
   String title;
@@ -115,7 +115,7 @@ class _MyFoodScreen extends State<MyFoodScreen> {
               SizedBox(height: 20),
               Column(
                 children: [
-                  Text("Informació sobre la consumició"),
+                  Text(AppLocalizations.of(context)!.textInfoConsumicion),
                   Container(
                     width: 300,
                     height: 200,
