@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="e281fec6-cc42-4ac0-86b1-95ed76687a61" name="Changes" comment="" />
+    <list default="true" id="e281fec6-cc42-4ac0-86b1-95ed76687a61" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Frontend Taam App/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend Taam App/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,8 +28,10 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "D:/UAB/3r Curs/Laboratori Integrat de Software/Taam App/Taam-App/Codi/Frontend Taam App",
+    "last_opened_file_path": "C:/Users/Oscar Pozo Fernandez/Documents/GitHub/Taam-App/Codi/Backend Taam App",
     "settings.editor.selected.configurable": "AndroidSdkUpdater",
     "show.migrate.to.gradle.popup": "false"
   }

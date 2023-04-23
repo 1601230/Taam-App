@@ -10,9 +10,11 @@ import '../main.dart';
 
 ///Funciones conectadas a back-end
 ///---------------------------------------------------------------------------------------------------------------------------------------------
-void _searchProductByBarcode(String barcodeString) async {
+Future<String?> _searchProductByBarcode(String barcodeString) async {
   int barcodeInt = int.parse(barcodeString);
-  var aux = await searchProductByBarcode(barcodeInt);
+  Map<String, dynamic> aux = await searchProductByBarcode(barcodeInt);
+  String? namePoduct = aux["Name"];
+  return namePoduct;
 }
 
 ///---------------------------------------------------------------------------------------------------------------------------------------------
@@ -246,11 +248,12 @@ class _MySearchProduct extends State<MySearchProduct> {
                         ),
                       ),
                       keyboardType: TextInputType.number,
-                      onEditingComplete: () {
+                      onEditingComplete: () async {
                         _focusNodeBarcode.unfocus();
-                        _searchProductByBarcode(_barcodeController.text);
 
-                        if(_productController.text.isEmpty) {
+                        String? productName = await _searchProductByBarcode(_barcodeController.text);
+
+                        if(_barcodeController.text.isEmpty) {
                           Fluttertoast.showToast(
                             msg: "Product Name is empty",
                             toastLength: Toast.LENGTH_SHORT,
@@ -260,18 +263,28 @@ class _MySearchProduct extends State<MySearchProduct> {
                             textColor: Colors.white,
                             fontSize: 16.0
                           );
-                        } else {
-                          Fluttertoast.showToast(
-                              msg: "Product Barcode is ${_barcodeController.text}",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.CENTER,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.red,
-                              textColor: Colors.white,
-                              fontSize: 16.0
-                          );
-                        }
-                      },
+                        } else if (productName == null) {
+                            Fluttertoast.showToast(
+                                msg: "Producto no existe",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.red,
+                                textColor: Colors.white,
+                                fontSize: 16.0
+                            );
+                          } else{
+                            Fluttertoast.showToast(
+                                msg: "Product Barcode is ${productName}",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.red,
+                                textColor: Colors.white,
+                                fontSize: 16.0
+                            );
+                          }
+                        },
                     )
                   ),
                   const Padding(

@@ -186,9 +186,9 @@ public class Taam_App {
                 ingredientList.add(auxiliaryIngredient.getIngredient());
             }
 
-            resultToBeReturnedToFlutter.put("Name", product.getProductName());
-            resultToBeReturnedToFlutter.put("Barcode", product.getBarcode());
-            resultToBeReturnedToFlutter.put("Ingredients", ingredientList);
+            resultToBeReturnedToFlutter.put("|Name", product.getProductName());
+            resultToBeReturnedToFlutter.put("|Barcode", product.getBarcode());
+            resultToBeReturnedToFlutter.put("|Ingredients", ingredientList);
 
             int resultEdible = 0;
             List<String> nonSuitableIngredientsList = new ArrayList<>();
@@ -198,8 +198,8 @@ public class Taam_App {
                 visitor = Configuration.getInstance().createConfiguration(userRestrictionsList.get(counter));
                 result = visitor.checkProduct(product.getProductIngredientsList());
 
-                resultToBeReturnedToFlutter.put("Restriction" + (counter+1), userRestrictionsList.get(counter));
-                resultToBeReturnedToFlutter.put("RestrictionEdible" + (counter+1), result.getResult().toString());
+                resultToBeReturnedToFlutter.put("|Restriction" + (counter+1), userRestrictionsList.get(counter));
+                resultToBeReturnedToFlutter.put("|RestrictionEdible" + (counter+1), result.getResult().toString());
 
                 if (result.getResult() != SUITABLE)
                 {
@@ -232,21 +232,21 @@ public class Taam_App {
 
             if (resultEdible == 0)
             {
-                resultToBeReturnedToFlutter.put("Edible", SUITABLE);
+                resultToBeReturnedToFlutter.put("|Edible", SUITABLE);
             }
             else
             {
                 if (resultEdible == 1)
                 {
-                    resultToBeReturnedToFlutter.put("Edible", UNSUITABLE);
+                    resultToBeReturnedToFlutter.put("|Edible", UNSUITABLE);
                 }
                 else
                 {
-                    resultToBeReturnedToFlutter.put("Edible", DOUBTFUL);
+                    resultToBeReturnedToFlutter.put("|Edible", DOUBTFUL);
                 }
 
-                resultToBeReturnedToFlutter.put("ListIngredientsUNSUITABLE", nonSuitableIngredientsList);
-                resultToBeReturnedToFlutter.put("ListIngredientsDOUBTFUL", doubtfulIngredientsList);
+                resultToBeReturnedToFlutter.put("|ListIngredientsUNSUITABLE", nonSuitableIngredientsList);
+                resultToBeReturnedToFlutter.put("|ListIngredientsDOUBTFUL", doubtfulIngredientsList);
             }
 
             return resultToBeReturnedToFlutter;
