@@ -8,8 +8,6 @@ import '../services/local_storage.dart';
 import '../services/locale_provider.dart';
 import '../services/settings_provder.dart';
 
-//Para crear un StatefulWidget automáticamente, poner stful
-
 class PageConfiguration extends StatefulWidget {
   const PageConfiguration({super.key});
 
@@ -122,6 +120,7 @@ class _PageConfigurationState extends State<PageConfiguration> {
                                   break;
                               }
                               await LocalStorage.setLanguage(_selectionLanguageMessage);
+                              ///Llamar a la función changeLanguage
                             });
                           },
                         ),
@@ -204,16 +203,6 @@ class _PageConfigurationState extends State<PageConfiguration> {
                       )
                     ],
                   ),
-
-                  ///Container para el botón de confirmación
-                  Container(
-                    margin: EdgeInsets.all(20),
-                    alignment: Alignment.bottomCenter,
-                    child: ElevatedButton(
-                      child: const Text('Confirmar'),
-                      onPressed: () {},
-                    ),
-                  )
                 ],
               ),
             ),

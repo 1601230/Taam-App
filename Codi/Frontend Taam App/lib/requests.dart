@@ -1,20 +1,22 @@
-import 'dart:convert';
+import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 
+
 final http.Client client = http.Client();
-const String baseUrl = "http://localhost:8080";
+const String baseUrl = "http://localhost:8080/";
 
 
-Future<int> methodName(int n) async {
-  String uri = "$baseUrl/language/english/name/salmon ahumado/end";
+Future<int> searchProductByBarcode(int barcode) async {
+  String uri = "$baseUrl/barcode/$barcode/end";
   final response = await client.get(Uri.parse(uri));
 
   if (response.statusCode == 200) {
-    final valorInteger = jsonDecode(response.body);
-    print("statusCode=${response.statusCode}");
+    final valorInteger = convert.jsonDecode(response.body);
+    print("statusCode=$response.statusCode");
+    Map<String, dynamic> decoded = convert.jsonDecode(response.body);
     return valorInteger;
   } else {
-    print("statusCode=${response.statusCode}");
+    print("statusCode=$response.statusCode");
     throw Exception('Failed to get children');
   }
 }

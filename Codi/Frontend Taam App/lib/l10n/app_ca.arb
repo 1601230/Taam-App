@@ -1,6 +1,7 @@
 {
   "language": "Català",
   "textBienvenida": "El seu selector de menjar de confiança",
+  "textBotonIniciar": "INICIAR",
 
   "titleConfig": "Configuració",
   "titleIdiomaConfig": "Llengua",

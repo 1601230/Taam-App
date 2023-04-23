@@ -52,7 +52,7 @@ class LocalStorage {
   static List<String>? getFoodPreferences() =>
     _preferences.getStringList(_keyFoodPreferences);
 
-  static Locale getLocale() {
+  static Locale? getLocale() {
     final localeString = _preferences.getString(_keyLocale);
     switch (localeString) {
       case 'en':
@@ -62,7 +62,8 @@ class LocalStorage {
       case 'es':
         return const Locale('es');
       default:
-        return Locale(window.locale.languageCode);
+        return const Locale('es');
+        //return Locale(window.locale.languageCode);
     }
   }
 }

@@ -4,8 +4,18 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:taam_app/pages/foodInformationScreen.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taam_app/requests.dart';
 
 import '../main.dart';
+
+///Funciones conectadas a back-end
+///---------------------------------------------------------------------------------------------------------------------------------------------
+void _searchProductByBarcode(String barcodeString) async {
+  int barcodeInt = int.parse(barcodeString);
+  var aux = await searchProductByBarcode(barcodeInt);
+}
+
+///---------------------------------------------------------------------------------------------------------------------------------------------
 
 
 class MyData {
@@ -14,16 +24,6 @@ class MyData {
 
   MyData({required this.title, required this.subtitle});
 }
-
-final List<MyData> myData = [
-  MyData(title: 'Colacao', subtitle: 'assets/vegan_stamp.png'),
-  MyData(title: 'Alimento 2', subtitle: 'assets/glutenfree_stamp.png'),
-  MyData(title: 'Alimento 3', subtitle: 'assets/vegan_stamp.png'),
-  MyData(title: 'Alimento 4', subtitle: 'assets/Logo_TaamApp.png'),
-  MyData(title: 'Alimento 5', subtitle: 'assets/almento_foto.png'),
-  MyData(title: 'Alimento 8', subtitle: 'assets/Logo_TaamApp.png'),
-  MyData(title: 'Alimento 9', subtitle: 'assets/vegan_stamp.png'),
-];
 
 class MySearchProduct extends StatefulWidget {
   const MySearchProduct({super.key});
@@ -96,6 +96,7 @@ class _MySearchProduct extends State<MySearchProduct> {
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
     child: Scaffold(
@@ -178,9 +179,9 @@ class _MySearchProduct extends State<MySearchProduct> {
                     ),
                     keyboardType: TextInputType.text,
 
-                    onEditingComplete: () async {
+                    onEditingComplete: () {
                       _focusNodeProduct.unfocus();
-                      await _searchProduct();
+                      _searchProduct();
                       //_productController.text
                       if (_productController.text.isEmpty) {
                         Fluttertoast.showToast(
@@ -245,9 +246,10 @@ class _MySearchProduct extends State<MySearchProduct> {
                         ),
                       ),
                       keyboardType: TextInputType.number,
-                      onEditingComplete: () async {
+                      onEditingComplete: () {
                         _focusNodeBarcode.unfocus();
-                        await _searchProduct();
+                        _searchProductByBarcode(_barcodeController.text);
+
                         if(_productController.text.isEmpty) {
                           Fluttertoast.showToast(
                             msg: "Product Name is empty",
@@ -269,7 +271,6 @@ class _MySearchProduct extends State<MySearchProduct> {
                               fontSize: 16.0
                           );
                         }
-                        //_barcodeController.clear(); //Esto limpia el contenido de la barra de búsqueda
                       },
                     )
                   ),
@@ -317,14 +318,13 @@ class _MySearchProduct extends State<MySearchProduct> {
                                 return Padding(
                                   padding: EdgeInsets.symmetric(vertical: 4.0),
                                   child: GestureDetector(
-                                    onTap: () async {
+                                    onTap: () {
                                       //Añadir navegación a la pantalla del producto
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(builder: (context)=> MyFoodScreen(productName: myData[index].title, productImage: myData[index].subtitle))
                                       );
-
-                                      await _searchProduct();
+                                      _searchProduct();
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -346,35 +346,6 @@ class _MySearchProduct extends State<MySearchProduct> {
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.only(bottom: 2.0, top: 4.0),
-                                                child: Image.asset(
-                                                  "assets/vegan_stamp.png",
-                                                  width: 33.0,
-                                                  height: 33.0,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.all(2.0),
-                                                child: Image.asset(
-                                                  "assets/glutenfree_stamp.png",
-                                                  width: 33.0,
-                                                  height: 33.0,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(bottom: 4.0, top: 2.0),
-                                                child: Image.asset(
-                                                  "assets/vegan_stamp.png",
-                                                  width: 33.0,
-                                                  height: 33.0,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
                                         ],
                                       ),
                                     ),
@@ -391,3 +362,10 @@ class _MySearchProduct extends State<MySearchProduct> {
     );
   }
 }
+
+
+final List<MyData> myData = [
+  MyData(title: 'Colacao', subtitle: 'assets/vegan_stamp.png'),
+  MyData(title: 'Alimento 2', subtitle: 'assets/glutenfree_stamp.png'),
+  MyData(title: 'Alimento 3', subtitle: 'assets/vegan_stamp.png'),
+];

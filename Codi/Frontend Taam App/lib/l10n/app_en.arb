@@ -1,6 +1,7 @@
 {
   "language": "English",
   "textBienvenida": "Your trusted food selector",
+  "textBotonIniciar": "START",
 
   "titleConfig": "Settings",
   "titleIdiomaConfig": "Language",
