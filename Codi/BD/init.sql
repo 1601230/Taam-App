@@ -123,7 +123,6 @@ INSERT INTO public.products(id, name, image) VALUES ('704039019803', 'Fudge - Ja
 
 INSERT INTO public.products(id, name, image) VALUES ('20150907', 'Arandanos deshidratados - Alesto', '1TD5RSTadzdr4HbpMJxiuC6pui8vrRXd1');
 
-/*
 INSERT INTO public.products(id, name, image) VALUES ('7300400481595', 'Tartine croustillante Authentique - Wasa', '1T2CM8d8-viUtCCTIEosthLZ4Z_iT3rUt');
 
 INSERT INTO public.products(id, name, image) VALUES ('3033491588136', 'HIPRO proteines - Danone', '15LP-SmVKyVX8ayHj1_IwL3RkfdDAjnYy');
@@ -156,35 +155,34 @@ INSERT INTO public.products(id, name, image) VALUES ('8436021411396', 'Burger de
 
 INSERT INTO public.products(id, name, image) VALUES ('8480000809421', 'Tortillas de trigo integrales - Hacendado', '1gaABhCXtioevKAw8G2mzkRynUo3M3OVS');
 
-INSERT INTO public.products(id, name, image) VALUES ('8000430133035', 'Mozarella - Galbani', '');
+INSERT INTO public.products(id, name, image) VALUES ('8000430133035', 'Mozarella - Galbani', '1KEmT4y_lMS2mNxFgsCAL9JRqEWSQhELz');
 
-INSERT INTO public.products(id, name, image) VALUES ('8431876038385', 'Turron trufado con pasas al licor - Carrefour', '');
+INSERT INTO public.products(id, name, image) VALUES ('8431876038385', 'Turron trufado con pasas al licor - Carrefour', '15LZXL3qYMc8EcrqpZvRNDeJV0sik4VrB');
 
-INSERT INTO public.products(id, name, image) VALUES ('13179515', 'Carne picada vacuno', '');
+INSERT INTO public.products(id, name, image) VALUES ('13179515', 'Carne picada vacuno', '1SWFvkQdWxTqFKiP9thBkTpO64TfsRQ8K');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000061423', 'Tortelloni de carne - Hacendado', '');
+INSERT INTO public.products(id, name, image) VALUES ('8480000061423', 'Tortelloni de carne - Hacendado', '1JtSVK2CJqDjZcBT0ku89Gq77gVbnaOeh');
 
-INSERT INTO public.products(id, name, image) VALUES ('3270190192794', 'Naranja sin pulpa - Carrefour', '');
+INSERT INTO public.products(id, name, image) VALUES ('3270190192794', 'Naranja sin pulpa - Carrefour', '1ErTFOPWwLdYuZu50CUOR2m5Hb1il1zxV');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000349613', 'Chia - Hacendado', '');
+INSERT INTO public.products(id, name, image) VALUES ('8480000349613', 'Chia - Hacendado', '1NWDw5DjuuQp8T5yKLBt6Iv-lpnqfjjbT');
 
-INSERT INTO public.products(id, name, image) VALUES ('8410422111048', 'Allioli - Chovi', '');
+INSERT INTO public.products(id, name, image) VALUES ('8410422111048', 'Allioli - Chovi', '1PJ-58j-9QmE__9XWg9YCZea8XbxqZgsL');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000531001', 'Salchicha estilo frankfurt con queso - Hacendado', '');
+INSERT INTO public.products(id, name, image) VALUES ('8480000531001', 'Salchicha estilo frankfurt con queso - Hacendado', '1_gIwAOch2d741M2NDxrjCq4kzf6rZfwM');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000152039', 'Piña en su Jugo - Hacendado', '');
+INSERT INTO public.products(id, name, image) VALUES ('8480000152039', 'Piña en su Jugo - Hacendado', '1sbED5FPLqYx4vumLYFvDVRkhXeN81c1c');
 
-INSERT INTO public.products(id, name, image) VALUES ('8423352800159', 'Leche De Almendras - Almendrola', '');
+INSERT INTO public.products(id, name, image) VALUES ('8423352800159', 'Leche De Almendras - Almendrola', '11UDEAJP_CDXZ0CTuTVxM2YnTeqUpdvEN');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000158109', 'Light - Hacendado', '');
+INSERT INTO public.products(id, name, image) VALUES ('8480000158109', 'Light - Hacendado', '1zigrd7muAmmjH_uWVLHLUFz2O5ZK8SEe');
 
-INSERT INTO public.products(id, name, image) VALUES ('20408923', 'Buttercookies - Sondey', '');
+INSERT INTO public.products(id, name, image) VALUES ('20408923', 'Buttercookies - Sondey', '1mSV-Cq1x1-JAeTAu8hzGXdwS2FEG0zT_');
 
-INSERT INTO public.products(id, name, image) VALUES ('20413422', 'Anacardos tostados y salados - Alesto', '');
+INSERT INTO public.products(id, name, image) VALUES ('20413422', 'Anacardos tostados y salados - Alesto', '1bcXjv9_HdlWaacL2QalSvEyOs0-fJPGJ');
 
-INSERT INTO public.products(id, name, image) VALUES ('8431876272086', 'Gamba cocida mediterraneo - Carrefour', '');
+INSERT INTO public.products(id, name, image) VALUES ('8431876272086', 'Gamba cocida mediterraneo - Carrefour', '1y3Q-FyZhhnlcO4hP5NWMP-yFDQbBQcq0');
 
-*/
 
 /* INSERTs table ingredients */
 
