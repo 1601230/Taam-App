@@ -16,7 +16,9 @@ public class Searcher {
     private DataBase db = new DataBase();
 
     public Searcher()
-    {}
+    {
+    }
+
 
     public String getProductName(){
         return productName;
@@ -37,40 +39,43 @@ public class Searcher {
      */
     public Product searchProductByBarcode(String barcode) throws SQLException {
 
-        productName = null;
-        this.barcode = barcode;
-        ingredientName = null;
+            if (!(barcode instanceof String)) {
+                return null;
+            }
+            productName = null;
+            this.barcode = barcode;
+            ingredientName = null;
 
-        boolean productFound = false;
-        ResultSet result1 = db.selectProductName(barcode);
-        Product product = new Product();
+            boolean productFound = false;
+            ResultSet result1 = db.selectProductName(barcode);
+            Product product = new Product();
 
-        while (result1.next()) {
-            productFound = true;
-            product.setProductName(result1.getString("name"));
-            product.setBarcode(barcode);
-        }
-
-        if (productFound) {
-            ResultSet result2 = db.selectProductIngredientsId(barcode);
-
-            while (result2.next()) {
-                Integer ingredient_id = result2.getInt("ingredient_id");
-                ResultSet result3 = db.selectProductIngredientName(ingredient_id);
-
-                while (result3.next()) {
-                    String ingredientName = result3.getString("name" + Configuration.getInstance().getLanguage());
-                    Ingredient ingredient = new Ingredient(ingredientName, ingredient_id);
-
-                    product.productIngredientsList.add(ingredient);
-                }
+            while (result1.next()) {
+                productFound = true;
+                product.setProductName(result1.getString("name"));
+                product.setBarcode(barcode);
             }
 
-            return product;
+            if (productFound) {
+                ResultSet result2 = db.selectProductIngredientsId(barcode);
 
-        }else {
-            return null;
-        }
+                while (result2.next()) {
+                    Integer ingredient_id = result2.getInt("ingredient_id");
+                    ResultSet result3 = db.selectProductIngredientName(ingredient_id);
+
+                    while (result3.next()) {
+                        String ingredientName = result3.getString("name" + Configuration.getInstance().getLanguage());
+                        Ingredient ingredient = new Ingredient(ingredientName, ingredient_id);
+
+                        product.productIngredientsList.add(ingredient);
+                    }
+                }
+
+                return product;
+
+            } else {
+                return null;
+            }
     }
 
     /**
