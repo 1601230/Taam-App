@@ -116,6 +116,11 @@ public class WebServer {
                         counter = counter + 2;
                         break;
 
+                    case "restrictionsList":
+                        result = Taam_App.getInstance().getRestrictionsList();
+                        counter = counter + 1;
+                        break;
+
                     case "barcode":
                         String barcode = tokens[counter + 1];
                         result = Taam_App.getInstance().checkProductBarcode(barcode);
