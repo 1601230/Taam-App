@@ -27,18 +27,22 @@ final List<Ingredients> myData = [
 
 ///productImage tendrá un formato URL
 class MyFoodScreen extends StatefulWidget {
-  final String productName;
-  final String productImage;
-  const MyFoodScreen({Key? key, required this.productName,required this.productImage }) : super(key: key);
+  final Map<String, dynamic>? product;
+  const MyFoodScreen({Key? key, required this.product}) : super(key: key);
 
   @override
-  _MyFoodScreen createState() => _MyFoodScreen();
+  _MyFoodScreen createState() => _MyFoodScreen(product!);
 }
 
 class _MyFoodScreen extends State<MyFoodScreen> {
+  Map<String, dynamic> product;
+  _MyFoodScreen(this.product);
 
   @override
   Widget build(BuildContext context) {
+    String? ingredients = product["Ingredients"].substring(1, product["Ingredients"].length - 1);
+    List<String>? listIngredients = ingredients?.split(", ");
+
     return Scaffold(
           appBar: AppBar(
             title: Center(
@@ -84,38 +88,31 @@ class _MyFoodScreen extends State<MyFoodScreen> {
                   children: [
                     Expanded(
                       child: Image.asset(
-                        widget.productImage,
+                        'assets/almento_foto.png',
                         fit: BoxFit.cover,
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.restaurant, size: 20),
-                        Text(widget.productName),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.restaurant, size: 20),
+                          Text(product["Name"]),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
               SizedBox(height: 20),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: (){},
-                      child: SizedBox(
-                          height: 50,
-                          width: 50,
-                          child: Image.asset("assets/almento_foto.png")
-                      ),
-                    ),
-                  ]
-              ),
-              SizedBox(height: 20),
+              Text("Mostrar si es Apto o No"),
               Column(
                 children: [
-                  Text(AppLocalizations.of(context)!.textInfoConsumicion),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: Text(AppLocalizations.of(context)!.textInfoConsumicion),
+                  ),
                   Container(
                     width: 300,
                     height: 200,
@@ -123,12 +120,12 @@ class _MyFoodScreen extends State<MyFoodScreen> {
                         border: Border.all(color: Colors.black)
                     ),
                     child: ListView.builder(
-                      itemCount: myData.length,
+                      itemCount: listIngredients?.length,
                       itemBuilder: (BuildContext context, int index) {
                         return ListTile(
                           leading: Icon(Icons.restaurant, size: 20),
-                          title: Text(myData[index].title),
-                          subtitle: Text(myData[index].restrictions),
+                          title: Text(listIngredients![index]),
+                          subtitle: Text("Apto"),
                         );
                       },
                     ),

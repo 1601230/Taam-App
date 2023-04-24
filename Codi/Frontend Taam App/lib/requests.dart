@@ -22,7 +22,24 @@ Future<Map<String, dynamic>> searchProductByBarcode(int barcode) async {
   }
 }
 
+Future<Map<String, dynamic>> searchByName(String name) async {
+  String uri = "$baseUrl/name/$name/end";
+  final response = await client.get(Uri.parse(uri));
+
+  if (response.statusCode == 200) {
+    String data = response.body;
+
+    Map<String, dynamic> map = stringToMap(data);
+    return map;
+  } else {
+    print("statusCode=$response.statusCode");
+    throw Exception('Failed to get children');
+  }
+}
+
+
 Map<String, dynamic> stringToMap(String data) {
+  data = data.replaceAll("Ã±", 'ñ');
   var map = <String, dynamic>{};
   if (data.trim().startsWith('{') && data.trim().endsWith('}')) {
     data = data.substring(1, data.length - 1);

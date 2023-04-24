@@ -82,16 +82,16 @@ public class Taam_App {
         name = name.replace("%20", " ");
 
         String nameSearched = name.toLowerCase()
-                                .replaceAll("(\\s|')", "")
-                                .replaceAll("(%c3%a1|%c3%a4|%c3%a0|%c3%a2|%c3%81|%c3%84|%c3%80|%c3%82)", "a")
-                                .replaceAll("(%c3%a9|%c3%ab|%c3%a8|%c3%aa|%c3%89|%c3%8b|%c3%88|%c3%8a)", "e")
-                                .replaceAll("(%c3%ac|%c3%ad|%c3%ae|%c3%af|%c3%8c|%c3%8d|%c3%8e|%c3%8f)", "i")
-                                .replaceAll("(%c3%b3|%c3%b6|%c3%b2|%c3%b4|%c3%93|%c3%94|%c3%92|%c3%96)", "o")
-                                .replaceAll("(%c3%99|%c3%9a|%c3%9b|%c3%9c|%c3%b9|%c3%ba|%c3%bb|%c3%bc)", "u");
+                .replaceAll("(\\s|')", "")
+                .replaceAll("(%c3%a1|%c3%a4|%c3%a0|%c3%a2|%c3%81|%c3%84|%c3%80|%c3%82)", "a")
+                .replaceAll("(%c3%a9|%c3%ab|%c3%a8|%c3%aa|%c3%89|%c3%8b|%c3%88|%c3%8a)", "e")
+                .replaceAll("(%c3%ac|%c3%ad|%c3%ae|%c3%af|%c3%8c|%c3%8d|%c3%8e|%c3%8f)", "i")
+                .replaceAll("(%c3%b3|%c3%b6|%c3%b2|%c3%b4|%c3%93|%c3%94|%c3%92|%c3%96)", "o")
+                .replaceAll("(%c3%99|%c3%9a|%c3%9b|%c3%9c|%c3%b9|%c3%ba|%c3%bb|%c3%bc)", "u");
 
         Map<String, Object> resultToBeReturnedToFlutter = new HashMap<String, Object>();
 
-        product = searcher.searchProductByName(nameSearched); //patata
+        product = searcher.searchProductByName(nameSearched);
 
         if (product == null)
         {
@@ -99,8 +99,8 @@ public class Taam_App {
 
             if (ingredient != null)
             {
-                resultToBeReturnedToFlutter.put("Type", "Ingredient");
-                resultToBeReturnedToFlutter.put("Element", ingredient);
+                resultToBeReturnedToFlutter.put("|Type", "Ingredient");
+                resultToBeReturnedToFlutter.put("|Element", ingredient);
 
                 return resultToBeReturnedToFlutter;
             }
@@ -111,8 +111,8 @@ public class Taam_App {
         }
         else
         {
-            resultToBeReturnedToFlutter.put("Type", "Product");
-            resultToBeReturnedToFlutter.put("Element", product);
+            resultToBeReturnedToFlutter.put("|Type", "Product");
+            resultToBeReturnedToFlutter.put("|Element", product);
 
             return resultToBeReturnedToFlutter;
         }
@@ -262,9 +262,9 @@ public class Taam_App {
 
         if (returnCheckName != null)
         {
-            if (returnCheckName.get("Type") == "Product")
+            if (returnCheckName.get("|Type") == "Product")
             {
-                product = (Product) returnCheckName.get("Element");
+                product = (Product) returnCheckName.get("|Element");
 
                 List<String> ingredientList = new ArrayList<>();
                 for (Ingredient auxiliaryIngredient : product.getProductIngredientsList())
@@ -272,9 +272,9 @@ public class Taam_App {
                     ingredientList.add(auxiliaryIngredient.getIngredient());
                 }
 
-                resultToBeReturnedToFlutter.put("Name", product.getProductName());
-                resultToBeReturnedToFlutter.put("Barcode", product.getBarcode());
-                resultToBeReturnedToFlutter.put("Ingredients", ingredientList);
+                resultToBeReturnedToFlutter.put("|Name", product.getProductName());
+                resultToBeReturnedToFlutter.put("|Barcode", product.getBarcode());
+                resultToBeReturnedToFlutter.put("|Ingredients", ingredientList);
 
                 List<String> restrictions = Configuration.getInstance().getUserRestrictionsList();
 
@@ -287,8 +287,8 @@ public class Taam_App {
                     visitor = Configuration.getInstance().createConfiguration(restrictions.get(counter));
                     result = visitor.checkProduct(product.productIngredientsList);
 
-                    resultToBeReturnedToFlutter.put("Restriction" + (counter+1), userRestrictionsList.get(counter));
-                    resultToBeReturnedToFlutter.put("RestrictionEdible" + (counter+1), result.getResult().toString());
+                    resultToBeReturnedToFlutter.put("|Restriction" + (counter+1), userRestrictionsList.get(counter));
+                    resultToBeReturnedToFlutter.put("|RestrictionEdible" + (counter+1), result.getResult().toString());
 
                     if (result.getResult() != SUITABLE)
                     {
@@ -321,29 +321,29 @@ public class Taam_App {
 
                 if (resultEdible == 0)
                 {
-                    resultToBeReturnedToFlutter.put("Edible", SUITABLE);
+                    resultToBeReturnedToFlutter.put("|Edible", SUITABLE);
                 }
                 else
                 {
                     if (resultEdible == 1)
                     {
-                        resultToBeReturnedToFlutter.put("Edible", UNSUITABLE);
+                        resultToBeReturnedToFlutter.put("|Edible", UNSUITABLE);
                     }
                     else
                     {
-                        resultToBeReturnedToFlutter.put("Edible", DOUBTFUL);
+                        resultToBeReturnedToFlutter.put("|Edible", DOUBTFUL);
                     }
 
-                    resultToBeReturnedToFlutter.put("ListIngredientsUNSUITABLE", nonSuitableIngredientsList);
-                    resultToBeReturnedToFlutter.put("ListIngredientsDOUBTFUL", doubtfulIngredientsList);
+                    resultToBeReturnedToFlutter.put("|ListIngredientsUNSUITABLE", nonSuitableIngredientsList);
+                    resultToBeReturnedToFlutter.put("|ListIngredientsDOUBTFUL", doubtfulIngredientsList);
                 }
             }
             else
             {
-                ingredient = (Ingredient) returnCheckName.get("Element");
+                ingredient = (Ingredient) returnCheckName.get("|Element");
 
-                resultToBeReturnedToFlutter.put("Name", ingredient.getIngredient());
-                resultToBeReturnedToFlutter.put("Id", ingredient.getId());
+                resultToBeReturnedToFlutter.put("|Name", ingredient.getIngredient());
+                resultToBeReturnedToFlutter.put("|Id", ingredient.getId());
 
                 List<String> restrictions = Configuration.getInstance().getUserRestrictionsList();
 
@@ -354,8 +354,8 @@ public class Taam_App {
                     visitor = Configuration.getInstance().createConfiguration(restrictions.get(counter));
                     result = visitor.checkIngredient(ingredient);
 
-                    resultToBeReturnedToFlutter.put("Restriction" + (counter+1), userRestrictionsList.get(counter));
-                    resultToBeReturnedToFlutter.put("RestrictionEdible" + (counter+1), result.getResult().toString());
+                    resultToBeReturnedToFlutter.put("|Restriction" + (counter+1), userRestrictionsList.get(counter));
+                    resultToBeReturnedToFlutter.put("|RestrictionEdible" + (counter+1), result.getResult().toString());
 
                     if ((resultEdible != 1) && (result.getResult() == UNSUITABLE))
                     {
@@ -369,15 +369,15 @@ public class Taam_App {
 
                 if (resultEdible == 0)
                 {
-                    resultToBeReturnedToFlutter.put("Edible", SUITABLE);
+                    resultToBeReturnedToFlutter.put("|Edible", SUITABLE);
                 }
                 else if (resultEdible == 1)
                 {
-                    resultToBeReturnedToFlutter.put("Edible", UNSUITABLE);
+                    resultToBeReturnedToFlutter.put("|Edible", UNSUITABLE);
                 }
                 else
                 {
-                    resultToBeReturnedToFlutter.put("Edible", DOUBTFUL);
+                    resultToBeReturnedToFlutter.put("|Edible", DOUBTFUL);
                 }
             }
 
@@ -402,11 +402,11 @@ public class Taam_App {
         while (result.next())
         {
             auxiliaryMap = this.checkProductBarcode(result.getString("id"));
-            if (auxiliaryMap.get("Edible") == SUITABLE)
+            if (auxiliaryMap.get("|Edible") == SUITABLE)
             {
                 Product auxiliaryProduct = new Product();
-                auxiliaryProduct.setProductName((String) auxiliaryMap.get("Name"));
-                auxiliaryProduct.setBarcode((String) auxiliaryMap.get("Barcode"));
+                auxiliaryProduct.setProductName((String) auxiliaryMap.get("|Name"));
+                auxiliaryProduct.setBarcode((String) auxiliaryMap.get("|Barcode"));
 
                 recommendedProductsList.add(auxiliaryProduct);
             }
@@ -415,7 +415,7 @@ public class Taam_App {
         int counter = 0;
         while ((counter < recommendedProductsList.size()) && (counter < 10))
         {
-            recommendedProductsMap.put("Product" + (counter+1),
+            recommendedProductsMap.put("|Product" + (counter+1),
                     List.of(recommendedProductsList.get(counter).getProductName(), recommendedProductsList.get(counter).getBarcode()));
             counter = counter + 1;
         }
@@ -439,7 +439,7 @@ public class Taam_App {
                     randomIndex = random.nextInt(recommendedProductsList.size());
                 }
                 indexList.add(randomIndex);
-                recommendedProductsMap.put("Product" + (counter+1),
+                recommendedProductsMap.put("|Product" + (counter+1),
                         List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode()));
             }
         }
@@ -454,7 +454,7 @@ public class Taam_App {
                     randomIndex = random.nextInt(recommendedProductsList.size());
                 }
                 indexList.add(randomIndex);
-                recommendedProductsMap.put("Product" + (counter+1),
+                recommendedProductsMap.put("|Product" + (counter+1),
                         List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode()));
                 counter = counter + 1;
             }

@@ -12,11 +12,15 @@ import '../main.dart';
 
 ///Funciones conectadas a back-end
 ///---------------------------------------------------------------------------------------------------------------------------------------------
-Future<String?> _searchProductByBarcode(String barcodeString) async {
+Future<Map<String, dynamic>> _searchProductByBarcode(String barcodeString) async {
   int barcodeInt = int.parse(barcodeString);
   Map<String, dynamic> aux = await searchProductByBarcode(barcodeInt);
-  String? namePoduct = aux["Name"];
-  return namePoduct;
+  return aux;
+}
+
+Future<Map<String, dynamic>> _searchByName(String nameString) async {
+  Map<String, dynamic> aux = await searchByName(nameString);
+  return aux;
 }
 
 ///---------------------------------------------------------------------------------------------------------------------------------------------
@@ -184,10 +188,9 @@ class _MySearchProduct extends State<MySearchProduct> {
                     ),
                     keyboardType: TextInputType.text,
 
-                    onEditingComplete: () {
+                    onEditingComplete: () async {
                       _focusNodeProduct.unfocus();
-                      _searchProduct();
-                      //_productController.text
+
                       if (_productController.text.isEmpty) {
                         Fluttertoast.showToast(
                             msg: "Product Name is empty",
@@ -199,15 +202,24 @@ class _MySearchProduct extends State<MySearchProduct> {
                             fontSize: 16.0
                         );
                       } else {
-                        Fluttertoast.showToast(
-                            msg: "Product Name is ${_productController.text}",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16.0
-                        );
+                        Map<String, dynamic>? productByName = await _searchByName(_productController.text);
+
+                        if (productByName.isEmpty) {
+                          Fluttertoast.showToast(
+                              msg: "Producto no existente",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0
+                          );
+                        } else{
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context)=> MyFoodScreen(product: productByName))
+                          );
+                        }
                       }
                     },
                   ),
@@ -222,16 +234,24 @@ class _MySearchProduct extends State<MySearchProduct> {
                         prefixIcon: IconButton(
                           onPressed: () async {
                             String scannedBarcode = await scanBarcode();
-                            String? productName = await _searchProductByBarcode(scannedBarcode);
-                            Fluttertoast.showToast(
-                                msg: "Product Barcode is ${productName}",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.red,
-                                textColor: Colors.white,
-                                fontSize: 16.0
-                            );
+                            Map<String, dynamic>? productScanned = await _searchProductByBarcode(scannedBarcode);
+
+                            if (productScanned.isEmpty) {
+                              Fluttertoast.showToast(
+                                  msg: "Producto no existente",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.CENTER,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0
+                              );
+                            } else{
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context)=> MyFoodScreen(product: productScanned))
+                              );
+                            }
                           },
                           icon: const Icon(Icons.camera_alt)),
                           suffixIcon: _barcodeController.text.isEmpty
@@ -267,11 +287,11 @@ class _MySearchProduct extends State<MySearchProduct> {
                               fontSize: 16.0
                           );
                         } else {
-                          String? productName = await _searchProductByBarcode(_barcodeController.text);
+                          Map<String, dynamic>? productByBarcode = await _searchProductByBarcode(_barcodeController.text);
 
-                          if (productName == null) {
+                          if (productByBarcode.isEmpty) {
                             Fluttertoast.showToast(
-                                msg: "Producto no existe",
+                                msg: "Producto no existente",
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.CENTER,
                                 timeInSecForIosWeb: 1,
@@ -280,14 +300,9 @@ class _MySearchProduct extends State<MySearchProduct> {
                                 fontSize: 16.0
                             );
                           } else{
-                            Fluttertoast.showToast(
-                                msg: "Product Barcode is ${productName}",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.red,
-                                textColor: Colors.white,
-                                fontSize: 16.0
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context)=> MyFoodScreen(product: productByBarcode))
                             );
                           }
                         }
@@ -340,10 +355,10 @@ class _MySearchProduct extends State<MySearchProduct> {
                                   child: GestureDetector(
                                     onTap: () {
                                       //Añadir navegación a la pantalla del producto
-                                      Navigator.push(
+                                      /*Navigator.push(
                                           context,
                                           MaterialPageRoute(builder: (context)=> MyFoodScreen(productName: myData[index].title, productImage: myData[index].subtitle))
-                                      );
+                                      );*/
                                       _searchProduct();
                                     },
                                     child: Container(
