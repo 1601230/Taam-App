@@ -17,7 +17,7 @@ import static Core.Edible.*;
  */
 public class Taam_App {
     private static Taam_App instance = null;
-    public static Searcher searcher = new Searcher(new DataBase());
+    public static Searcher searcher = new Searcher();
     public static Product product = new Product();
     public static Ingredient ingredient = new Ingredient();
     public static Result result;
