@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a0cac8a-06de-4f8a-987a-abf691d3421a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Core/test/Core/ConfigurationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Core/test/Core/Gluten_AllergicTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Core/test/Core/Lactose_AllergicTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Core/test/Core/Taam_AppTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Core/test/Core/TeetotalTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Core/test/Core/Tree_Nut_AllergicTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Core/test/Core/VeganTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Core/test/Core/VegetarianTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Taam_App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Taam_App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Taam_App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Taam_App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/test/Core/Taam_AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/test/Core/Taam_AppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +65,7 @@
       <recent name="Core" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SearcherTest">
+  <component name="RunManager" selected="JUnit.Taam_AppTest">
     <configuration name="MainWebServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="WebServer.MainWebServer" />
       <module name="Backend Taam App" />
@@ -99,8 +94,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Taam_AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Backend Taam App" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Core" />
+      <option name="MAIN_CLASS_NAME" value="Core.Taam_AppTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Taam_AppTest" />
         <item itemvalue="JUnit.SearcherTest" />
         <item itemvalue="Application.MainWebServer" />
       </list>

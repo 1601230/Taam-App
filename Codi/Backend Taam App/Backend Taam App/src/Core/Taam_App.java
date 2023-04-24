@@ -73,13 +73,19 @@ public class Taam_App {
 
     public Product checkBarcode(String barcode) throws SQLException {
 
-        if (barcode.isEmpty())
+        if (barcode != null)
+        {
+            if (barcode.isEmpty())
+            {
+                return null;
+            } else
+            {
+                barcode = barcode.replaceAll("(^\"|\"$|%5B|%5D|%22|%20)", "");
+                return searcher.searchProductByBarcode(barcode);
+            }
+        }else
         {
             return null;
-        } else
-        {
-            barcode = barcode.replaceAll("(^\"|\"$|%5B|%5D|%22|%20)", "");
-            return searcher.searchProductByBarcode(barcode);
         }
     }
     public Map<String, Object> checkName(String name) throws SQLException {
