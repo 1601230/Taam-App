@@ -13,12 +13,10 @@ public class Searcher {
     private String productName;
     private String barcode;
     private String ingredientName;
-    private DataBase db;
+    private DataBase db = new DataBase();
 
-    public Searcher(DataBase db)
-    {
-        this.db = db;
-    }
+    public Searcher()
+    {}
 
     public String getProductName(){
         return productName;
