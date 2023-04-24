@@ -1,10 +1,11 @@
 package Core;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import static Core.Edible.*;
 
 
@@ -20,7 +21,7 @@ public class Taam_App {
     public static Product product = new Product();
     public static Ingredient ingredient = new Ingredient();
     public static Result result;
-    public static Recommendations recommendations;
+    List<Product> recommendedProductsList = new ArrayList<>();
     public static Visitor visitor;
 
     /**
@@ -44,6 +45,11 @@ public class Taam_App {
         }
 
         return instance;
+    }
+
+    public Map<String, Object> getRestrictionsList()
+    {
+        return Configuration.getInstance().getRestrictionsList();
     }
 
     public void setRestrictions(String token)
@@ -98,8 +104,8 @@ public class Taam_App {
 
             if (ingredient != null)
             {
-                resultToBeReturnedToFlutter.put("Type", "Ingredient");
-                resultToBeReturnedToFlutter.put("Element", ingredient);
+                resultToBeReturnedToFlutter.put("|Type", "Ingredient");
+                resultToBeReturnedToFlutter.put("|Element", ingredient);
 
                 return resultToBeReturnedToFlutter;
             }
@@ -110,49 +116,67 @@ public class Taam_App {
         }
         else
         {
-            resultToBeReturnedToFlutter.put("Type", "Product");
-            resultToBeReturnedToFlutter.put("Element", product);
+            resultToBeReturnedToFlutter.put("|Type", "Product");
+            resultToBeReturnedToFlutter.put("|Element", product);
 
             return resultToBeReturnedToFlutter;
         }
     }
-    public void notFound() throws SQLException
-    {
+    public void notFound() throws SQLException {
         Connection conn = ConnectDB.getConnection();
 
         if (searcher.getBarcode() != null)
         {
-            String sql = "INSERT INTO public.notfound(barcode) VALUES ('" + searcher.getBarcode()+ "')";
+            String sql = "INSERT INTO public.notfound(barcode) VALUES (?)";
             PreparedStatement stringSTMT = conn.prepareStatement(sql);
-            ResultSet result = stringSTMT.executeQuery();
+            stringSTMT.setString(1, searcher.getBarcode());
+            stringSTMT.executeUpdate();
         }
         else
         {
-            String sql = "INSERT INTO public.notfound(name) VALUES ('" + searcher.getProductName()+ "')";
+            String sql = "INSERT INTO public.notfound(name) VALUES (?)";
             PreparedStatement stringSTMT = conn.prepareStatement(sql);
-            ResultSet result = stringSTMT.executeQuery();
+            stringSTMT.setString(1, searcher.getIngredientName());
+            stringSTMT.executeUpdate();
         }
     }
 
-    public void incident(String observation) throws SQLException
-    {
+    public void incident(String observation) throws SQLException {
+        Connection conn = ConnectDB.getConnection();
+
+        observation = observation.replaceAll("(^\"|\"$|%5B|%5D|%22)", "");
+        observation = observation.replace("%20", " ");
+
+        observation = observation.toLowerCase()
+                .replaceAll("(%c3%a1|%c3%a4|%c3%a0|%c3%a2|%c3%81|%c3%84|%c3%80|%c3%82)", "a")
+                .replaceAll("(%c3%a9|%c3%ab|%c3%a8|%c3%aa|%c3%89|%c3%8b|%c3%88|%c3%8a)", "e")
+                .replaceAll("(%c3%ac|%c3%ad|%c3%ae|%c3%af|%c3%8c|%c3%8d|%c3%8e|%c3%8f)", "i")
+                .replaceAll("(%c3%b3|%c3%b6|%c3%b2|%c3%b4|%c3%93|%c3%94|%c3%92|%c3%96)", "o")
+                .replaceAll("(%c3%99|%c3%9a|%c3%9b|%c3%9c|%c3%b9|%c3%ba|%c3%bb|%c3%bc)", "u");
+
         if (searcher.getBarcode() != null)
         {
-            String sql = "INSERT INTO public.incident(observation, type_element, product_id) VALUES ('" + observation + "', 'product', '" + searcher.getBarcode() + "')";
+            String sql = "INSERT INTO public.incidents(observation, product_id) VALUES (?, ?)";
             PreparedStatement stringSTMT = conn.prepareStatement(sql);
-            ResultSet result = stringSTMT.executeQuery();
+            stringSTMT.setString(1, observation);
+            stringSTMT.setString(2, searcher.getBarcode());
+            stringSTMT.executeUpdate();
         }
         else if(searcher.getProductName() != null)
         {
-            String sql = "INSERT INTO public.incident(observation, type_element, product_id) VALUES ('" + observation + "', 'product', '" + product.getBarcode() + "')";
+            String sql = "INSERT INTO public.incidents(observation, product_id) VALUES (?, ?)";
             PreparedStatement stringSTMT = conn.prepareStatement(sql);
-            ResultSet result = stringSTMT.executeQuery();
+            stringSTMT.setString(1, observation);
+            stringSTMT.setString(2, product.getBarcode());
+            stringSTMT.executeUpdate();
         }
         else
         {
-            String sql = "INSERT INTO public.incident(observation, type_element, product_id) VALUES ('" + observation + "', 'ingredient', '" + ingredient.getId() + "')";
+            String sql = "INSERT INTO public.incidents(observation, ingredient_id) VALUES (?, ?)";
             PreparedStatement stringSTMT = conn.prepareStatement(sql);
-            ResultSet result = stringSTMT.executeQuery();
+            stringSTMT.setString(1, observation);
+            stringSTMT.setInt(2, ingredient.getId());
+            stringSTMT.executeUpdate();
         }
     }
 
@@ -167,9 +191,9 @@ public class Taam_App {
                 ingredientList.add(auxiliaryIngredient.getIngredient());
             }
 
-            resultToBeReturnedToFlutter.put("Name", product.getProductName());
-            resultToBeReturnedToFlutter.put("Barcode", product.getBarcode());
-            resultToBeReturnedToFlutter.put("Ingredients", ingredientList);
+            resultToBeReturnedToFlutter.put("|Name", product.getProductName());
+            resultToBeReturnedToFlutter.put("|Barcode", product.getBarcode());
+            resultToBeReturnedToFlutter.put("|Ingredients", ingredientList);
 
             int resultEdible = 0;
             List<String> nonSuitableIngredientsList = new ArrayList<>();
@@ -179,8 +203,8 @@ public class Taam_App {
                 visitor = Configuration.getInstance().createConfiguration(userRestrictionsList.get(counter));
                 result = visitor.checkProduct(product.getProductIngredientsList());
 
-                resultToBeReturnedToFlutter.put("Restriction" + (counter+1), userRestrictionsList.get(counter));
-                resultToBeReturnedToFlutter.put("RestrictionEdible" + (counter+1), result.getResult().toString());
+                resultToBeReturnedToFlutter.put("|Restriction" + (counter+1), userRestrictionsList.get(counter));
+                resultToBeReturnedToFlutter.put("|RestrictionEdible" + (counter+1), result.getResult().toString());
 
                 if (result.getResult() != SUITABLE)
                 {
@@ -213,25 +237,24 @@ public class Taam_App {
 
             if (resultEdible == 0)
             {
-                resultToBeReturnedToFlutter.put("Edible", SUITABLE);
+                resultToBeReturnedToFlutter.put("|Edible", SUITABLE);
             }
             else
             {
                 if (resultEdible == 1)
                 {
-                    resultToBeReturnedToFlutter.put("Edible", UNSUITABLE);
+                    resultToBeReturnedToFlutter.put("|Edible", UNSUITABLE);
                 }
                 else
                 {
-                    resultToBeReturnedToFlutter.put("Edible", DOUBTFUL);
+                    resultToBeReturnedToFlutter.put("|Edible", DOUBTFUL);
                 }
 
-                resultToBeReturnedToFlutter.put("ListIngredientsUNSUITABLE", nonSuitableIngredientsList);
-                resultToBeReturnedToFlutter.put("ListIngredientsDOUBTFUL", doubtfulIngredientsList);
+                resultToBeReturnedToFlutter.put("|ListIngredientsUNSUITABLE", nonSuitableIngredientsList);
+                resultToBeReturnedToFlutter.put("|ListIngredientsDOUBTFUL", doubtfulIngredientsList);
             }
 
             return resultToBeReturnedToFlutter;
-
         }else
         {
             return null;
@@ -244,9 +267,9 @@ public class Taam_App {
 
         if (returnCheckName != null)
         {
-            if (returnCheckName.get("Type") == "Product")
+            if (returnCheckName.get("|Type") == "Product")
             {
-                product = (Product) returnCheckName.get("Element");
+                product = (Product) returnCheckName.get("|Element");
 
                 List<String> ingredientList = new ArrayList<>();
                 for (Ingredient auxiliaryIngredient : product.getProductIngredientsList())
@@ -254,9 +277,9 @@ public class Taam_App {
                     ingredientList.add(auxiliaryIngredient.getIngredient());
                 }
 
-                resultToBeReturnedToFlutter.put("Name", product.getProductName());
-                resultToBeReturnedToFlutter.put("Barcode", product.getBarcode());
-                resultToBeReturnedToFlutter.put("Ingredients", ingredientList);
+                resultToBeReturnedToFlutter.put("|Name", product.getProductName());
+                resultToBeReturnedToFlutter.put("|Barcode", product.getBarcode());
+                resultToBeReturnedToFlutter.put("|Ingredients", ingredientList);
 
                 List<String> restrictions = Configuration.getInstance().getUserRestrictionsList();
 
@@ -269,8 +292,8 @@ public class Taam_App {
                     visitor = Configuration.getInstance().createConfiguration(restrictions.get(counter));
                     result = visitor.checkProduct(product.productIngredientsList);
 
-                    resultToBeReturnedToFlutter.put("Restriction" + (counter+1), userRestrictionsList.get(counter));
-                    resultToBeReturnedToFlutter.put("RestrictionEdible" + (counter+1), result.getResult().toString());
+                    resultToBeReturnedToFlutter.put("|Restriction" + (counter+1), userRestrictionsList.get(counter));
+                    resultToBeReturnedToFlutter.put("|RestrictionEdible" + (counter+1), result.getResult().toString());
 
                     if (result.getResult() != SUITABLE)
                     {
@@ -303,29 +326,29 @@ public class Taam_App {
 
                 if (resultEdible == 0)
                 {
-                    resultToBeReturnedToFlutter.put("Edible", SUITABLE);
+                    resultToBeReturnedToFlutter.put("|Edible", SUITABLE);
                 }
                 else
                 {
                     if (resultEdible == 1)
                     {
-                        resultToBeReturnedToFlutter.put("Edible", UNSUITABLE);
+                        resultToBeReturnedToFlutter.put("|Edible", UNSUITABLE);
                     }
                     else
                     {
-                        resultToBeReturnedToFlutter.put("Edible", DOUBTFUL);
+                        resultToBeReturnedToFlutter.put("|Edible", DOUBTFUL);
                     }
 
-                    resultToBeReturnedToFlutter.put("ListIngredientsUNSUITABLE", nonSuitableIngredientsList);
-                    resultToBeReturnedToFlutter.put("ListIngredientsDOUBTFUL", doubtfulIngredientsList);
+                    resultToBeReturnedToFlutter.put("|ListIngredientsUNSUITABLE", nonSuitableIngredientsList);
+                    resultToBeReturnedToFlutter.put("|ListIngredientsDOUBTFUL", doubtfulIngredientsList);
                 }
             }
             else
             {
-                ingredient = (Ingredient) returnCheckName.get("Element");
+                ingredient = (Ingredient) returnCheckName.get("|Element");
 
-                resultToBeReturnedToFlutter.put("Name", ingredient.getIngredient());
-                resultToBeReturnedToFlutter.put("Id", ingredient.getId());
+                resultToBeReturnedToFlutter.put("|Name", ingredient.getIngredient());
+                resultToBeReturnedToFlutter.put("|Id", ingredient.getId());
 
                 List<String> restrictions = Configuration.getInstance().getUserRestrictionsList();
 
@@ -336,8 +359,8 @@ public class Taam_App {
                     visitor = Configuration.getInstance().createConfiguration(restrictions.get(counter));
                     result = visitor.checkIngredient(ingredient);
 
-                    resultToBeReturnedToFlutter.put("Restriction" + (counter+1), userRestrictionsList.get(counter));
-                    resultToBeReturnedToFlutter.put("RestrictionEdible" + (counter+1), result.getResult().toString());
+                    resultToBeReturnedToFlutter.put("|Restriction" + (counter+1), userRestrictionsList.get(counter));
+                    resultToBeReturnedToFlutter.put("|RestrictionEdible" + (counter+1), result.getResult().toString());
 
                     if ((resultEdible != 1) && (result.getResult() == UNSUITABLE))
                     {
@@ -351,15 +374,15 @@ public class Taam_App {
 
                 if (resultEdible == 0)
                 {
-                    resultToBeReturnedToFlutter.put("Edible", SUITABLE);
+                    resultToBeReturnedToFlutter.put("|Edible", SUITABLE);
                 }
                 else if (resultEdible == 1)
                 {
-                    resultToBeReturnedToFlutter.put("Edible", UNSUITABLE);
+                    resultToBeReturnedToFlutter.put("|Edible", UNSUITABLE);
                 }
                 else
                 {
-                    resultToBeReturnedToFlutter.put("Edible", DOUBTFUL);
+                    resultToBeReturnedToFlutter.put("|Edible", DOUBTFUL);
                 }
             }
 
@@ -369,5 +392,79 @@ public class Taam_App {
         {
             return null;
         }
+    }
+
+    public Map<String, Object> recommendedProducts() throws SQLException {
+        Map<String, Object> recommendedProductsMap = new HashMap<String, Object>();
+        Map<String, Object> auxiliaryMap = new HashMap<String, Object>();
+        recommendedProductsList.clear();
+
+        Connection conn = ConnectDB.getConnection();
+        String sql = "SELECT id FROM public.products;";
+        PreparedStatement stringSTMT = conn.prepareStatement(sql);
+        ResultSet result = stringSTMT.executeQuery();
+
+        while (result.next())
+        {
+            auxiliaryMap = this.checkProductBarcode(result.getString("id"));
+            if (auxiliaryMap.get("|Edible") == SUITABLE)
+            {
+                Product auxiliaryProduct = new Product();
+                auxiliaryProduct.setProductName((String) auxiliaryMap.get("|Name"));
+                auxiliaryProduct.setBarcode((String) auxiliaryMap.get("|Barcode"));
+
+                recommendedProductsList.add(auxiliaryProduct);
+            }
+        }
+
+        int counter = 0;
+        while ((counter < recommendedProductsList.size()) && (counter < 10))
+        {
+            recommendedProductsMap.put("|Product" + (counter+1),
+                    List.of(recommendedProductsList.get(counter).getProductName(), recommendedProductsList.get(counter).getBarcode()));
+            counter = counter + 1;
+        }
+
+        return recommendedProductsMap;
+    }
+    public Map<String, Object> refreshRecommendedProducts()
+    {
+        Map<String, Object> recommendedProductsMap = new HashMap<String, Object>();
+        Random random = new Random();
+        List<Integer> indexList = new ArrayList<>();
+        int randomIndex;
+
+        if (recommendedProductsList.size() < 10)
+        {
+            for (int counter = 0; counter < recommendedProductsList.size(); counter++)
+            {
+                randomIndex = random.nextInt(recommendedProductsList.size());
+                while (indexList.contains(randomIndex))
+                {
+                    randomIndex = random.nextInt(recommendedProductsList.size());
+                }
+                indexList.add(randomIndex);
+                recommendedProductsMap.put("|Product" + (counter+1),
+                        List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode()));
+            }
+        }
+        else
+        {
+            int counter = 0;
+            while (counter < 10)
+            {
+                randomIndex = random.nextInt(recommendedProductsList.size());
+                while (indexList.contains(randomIndex))
+                {
+                    randomIndex = random.nextInt(recommendedProductsList.size());
+                }
+                indexList.add(randomIndex);
+                recommendedProductsMap.put("|Product" + (counter+1),
+                        List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode()));
+                counter = counter + 1;
+            }
+        }
+
+        return recommendedProductsMap;
     }
 }

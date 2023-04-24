@@ -106,6 +106,7 @@ public class WebServer {
                     case "restrictions":
                         String token = tokens[counter + 1];
                         Taam_App.getInstance().setRestrictions(token);
+                        result = Taam_App.getInstance().recommendedProducts();
                         counter = counter + 2;
                         break;
 
@@ -113,6 +114,11 @@ public class WebServer {
                         String language = tokens[counter + 1];
                         Taam_App.getInstance().setLanguage(language);
                         counter = counter + 2;
+                        break;
+
+                    case "restrictionsList":
+                        result = Taam_App.getInstance().getRestrictionsList();
+                        counter = counter + 1;
                         break;
 
                     case "barcode":
@@ -136,6 +142,11 @@ public class WebServer {
                         String observation = tokens[counter + 1];
                         Taam_App.getInstance().incident(observation);
                         counter = counter + 2;
+                        break;
+
+                    case "refresh":
+                        result = Taam_App.getInstance().refreshRecommendedProducts();
+                        counter = counter + 1;
                         break;
 
                     default:
