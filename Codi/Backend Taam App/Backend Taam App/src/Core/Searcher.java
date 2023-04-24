@@ -80,60 +80,67 @@ public class Searcher {
      * at any moment what the user is looking for.
      */
     public Product searchProductByName(String nameSearched) throws SQLException {
-        ResultSet result = db.selectProductIdName();
-
-        boolean productFound = false;
-        Product product = new Product();
-        while ((result.next()) && (productFound == false))
+        if (nameSearched != null)
         {
-            productName = result.getString("name");
-            String auxiliaryName = result.getString("name").toLowerCase()
-                                    .replaceAll("(\\s|')", "")
-                                    .replaceAll("(%c3%a1|%c3%a4|%c3%a0|%c3%a2|%c3%81|%c3%84|%c3%80|%c3%82)", "a")
-                                    .replaceAll("(%c3%a9|%c3%ab|%c3%a8|%c3%aa|%c3%89|%c3%8b|%c3%88|%c3%8a)", "e")
-                                    .replaceAll("(%c3%ac|%c3%ad|%c3%ae|%c3%af|%c3%8c|%c3%8d|%c3%8e|%c3%8f)", "i")
-                                    .replaceAll("(%c3%b3|%c3%b6|%c3%b2|%c3%b4|%c3%93|%c3%94|%c3%92|%c3%96)", "o")
-                                    .replaceAll("(%c3%99|%c3%9a|%c3%9b|%c3%9c|%c3%b9|%c3%ba|%c3%bb|%c3%bc)", "u");
+            ResultSet result = db.selectProductIdName();
 
-            if (auxiliaryName.equals(nameSearched))
+            boolean productFound = false;
+            Product product = new Product();
+            while ((result.next()) && (productFound == false))
             {
-                productFound = true;
-                product.setProductName(productName);
-                product.setBarcode(result.getString("id"));
-            }
-        }
+                productName = result.getString("name");
+                String auxiliaryName = result.getString("name").toLowerCase()
+                        .replaceAll("(\\s|')", "")
+                        .replaceAll("(%c3%a1|%c3%a4|%c3%a0|%c3%a2|%c3%81|%c3%84|%c3%80|%c3%82)", "a")
+                        .replaceAll("(%c3%a9|%c3%ab|%c3%a8|%c3%aa|%c3%89|%c3%8b|%c3%88|%c3%8a)", "e")
+                        .replaceAll("(%c3%ac|%c3%ad|%c3%ae|%c3%af|%c3%8c|%c3%8d|%c3%8e|%c3%8f)", "i")
+                        .replaceAll("(%c3%b3|%c3%b6|%c3%b2|%c3%b4|%c3%93|%c3%94|%c3%92|%c3%96)", "o")
+                        .replaceAll("(%c3%99|%c3%9a|%c3%9b|%c3%9c|%c3%b9|%c3%ba|%c3%bb|%c3%bc)", "u");
 
-        if (productFound == true)
-        {
-            result = db.selectProductIngredientsId(product.getBarcode());
-
-            List<Integer> ingredientIdList = new ArrayList<>();
-            while (result.next()) {
-                int integerId = Integer.parseInt(result.getString("ingredient_id"));
-                ingredientIdList.add(integerId);
-            }
-
-            for ( int ingredientID : ingredientIdList)
-            {
-                result = db.selectProductIngredientName(ingredientID);
-
-                while (result.next()) {
-                    String ingredientName = result.getString("name" + Configuration.getInstance().getLanguage());
-                    Ingredient ingredient = new Ingredient(ingredientName, ingredientID);
-                    product.productIngredientsList.add(ingredient);
+                if (auxiliaryName.equals(nameSearched))
+                {
+                    productFound = true;
+                    product.setProductName(productName);
+                    product.setBarcode(result.getString("id"));
                 }
             }
 
-            this.productName = productName;
-            barcode = null;
-            ingredientName = null;
-            return product;
+            if (productFound == true)
+            {
+                result = db.selectProductIngredientsId(product.getBarcode());
+
+                List<Integer> ingredientIdList = new ArrayList<>();
+                while (result.next()) {
+                    int integerId = Integer.parseInt(result.getString("ingredient_id"));
+                    ingredientIdList.add(integerId);
+                }
+
+                for ( int ingredientID : ingredientIdList)
+                {
+                    result = db.selectProductIngredientName(ingredientID);
+
+                    while (result.next()) {
+                        String ingredientName = result.getString("name" + Configuration.getInstance().getLanguage());
+                        Ingredient ingredient = new Ingredient(ingredientName, ingredientID);
+                        product.productIngredientsList.add(ingredient);
+                    }
+                }
+
+                this.productName = productName;
+                barcode = null;
+                ingredientName = null;
+                return product;
+            }
+            else
+            {
+                this.productName = nameSearched;
+                barcode = null;
+                ingredientName = null;
+                return null;
+            }
         }
         else
         {
-            this.productName = nameSearched;
-            barcode = null;
-            ingredientName = null;
             return null;
         }
     }
