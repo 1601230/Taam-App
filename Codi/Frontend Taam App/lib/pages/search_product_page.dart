@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:taam_app/pages/foodInformationScreen.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taam_app/requests.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 import '../main.dart';
 
@@ -42,6 +44,7 @@ class _MySearchProduct extends State<MySearchProduct> {
   final _barcodeController = TextEditingController();
   final _focusNodeProduct = FocusNode();
   final _focusNodeBarcode = FocusNode();
+  late String scanResult;
   
   @override
   void initState() {
@@ -217,9 +220,11 @@ class _MySearchProduct extends State<MySearchProduct> {
                         hintText: AppLocalizations.of(context)!.textBuscadorProducto,
                         hintStyle: const TextStyle(color: Colors.grey),
                         prefixIcon: IconButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            String scannedBarcode = await scanBarcode();
+                            String? productName = await _searchProductByBarcode(scannedBarcode);
                             Fluttertoast.showToast(
-                                msg: "Camera clicked",
+                                msg: "Product Barcode is ${productName}",
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.CENTER,
                                 timeInSecForIosWeb: 1,
@@ -229,18 +234,18 @@ class _MySearchProduct extends State<MySearchProduct> {
                             );
                           },
                           icon: const Icon(Icons.camera_alt)),
-                        suffixIcon: _barcodeController.text.isEmpty
+                          suffixIcon: _barcodeController.text.isEmpty
                           ? null
-                          : InkWell(
-                            onTap: () => _barcodeController.clear(),
-                            child: const Icon(Icons.clear),
-                        ),
-                        filled: true,
-                        fillColor: Colors.white70,
-                        contentPadding: EdgeInsets.all(8),
-                        enabledBorder: const OutlineInputBorder(
+                              : InkWell(
+                          onTap: () => _barcodeController.clear(),
+                          child: const Icon(Icons.clear),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white70,
+                          contentPadding: EdgeInsets.all(8),
+                          enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: BorderSide(color: Colors.grey, width: 2),
+                          borderSide: BorderSide(color: Colors.grey, width: 2)
                         ),
                         focusedBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
@@ -251,19 +256,20 @@ class _MySearchProduct extends State<MySearchProduct> {
                       onEditingComplete: () async {
                         _focusNodeBarcode.unfocus();
 
-                        String? productName = await _searchProductByBarcode(_barcodeController.text);
-
-                        if(_barcodeController.text.isEmpty) {
+                        if (_barcodeController.text.isEmpty) {
                           Fluttertoast.showToast(
-                            msg: "Product Name is empty",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16.0
+                              msg: "Producto vacio",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0
                           );
-                        } else if (productName == null) {
+                        } else {
+                          String? productName = await _searchProductByBarcode(_barcodeController.text);
+
+                          if (productName == null) {
                             Fluttertoast.showToast(
                                 msg: "Producto no existe",
                                 toastLength: Toast.LENGTH_SHORT,
@@ -284,6 +290,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                                 fontSize: 16.0
                             );
                           }
+                        }
                         },
                     )
                   ),
@@ -301,7 +308,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(right: 30.0),
+                          padding: EdgeInsets.only(right: 20.0),
                           child: Text(
                             AppLocalizations.of(context)!.titleRecomendaciones,
                             style: TextStyle(
@@ -373,6 +380,16 @@ class _MySearchProduct extends State<MySearchProduct> {
       ),
     ),
     );
+  }
+
+  Future scanBarcode() async {
+    scanResult = await FlutterBarcodeScanner.scanBarcode(
+        "#36013F", //Color de la linia de escaneo
+        AppLocalizations.of(context)!.textCancelarDialog, //Texto del botón cancelar
+        true, //Mostrar o no mostrar icono de flash
+        ScanMode.BARCODE //El tipo de código que queremos leer
+    );
+    return scanResult;
   }
 }
 
