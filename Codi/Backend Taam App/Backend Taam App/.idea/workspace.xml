@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a0cac8a-06de-4f8a-987a-abf691d3421a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Core/test/Core/ConfigurationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/test/Core/Gluten_AllergicTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/test/Core/Lactose_AllergicTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/test/Core/Taam_AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/test/Core/TeetotalTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/test/Core/Tree_Nut_AllergicTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/test/Core/VeganTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/test/Core/VegetarianTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Configuration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Configuration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Searcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Searcher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Taam_App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Taam_App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/WebServer/WebServer$SocketThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/WebServer/WebServer$SocketThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/MockClasses/Mock_DataBase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Searcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Searcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Taam_App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Taam_App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/test/Core/SearcherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/test/Core/SearcherTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +23,7 @@
         <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
@@ -46,6 +47,8 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
     "dart.analysis.tool.window.visible": "false",
     "last_opened_file_path": "C:/Users/joela/UAB/3r Curs/Test i Qualitat del Software/Practica 1",
     "project.structure.last.edited": "Modules",
@@ -59,6 +62,12 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\UAB\3r Curs\Laboratori Integrat de Software\Taam App\Taam-App\Codi\Backend Taam App\Backend Taam App\src\WebServer" />
       <recent name="D:\UAB\3r Curs\Laboratori Integrat de Software\Taam App\Taam-App\Codi\Backend Taam App\Backend Taam App\src\Core" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="Core" />
     </key>
   </component>
   <component name="RunManager" selected="JUnit.SearcherTest">
