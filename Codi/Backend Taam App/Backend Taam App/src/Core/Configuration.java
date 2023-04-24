@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Configuration {
     private static Configuration instance = null;
-    private String language = "spanish";
+    private String language = "english";
     private List<String> userRestrictionsList = new ArrayList<>();
 
     List<String> restrictionsSpanishList = new ArrayList<>(Arrays.asList("Vegano", "Vegetariano", "Alérgico al gluten",

@@ -13,9 +13,11 @@ public class Searcher {
     private String productName;
     private String barcode;
     private String ingredientName;
+    private DataBase db;
 
-    public void Searcher()
+    public Searcher(DataBase db)
     {
+        this.db = db;
     }
 
     public String getProductName(){
@@ -42,12 +44,7 @@ public class Searcher {
         ingredientName = null;
 
         boolean productFound = false;
-        Connection conn = ConnectDB.getConnection();
-
-        PreparedStatement stmt1 = conn.prepareStatement("SELECT name FROM public.products WHERE id=?");
-        stmt1.setString(1, barcode);
-        ResultSet result1 = stmt1.executeQuery();
-
+        ResultSet result1 = db.selectProductName(barcode);
         Product product = new Product();
 
         while (result1.next()) {
@@ -57,15 +54,11 @@ public class Searcher {
         }
 
         if (productFound) {
-            PreparedStatement stmt2 = conn.prepareStatement("SELECT ingredient_id FROM public.products_ingredients WHERE product_id=?");
-            stmt2.setString(1, barcode);
-            ResultSet result2 = stmt2.executeQuery();
+            ResultSet result2 = db.selectProductIngredientsId(barcode);
 
             while (result2.next()) {
                 Integer ingredient_id = result2.getInt("ingredient_id");
-                PreparedStatement stmt3 = conn.prepareStatement("SELECT name" + Configuration.getInstance().getLanguage() + " FROM public.ingredients WHERE id=?");
-                stmt3.setInt(1, ingredient_id);
-                ResultSet result3 = stmt3.executeQuery();
+                ResultSet result3 = db.selectProductIngredientName(ingredient_id);
 
                 while (result3.next()) {
                     String ingredientName = result3.getString("name" + Configuration.getInstance().getLanguage());
@@ -89,10 +82,7 @@ public class Searcher {
      * at any moment what the user is looking for.
      */
     public Product searchProductByName(String nameSearched) throws SQLException {
-        Connection conn = ConnectDB.getConnection();
-        String sql = "SELECT id, name FROM public.products;";
-        PreparedStatement stringSTMT = conn.prepareStatement(sql);
-        ResultSet result = stringSTMT.executeQuery();
+        ResultSet result = db.selectProductIdName();
 
         boolean productFound = false;
         Product product = new Product();
@@ -117,10 +107,7 @@ public class Searcher {
 
         if (productFound == true)
         {
-            sql = "SELECT ingredient_id FROM public.products_ingredients WHERE product_id = ?;";
-            stringSTMT = conn.prepareStatement(sql);
-            stringSTMT.setString(1, product.getBarcode());
-            result = stringSTMT.executeQuery();
+            result = db.selectProductIngredientsId(product.getBarcode());
 
             List<Integer> ingredientIdList = new ArrayList<>();
             while (result.next()) {
@@ -130,10 +117,7 @@ public class Searcher {
 
             for ( int ingredientID : ingredientIdList)
             {
-                sql = "SELECT name" + Configuration.getInstance().getLanguage() + " FROM public.ingredients WHERE id = ?;";
-                PreparedStatement integerSTMT = conn.prepareStatement(sql);
-                integerSTMT.setInt(1, ingredientID);
-                result = integerSTMT.executeQuery();
+                result = db.selectProductIngredientName(ingredientID);
 
                 while (result.next()) {
                     String ingredientName = result.getString("name" + Configuration.getInstance().getLanguage());
@@ -163,10 +147,7 @@ public class Searcher {
      * at any moment what the user is looking for.
      */
     public Ingredient searchIngredient(String nameSearched) throws SQLException {
-        Connection conn = ConnectDB.getConnection();
-        String sql = "SELECT id, name" + Configuration.getInstance().getLanguage() + " FROM public.ingredients;";
-        PreparedStatement stringSTMT = conn.prepareStatement(sql);
-        ResultSet result = stringSTMT.executeQuery();
+        ResultSet result = db.selectIngredientIdName();
 
         boolean ingredientFound = false;
         Ingredient ingredient = new Ingredient();

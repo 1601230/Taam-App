@@ -1,0 +1,64 @@
+package Core;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class DataBase {
+
+    public DataBase()
+    {
+
+    }
+
+    public ResultSet selectProductName(String barcode) throws SQLException {
+        Connection conn = ConnectDB.getConnection();
+
+        PreparedStatement stmt = conn.prepareStatement("SELECT name FROM public.products WHERE id=?");
+        stmt.setString(1, barcode);
+        ResultSet result = stmt.executeQuery();
+
+        return result;
+    }
+
+    public ResultSet selectProductIngredientsId(String barcode) throws SQLException {
+        Connection conn = ConnectDB.getConnection();
+
+        PreparedStatement stmt = conn.prepareStatement("SELECT ingredient_id FROM public.products_ingredients WHERE product_id=?");
+        stmt.setString(1, barcode);
+        ResultSet result = stmt.executeQuery();
+
+        return result;
+    }
+
+    public ResultSet selectProductIngredientName(Integer ingredient_id) throws SQLException {
+        Connection conn = ConnectDB.getConnection();
+
+        PreparedStatement stmt = conn.prepareStatement("SELECT name" + Configuration.getInstance().getLanguage() + " FROM public.ingredients WHERE id=?");
+        stmt.setInt(1, ingredient_id);
+        ResultSet result = stmt.executeQuery();
+
+        return result;
+    }
+
+    public ResultSet selectProductIdName() throws SQLException {
+        Connection conn = ConnectDB.getConnection();
+
+        String sql = "SELECT id, name FROM public.products;";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet result = stmt.executeQuery();
+
+        return result;
+    }
+
+    public ResultSet selectIngredientIdName() throws SQLException {
+        Connection conn = ConnectDB.getConnection();
+
+        String sql = "SELECT id, name" + Configuration.getInstance().getLanguage() + " FROM public.ingredients;";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet result = stmt.executeQuery();
+
+        return result;
+    }
+}
