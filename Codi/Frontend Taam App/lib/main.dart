@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
             GlobalWidgetsLocalizations.delegate,
           ],
           locale: Provider.of<LocaleProvider>(context).locale,
-          home: const MyHomePage(), ///Pagina inicial (para debugar, podeis poner la pagina que esteis desarollando aqui y asi la podreis visualizar a la hora de ejecutar el emulador) (aqui debera ir a pagina principal de la aplicación)
+          home: const MyHomePage(),
         );
       }
     );

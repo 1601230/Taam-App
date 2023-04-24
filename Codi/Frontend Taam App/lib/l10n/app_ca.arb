@@ -32,5 +32,13 @@
   "labeltextImagenIngredientes": "Imatge ingredients",
   "titleInfoAdicional": "Informació addicional:",
   "labeltextInfoAdicional": "Informació Addicional",
-  "textBotonEnviarForm": "Enviar Formulari"
+  "textBotonEnviarForm": "Enviar Formulari",
+
+  "titlePaginaReporteProducto": "Pàgina de report",
+  "titleTipoReporteAlimento": "Per què vols reportar l'aliment?",
+  "textSeleccionPreferenciasIncorrectas": "Selecciona les preferències incorrectes",
+  "titleOtrosMotivos": "Altres motius:",
+  "textEscribeMotivos": "Escriu els motius",
+  "textBotonEnviarReporte": "Enviar report"
+
 }

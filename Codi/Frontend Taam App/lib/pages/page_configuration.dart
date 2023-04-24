@@ -26,10 +26,7 @@ class _PageConfigurationState extends State<PageConfiguration> {
   List<String> _appThemeItems = [];
   String _selectionThemeMessage = '';
 
-  ///Inicializamos los valores de los diferentes campos con los valores pasados
-  ///por parametro en el constructor, para que así aparezcan los valores correspondientes
-  ///a la configuración indicada por el usuario, es a decir, que si el usuario tiene
-  ///la aplicación en Catalán, que en el campo del idioma ponga Catalán
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +35,10 @@ class _PageConfigurationState extends State<PageConfiguration> {
           final settingsProvider = Provider.of<SettingsProvider>(context);
           final localeProvider = Provider.of<LocaleProvider>(context);
 
+          ///Inicializamos los valores de los diferentes campos con los valores pasados
+          ///por parametro en el constructor, para que así aparezcan los valores correspondientes
+          ///a la configuración indicada por el usuario, es a decir, que si el usuario tiene
+          ///la aplicación en Catalán, que en el campo del idioma ponga Catalán
           _selectedFoodPreferences = settingsProvider.foodPreferences;
           _selectionLanguageMessage = settingsProvider.appLanguage!;
 
@@ -75,7 +76,6 @@ class _PageConfigurationState extends State<PageConfiguration> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   ///Columna de cambio de idioma
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

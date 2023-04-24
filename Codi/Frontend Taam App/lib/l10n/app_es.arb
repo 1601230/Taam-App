@@ -38,5 +38,13 @@
   "labeltextImagenIngredientes": "Imagen ingredientes",
   "titleInfoAdicional": "Información adicional:",
   "labeltextInfoAdicional": "Información Adicional",
-  "textBotonEnviarForm": "Enviar Formulario"
+  "textBotonEnviarForm": "Enviar Formulario",
+
+  "titlePaginaReporteProducto": "Pagina de reporte",
+  "titleTipoReporteAlimento": "¿Por qué quieres reportar el alimento?",
+  "textSeleccionPreferenciasIncorrectas": "Selecciona las preferencias incorrectas",
+  "titleOtrosMotivos": "Otros motivos:",
+  "textEscribeMotivos": "Escribe los motivos",
+  "textBotonEnviarReporte": "Enviar reporte"
+
 }
