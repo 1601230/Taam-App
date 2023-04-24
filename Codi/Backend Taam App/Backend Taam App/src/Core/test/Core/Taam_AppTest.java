@@ -16,7 +16,7 @@ public class Taam_AppTest {
         product = taam_app.checkBarcode("20034658");
         Assert.assertEquals("Salmon ahumado", product.getProductName());
 
-        product = taam_app.checkBarcode("2003%204658");
+        product = taam_app.checkBarcode("2003%204%5B658");
         Assert.assertEquals("Salmon ahumado", product.getProductName());
 
         String large_string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac arcu a nisi facilisis suscipit eu vel risus. Nulla blandit nunc et mi mollis euismod. Sed at tellus ut felis varius ultrices. Sed facilisis nulla id est pulvinar pharetra. Vestibulum et velit a velit egestas congue id vitae urna. Fusce ut consectetur massa, ut fringilla sapien. Proin maximus luctus urna, at pellentesque felis pretium in. Duis rhoncus ac est quis molestie. Duis luctus elementum diam non ullamcorper. Nunc vel nibh eget justo maximus dapibus. Curabitur fringilla arcu vitae lacus iaculis consectetur. Duis sollicitudin enim nec lectus sagittis, vel vestibulum elit eleifend.\n" +
