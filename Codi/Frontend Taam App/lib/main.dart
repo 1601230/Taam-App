@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:taam_app/l10n/l10n.dart';
+import 'package:taam_app/pages/reportIncorrectForm.dart';
 import 'package:taam_app/services/local_storage.dart';
 import 'package:taam_app/services/locale_provider.dart';
 import 'package:taam_app/services/settings_provder.dart';
@@ -8,6 +9,8 @@ import 'package:taam_app/pages/foodInformationScreen.dart';
 import 'package:taam_app/requests.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'pages/search_product_page.dart';
+import 'pages/reportUnexistentAdvice.dart';
+import 'pages/requestSendAdvice.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/src/material_localizations.dart';
 import 'package:flutter_localizations/src/cupertino_localizations.dart';
@@ -58,7 +61,7 @@ class _MyAppState extends State<MyApp> {
             GlobalWidgetsLocalizations.delegate,
           ],
           locale: Provider.of<LocaleProvider>(context).locale,
-          home: const MyHomePage(), ///Pagina inicial (para debugar, podeis poner la pagina que esteis desarollando aqui y asi la podreis visualizar a la hora de ejecutar el emulador) (aqui debera ir a pagina principal de la aplicación)
+          home:  MyHomePage(), ///Pagina inicial (para debugar, podeis poner la pagina que esteis desarollando aqui y asi la podreis visualizar a la hora de ejecutar el emulador) (aqui debera ir a pagina principal de la aplicación)
         );
       }
     );

@@ -4,6 +4,7 @@ import 'package:taam_app/main.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'package:taam_app/pages/reportIncorrectForm.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taam_app/pages/reportUnexistentAdvice.dart';
 
 class Ingredients {
   String title;
@@ -141,7 +142,7 @@ class _MyFoodScreen extends State<MyFoodScreen> {
 
               GestureDetector(
                 onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => NonExistentFoodPage()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoExistentScreen()));
                 },
                 child: SizedBox(
                   height: 50,
