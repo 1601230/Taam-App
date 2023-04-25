@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:taam_app/main.dart';
 import 'package:taam_app/pages/page_configuration.dart';
-import 'package:taam_app/pages/reportIncorrectForm.dart';
+import 'package:taam_app/pages/incorrect_form_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taam_app/pages/reportUnexistentAdvice.dart';
+import 'package:taam_app/pages/unexistent_advice.dart';
 
 class Ingredients {
   String title;
