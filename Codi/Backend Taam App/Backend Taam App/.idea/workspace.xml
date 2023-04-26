@@ -6,21 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9a0cac8a-06de-4f8a-987a-abf691d3421a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Configuration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Configuration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Taam_App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Taam_App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/WebServer/WebServer$SocketThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/WebServer/WebServer$SocketThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Taam_App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Taam_App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WebServer/WebServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebServer/WebServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_ca.arb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_ca.arb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_en.arb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_en.arb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_es.arb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_es.arb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/foodInformationScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/foodInformationScreen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/page_configuration.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/page_configuration.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/search_product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/search_product_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/requests.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/requests.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/services/local_storage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/services/local_storage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/services/settings_provder.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/services/settings_provder.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

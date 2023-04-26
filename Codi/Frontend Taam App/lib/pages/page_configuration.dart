@@ -28,15 +28,6 @@ void _setLanguageServer(String language) {
   return preferencesContent;
 }*/
 
-Future<Map<String, dynamic>?> _getPreferences(List<String> listPreferences) async {
-  String preferences = listPreferences.join(", ");
-  Map<String, dynamic> aux = await getReccomendations(preferences);
-  /*String stringPreferences = jsonEncode(aux);
-  String preferencesContent = stringPreferences.substring(
-      stringPreferences.indexOf('[') + 1, stringPreferences.indexOf(']'));*/
- //return preferencesContent;
-}
-
 ///---------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -227,8 +218,6 @@ class _PageConfigurationState extends State<PageConfiguration> {
                               ///Actualizamos las preferencias en el main
                               settingsProvider.setFoodPreferences!(selectedItems);
                               await LocalStorage.setFoodPreferences(selectedItems);
-                              ///Le pasamos las preferencias a back-end
-                              Map<String, dynamic>? productScanned = await _getPreferences(_selectedFoodPreferences);
                             },
                           )
                       )

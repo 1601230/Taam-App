@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 import 'package:taam_app/pages/foodInformationScreen.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taam_app/requests.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:taam_app/services/settings_provder.dart';
 
 import '../main.dart';
 
@@ -20,6 +22,12 @@ Future<Map<String, dynamic>> _searchProductByBarcode(String barcodeString) async
 
 Future<Map<String, dynamic>> _searchByName(String nameString) async {
   Map<String, dynamic> aux = await searchByName(nameString);
+  return aux;
+}
+
+Future<Map<String, dynamic>?> _getRecommendations(List<String> listPreferences) async {
+  String preferences = listPreferences.join(", ");
+  Map<String, dynamic> aux = await getReccomendations(preferences);
   return aux;
 }
 
@@ -106,7 +114,7 @@ class _MySearchProduct extends State<MySearchProduct> {
 
   @override
   Widget build(BuildContext context) {
-
+    final settingsProvider = Provider.of<SettingsProvider>(context);
     return GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
     child: Scaffold(
@@ -335,7 +343,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                         ),
                         IconButton(
                           onPressed: () {
-
+                            _getRecommendations(settingsProvider.foodPreferences);
                           },
                           icon: Icon(Icons.refresh),
                         ),
