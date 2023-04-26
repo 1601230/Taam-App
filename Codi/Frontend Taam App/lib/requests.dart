@@ -37,9 +37,50 @@ Future<Map<String, dynamic>> searchByName(String name) async {
   }
 }
 
+void setLanguageServer(String language) async {
+  String uri = "$baseUrl/language/$language/end";
+  final response = await client.get(Uri.parse(uri));
+
+  if (response.statusCode != 200) {
+    print("statusCode=$response.statusCode");
+    throw Exception('Failed to get children');
+  }
+}
+
+Future<Map<String, dynamic>> getPreferences() async {
+  String uri = "$baseUrl/restrictionsList/end";
+  final response = await client.get(Uri.parse(uri));
+
+  if (response.statusCode == 200) {
+    String data = response.body;
+
+    Map<String, dynamic> map = stringToMap(data);
+    return map;
+  } else {
+    print("statusCode=$response.statusCode");
+    throw Exception('Failed to get children');
+  }
+}
+
+Future<Map<String, dynamic>> getReccomendations(String listPreferences) async {
+  String uri = "$baseUrl/restrictions/$listPreferences/end";
+  final response = await client.get(Uri.parse(uri));
+
+  if (response.statusCode == 200) {
+    String data = response.body;
+
+    Map<String, dynamic> map = stringToMap(data);
+    return map;
+  } else {
+    print("statusCode=$response.statusCode");
+    throw Exception('Failed to get children');
+  }
+}
+
 
 Map<String, dynamic> stringToMap(String data) {
   data = data.replaceAll("Ã±", 'ñ');
+  data = data.replaceAll("Ã©", 'é');
   var map = <String, dynamic>{};
   if (data.trim().startsWith('{') && data.trim().endsWith('}')) {
     data = data.substring(1, data.length - 1);

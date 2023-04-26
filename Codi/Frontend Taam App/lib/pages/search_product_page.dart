@@ -49,6 +49,7 @@ class _MySearchProduct extends State<MySearchProduct> {
   final _focusNodeProduct = FocusNode();
   final _focusNodeBarcode = FocusNode();
   late String scanResult;
+  late PageConfiguration settings = new PageConfiguration();
   
   @override
   void initState() {
@@ -334,7 +335,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                         ),
                         IconButton(
                           onPressed: () {
-                            _reloadRecommendations();
+
                           },
                           icon: Icon(Icons.refresh),
                         ),

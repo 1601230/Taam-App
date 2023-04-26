@@ -47,6 +47,11 @@ public class Taam_App {
         return instance;
     }
 
+    public Map<String, Object> getRestrictionsList()
+    {
+        return Configuration.getInstance().getRestrictionsList();
+    }
+
     public void setRestrictions(String token)
     {
         String[] restrictionsToken = token.split(",");

@@ -26,18 +26,8 @@ class LocalStorage {
   static Future setLocale(Locale locale) async =>
     await _preferences.setString(_keyLocale, locale.toString());
 
-
-  static String? getLanguage() {
-    if (_preferences.getString(_keyLanguage) != null) {
-      return _preferences.getString(_keyLanguage);
-    } else {
-      switch(window.locale.languageCode) {
-        case 'es': return 'Español';
-        case 'en': return 'English';
-        case 'ca': return 'Català';
-      }
-    }
-  }
+  static String? getLanguage() =>
+      _preferences.getString(_keyLanguage);
 
   static Brightness getBrightness() {
     if (_preferences.getString(_keyBrightness) == Brightness.light.toString()) {
@@ -49,8 +39,9 @@ class LocalStorage {
     }
   }
 
-  static List<String>? getFoodPreferences() =>
+  static List<String>? getFoodPreferences(){
     _preferences.getStringList(_keyFoodPreferences);
+  }
 
   static Locale? getLocale() {
     final localeString = _preferences.getString(_keyLocale);
@@ -62,8 +53,7 @@ class LocalStorage {
       case 'es':
         return const Locale('es');
       default:
-        return const Locale('es');
-        //return Locale(window.locale.languageCode);
+        return const Locale('en');
     }
   }
 }

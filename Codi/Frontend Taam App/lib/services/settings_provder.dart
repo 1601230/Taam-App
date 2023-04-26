@@ -7,7 +7,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class SettingsProvider with ChangeNotifier {
   Brightness _brightness = LocalStorage.getBrightness();
   List<String> _foodPreferences = LocalStorage.getFoodPreferences() ?? [];
-  String? _appLanguage = LocalStorage.getLanguage();
+  String? _appLanguage = LocalStorage.getLanguage() ?? "English";
 
   Brightness get brightness => _brightness;
   List<String> get foodPreferences => _foodPreferences;
