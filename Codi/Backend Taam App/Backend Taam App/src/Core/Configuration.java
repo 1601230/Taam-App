@@ -19,7 +19,7 @@ public class Configuration {
     }
     public Visitor createConfiguration(String configuration)
     {
-        configuration = configuration.toLowerCase().replaceAll("(^\"|\"$|%5B|%5D|%20|%22|\\s)", "");
+        configuration = configuration.replaceAll("(^\"|\"$|%5B|%5D|%20|%22|\\s)", "").toLowerCase();
         switch (configuration){
             case "vegan": return new Vegan();
             case "vegetarian": return new Vegetarian();
