@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'package:taam_app/pages/incorrect_form_page.dart';
 import 'package:taam_app/pages/search_product_page.dart';
-
+import 'package:taam_app/pages/confirm_doubt_page.dart';
 import '../main.dart';
 
 
@@ -51,23 +51,43 @@ class _SendDoubtPage extends State<MyDoubt>{
           ),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0), // ajustar el valor del relleno según sea necesario
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: 16.0), // agregar un espacio en blanco por encima del TextField
-            TextField(
-              onChanged: (text) {
-                setState(() {
-                  _text = text;
-                });
-              },
+      body: Column(
+
+          children: <Widget> [
+            Padding(
+              padding: EdgeInsets.all(16.0), // ajustar el valor del relleno según sea necesario
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(height: 16.0), // agregar un espacio en blanco por encima del TextField
+                  Text("Enviar dubte", style: TextStyle(fontSize: 24.0)),
+                  SizedBox(height: 20.0),
+                  Divider(),
+                  SizedBox(height: 25.0),
+                  TextField(
+                    maxLength: 200,
+                    maxLines: 20,
+                    decoration: InputDecoration(
+                      hintText: 'Escribe aquí',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  SizedBox(height: 16.0), // agregar un espacio en blanco por debajo del TextField
+
+                ],
+              ),
             ),
-            SizedBox(height: 16.0), // agregar un espacio en blanco por debajo del TextField
-            if (_text.isNotEmpty) Text(_text),
-          ],
-        ),
-      ),
-    );
+        ElevatedButton(child: Text("Enviar dubte"),
+            style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.grey)
+            ),
+            onPressed: (){
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => ConfirmDoubtAdvice()));
+            }
+        )
+    ]
+      )
+            );
   }
 }
