@@ -716,8 +716,6 @@ INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('2015
 
 INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('20150907', 49);
 
-/*
-
 INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('7300400481595', 91);
 
 INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('7300400481595', 92);
@@ -921,5 +919,3 @@ INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('2041
 INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8431876272086', 124);
 
 INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8431876272086', 8);
-
-*/
