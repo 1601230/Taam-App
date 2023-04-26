@@ -10,6 +10,7 @@ import 'package:taam_app/requests.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'package:taam_app/pages/confirm_doubt_page.dart';
 import 'package:taam_app/pages/general_question_page.dart';
+import 'package:taam_app/pages/send_doubt_page.dart';
 import 'pages/search_product_page.dart';
 import 'pages/unexistent_advice.dart';
 import 'pages/requestSendAdvice.dart';
@@ -63,7 +64,7 @@ class _MyAppState extends State<MyApp> {
             GlobalWidgetsLocalizations.delegate,
           ],
           locale: Provider.of<LocaleProvider>(context).locale,
-          home:  GeneralQuestions(), ///Pagina inicial (para debugar, podeis poner la pagina que esteis desarollando aqui y asi la podreis visualizar a la hora de ejecutar el emulador) (aqui debera ir a pagina principal de la aplicación)
+          home:  MyDoubt(), ///Pagina inicial (para debugar, podeis poner la pagina que esteis desarollando aqui y asi la podreis visualizar a la hora de ejecutar el emulador) (aqui debera ir a pagina principal de la aplicación)
         );
       }
     );

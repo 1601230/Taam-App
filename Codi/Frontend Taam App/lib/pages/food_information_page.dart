@@ -142,7 +142,6 @@ class _MyFoodScreen extends State<MyFoodScreen> {
 
               GestureDetector(
                 onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => NoExistentScreen()));
                 },
                 child: SizedBox(
                   height: 50,

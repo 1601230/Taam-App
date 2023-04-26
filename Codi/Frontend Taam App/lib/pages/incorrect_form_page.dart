@@ -7,7 +7,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../main.dart';
 
 
-class NonExistentFoodPage extends StatelessWidget{
+class _NonExistentFoodPage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){

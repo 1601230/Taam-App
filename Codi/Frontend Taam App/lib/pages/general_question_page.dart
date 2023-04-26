@@ -11,7 +11,7 @@ import '../services/locale_provider.dart';
 import '../services/settings_provder.dart';
 
 
-class GeneralQuestions extends StatelessWidget {
+class GeneralQuestionsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {

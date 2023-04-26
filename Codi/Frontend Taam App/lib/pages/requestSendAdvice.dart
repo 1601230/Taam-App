@@ -6,7 +6,7 @@ import 'package:taam_app/pages/search_product_page.dart';
 
 import '../main.dart';
 
-class RequestAdviceScreen extends StatelessWidget{
+class _RequestAdvicePage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){

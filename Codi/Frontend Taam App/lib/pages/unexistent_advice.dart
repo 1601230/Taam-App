@@ -5,7 +5,7 @@ import 'package:taam_app/pages/incorrect_form_page.dart';
 import 'package:taam_app/pages/requestSendAdvice.dart';
 import '../main.dart';
 
-class NoExistentScreen extends StatelessWidget{
+class _NoExistentScreen extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
@@ -71,7 +71,7 @@ class NoExistentScreen extends StatelessWidget{
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.red)
                   ),
                   onPressed: (){
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => RequestAdviceScreen()));
+
 
                     /* TODO */
                   },

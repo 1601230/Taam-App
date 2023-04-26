@@ -6,7 +6,7 @@ import 'package:taam_app/pages/search_product_page.dart';
 
 import '../main.dart';
 
-class confirmDoubtAdvice extends StatelessWidget{
+class _ConfirmDoubtAdvice extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
