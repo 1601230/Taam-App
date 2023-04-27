@@ -144,11 +144,11 @@ class _MyFoodScreen extends State<MyFoodScreen> {
                 onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => PageReportProduct()));
                 },
-                child: SizedBox(
-                  height: 50,
-                  width: 50,
-                  child: Image.asset("assets/glutenfree_stamp.png"),
-                ),
+                child: const Icon(
+                  Icons.error_outline,
+                  color: Colors.red,
+                  size: 50,
+                )
               )
             ],
           ),

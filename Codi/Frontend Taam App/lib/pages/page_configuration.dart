@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taam_app/pages/page_about_us.dart';
 
 import '../services/local_storage.dart';
 import '../services/locale_provider.dart';
@@ -66,10 +67,30 @@ class _PageConfigurationState extends State<PageConfiguration> {
                       children: [
                         Text(""),
                         Text(AppLocalizations.of(context)!.titleConfig),
-                        Text("        ")
+                        Text("   ")
                       ],
                     )
-                )
+                ),
+              actions: [
+                IconButton(
+                  icon: Icon(Icons.question_mark),
+                  onPressed: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PageConfiguration()), //TODO: cambiar a pagina de preguntas
+                    );
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.info),
+                  onPressed: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PageAboutUs()), //TODO: cambiar a pagina sobre nosotros
+                    );
+                  },
+                ),
+              ],
             ),
             body: Container(
               margin: EdgeInsets.all(5),
@@ -200,7 +221,7 @@ class _PageConfigurationState extends State<PageConfiguration> {
                             });
                           },
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ],
