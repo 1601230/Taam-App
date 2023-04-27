@@ -93,5 +93,4 @@ class _PageAboutUsState extends State<PageAboutUs> {
       ),
     );
   }
-  
 }
