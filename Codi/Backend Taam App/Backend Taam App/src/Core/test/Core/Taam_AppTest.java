@@ -140,12 +140,4 @@ public class Taam_AppTest {
         Assert.assertEquals(SUITABLE, result.get("|Edible"));
         Assert.assertEquals(70, result.get("|Id"));
     }
-
-    @Test
-    public void recommendedProducts() {
-    }
-
-    @Test
-    public void refreshRecommendedProducts() {
-    }
 }
