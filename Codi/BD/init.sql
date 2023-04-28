@@ -188,7 +188,7 @@ INSERT INTO public.products(id, name, image) VALUES ('8431876272086', 'Gamba coc
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('azucar blanco', 'sucre blanc', 'white sugar', 0, 0, 1, 1, 1, 0);
 
-INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('plantas oleaginosas (girasol, maiz)', 'plantes oleaginoses (gira-sol, blat de moro)', 'oil plants (sunflower, corn)', 0, 0, 1, 1, 0, 0);
+INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('plantas oleaginosas', 'plantes oleaginoses', 'oil plants', 0, 0, 1, 1, 0, 0);
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('harina de arroz', 'farina darros', 'rice flour', 0, 0, 0, 1, 1, 0);
 
@@ -214,7 +214,7 @@ INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, veg
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('malta de cebada', 'malt dordi', 'barley malt', 0, 0, 0, 1, 1, 0);
 
-INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('cereales (avena integral, semola de maiz)', 'cereals (civada integral, semola de blat de moro)', 'cereal(wholemeal oatmeal, maize semolina)', 0, 0, 2, 2, 1, 0);
+INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('cereales (avena integral y semola de maiz)', 'cereals (civada integral i semola de blat de moro)', 'cereal(wholemeal oatmeal and maize semolina)', 0, 0, 2, 2, 1, 0);
 
 INSERT INTO public.ingredients(namespanish, namecatalan, nameenglish, vegan, vegetarian, celiac, lactose, nuts, teetotal) VALUES ('harina integral de avena', 'farina integral de civada', 'wholemeal-oat-flour', 0, 0, 0, 2, 0, 0);
 
