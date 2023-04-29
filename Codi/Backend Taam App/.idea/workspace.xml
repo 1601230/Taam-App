@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e281fec6-cc42-4ac0-86b1-95ed76687a61" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Backend Taam App/src/Core/test/Core/SearcherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend Taam App/src/Core/test/Core/SearcherTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/SearcherTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Backend Taam App/Core/SearcherTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Backend Taam App/Core/SearcherTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend Taam App/src/Core/Teetotal.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend Taam App/src/Core/Teetotal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend Taam App/src/Core/test/Core/TeetotalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend Taam App/src/Core/test/Core/TeetotalTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Teetotal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Teetotal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/TeetotalTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Backend Taam App/Core/TeetotalTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Backend Taam App/Core/TeetotalTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +62,7 @@
       <recent name="Core" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SearcherTest">
+  <component name="RunManager" selected="JUnit.TeetotalTest">
     <configuration name="MainWebServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="WebServer.MainWebServer" />
       <module name="Backend Taam App" />
@@ -103,22 +106,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Taam_AppTest.checkBarcode" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Backend Taam App" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Core.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Core" />
-      <option name="MAIN_CLASS_NAME" value="Core.Taam_AppTest" />
-      <option name="METHOD_NAME" value="checkBarcode" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Taam_AppTest.checkName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Backend Taam App" />
       <extension name="coverage">
@@ -135,13 +122,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TeetotalTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Backend Taam App" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Core" />
+      <option name="MAIN_CLASS_NAME" value="Core.TeetotalTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TeetotalTest" />
         <item itemvalue="JUnit.SearcherTest" />
         <item itemvalue="JUnit.Taam_AppTest" />
         <item itemvalue="Application.MainWebServer" />
         <item itemvalue="JUnit.Taam_AppTest.checkName" />
-        <item itemvalue="JUnit.Taam_AppTest.checkBarcode" />
       </list>
     </recent_temporary>
   </component>

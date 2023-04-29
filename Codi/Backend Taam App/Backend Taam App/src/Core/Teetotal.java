@@ -12,9 +12,14 @@ public class Teetotal implements Visitor{
 
     @Override
     public Result checkProduct(List<Ingredient> ingredientsList) throws SQLException {
+
+        if(ingredientsList == null){
+            return null;
+        }
+
         Result result = new Result();
         Connection conn = ConnectDB.getConnection();
-
+        boolean ingredientFound = false;
         for (Ingredient ingredient : ingredientsList)
         {
             String sql = "SELECT teetotal FROM public.ingredients WHERE id=?;";
@@ -32,9 +37,13 @@ public class Teetotal implements Visitor{
                 {
                     result.doubtfulIngredientsList.add(ingredient);
                 }
+                ingredientFound = true;
             }
         }
 
+        if(ingredientFound == false){
+            return null;
+        }
         if (result.nonSuitableIngredientsList.size() != 0)
         {
             result.setResult(UNSUITABLE);
@@ -53,6 +62,11 @@ public class Teetotal implements Visitor{
 
     @Override
     public Result checkIngredient(Ingredient ingredient) throws SQLException {
+
+        if(ingredient == null){
+            return null;
+        }
+
         Result result = new Result();
         Connection conn = ConnectDB.getConnection();
 
@@ -60,6 +74,8 @@ public class Teetotal implements Visitor{
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.setInt(1, ingredient.getId());
         ResultSet resultOfTheConsultation = stmt.executeQuery();
+
+        boolean ingredientFound = false;
 
         while (resultOfTheConsultation.next())
         {
@@ -71,8 +87,12 @@ public class Teetotal implements Visitor{
             {
                 result.doubtfulIngredientsList.add(ingredient);
             }
+            ingredientFound = true;
         }
 
+        if(ingredientFound == false){
+            return null;
+        }
         if (result.nonSuitableIngredientsList.size() != 0)
         {
             result.setResult(UNSUITABLE);
