@@ -83,6 +83,9 @@ public class Taam_App {
         }
     }
     public Map<String, Object> checkName(String name) throws SQLException {
+        if(name == null){
+            return null;
+        }
         name = name.replaceAll("(^\"|\"$|%5B|%5D|%22)", "");
         name = name.replace("%20", " ");
 
