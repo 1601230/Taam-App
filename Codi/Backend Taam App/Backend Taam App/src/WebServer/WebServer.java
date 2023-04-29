@@ -149,6 +149,21 @@ public class WebServer {
                         counter = counter + 1;
                         break;
 
+                    case "getQuestions":
+                        counter = counter + 1;
+                        //break;
+                        return null;
+
+                    case "getAnswer":
+                        counter = counter + 2;
+                        //break;
+                        return null;
+
+                    case "sendQuestion":
+                        counter = counter + 2;
+                        //break;
+                        return null;
+                        
                     default:
                         return null;
                 }
