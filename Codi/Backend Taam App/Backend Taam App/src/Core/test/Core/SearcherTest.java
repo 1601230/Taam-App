@@ -109,9 +109,9 @@ public class SearcherTest {
         Assert.assertEquals(null, ingredient);
 
         ingredient = searcher.searchIngredient("wheatstarch");
-        Assert.assertEquals(Optional.of(4), ingredient.getId());
+        Assert.assertEquals(Optional.of(4), Optional.ofNullable(ingredient.getId()));
 
         ingredient = searcher.searchIngredient("whitesugar");
-        Assert.assertEquals(Optional.of(1), ingredient.getId());
+        Assert.assertEquals(Optional.of(1), Optional.ofNullable(ingredient.getId()));
     }
 }
