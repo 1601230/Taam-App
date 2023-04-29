@@ -103,6 +103,5 @@ public class VegetarianTest {
         result = vegetarian.checkIngredient(ingredient);
         Assert.assertEquals(DOUBTFUL, result.getResult());
         Assert.assertEquals(prepareIngredientList("natural-flavouring, 73"), result.doubtfulIngredientsList);
-
     }
 }
