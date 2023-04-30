@@ -467,4 +467,17 @@ public class Taam_App {
 
         return recommendedProductsMap;
     }
+
+    public Map<String, Object> getFrequentQuestions()
+    {
+        return null;
+    }
+    public Map<String, Object> getAnswer(String questionId)
+    {
+        return null;
+    }
+    public Map<String, Object> saveQuestion(String question)
+    {
+        return null;
+    }
 }
