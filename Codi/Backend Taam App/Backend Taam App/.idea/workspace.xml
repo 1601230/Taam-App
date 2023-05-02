@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9a0cac8a-06de-4f8a-987a-abf691d3421a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Taam_App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Taam_App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Backend Taam App/Core/Taam_AppTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Backend Taam App/Core/Taam_AppTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Gluten_Allergic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Gluten_Allergic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/DataBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/Taam_App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Taam_App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/test/Core/Gluten_AllergicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/test/Core/GlutenAllergicTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/test/Core/Lactose_AllergicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/test/Core/LactoseAllergicTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/test/Core/Taam_AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/test/Core/taamAppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/test/Core/Tree_Nut_AllergicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/test/Core/TreeNutAllergicTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +64,7 @@
       <recent name="Core" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.MainWebServer">
     <configuration name="MainWebServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="WebServer.MainWebServer" />
       <module name="Backend Taam App" />
@@ -179,6 +173,15 @@
     </option>
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Core/DataBase.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Core.Result" memberName="doubtfulIngredientsList" />

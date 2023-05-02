@@ -476,9 +476,17 @@ public class Taam_App {
         return recommendedProductsMap;
     }
 
-    public Map<String, Object> getFrequentQuestions()
-    {
-        return null;
+    public Map<String, Object> getFrequentQuestions() throws SQLException {
+        Map<String, Object> frequentquestions = new HashMap<>();
+
+        ResultSet result = db.selectQuestions();
+        while(result.next())
+        {
+            String question = result.getString("response_"+Configuration.getInstance().getLanguage());
+            String id = result.getString("id");
+            frequentquestions.put("|"+ id, question);
+        }
+        return frequentquestions;
     }
     public Map<String, Object> getAnswer(String questionId) throws SQLException {
         Map<String, Object> answer = new HashMap<String, Object>();

@@ -63,7 +63,13 @@ public class DataBase {
     }
 
     public ResultSet selectQuestions() throws SQLException {
-        return null;
+        Connection conn = ConnectDB.getConnection();
+
+        String sql = "SELECT id, question_" + Configuration.getInstance().getLanguage() + " FROM frequent_questions;";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet result = stmt.executeQuery();
+
+        return result;
     }
 
     public ResultSet selectAnswer(int questionId) throws SQLException {
