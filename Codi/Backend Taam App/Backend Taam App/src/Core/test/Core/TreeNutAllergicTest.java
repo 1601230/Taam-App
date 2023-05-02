@@ -72,15 +72,15 @@ public class TreeNutAllergicTest {
 
         result = tree_nut_allergic.checkProduct(prepareIngredientList("protein blend, 79, wheat flour, 68, macadamia nuts, 80"));
         assertEquals(UNSUITABLE, result.getResult());
-        assertEquals("macadamia nuts", result.nonSuitableIngredientsList.get(0).getIngredient());
+        assertTrue(equals(prepareIngredientList("macadamia nuts, 80"), result.nonSuitableIngredientsList));
 
         result = tree_nut_allergic.checkProduct(prepareIngredientList("red cranberries, 90, sugar, 13, sunflower oil, 49"));
         assertEquals(UNSUITABLE, result.getResult());
-        assertEquals("red cranberries", result.nonSuitableIngredientsList.get(0).getIngredient());
+        assertTrue(equals(prepareIngredientList("red cranberries, 90"), result.nonSuitableIngredientsList));
 
         result = tree_nut_allergic.checkProduct(prepareIngredientList("whole corn kernels, 26, high oleic sunflower oil, 27, salt, 8"));
         assertEquals(DOUBTFUL, result.getResult());
-        assertEquals("whole corn kernels", result.doubtfulIngredientsList.get(0).getIngredient());
+        assertTrue(equals(prepareIngredientList("whole corn kernels, 26"), result.doubtfulIngredientsList));
 
         //En el nuevo init dudoso unicamente la vanilla
          /*
@@ -119,24 +119,24 @@ public class TreeNutAllergicTest {
         ingredient.setId(16);
         result = tree_nut_allergic.checkIngredient(ingredient);
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals("wholemeal-oat-flour", result.nonSuitableIngredientsList.get(0).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("wholemeal-oat-flour, 16"), result.nonSuitableIngredientsList));
 
         ingredient.setIngredient("hops");
         ingredient.setId(19);
         result = tree_nut_allergic.checkIngredient(ingredient);
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals("hops", result.nonSuitableIngredientsList.get(0).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("hops, 19"), result.nonSuitableIngredientsList));
 
         ingredient.setIngredient("emulsifier e471");
         ingredient.setId(6);
         result = tree_nut_allergic.checkIngredient(ingredient);
         Assert.assertEquals(DOUBTFUL, result.getResult());
-        Assert.assertEquals("emulsifier e471", result.doubtfulIngredientsList.get(0).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("emulsifier e471, 6"), result.doubtfulIngredientsList));
 
         ingredient.setIngredient("paprika");
         ingredient.setId(34);
         result = tree_nut_allergic.checkIngredient(ingredient);
         Assert.assertEquals(DOUBTFUL, result.getResult());
-        Assert.assertEquals("paprika", result.doubtfulIngredientsList.get(0).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("paprika, 34"), result.doubtfulIngredientsList));
     }
 }
