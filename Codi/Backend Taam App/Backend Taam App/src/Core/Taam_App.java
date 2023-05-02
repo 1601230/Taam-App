@@ -1,9 +1,6 @@
 package Core;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
 
 import static Core.Edible.*;
@@ -17,6 +14,7 @@ import static Core.Edible.*;
  */
 public class Taam_App {
     private static Taam_App instance = null;
+    private DataBase db = new DataBase();
     public static Searcher searcher = new Searcher();
     public static Product product = new Product();
     public static Ingredient ingredient = new Ingredient();
@@ -472,5 +470,26 @@ public class Taam_App {
         }
 
         return recommendedProductsMap;
+    }
+
+    public Map<String, Object> getFrequentQuestions()
+    {
+        return null;
+    }
+    public Map<String, Object> getAnswer(String questionId) throws SQLException {
+        Map<String, Object> answer = new HashMap<String, Object>();
+
+        ResultSet result = db.selectAnswer(Integer.parseInt(questionId));
+        while (result.next()) {
+            String response = result.getString("response_"+Configuration.getInstance().getLanguage());
+            answer.put("|Answer", response);
+        }
+
+        return answer;
+    }
+
+    public Map<String, Object> saveQuestion(String question)
+    {
+        return null;
     }
 }

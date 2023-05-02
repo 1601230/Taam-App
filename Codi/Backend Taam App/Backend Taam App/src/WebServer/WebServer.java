@@ -149,6 +149,23 @@ public class WebServer {
                         counter = counter + 1;
                         break;
 
+                    case "getQuestions":
+                        result = Taam_App.getInstance().getFrequentQuestions();
+                        counter = counter + 1;
+                        break;
+
+                    case "getAnswer":
+                        String questionId = tokens[counter + 1];
+                        result = Taam_App.getInstance().getAnswer(questionId);
+                        counter = counter + 2;
+                        break;
+
+                    case "sendQuestion":
+                        String question = tokens[counter + 1];
+                        result = Taam_App.getInstance().saveQuestion(question);
+                        counter = counter + 2;
+                        break;
+
                     default:
                         return null;
                 }

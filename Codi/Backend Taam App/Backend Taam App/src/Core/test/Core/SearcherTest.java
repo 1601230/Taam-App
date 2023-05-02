@@ -4,6 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.sql.SQLException;
+import java.util.Optional;
+
+import static org.junit.Assert.*;
 
 public class SearcherTest {
 
@@ -38,10 +41,77 @@ public class SearcherTest {
     }
 
     @Test
-    public void searchProductByName() {
+    public void searchProductByName() throws SQLException {
+        Searcher searcher = new Searcher();
+        Product product = new Product();
+
+        product = searcher.searchProductByName(null);
+        Assert.assertEquals(null, product);
+
+        product = searcher.searchProductByName("");
+        Assert.assertEquals(null, product);
+
+        product = searcher.searchProductByName("    ");
+        Assert.assertEquals(null, product);
+
+        product = searcher.searchProductByName("----");
+        Assert.assertEquals(null, product);
+
+        product = searcher.searchProductByName("nonexistentproduct");
+        Assert.assertEquals(null, product);
+
+        product = searcher.searchProductByName("chipspringelsoriginals,kelloggscornflakes");
+        Assert.assertEquals(null, product);
+
+        product = searcher.searchProductByName("chipspringelsoriginals&&kelloggscornflakes");
+        Assert.assertEquals(null, product);
+
+        product = searcher.searchProductByName("20034658");
+        Assert.assertEquals(null, product);
+
+        product = searcher.searchProductByName("chipspringelsoriginals");
+        Assert.assertEquals("5053990156009", product.getBarcode());
+
+        product = searcher.searchProductByName("kelloggscornflakes");
+        Assert.assertEquals("5053827206730", product.getBarcode());
+
+        product = searcher.searchProductByName("nesquik-nestle");
+        Assert.assertEquals("7613039490266", product.getBarcode());
     }
 
     @Test
-    public void searchIngredient() {
+    public void searchIngredient() throws SQLException {
+        Searcher searcher = new Searcher();
+        Ingredient ingredient = new Ingredient();
+
+        ingredient = searcher.searchIngredient(null);
+        Assert.assertEquals(null, ingredient);
+
+        ingredient = searcher.searchIngredient("");
+        Assert.assertEquals(null, ingredient);
+
+        ingredient = searcher.searchIngredient("    ");
+        Assert.assertEquals(null, ingredient);
+
+        ingredient = searcher.searchIngredient("----");
+        Assert.assertEquals(null, ingredient);
+
+        ingredient = searcher.searchIngredient("nonexistentingredient");
+        Assert.assertEquals(null, ingredient);
+
+        ingredient = searcher.searchIngredient("wheatstarch,whitesugar");
+        Assert.assertEquals(null, ingredient);
+
+        ingredient = searcher.searchIngredient("wheatstarch&&whitesugar");
+        Assert.assertEquals(null, ingredient);
+
+        ingredient = searcher.searchIngredient("1");
+        Assert.assertEquals(null, ingredient);
+
+        ingredient = searcher.searchIngredient("wheatstarch");
+        Assert.assertEquals(Optional.of(4), ingredient.getId());
+
+        ingredient = searcher.searchIngredient("whitesugar");
+        Assert.assertEquals(Optional.of(1), ingredient.getId());
     }
 }

@@ -6,12 +6,11 @@ public class Configuration {
     private static Configuration instance = null;
     private String language = "english";
     private List<String> userRestrictionsList = new ArrayList<>();
-
-    List<String> restrictionsSpanishList = new ArrayList<>(Arrays.asList("Vegano", "Vegetariano", "Alérgico al gluten",
+    private List<String> restrictionsSpanishList = new ArrayList<>(Arrays.asList("Vegano", "Vegetariano", "Alérgico al gluten",
                                                                          "Alérgico a la lactosa", "Alérgico a los frutos secos", "Abstemio"));
-    List<String> restrictionsCatalanList = new ArrayList<>(Arrays.asList("Vegà", "Vegetarià", "Al·lèrgic al gluten",
+    private List<String> restrictionsCatalanList = new ArrayList<>(Arrays.asList("Vegà", "Vegetarià", "Al·lèrgic al gluten",
                                                                          "Al·lèrgic a la lactosa", "Al·lèrgic a la fruita seca", "Abstemi"));
-    List<String> restrictionsEnglishList = new ArrayList<>(Arrays.asList("Vegan", "Vegetarian", "Allergic to gluten",
+    private List<String> restrictionsEnglishList = new ArrayList<>(Arrays.asList("Vegan", "Vegetarian", "Allergic to gluten",
                                                                          "Allergic to lactose", "Allergic to nuts", "Teetotal"));
 
     private Configuration()
