@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e281fec6-cc42-4ac0-86b1-95ed76687a61" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend Taam App/src/Core/Tree_Nut_Allergic.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend Taam App/src/Core/Tree_Nut_Allergic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend Taam App/src/Core/test/Core/Tree_Nut_AllergicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend Taam App/src/Core/test/Core/Tree_Nut_AllergicTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend Taam App/src/Core/Vegan.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend Taam App/src/Core/Vegan.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +58,7 @@
       <recent name="Core" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Tree_Nut_AllergicTest">
+  <component name="RunManager" selected="JUnit.VeganTest">
     <configuration name="ConfigurationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Backend Taam App" />
       <extension name="coverage">
@@ -137,8 +136,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Tree_Nut_AllergicTest" />
         <item itemvalue="JUnit.VeganTest" />
+        <item itemvalue="JUnit.Tree_Nut_AllergicTest" />
         <item itemvalue="JUnit.Lactose_AllergicTest" />
         <item itemvalue="JUnit.ConfigurationTest" />
         <item itemvalue="JUnit.TeetotalTest" />

@@ -46,12 +46,10 @@ public class Tree_Nut_AllergicTest {
         result = tree_nut_allergic.checkProduct(prepareIngredientList("corn, 12, sugar, 13, barley malt, 14, salt, 8"));
         assertEquals(SUITABLE, result.getResult());
 
-        /*
-        PREGUNTAR!!!!
-        -------------------
+        //Falta modificar la BD
         result = tree_nut_allergic.checkProduct(prepareIngredientList("hand popped corn, 41, rapeseed oil, 42, sea salt, 25"));
         assertEquals(SUITABLE, result.getResult());
-        */
+
 
         result = tree_nut_allergic.checkProduct(prepareIngredientList("protein blend, 79, wheat flour, 68, macadamia nuts, 80"));
         assertEquals(UNSUITABLE, result.getResult());
@@ -69,6 +67,7 @@ public class Tree_Nut_AllergicTest {
         result = tree_nut_allergic.checkProduct(prepareIngredientList("cocoa mass, 37, cocoa butter, 38, low fat cocoa powder, 39, sugar, 13, vanilla, 40"));
         assertEquals(DOUBTFUL, result.getResult());
         assertEquals("cocoa butter", result.doubtfulIngredientsList.get(0).getIngredient());
+        //assert con el otro ingrediente
     }
 
     @Test

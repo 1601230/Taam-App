@@ -12,6 +12,10 @@ public class Vegan implements Visitor{
     @Override
     public Result checkProduct(List<Ingredient> ingredientsList) throws SQLException {
 
+        if(ingredientsList == null){
+            return null;
+        }
+
         Connection conn = ConnectDB.getConnection();
         Result result = new Result();
 
@@ -30,17 +34,19 @@ public class Vegan implements Visitor{
                 }
             }
 
-            if (!result.nonSuitableIngredientsList.isEmpty())
-            {
-                result.setResult(UNSUITABLE);
-            }else if (!result.doubtfulIngredientsList.isEmpty())
-            {
-                result.setResult(DOUBTFUL);
-            }else
-            {
-                result.setResult(SUITABLE);
-            }
         }
+
+        if (!result.nonSuitableIngredientsList.isEmpty())
+        {
+            result.setResult(UNSUITABLE);
+        }else if (!result.doubtfulIngredientsList.isEmpty())
+        {
+            result.setResult(DOUBTFUL);
+        }else
+        {
+            result.setResult(SUITABLE);
+        }
+
         return result;
     }
 
