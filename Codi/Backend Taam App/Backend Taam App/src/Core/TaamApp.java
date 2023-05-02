@@ -204,6 +204,7 @@ public class TaamApp {
 
             resultToBeReturnedToFlutter.put("|Name", product.getProductName());
             resultToBeReturnedToFlutter.put("|Barcode", product.getBarcode());
+            resultToBeReturnedToFlutter.put("|Image", product.getImage());
             resultToBeReturnedToFlutter.put("|Ingredients", ingredientList);
 
             int resultEdible = 0;
@@ -290,6 +291,7 @@ public class TaamApp {
 
                 resultToBeReturnedToFlutter.put("|Name", product.getProductName());
                 resultToBeReturnedToFlutter.put("|Barcode", product.getBarcode());
+                resultToBeReturnedToFlutter.put("|Image", product.getImage());
                 resultToBeReturnedToFlutter.put("|Ingredients", ingredientList);
 
                 List<String> restrictions = Configuration.getInstance().getUserRestrictionsList();
@@ -423,6 +425,7 @@ public class TaamApp {
                 Product auxiliaryProduct = new Product();
                 auxiliaryProduct.setProductName((String) auxiliaryMap.get("|Name"));
                 auxiliaryProduct.setBarcode((String) auxiliaryMap.get("|Barcode"));
+                auxiliaryProduct.setImage((String) auxiliaryMap.get("|Image"));
 
                 recommendedProductsList.add(auxiliaryProduct);
             }
@@ -432,7 +435,8 @@ public class TaamApp {
         while ((counter < recommendedProductsList.size()) && (counter < 10))
         {
             recommendedProductsMap.put("|Product" + (counter+1),
-                    List.of(recommendedProductsList.get(counter).getProductName(), recommendedProductsList.get(counter).getBarcode()));
+                    List.of(recommendedProductsList.get(counter).getProductName(), recommendedProductsList.get(counter).getBarcode(),
+                            recommendedProductsList.get(counter).getImage()));
             counter = counter + 1;
         }
 
@@ -456,7 +460,8 @@ public class TaamApp {
                 }
                 indexList.add(randomIndex);
                 recommendedProductsMap.put("|Product" + (counter+1),
-                        List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode()));
+                        List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode(),
+                                recommendedProductsList.get(randomIndex).getImage()));
             }
         }
         else
@@ -471,7 +476,8 @@ public class TaamApp {
                 }
                 indexList.add(randomIndex);
                 recommendedProductsMap.put("|Product" + (counter+1),
-                        List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode()));
+                        List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode(),
+                                recommendedProductsList.get(randomIndex).getImage()));
                 counter = counter + 1;
             }
         }

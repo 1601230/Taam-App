@@ -53,6 +53,7 @@ public class Searcher {
             while (result1.next()) {
                 productFound = true;
                 product.setProductName(result1.getString("name"));
+                product.setImage(result1.getString("image"));
                 product.setBarcode(barcode);
             }
 
@@ -106,6 +107,7 @@ public class Searcher {
                 {
                     productFound = true;
                     product.setProductName(productName);
+                    product.setImage(result.getString("image"));
                     product.setBarcode(result.getString("id"));
                 }
             }
