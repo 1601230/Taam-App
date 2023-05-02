@@ -68,15 +68,15 @@ public class VegetarianTest {
 
         result = vegetarian.checkProduct(prepareIngredientList("salmon, 63, salt, 8, haya wood smoke, 64"));
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals("salmon", result.nonSuitableIngredientsList.get(0).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("salmon, 63"), result.nonSuitableIngredientsList));
 
         result = vegetarian.checkProduct(prepareIngredientList("mackerel, 65, olive oil, 29"));
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals("mackerel", result.nonSuitableIngredientsList.get(0).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("mackerel, 65"), result.nonSuitableIngredientsList));
 
         result = vegetarian.checkProduct(prepareIngredientList("sugar, 13, natural defatted cocoa powder, 70, salt, 8, vitamine-c, 71, vitamine-d, 72, natural-flavouring, 73, soya-lecithin, 74, cinnamon, 75"));
         Assert.assertEquals(DOUBTFUL, result.getResult());
-        Assert.assertEquals("natural-flavouring", result.doubtfulIngredientsList.get(0).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("natural-flavouring, 73"), result.doubtfulIngredientsList));
     }
 
     @Test
@@ -107,18 +107,18 @@ public class VegetarianTest {
         ingredient.setId(105);
         result = vegetarian.checkIngredient(ingredient);
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals("chicken breast", result.nonSuitableIngredientsList.get(0).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("chicken breast, 105"), result.nonSuitableIngredientsList));
 
         ingredient.setIngredient("beef meat");
         ingredient.setId(115);
         result = vegetarian.checkIngredient(ingredient);
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals("beef meat", result.nonSuitableIngredientsList.get(0).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("beef meat, 115"), result.nonSuitableIngredientsList));
 
         ingredient.setIngredient("natural-flavouring");
         ingredient.setId(73);
         result = vegetarian.checkIngredient(ingredient);
         Assert.assertEquals(DOUBTFUL, result.getResult());
-        Assert.assertEquals("natural-flavouring", result.doubtfulIngredientsList.get(0).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("natural-flavouring, 73"), result.doubtfulIngredientsList));
     }
 }

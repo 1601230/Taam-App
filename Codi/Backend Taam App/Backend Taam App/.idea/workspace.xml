@@ -62,7 +62,7 @@
       <recent name="Core" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.VeganTest">
+  <component name="RunManager" selected="JUnit.Core in Backend Taam App">
     <configuration name="Core in Backend Taam App" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Backend Taam App" />
       <extension name="coverage">
@@ -73,21 +73,6 @@
       </extension>
       <option name="PACKAGE_NAME" value="Core" />
       <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LactoseAllergicTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Backend Taam App" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Core.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Core" />
-      <option name="MAIN_CLASS_NAME" value="Core.LactoseAllergicTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -137,13 +122,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="VegetarianTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Backend Taam App" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Core" />
+      <option name="MAIN_CLASS_NAME" value="Core.VegetarianTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Core in Backend Taam App" />
+        <item itemvalue="JUnit.VegetarianTest" />
         <item itemvalue="JUnit.VeganTest" />
         <item itemvalue="JUnit.TreeNutAllergicTest" />
         <item itemvalue="JUnit.TeetotalTest" />
-        <item itemvalue="JUnit.Core in Backend Taam App" />
-        <item itemvalue="JUnit.LactoseAllergicTest" />
       </list>
     </recent_temporary>
   </component>
