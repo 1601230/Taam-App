@@ -31,6 +31,24 @@ public class VegetarianTest {
         return result;
     }
 
+    public boolean equals(List<Ingredient> expected, List<Ingredient> returned)
+    {
+        if(expected.size() == returned.size())
+        {
+            for(int i = 0; i < expected.size(); i++)
+            {
+                if(expected.get(i).getId() != returned.get(i).getId() || !expected.get(i).getIngredient().equals(returned.get(i).getIngredient()))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
+
     @Test
     public void checkProduct() throws SQLException {
         Vegetarian vegetarian = new Vegetarian();

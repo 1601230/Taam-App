@@ -32,6 +32,24 @@ public class TeetotalTest {
         return result;
     }
 
+    public boolean equals(List<Ingredient> expected, List<Ingredient> returned)
+    {
+        if(expected.size() == returned.size())
+        {
+            for(int i = 0; i < expected.size(); i++)
+            {
+                if(expected.get(i).getId() != returned.get(i).getId() || !expected.get(i).getIngredient().equals(returned.get(i).getIngredient()))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
+
     @Test
     public void checkProduct() throws SQLException {
         Teetotal teetotal = new Teetotal();
@@ -59,7 +77,7 @@ public class TeetotalTest {
 
         result = teetotal.checkProduct(prepareIngredientList("chocolate, 76, licor, 77, cherries, 78, sugar, 13"));
         assertEquals(UNSUITABLE, result.getResult());
-        assertEquals("licor", result.nonSuitableIngredientsList.get(0).getIngredient());
+        assertTrue(equals(prepareIngredientList("licor, 77"), result.nonSuitableIngredientsList));
     }
 
     @Test
@@ -90,12 +108,12 @@ public class TeetotalTest {
         ingredient.setId(95);
         result = teetotal.checkIngredient(ingredient);
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals("bourbon vanilla powder", result.nonSuitableIngredientsList.get(0).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("bourbon vanilla powder, 95"), result.nonSuitableIngredientsList));
 
         ingredient.setIngredient("whiskey");
         ingredient.setId(89);
         result = teetotal.checkIngredient(ingredient);
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals("whiskey", result.nonSuitableIngredientsList.get(0).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("whiskey, 89"), result.nonSuitableIngredientsList));
     }
 }
