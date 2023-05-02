@@ -15,7 +15,7 @@ public class DataBase {
     public ResultSet selectProductName(String barcode) throws SQLException {
         Connection conn = ConnectDB.getConnection();
 
-        PreparedStatement stmt = conn.prepareStatement("SELECT name FROM public.products WHERE id=?");
+        PreparedStatement stmt = conn.prepareStatement("SELECT name, image FROM public.products WHERE id=?");
         stmt.setString(1, barcode);
         ResultSet result = stmt.executeQuery();
 
@@ -45,7 +45,7 @@ public class DataBase {
     public ResultSet selectProductIdName() throws SQLException {
         Connection conn = ConnectDB.getConnection();
 
-        String sql = "SELECT id, name FROM public.products;";
+        String sql = "SELECT id, name, image FROM public.products;";
         PreparedStatement stmt = conn.prepareStatement(sql);
         ResultSet result = stmt.executeQuery();
 
