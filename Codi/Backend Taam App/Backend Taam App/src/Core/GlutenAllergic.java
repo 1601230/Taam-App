@@ -14,6 +14,7 @@ public class GlutenAllergic implements Visitor{
     public Result checkProduct(List<Ingredient> ingredientsList) throws SQLException {
         Connection conn = ConnectDB.getConnection();
         Result result = new Result();
+
         if (ingredientsList != null)
         {
             if (!ingredientsList.isEmpty())
@@ -23,6 +24,8 @@ public class GlutenAllergic implements Visitor{
                     stmt.setInt(1, ingredient.getId());
                     ResultSet res = stmt.executeQuery();
 
+                    boolean ingredientFound = false;
+
                     while (res.next()) {
                         if (res.getInt("celiac") == 0)
                         {
@@ -31,19 +34,27 @@ public class GlutenAllergic implements Visitor{
                         {
                             result.doubtfulIngredientsList.add(ingredient);
                         }
+
+                        ingredientFound = true;
                     }
 
-                    if (!result.nonSuitableIngredientsList.isEmpty())
+                    if(!ingredientFound)
                     {
-                        result.setResult(UNSUITABLE);
-                    }else if (!result.doubtfulIngredientsList.isEmpty())
-                    {
-                        result.setResult(DOUBTFUL);
-                    }else
-                    {
-                        result.setResult(SUITABLE);
+                        return null;
                     }
                 }
+
+                if (!result.nonSuitableIngredientsList.isEmpty())
+                {
+                    result.setResult(UNSUITABLE);
+                }else if (!result.doubtfulIngredientsList.isEmpty())
+                {
+                    result.setResult(DOUBTFUL);
+                }else
+                {
+                    result.setResult(SUITABLE);
+                }
+
                 return result;
             }
         }

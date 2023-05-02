@@ -12,8 +12,15 @@ public class LactoseAllergic implements Visitor{
 
     @Override
     public Result checkProduct(List<Ingredient> ingredientsList) throws SQLException {
+
+        if(ingredientsList == null){
+            return null;
+
+        }
         Connection conn = ConnectDB.getConnection();
         Result result = new Result();
+
+        boolean ingredientFound = false;
 
         for (Ingredient ingredient : ingredientsList) {
             PreparedStatement stmt = conn.prepareStatement("SELECT lactose FROM public.ingredients WHERE id=?");
@@ -28,19 +35,21 @@ public class LactoseAllergic implements Visitor{
                 {
                     result.doubtfulIngredientsList.add(ingredient);
                 }
-            }
-
-            if (!result.nonSuitableIngredientsList.isEmpty())
-            {
-                result.setResult(UNSUITABLE);
-            }else if (!result.doubtfulIngredientsList.isEmpty())
-            {
-                result.setResult(DOUBTFUL);
-            }else
-            {
-                result.setResult(SUITABLE);
+                ingredientFound = true;
             }
         }
+
+        if (!result.nonSuitableIngredientsList.isEmpty())
+        {
+            result.setResult(UNSUITABLE);
+        }else if (!result.doubtfulIngredientsList.isEmpty())
+        {
+            result.setResult(DOUBTFUL);
+        }else
+        {
+            result.setResult(SUITABLE);
+        }
+
         return result;
     }
 

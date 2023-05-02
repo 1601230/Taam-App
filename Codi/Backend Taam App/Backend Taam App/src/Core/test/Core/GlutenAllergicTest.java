@@ -54,7 +54,7 @@ public class GlutenAllergicTest {
         Result result = new Result();
 
         //suitable ingredientList
-        result = gluten_allergic.checkProduct(prepareIngredientList("sal, 8, salmon, 63, humo de leña de haya, 64"));
+        result = gluten_allergic.checkProduct(prepareIngredientList("sal, 8, salmon, 63, humo de leÃ±a de haya, 64"));
         assertEquals(SUITABLE, result.getResult());
 
         //non-suitable ingredientList, null, empty...
@@ -63,6 +63,9 @@ public class GlutenAllergicTest {
 
         List<Ingredient> ingredientlist = new ArrayList<>();
         result = gluten_allergic.checkProduct(ingredientlist);
+        assertEquals(null, result);
+
+        result = gluten_allergic.checkProduct(prepareIngredientList(" , 0"));
         assertEquals(null, result);
 
         result = gluten_allergic.checkProduct(prepareIngredientList("maiz, 44, azucar, 13, malta de cebada, 14, sal, 8"));
@@ -74,9 +77,9 @@ public class GlutenAllergicTest {
         assertTrue(equals(prepareIngredientList("granos de maiz enteros, 26, aceite de girasol alto oleico, 27"), result.doubtfulIngredientsList));
 
         result = gluten_allergic.checkProduct(prepareIngredientList("palomitas de maiz, 41, aceite de colza, 42, sal marina, 25"));
-        assertEquals(DOUBTFUL, result.getResult());
+        assertEquals(UNSUITABLE, result.getResult());
         assertTrue(equals(prepareIngredientList("palomitas de maiz, 41"), result.doubtfulIngredientsList));
-        assertTrue(result.nonSuitableIngredientsList.isEmpty());
+        assertTrue(equals(prepareIngredientList("aceite de colza, 42"), result.nonSuitableIngredientsList));
     }
 
     @Test

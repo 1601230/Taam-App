@@ -32,6 +32,23 @@ public class LactoseAllergicTest {
         return result;
     }
 
+    public boolean equals(List<Ingredient> expected, List<Ingredient> returned)
+    {
+        if(expected.size() == returned.size())
+        {
+            for(int i = 0; i < expected.size(); i++)
+            {
+                if(expected.get(i).getId() != returned.get(i).getId() || !expected.get(i).getIngredient().equals(returned.get(i).getIngredient()))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
     @Test
     public void checkProduct() throws SQLException {
         LactoseAllergic lactose_allergic = new LactoseAllergic();
@@ -51,19 +68,19 @@ public class LactoseAllergicTest {
 
         result = lactose_allergic.checkProduct(prepareIngredientList("raw milk, 52, salt, 8, dairy ferments, 53"));
         assertEquals(UNSUITABLE, result.getResult());
-        assertEquals(prepareIngredientList("raw milk, 52, dairy ferments, 53"), result.nonSuitableIngredientsList);
+        assertTrue(equals(prepareIngredientList("raw milk, 52, dairy ferments, 53"), result.nonSuitableIngredientsList));
 
         result = lactose_allergic.checkProduct(prepareIngredientList("pasteurised milk, 111, salt, 8"));
         assertEquals(UNSUITABLE, result.getResult());
-        assertEquals(prepareIngredientList("pasteurised milk, 111"), result.nonSuitableIngredientsList);
+        assertTrue(equals(prepareIngredientList("pasteurised milk, 111"), result.nonSuitableIngredientsList));
 
         result = lactose_allergic.checkProduct(prepareIngredientList("cocoa mass, 37, cocoa butter, 38, low fat cocoa powder, 39, sugar, 13, vanilla, 40"));
         assertEquals(DOUBTFUL, result.getResult());
-        assertEquals(prepareIngredientList("cocoa mass, 37, cocoa butter, 38, low fat cocoa powder, 39"), result.doubtfulIngredientsList);
+        assertTrue(equals(prepareIngredientList("cocoa mass, 37, cocoa butter, 38, low fat cocoa powder, 39"), result.doubtfulIngredientsList));
 
         result = lactose_allergic.checkProduct(prepareIngredientList("corn, 12, sugar, 13, barley malt, 14, salt, 8"));
         assertEquals(DOUBTFUL, result.getResult());
-        assertEquals(prepareIngredientList("corn, 12"), result.doubtfulIngredientsList);
+        assertTrue(equals(prepareIngredientList("corn, 12"), result.doubtfulIngredientsList));
     }
 
     @Test
@@ -94,24 +111,24 @@ public class LactoseAllergicTest {
         ingredient.setId(117);
         result = lactose_allergic.checkIngredient(ingredient);
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals(prepareIngredientList("butter, 117"), result.nonSuitableIngredientsList);
+        Assert.assertTrue(equals(prepareIngredientList("butter, 117"), result.nonSuitableIngredientsList));
 
         ingredient.setIngredient("melted cheese");
         ingredient.setId(120);
         result = lactose_allergic.checkIngredient(ingredient);
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals(prepareIngredientList("melted cheese, 120"), result.nonSuitableIngredientsList);
+        Assert.assertTrue(equals(prepareIngredientList("melted cheese, 120"), result.nonSuitableIngredientsList));
 
         ingredient.setIngredient("wheat starch");
         ingredient.setId(4);
         result = lactose_allergic.checkIngredient(ingredient);
         Assert.assertEquals(DOUBTFUL, result.getResult());
-        Assert.assertEquals(prepareIngredientList("wheat starch, 4"), result.doubtfulIngredientsList);
+        Assert.assertTrue(equals(prepareIngredientList("wheat starch, 4"), result.doubtfulIngredientsList));
 
         ingredient.setIngredient("pure butter fat");
         ingredient.setId(83);
         result = lactose_allergic.checkIngredient(ingredient);
         Assert.assertEquals(DOUBTFUL, result.getResult());
-        Assert.assertEquals(prepareIngredientList("pure butter fat, 83"), result.doubtfulIngredientsList);
+        Assert.assertTrue(equals(prepareIngredientList("pure butter fat, 83"), result.doubtfulIngredientsList));
     }
 }

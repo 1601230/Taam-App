@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a0cac8a-06de-4f8a-987a-abf691d3421a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Core/Vegetarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Vegetarian.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/test/Core/VegetarianTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/test/Core/VegetarianTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/LactoseAllergic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/LactoseAllergic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/test/Core/GlutenAllergicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/test/Core/GlutenAllergicTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/test/Core/LactoseAllergicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/test/Core/LactoseAllergicTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +64,7 @@
       <recent name="Core" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.VegetarianTest">
+  <component name="RunManager" selected="JUnit.GlutenAllergicTest">
     <configuration name="MainWebServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="WebServer.MainWebServer" />
       <module name="Backend Taam App" />
@@ -77,7 +78,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Gluten_AllergicTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GlutenAllergicTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Backend Taam App" />
       <extension name="coverage">
         <pattern>
@@ -86,7 +87,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="Core" />
-      <option name="MAIN_CLASS_NAME" value="Core.Gluten_AllergicTest" />
+      <option name="MAIN_CLASS_NAME" value="Core.GlutenAllergicTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -139,11 +140,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GlutenAllergicTest" />
         <item itemvalue="JUnit.VegetarianTest" />
         <item itemvalue="JUnit.VeganTest" />
         <item itemvalue="JUnit.Tree_Nut_AllergicTest" />
         <item itemvalue="Application.MainWebServer" />
-        <item itemvalue="JUnit.Gluten_AllergicTest" />
       </list>
     </recent_temporary>
   </component>
