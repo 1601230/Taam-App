@@ -14,32 +14,43 @@ public class Gluten_Allergic implements Visitor{
     public Result checkProduct(List<Ingredient> ingredientsList) throws SQLException {
         Connection conn = ConnectDB.getConnection();
         Result result = new Result();
+        if (ingredientsList != null)
+        {
+            if (!ingredientsList.isEmpty())
+            {
+                for (Ingredient ingredient : ingredientsList) {
+                    PreparedStatement stmt = conn.prepareStatement("SELECT celiac FROM public.ingredients WHERE id=?");
+                    stmt.setInt(1, ingredient.getId());
+                    ResultSet res = stmt.executeQuery();
 
-        for (Ingredient ingredient : ingredientsList) {
-            PreparedStatement stmt = conn.prepareStatement("SELECT celiac FROM public.ingredients WHERE id=?");
-            stmt.setInt(1, ingredient.getId());
-            ResultSet res = stmt.executeQuery();
+                    while (res.next()) {
+                        if (res.getInt("celiac") == 0)
+                        {
+                            result.nonSuitableIngredientsList.add(ingredient);
+                        } else if (res.getInt("celiac") == 2)
+                        {
+                            result.doubtfulIngredientsList.add(ingredient);
+                        }
+                    }
 
-            while (res.next()) {
-                if (res.getInt("celiac") == 0)
-                {
-                    result.nonSuitableIngredientsList.add(ingredient);
-                } else if (res.getInt("celiac") == 2)
-                {
-                    result.doubtfulIngredientsList.add(ingredient);
+                    if (!result.nonSuitableIngredientsList.isEmpty())
+                    {
+                        result.setResult(UNSUITABLE);
+                    }else if (!result.doubtfulIngredientsList.isEmpty())
+                    {
+                        result.setResult(DOUBTFUL);
+                    }else
+                    {
+                        result.setResult(SUITABLE);
+                    }
                 }
-            }
-
-            if (!result.nonSuitableIngredientsList.isEmpty())
-            {
-                result.setResult(UNSUITABLE);
-            }else if (!result.doubtfulIngredientsList.isEmpty())
-            {
-                result.setResult(DOUBTFUL);
             }else
             {
-                result.setResult(SUITABLE);
+                return null;
             }
+        }else
+        {
+            return null;
         }
         return result;
     }
@@ -49,31 +60,33 @@ public class Gluten_Allergic implements Visitor{
         Connection conn = ConnectDB.getConnection();
         Result result = new Result();
 
-        PreparedStatement stmt = conn.prepareStatement("SELECT celiac FROM public.ingredients WHERE id=?");
-        stmt.setInt(1, ingredient.getId());
-        ResultSet res = stmt.executeQuery();
+        if (ingredient != null && ingredient.getId() != null && ingredient.getIngredient() != null){
+            if (!ingredient.getIngredient().isEmpty()) {
+                PreparedStatement stmt = conn.prepareStatement("SELECT celiac FROM public.ingredients WHERE id=?");
+                stmt.setInt(1, ingredient.getId());
+                ResultSet res = stmt.executeQuery();
 
-        while (res.next()) {
-            if (res.getInt("celiac") == 0)
-            {
-                result.nonSuitableIngredientsList.add(ingredient);
-            } else if (res.getInt("celiac") == 2)
-            {
-                result.doubtfulIngredientsList.add(ingredient);
+                while (res.next()) {
+                    if (res.getInt("celiac") == 0) {
+                        result.nonSuitableIngredientsList.add(ingredient);
+                    } else if (res.getInt("celiac") == 2) {
+                        result.doubtfulIngredientsList.add(ingredient);
+                    }
+                }
+
+                if (!result.nonSuitableIngredientsList.isEmpty()) {
+                    result.setResult(UNSUITABLE);
+                } else if (!result.doubtfulIngredientsList.isEmpty()) {
+                    result.setResult(DOUBTFUL);
+                } else {
+                    result.setResult(SUITABLE);
+                }
+            }else {
+                return null;
             }
+        }else {
+            return null;
         }
-
-        if (!result.nonSuitableIngredientsList.isEmpty())
-        {
-            result.setResult(UNSUITABLE);
-        }else if (!result.doubtfulIngredientsList.isEmpty())
-        {
-            result.setResult(DOUBTFUL);
-        }else
-        {
-            result.setResult(SUITABLE);
-        }
-
         return result;
     }
 }
