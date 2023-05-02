@@ -52,6 +52,11 @@ public class Vegan implements Visitor{
 
     @Override
     public Result checkIngredient(Ingredient ingredient) throws SQLException {
+
+        if(ingredient == null){
+            return null;
+        }
+
         Connection conn = ConnectDB.getConnection();
         Result result = new Result();
 
