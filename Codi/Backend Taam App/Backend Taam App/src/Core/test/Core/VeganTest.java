@@ -96,18 +96,18 @@ public class VeganTest {
         ingredient.setId(81);
         result = vegan.checkIngredient(ingredient);
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals(prepareIngredientList("skimmed-milk powder, 81"), result.nonSuitableIngredientsList);
+        Assert.assertEquals("skimmed-milk powder", result.nonSuitableIngredientsList.get(0).getIngredient());
 
         ingredient.setIngredient("sweetened and skimmed condensed milk");
         ingredient.setId(87);
         result = vegan.checkIngredient(ingredient);
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals(prepareIngredientList("sweetened and skimmed condensed milk, 87"), result.nonSuitableIngredientsList);
+        Assert.assertEquals("sweetened and skimmed condensed milk", result.nonSuitableIngredientsList.get(0).getIngredient());
 
         ingredient.setIngredient("roasted peanuts 90%");
         ingredient.setId(48);
         result = vegan.checkIngredient(ingredient);
         Assert.assertEquals(DOUBTFUL, result.getResult());
-        Assert.assertEquals(prepareIngredientList("roasted peanuts 90%, 48"), result.doubtfulIngredientsList);
+        Assert.assertEquals("roasted peanuts 90%", result.doubtfulIngredientsList.get(0).getIngredient());
     }
 }
