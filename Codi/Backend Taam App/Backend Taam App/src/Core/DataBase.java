@@ -35,7 +35,7 @@ public class DataBase {
     public ResultSet selectProductIngredientName(Integer ingredient_id) throws SQLException {
         Connection conn = ConnectDB.getConnection();
 
-        PreparedStatement stmt = conn.prepareStatement("SELECT name" + Configuration.getInstance().getLanguage() + " FROM public.ingredients WHERE id=?");
+        PreparedStatement stmt = conn.prepareStatement("SELECT name_" + Configuration.getInstance().getLanguage() + " FROM public.ingredients WHERE id=?");
         stmt.setInt(1, ingredient_id);
         ResultSet result = stmt.executeQuery();
 
@@ -55,7 +55,7 @@ public class DataBase {
     public ResultSet selectIngredientIdName() throws SQLException {
         Connection conn = ConnectDB.getConnection();
 
-        String sql = "SELECT id, name" + Configuration.getInstance().getLanguage() + " FROM public.ingredients;";
+        String sql = "SELECT id, name_" + Configuration.getInstance().getLanguage() + " FROM public.ingredients;";
         PreparedStatement stmt = conn.prepareStatement(sql);
         ResultSet result = stmt.executeQuery();
 

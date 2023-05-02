@@ -64,7 +64,7 @@ public class Searcher {
                     ResultSet result3 = db.selectProductIngredientName(ingredient_id);
 
                     while (result3.next()) {
-                        String ingredientName = result3.getString("name" + Configuration.getInstance().getLanguage());
+                        String ingredientName = result3.getString("name_" + Configuration.getInstance().getLanguage());
                         Ingredient ingredient = new Ingredient(ingredientName, ingredient_id);
 
                         product.productIngredientsList.add(ingredient);
@@ -125,7 +125,7 @@ public class Searcher {
                     result = db.selectProductIngredientName(ingredientID);
 
                     while (result.next()) {
-                        String ingredientName = result.getString("name" + Configuration.getInstance().getLanguage());
+                        String ingredientName = result.getString("name_" + Configuration.getInstance().getLanguage());
                         Ingredient ingredient = new Ingredient(ingredientName, ingredientID);
                         product.productIngredientsList.add(ingredient);
                     }
@@ -163,8 +163,8 @@ public class Searcher {
         Ingredient ingredient = new Ingredient();
         while ((result.next()) && (ingredientFound == false))
         {
-            ingredientName = result.getString("name" + Configuration.getInstance().getLanguage());
-            String auxiliaryName = result.getString("name" + Configuration.getInstance().getLanguage()).toLowerCase()
+            ingredientName = result.getString("name_" + Configuration.getInstance().getLanguage());
+            String auxiliaryName = result.getString("name_" + Configuration.getInstance().getLanguage()).toLowerCase()
                                     .replaceAll("(\\s|')", "")
                                     .replaceAll("(%c3%a1|%c3%a4|%c3%a0|%c3%a2|%c3%81|%c3%84|%c3%80|%c3%82)", "a")
                                     .replaceAll("(%c3%a9|%c3%ab|%c3%a8|%c3%aa|%c3%89|%c3%8b|%c3%88|%c3%8a)", "e")
