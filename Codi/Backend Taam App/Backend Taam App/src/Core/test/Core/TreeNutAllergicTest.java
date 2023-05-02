@@ -11,7 +11,7 @@ import java.util.List;
 import static Core.Edible.*;
 import static org.junit.Assert.*;
 
-public class Tree_Nut_AllergicTest {
+public class TreeNutAllergicTest {
 
     public List<Ingredient> prepareIngredientList(String ingredients)
     {

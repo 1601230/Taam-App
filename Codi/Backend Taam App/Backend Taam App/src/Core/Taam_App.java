@@ -52,16 +52,20 @@ public class Taam_App {
 
     public void setRestrictions(String token)
     {
-        String[] restrictionsToken = token.split(",");
-        List<String> restrictionsList = new ArrayList<>();
-
-        for (String restriction : restrictionsToken)
+        if (token != null && !token.isEmpty())
         {
-            restriction = restriction.replaceAll("(^\"|\"$|%5B|%5D|%20|%22|\\s)", "");
-            restrictionsList.add(restriction);
-        }
+            String[] restrictionsToken = token.split(",");
+            List<String> restrictionsList = new ArrayList<>();
 
-        Configuration.getInstance().setUserRestrictionsList(restrictionsList);
+            for (String restriction : restrictionsToken)
+            {
+                restriction = restriction.replaceAll("(^\"|\"$|%5B|%5D|%20|%22|\\s)", "");
+                restrictionsList.add(restriction);
+            }
+            Configuration.getInstance().setUserRestrictionsList(restrictionsList);
+        }else {
+            Configuration.getInstance().setUserRestrictionsList(null);
+        }
     }
     public void setLanguage(String language)
     {
@@ -187,7 +191,7 @@ public class Taam_App {
     public Map<String, Object> checkProductBarcode(String barcode) throws SQLException {
         product = Taam_App.getInstance().checkBarcode(barcode);
 
-        if (product != null) {
+        if (product != null && Configuration.getInstance().getUserRestrictionsList() != null) {
             Map<String, Object> resultToBeReturnedToFlutter = new HashMap<String, Object>();
 
             List<String> ingredientList = new ArrayList<>();

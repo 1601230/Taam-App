@@ -12,7 +12,7 @@ import static Core.Edible.*;
 import static Core.Edible.DOUBTFUL;
 import static org.junit.Assert.*;
 
-public class Lactose_AllergicTest {
+public class LactoseAllergicTest {
 
     public List<Ingredient> prepareIngredientList(String ingredients)
     {

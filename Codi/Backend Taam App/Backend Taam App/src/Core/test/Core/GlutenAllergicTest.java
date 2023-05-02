@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 
 
-public class Gluten_AllergicTest {
+public class GlutenAllergicTest {
 
     public List<Ingredient> prepareIngredientList(String ingredients)
     {

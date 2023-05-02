@@ -44,15 +44,10 @@ public class Gluten_Allergic implements Visitor{
                         result.setResult(SUITABLE);
                     }
                 }
-            }else
-            {
-                return null;
+                return result;
             }
-        }else
-        {
-            return null;
         }
-        return result;
+        return null;
     }
 
     @Override
@@ -81,12 +76,9 @@ public class Gluten_Allergic implements Visitor{
                 } else {
                     result.setResult(SUITABLE);
                 }
-            }else {
-                return null;
+                return result;
             }
-        }else {
-            return null;
         }
-        return result;
+        return null;
     }
 }
