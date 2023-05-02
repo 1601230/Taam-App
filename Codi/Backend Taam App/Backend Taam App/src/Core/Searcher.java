@@ -180,8 +180,6 @@ public class Searcher {
             }
         }
 
-
-
         if (ingredientFound == true) {
             productName = null;
             barcode = null;

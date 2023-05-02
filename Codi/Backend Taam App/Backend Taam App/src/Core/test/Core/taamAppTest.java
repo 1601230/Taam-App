@@ -2,21 +2,19 @@ package Core;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-
 import static Core.Edible.*;
-import static org.junit.Assert.*;
 
 
-public class Taam_AppTest {
+
+public class TaamAppTest {
 
     @Test
     public void checkBarcode() throws SQLException {
-        Taam_App taam_app = Taam_App.getInstance();
+        TaamApp taam_app = TaamApp.getInstance();
         Product product = new Product();
 
         //existing barcodes
@@ -47,7 +45,7 @@ public class Taam_AppTest {
 
     @Test
     public void checkName() throws SQLException {
-        Taam_App taam_app = Taam_App.getInstance();
+        TaamApp taam_app = TaamApp.getInstance();
         Map<String, Object> result = new HashMap<String, Object>();
 
         result = taam_app.checkName(null);
@@ -109,12 +107,49 @@ public class Taam_AppTest {
     }
 
     @Test
-    public void checkProductBarcode() {
+    public void checkProductBarcode() throws SQLException {
+        TaamApp taam_app = TaamApp.getInstance();
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        result = taam_app.checkProductBarcode(null);
+        Assert.assertEquals(null, result);
+
+        result = taam_app.checkProductBarcode("");
+        Assert.assertEquals(null, result);
+
+        taam_app.setRestrictions("");
+        result = taam_app.checkProductBarcode("    ");
+        Assert.assertEquals(null, result);
+
+        result = taam_app.checkProductBarcode("&^_ ~$@· {}//<print>");
+        Assert.assertEquals(null, result);
+
+        taam_app.setRestrictions("");
+        result = taam_app.checkProductBarcode("20034658");
+        Assert.assertEquals(null, result);
+
+        taam_app.setRestrictions("vegan");
+        result = taam_app.checkProductBarcode("20034658");
+        Assert.assertEquals(UNSUITABLE, result.get("|Edible"));
+        Assert.assertEquals("Salmon ahumado", result.get("|Name"));
+
+        taam_app.setRestrictions("allergictogluten");
+        result = taam_app.checkProductBarcode("20034658");
+        Assert.assertEquals(SUITABLE, result.get("|Edible"));
+        Assert.assertEquals("Salmon ahumado", result.get("|Name"));
+
+        taam_app.setRestrictions("teetotal, allergictolactose");
+        result = taam_app.checkProductBarcode("5053827206730");
+        Assert.assertEquals(DOUBTFUL, result.get("|Edible"));
+
+        taam_app.setRestrictions("teetotal, allergictolactose, allergictogluten");
+        result = taam_app.checkProductBarcode("5053827206730");
+        Assert.assertEquals(UNSUITABLE, result.get("|Edible"));
     }
 
     @Test
     public void checkProductIngredientName() throws SQLException {
-        Taam_App taam_app = Taam_App.getInstance();
+        TaamApp taam_app = TaamApp.getInstance();
         Map<String, Object> result = new HashMap<String, Object>();
 
         result = taam_app.checkProductIngredientName(null);

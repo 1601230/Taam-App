@@ -1,9 +1,6 @@
 package Core;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
 
 import static Core.Edible.*;
@@ -17,6 +14,7 @@ import static Core.Edible.*;
  */
 public class Taam_App {
     private static Taam_App instance = null;
+    private DataBase db = new DataBase();
     public static Searcher searcher = new Searcher();
     public static Product product = new Product();
     public static Ingredient ingredient = new Ingredient();
@@ -54,16 +52,20 @@ public class Taam_App {
 
     public void setRestrictions(String token)
     {
-        String[] restrictionsToken = token.split(",");
-        List<String> restrictionsList = new ArrayList<>();
-
-        for (String restriction : restrictionsToken)
+        if (token != null && !token.isEmpty())
         {
-            restriction = restriction.replaceAll("(^\"|\"$|%5B|%5D|%20|%22|\\s)", "");
-            restrictionsList.add(restriction);
-        }
+            String[] restrictionsToken = token.split(",");
+            List<String> restrictionsList = new ArrayList<>();
 
-        Configuration.getInstance().setUserRestrictionsList(restrictionsList);
+            for (String restriction : restrictionsToken)
+            {
+                restriction = restriction.replaceAll("(^\"|\"$|%5B|%5D|%20|%22|\\s)", "");
+                restrictionsList.add(restriction);
+            }
+            Configuration.getInstance().setUserRestrictionsList(restrictionsList);
+        }else {
+            Configuration.getInstance().setUserRestrictionsList(null);
+        }
     }
     public void setLanguage(String language)
     {
@@ -192,7 +194,7 @@ public class Taam_App {
     public Map<String, Object> checkProductBarcode(String barcode) throws SQLException {
         product = Taam_App.getInstance().checkBarcode(barcode);
 
-        if (product != null) {
+        if (product != null && Configuration.getInstance().getUserRestrictionsList() != null) {
             Map<String, Object> resultToBeReturnedToFlutter = new HashMap<String, Object>();
 
             List<String> ingredientList = new ArrayList<>();
@@ -475,5 +477,34 @@ public class Taam_App {
         }
 
         return recommendedProductsMap;
+    }
+
+    public Map<String, Object> getFrequentQuestions() throws SQLException {
+        Map<String, Object> frequentquestions = new HashMap<>();
+
+        ResultSet result = db.selectQuestions();
+        while(result.next())
+        {
+            String question = result.getString("response_"+Configuration.getInstance().getLanguage());
+            String id = result.getString("id");
+            frequentquestions.put("|"+ id, question);
+        }
+        return frequentquestions;
+    }
+    public Map<String, Object> getAnswer(String questionId) throws SQLException {
+        Map<String, Object> answer = new HashMap<String, Object>();
+
+        ResultSet result = db.selectAnswer(Integer.parseInt(questionId));
+        while (result.next()) {
+            String response = result.getString("response_"+Configuration.getInstance().getLanguage());
+            answer.put("|Answer", response);
+        }
+
+        return answer;
+    }
+
+    public Map<String, Object> saveQuestion(String question)
+    {
+        return null;
     }
 }

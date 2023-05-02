@@ -61,4 +61,29 @@ public class DataBase {
 
         return result;
     }
+
+    public ResultSet selectQuestions() throws SQLException {
+        Connection conn = ConnectDB.getConnection();
+
+        String sql = "SELECT id, question_" + Configuration.getInstance().getLanguage() + " FROM frequent_questions;";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet result = stmt.executeQuery();
+
+        return result;
+    }
+
+    public ResultSet selectAnswer(int questionId) throws SQLException {
+        Connection conn = ConnectDB.getConnection();
+
+        String sql = "SELECT response_" + Configuration.getInstance().getLanguage() + " FROM public.frequent_questions WHERE id=?;";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, questionId);
+        ResultSet result = stmt.executeQuery();
+
+        return result;
+    }
+
+    public ResultSet insertQuestion() throws SQLException {
+        return null;
+    }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 import static Core.Edible.*;
 
-public class Lactose_Allergic implements Visitor{
+public class LactoseAllergic implements Visitor{
 
     @Override
     public Result checkProduct(List<Ingredient> ingredientsList) throws SQLException {

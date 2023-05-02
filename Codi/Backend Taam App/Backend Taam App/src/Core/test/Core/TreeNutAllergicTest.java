@@ -11,7 +11,7 @@ import java.util.List;
 import static Core.Edible.*;
 import static org.junit.Assert.*;
 
-public class Tree_Nut_AllergicTest {
+public class TreeNutAllergicTest {
 
     public List<Ingredient> prepareIngredientList(String ingredients)
     {
@@ -34,7 +34,7 @@ public class Tree_Nut_AllergicTest {
     @Test
     public void checkProduct() throws SQLException
     {
-        Tree_Nut_Allergic tree_nut_allergic = new Tree_Nut_Allergic();
+        TreeNutAllergic tree_nut_allergic = new TreeNutAllergic();
         Result result = new Result();
 
         result = tree_nut_allergic.checkProduct(null);
@@ -75,7 +75,7 @@ public class Tree_Nut_AllergicTest {
 
     @Test
     public void checkIngredient() throws SQLException {
-        Tree_Nut_Allergic tree_nut_allergic = new Tree_Nut_Allergic();
+        TreeNutAllergic tree_nut_allergic = new TreeNutAllergic();
         Result result = new Result();
         Ingredient ingredient = new Ingredient();
 

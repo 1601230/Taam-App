@@ -12,7 +12,7 @@ import static Core.Edible.*;
 import static Core.Edible.DOUBTFUL;
 import static org.junit.Assert.*;
 
-public class Lactose_AllergicTest {
+public class LactoseAllergicTest {
 
     public List<Ingredient> prepareIngredientList(String ingredients)
     {
@@ -34,7 +34,7 @@ public class Lactose_AllergicTest {
 
     @Test
     public void checkProduct() throws SQLException {
-        Lactose_Allergic lactose_allergic = new Lactose_Allergic();
+        LactoseAllergic lactose_allergic = new LactoseAllergic();
         Result result = new Result();
 
         result = lactose_allergic.checkProduct(null);
@@ -68,7 +68,7 @@ public class Lactose_AllergicTest {
 
     @Test
     public void checkIngredient() throws SQLException {
-        Lactose_Allergic lactose_allergic = new Lactose_Allergic();
+        LactoseAllergic lactose_allergic = new LactoseAllergic();
         Result result = new Result();
         Ingredient ingredient = new Ingredient();
 
