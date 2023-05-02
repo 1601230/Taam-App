@@ -39,6 +39,9 @@ public class LactoseAllergic implements Visitor{
             }
         }
 
+        if(ingredientFound == false){
+            return null;
+        }
         if (!result.nonSuitableIngredientsList.isEmpty())
         {
             result.setResult(UNSUITABLE);
@@ -55,12 +58,19 @@ public class LactoseAllergic implements Visitor{
 
     @Override
     public Result checkIngredient(Ingredient ingredient) throws SQLException {
+
+        if(ingredient == null){
+            return null;
+        }
+
         Connection conn = ConnectDB.getConnection();
         Result result = new Result();
 
         PreparedStatement stmt = conn.prepareStatement("SELECT lactose FROM public.ingredients WHERE id=?");
         stmt.setInt(1, ingredient.getId());
         ResultSet res = stmt.executeQuery();
+
+        boolean ingredientFound = false;
 
         while (res.next()) {
             if (res.getInt("lactose") == 0)
@@ -70,8 +80,12 @@ public class LactoseAllergic implements Visitor{
             {
                 result.doubtfulIngredientsList.add(ingredient);
             }
+            ingredientFound = true;
         }
 
+        if(ingredientFound == false){
+            return null;
+        }
         if (!result.nonSuitableIngredientsList.isEmpty())
         {
             result.setResult(UNSUITABLE);
