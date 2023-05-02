@@ -25,9 +25,9 @@ public class Configuration {
             switch (configuration){
                 case "vegan": return new Vegan();
                 case "vegetarian": return new Vegetarian();
-                case "allergictogluten": return new Gluten_Allergic();
-                case "allergictolactose": return new Lactose_Allergic();
-                case "allergictonuts": return new Tree_Nut_Allergic();
+                case "allergictogluten": return new GlutenAllergic();
+                case "allergictolactose": return new LactoseAllergic();
+                case "allergictonuts": return new TreeNutAllergic();
                 case "teetotal": return new Teetotal();
                 default: return null;
             }

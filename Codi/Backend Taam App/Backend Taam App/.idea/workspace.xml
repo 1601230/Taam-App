@@ -3,8 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="9a0cac8a-06de-4f8a-987a-abf691d3421a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/DataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Taam_App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Taam_App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Configuration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Configuration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/DataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/DataBase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Gluten_Allergic.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Lactose_Allergic.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Taam_App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Taam_App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Tree_Nut_Allergic.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Backend Taam App/Core/ConfigurationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Backend Taam App/Core/ConfigurationTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Gluten_Allergic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/GlutenAllergic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Lactose_Allergic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/LactoseAllergic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Tree_Nut_Allergic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/TreeNutAllergic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/test/Core/ConfigurationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/test/Core/ConfigurationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/test/Core/GlutenAllergicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/test/Core/GlutenAllergicTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/test/Core/LactoseAllergicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/test/Core/LactoseAllergicTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/test/Core/TreeNutAllergicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/test/Core/TreeNutAllergicTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,16 +77,18 @@
       <recent name="Core" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainWebServer">
-    <configuration name="MainWebServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="WebServer.MainWebServer" />
+  <component name="RunManager" selected="JUnit.GlutenAllergicTest.checkProduct">
+    <configuration name="ConfigurationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Backend Taam App" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="WebServer.*" />
+          <option name="PATTERN" value="Core.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="Core" />
+      <option name="MAIN_CLASS_NAME" value="Core.ConfigurationTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -93,7 +108,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GlutenAllergicTest.checkIngredient" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GlutenAllergicTest.checkProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Backend Taam App" />
       <extension name="coverage">
         <pattern>
@@ -103,7 +118,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="Core" />
       <option name="MAIN_CLASS_NAME" value="Core.GlutenAllergicTest" />
-      <option name="METHOD_NAME" value="checkIngredient" />
+      <option name="METHOD_NAME" value="checkProduct" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -142,11 +157,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GlutenAllergicTest.checkProduct" />
+        <item itemvalue="JUnit.GlutenAllergicTest" />
+        <item itemvalue="JUnit.ConfigurationTest" />
         <item itemvalue="JUnit.taamAppTest" />
         <item itemvalue="JUnit.taamAppTest.checkProductBarcode" />
-        <item itemvalue="Application.MainWebServer" />
-        <item itemvalue="JUnit.GlutenAllergicTest" />
-        <item itemvalue="JUnit.GlutenAllergicTest.checkIngredient" />
       </list>
     </recent_temporary>
   </component>

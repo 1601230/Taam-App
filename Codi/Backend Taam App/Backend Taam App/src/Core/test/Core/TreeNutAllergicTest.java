@@ -34,7 +34,7 @@ public class TreeNutAllergicTest {
     @Test
     public void checkProduct() throws SQLException
     {
-        Tree_Nut_Allergic tree_nut_allergic = new Tree_Nut_Allergic();
+        TreeNutAllergic tree_nut_allergic = new TreeNutAllergic();
         Result result = new Result();
 
         result = tree_nut_allergic.checkProduct(null);
@@ -68,7 +68,7 @@ public class TreeNutAllergicTest {
 
     @Test
     public void checkIngredient() throws SQLException {
-        Tree_Nut_Allergic tree_nut_allergic = new Tree_Nut_Allergic();
+        TreeNutAllergic tree_nut_allergic = new TreeNutAllergic();
         Result result = new Result();
         Ingredient ingredient = new Ingredient();
 

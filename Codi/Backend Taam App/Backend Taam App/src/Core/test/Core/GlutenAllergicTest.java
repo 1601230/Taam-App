@@ -50,7 +50,7 @@ public class GlutenAllergicTest {
     }
     @Test
     public void checkProduct() throws SQLException {
-        Gluten_Allergic gluten_allergic = new Gluten_Allergic();
+        GlutenAllergic gluten_allergic = new GlutenAllergic();
         Result result = new Result();
 
         //suitable ingredientList
@@ -81,7 +81,7 @@ public class GlutenAllergicTest {
 
     @Test
     public void checkIngredient() throws SQLException {
-        Gluten_Allergic gluten_allergic = new Gluten_Allergic();
+        GlutenAllergic gluten_allergic = new GlutenAllergic();
         Result result = new Result();
         Ingredient ingredient = new Ingredient();
 

@@ -34,7 +34,7 @@ public class LactoseAllergicTest {
 
     @Test
     public void checkProduct() throws SQLException {
-        Lactose_Allergic lactose_allergic = new Lactose_Allergic();
+        LactoseAllergic lactose_allergic = new LactoseAllergic();
         Result result = new Result();
 
         result = lactose_allergic.checkProduct(null);
@@ -68,7 +68,7 @@ public class LactoseAllergicTest {
 
     @Test
     public void checkIngredient() throws SQLException {
-        Lactose_Allergic lactose_allergic = new Lactose_Allergic();
+        LactoseAllergic lactose_allergic = new LactoseAllergic();
         Result result = new Result();
         Ingredient ingredient = new Ingredient();
 

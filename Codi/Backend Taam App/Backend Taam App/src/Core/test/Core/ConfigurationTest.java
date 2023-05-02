@@ -3,8 +3,6 @@ package Core;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class ConfigurationTest {
 
     @Test
@@ -20,10 +18,10 @@ public class ConfigurationTest {
         Assert.assertTrue(visitor instanceof Vegan);
 
         visitor = configuration.createConfiguration("allergictolactose");
-        Assert.assertTrue(visitor instanceof Lactose_Allergic);
+        Assert.assertTrue(visitor instanceof LactoseAllergic);
 
         visitor = configuration.createConfiguration("allergic%20to%5Blactose  ");
-        Assert.assertTrue(visitor instanceof Lactose_Allergic);
+        Assert.assertTrue(visitor instanceof LactoseAllergic);
 
         //non existent configurations
         visitor = configuration.createConfiguration("");
