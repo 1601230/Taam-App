@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a0cac8a-06de-4f8a-987a-abf691d3421a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Configuration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Configuration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Searcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Searcher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Taam_App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Taam_App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Teetotal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Teetotal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Tree_Nut_Allergic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Tree_Nut_Allergic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Vegan.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Vegan.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/WebServer/WebServer$SocketThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/WebServer/WebServer$SocketThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Backend Taam App/Core/Lactose_AllergicTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Backend Taam App/Core/Lactose_AllergicTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Backend Taam App/Core/SearcherTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Backend Taam App/Core/SearcherTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Backend Taam App/Core/Taam_AppTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Backend Taam App/Core/Taam_AppTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Backend Taam App/Core/TeetotalTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Backend Taam App/Core/TeetotalTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Backend Taam App/Core/Tree_Nut_AllergicTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Backend Taam App/Core/Tree_Nut_AllergicTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Backend Taam App/Core/VeganTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Backend Taam App/Core/VeganTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Backend Taam App/Core/VegetarianTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Backend Taam App/Core/VegetarianTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/test/Core/Tree_Nut_AllergicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/test/Core/Tree_Nut_AllergicTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Vegan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Vegan.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

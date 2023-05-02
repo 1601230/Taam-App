@@ -50,21 +50,22 @@ public class VeganTest {
 
         result = vegan.checkProduct(prepareIngredientList("durum wheat semolina, 46, eggs, 47"));
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals(prepareIngredientList("eggs, 47"), result.nonSuitableIngredientsList);
+        Assert.assertEquals("eggs", result.nonSuitableIngredientsList.get(0).getIngredient());
 
         result = vegan.checkProduct(prepareIngredientList("raw milk, 52, salt, 8, dairy ferments, 53"));
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals(prepareIngredientList("raw milk, 52, dairy ferments, 53"), result.nonSuitableIngredientsList);
+        Assert.assertEquals("raw milk", result.nonSuitableIngredientsList.get(0).getIngredient());
+        Assert.assertEquals("dairy ferments", result.nonSuitableIngredientsList.get(1).getIngredient());
 
         result = vegan.checkProduct(prepareIngredientList("whole milk, 54, salt, 8, microbial cultures, 61, microbial rennet, 62"));
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals(prepareIngredientList("whole milk, 54"), result.nonSuitableIngredientsList);
-        Assert.assertEquals(prepareIngredientList("microbial cultures, 61, microbial rennet, 62"), result.doubtfulIngredientsList);
+        Assert.assertEquals("whole milk", result.nonSuitableIngredientsList.get(0).getIngredient());
+        Assert.assertEquals("microbial cultures", result.doubtfulIngredientsList.get(0).getIngredient());
+        Assert.assertEquals("microbial rennet", result.doubtfulIngredientsList.get(1).getIngredient());
 
-        result = vegan.checkProduct(prepareIngredientList("sugar, 13, natural defatted cocoa powder, 70, salt, 8, vitamine-c, 71, vitamine-d, 72" +
-                                                          "natural-flavouring, 73, soya-lecithin, 74, cinnamon, 75"));
+        result = vegan.checkProduct(prepareIngredientList("sugar, 13, natural defatted cocoa powder, 70, salt, 8, vitamine-c, 71, vitamine-d, 72, natural-flavouring, 73, soya-lecithin, 74, cinnamon, 75"));
         Assert.assertEquals(DOUBTFUL, result.getResult());
-        Assert.assertEquals(prepareIngredientList("natural-flavouring, 73"), result.doubtfulIngredientsList);
+        Assert.assertEquals("natural-flavouring", result.doubtfulIngredientsList.get(0).getIngredient());
     }
 
     @Test

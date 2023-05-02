@@ -19,6 +19,8 @@ public class Vegan implements Visitor{
         Connection conn = ConnectDB.getConnection();
         Result result = new Result();
 
+        boolean ingredientFound = false;
+
         for (Ingredient ingredient : ingredientsList) {
             PreparedStatement stmt = conn.prepareStatement("SELECT vegan FROM public.ingredients WHERE id=?");
             stmt.setInt(1, ingredient.getId());
@@ -32,8 +34,13 @@ public class Vegan implements Visitor{
                 {
                     result.doubtfulIngredientsList.add(ingredient);
                 }
+                ingredientFound = true;
             }
 
+        }
+
+        if(ingredientFound == false){
+            return null;
         }
 
         if (!result.nonSuitableIngredientsList.isEmpty())
@@ -64,6 +71,8 @@ public class Vegan implements Visitor{
         stmt.setInt(1, ingredient.getId());
         ResultSet res = stmt.executeQuery();
 
+        boolean ingredientFound = false;
+
         while (res.next()) {
             if (res.getInt("vegan") == 1)
             {
@@ -72,6 +81,11 @@ public class Vegan implements Visitor{
             {
                 result.doubtfulIngredientsList.add(ingredient);
             }
+            ingredientFound = true;
+        }
+
+        if(ingredientFound == false){
+            return null;
         }
 
         if (!result.nonSuitableIngredientsList.isEmpty())
