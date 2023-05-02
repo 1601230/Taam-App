@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a0cac8a-06de-4f8a-987a-abf691d3421a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Core/test/Core/TreeNutAllergicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/test/Core/TreeNutAllergicTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/test/Core/VeganTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/test/Core/VeganTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +62,7 @@
       <recent name="Core" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TreeNutAllergicTest">
+  <component name="RunManager" selected="JUnit.VeganTest">
     <configuration name="Core in Backend Taam App" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Backend Taam App" />
       <extension name="coverage">
@@ -73,21 +73,6 @@
       </extension>
       <option name="PACKAGE_NAME" value="Core" />
       <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GlutenAllergicTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Backend Taam App" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Core.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Core" />
-      <option name="MAIN_CLASS_NAME" value="Core.GlutenAllergicTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -137,13 +122,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="VeganTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Backend Taam App" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Core" />
+      <option name="MAIN_CLASS_NAME" value="Core.VeganTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.VeganTest" />
         <item itemvalue="JUnit.TreeNutAllergicTest" />
         <item itemvalue="JUnit.TeetotalTest" />
         <item itemvalue="JUnit.Core in Backend Taam App" />
         <item itemvalue="JUnit.LactoseAllergicTest" />
-        <item itemvalue="JUnit.GlutenAllergicTest" />
       </list>
     </recent_temporary>
   </component>

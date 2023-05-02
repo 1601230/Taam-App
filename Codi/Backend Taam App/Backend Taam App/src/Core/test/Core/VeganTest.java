@@ -68,22 +68,20 @@ public class VeganTest {
 
         result = vegan.checkProduct(prepareIngredientList("durum wheat semolina, 46, eggs, 47"));
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals("eggs", result.nonSuitableIngredientsList.get(0).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("eggs, 47"), result.nonSuitableIngredientsList));
 
         result = vegan.checkProduct(prepareIngredientList("raw milk, 52, salt, 8, dairy ferments, 53"));
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals("raw milk", result.nonSuitableIngredientsList.get(0).getIngredient());
-        Assert.assertEquals("dairy ferments", result.nonSuitableIngredientsList.get(1).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("raw milk, 52, dairy ferments, 53"), result.nonSuitableIngredientsList));
 
         result = vegan.checkProduct(prepareIngredientList("whole milk, 54, salt, 8, microbial cultures, 61, microbial rennet, 62"));
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals("whole milk", result.nonSuitableIngredientsList.get(0).getIngredient());
-        Assert.assertEquals("microbial cultures", result.doubtfulIngredientsList.get(0).getIngredient());
-        Assert.assertEquals("microbial rennet", result.doubtfulIngredientsList.get(1).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("whole milk, 54"), result.nonSuitableIngredientsList));
+        Assert.assertTrue(equals(prepareIngredientList("microbial cultures, 61, microbial rennet, 62"), result.doubtfulIngredientsList));
 
         result = vegan.checkProduct(prepareIngredientList("sugar, 13, natural defatted cocoa powder, 70, salt, 8, vitamine-c, 71, vitamine-d, 72, natural-flavouring, 73, soya-lecithin, 74, cinnamon, 75"));
         Assert.assertEquals(DOUBTFUL, result.getResult());
-        Assert.assertEquals("natural-flavouring", result.doubtfulIngredientsList.get(0).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("natural-flavouring, 73"), result.doubtfulIngredientsList));
     }
 
     @Test
@@ -114,18 +112,18 @@ public class VeganTest {
         ingredient.setId(81);
         result = vegan.checkIngredient(ingredient);
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals("skimmed-milk powder", result.nonSuitableIngredientsList.get(0).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("skimmed-milk powder, 81"), result.nonSuitableIngredientsList));
 
         ingredient.setIngredient("sweetened and skimmed condensed milk");
         ingredient.setId(87);
         result = vegan.checkIngredient(ingredient);
         Assert.assertEquals(UNSUITABLE, result.getResult());
-        Assert.assertEquals("sweetened and skimmed condensed milk", result.nonSuitableIngredientsList.get(0).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("sweetened and skimmed condensed milk, 87"), result.nonSuitableIngredientsList));
 
         ingredient.setIngredient("roasted peanuts 90%");
         ingredient.setId(48);
         result = vegan.checkIngredient(ingredient);
         Assert.assertEquals(DOUBTFUL, result.getResult());
-        Assert.assertEquals("roasted peanuts 90%", result.doubtfulIngredientsList.get(0).getIngredient());
+        Assert.assertTrue(equals(prepareIngredientList("roasted peanuts 90%, 48"), result.doubtfulIngredientsList));
     }
 }
