@@ -105,64 +105,64 @@ public class WebServer {
                 {
                     case "restrictions":
                         String token = tokens[counter + 1];
-                        Taam_App.getInstance().setRestrictions(token);
-                        result = Taam_App.getInstance().recommendedProducts();
+                        TaamApp.getInstance().setRestrictions(token);
+                        result = TaamApp.getInstance().recommendedProducts();
                         counter = counter + 2;
                         break;
 
                     case "language":
                         String language = tokens[counter + 1];
-                        Taam_App.getInstance().setLanguage(language);
+                        TaamApp.getInstance().setLanguage(language);
                         counter = counter + 2;
                         break;
 
                     case "restrictionsList":
-                        result = Taam_App.getInstance().getRestrictionsList();
+                        result = TaamApp.getInstance().getRestrictionsList();
                         counter = counter + 1;
                         break;
 
                     case "barcode":
                         String barcode = tokens[counter + 1];
-                        result = Taam_App.getInstance().checkProductBarcode(barcode);
+                        result = TaamApp.getInstance().checkProductBarcode(barcode);
                         counter = counter + 2;
                         break;
 
                     case "name":
                         String name = tokens[counter + 1];
-                        result = Taam_App.getInstance().checkProductIngredientName(name);
+                        result = TaamApp.getInstance().checkProductIngredientName(name);
                         counter = counter + 2;
                         break;
 
                     case "notFound":
-                        Taam_App.getInstance().notFound();
+                        TaamApp.getInstance().notFound();
                         counter = counter + 1;
                         break;
 
                     case "incident":
                         String observation = tokens[counter + 1];
-                        Taam_App.getInstance().incident(observation);
+                        TaamApp.getInstance().incident(observation);
                         counter = counter + 2;
                         break;
 
                     case "refresh":
-                        result = Taam_App.getInstance().refreshRecommendedProducts();
+                        result = TaamApp.getInstance().refreshRecommendedProducts();
                         counter = counter + 1;
                         break;
 
                     case "getQuestions":
-                        result = Taam_App.getInstance().getFrequentQuestions();
+                        result = TaamApp.getInstance().getFrequentQuestions();
                         counter = counter + 1;
                         break;
 
                     case "getAnswer":
                         String questionId = tokens[counter + 1];
-                        result = Taam_App.getInstance().getAnswer(questionId);
+                        result = TaamApp.getInstance().getAnswer(questionId);
                         counter = counter + 2;
                         break;
 
                     case "sendQuestion":
                         String question = tokens[counter + 1];
-                        result = Taam_App.getInstance().saveQuestion(question);
+                        result = TaamApp.getInstance().saveQuestion(question);
                         counter = counter + 2;
                         break;
 

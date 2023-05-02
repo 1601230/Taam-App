@@ -12,8 +12,8 @@ import static Core.Edible.*;
  * the "singleton" pattern because we are only interested in having one instance of this module, so that each client
  * uses the same instance during all its requests to the server.
  */
-public class Taam_App {
-    private static Taam_App instance = null;
+public class TaamApp {
+    private static TaamApp instance = null;
     private DataBase db = new DataBase();
     public static Searcher searcher = new Searcher();
     public static Product product = new Product();
@@ -27,7 +27,7 @@ public class Taam_App {
      * instances from being created, as the aim is that only one instance is created and that the same instance is used at
      * all times. at all times. From this constructor the connection to the local database is established.
      */
-    private Taam_App()
+    private TaamApp()
     {
         ConnectDB.getConnection();
     }
@@ -36,10 +36,10 @@ public class Taam_App {
      * This method is used to retrieve the unique instance of the class "Taam App" (in case the instance is not created,
      * it is created using the private constructor).
      */
-    public static Taam_App getInstance()
+    public static TaamApp getInstance()
     {
         if (instance == null) {
-            instance = new Taam_App();
+            instance = new TaamApp();
         }
 
         return instance;
@@ -192,7 +192,7 @@ public class Taam_App {
     }
 
     public Map<String, Object> checkProductBarcode(String barcode) throws SQLException {
-        product = Taam_App.getInstance().checkBarcode(barcode);
+        product = TaamApp.getInstance().checkBarcode(barcode);
 
         if (product != null && Configuration.getInstance().getUserRestrictionsList() != null) {
             Map<String, Object> resultToBeReturnedToFlutter = new HashMap<String, Object>();
