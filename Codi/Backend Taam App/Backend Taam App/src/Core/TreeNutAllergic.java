@@ -8,6 +8,13 @@ import java.util.List;
 
 import static Core.Edible.*;
 
+/**
+ * Meaning of the values associated with the ingredients in the database:
+ * 0: UNSUITABLE
+ * 1: SUITABLE
+ * 2: DOUBTFUL
+ */
+
 public class TreeNutAllergic implements Visitor{
 
     @Override

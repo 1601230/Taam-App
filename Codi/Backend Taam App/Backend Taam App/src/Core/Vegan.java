@@ -7,6 +7,12 @@ import java.sql.SQLException;
 import java.util.List;
 import static Core.Edible.*;
 
+/**
+ * Meaning of the values associated with the ingredients in the database:
+ * 0: SUITABLE
+ * 1: UNSUITABLE
+ * 2: DOUBTFUL
+ */
 public class Vegan implements Visitor{
 
     @Override
