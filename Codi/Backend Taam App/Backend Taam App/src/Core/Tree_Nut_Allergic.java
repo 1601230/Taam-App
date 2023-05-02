@@ -12,9 +12,14 @@ public class Tree_Nut_Allergic implements Visitor{
 
     @Override
     public Result checkProduct(List<Ingredient> ingredientsList) throws SQLException {
+        if(ingredientsList == null){
+            return null;
+        }
+
         Result result = new Result();
         Connection conn = ConnectDB.getConnection();
 
+        boolean ingredientFound = false;
         for (Ingredient ingredient : ingredientsList)
         {
             String sql = "SELECT nuts FROM public.ingredients WHERE id=?;";
@@ -32,9 +37,13 @@ public class Tree_Nut_Allergic implements Visitor{
                 {
                     result.doubtfulIngredientsList.add(ingredient);
                 }
+                ingredientFound = true;
             }
         }
 
+        if(ingredientFound == false){
+            return null;
+        }
         if (result.nonSuitableIngredientsList.size() != 0)
         {
             result.setResult(UNSUITABLE);
