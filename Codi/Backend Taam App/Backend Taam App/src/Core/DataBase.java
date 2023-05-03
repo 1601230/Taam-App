@@ -83,7 +83,12 @@ public class DataBase {
         return result;
     }
 
-    public ResultSet insertQuestion() throws SQLException {
-        return null;
+    public void insertQuestion(String question) throws SQLException {
+        Connection conn = ConnectDB.getConnection();
+
+        String sql = "INSERT INTO public.question_requests(question_user) VALUES (?)";
+        PreparedStatement stringSTMT = conn.prepareStatement(sql);
+        stringSTMT.setString(1, question);
+        stringSTMT.executeUpdate();
     }
 }

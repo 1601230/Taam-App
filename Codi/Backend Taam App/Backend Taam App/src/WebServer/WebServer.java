@@ -162,7 +162,7 @@ public class WebServer {
 
                     case "sendQuestion":
                         String question = tokens[counter + 1];
-                        result = TaamApp.getInstance().saveQuestion(question);
+                        TaamApp.getInstance().saveQuestion(question);
                         counter = counter + 2;
                         break;
 
