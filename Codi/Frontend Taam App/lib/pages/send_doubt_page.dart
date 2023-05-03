@@ -7,14 +7,16 @@ import 'package:taam_app/pages/confirm_doubt_page.dart';
 import '../main.dart';
 
 
-
 class MyDoubt extends StatefulWidget {
   @override
-  _SendDoubtPage createState() => _SendDoubtPage();
+
+  final BuildContext context;
+  MyDoubt(this.context);
+  SendDoubtPage createState() => SendDoubtPage();
 }
 
 
-class _SendDoubtPage extends State<MyDoubt>{
+class SendDoubtPage extends State<MyDoubt>{
 
   String _text = '';
 

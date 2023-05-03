@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:taam_app/pages/send_doubt_page.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'package:taam_app/pages/incorrect_form_page.dart';
 import 'package:taam_app/pages/search_product_page.dart';
@@ -8,14 +9,24 @@ import 'package:taam_app/pages/confirm_doubt_page.dart';
 import '../main.dart';
 
 
+
+//metodo para recuperar soluciones segun el string pasado
+
+
 class MyQuestions extends StatefulWidget {
-  const MyQuestions({super.key});
+
+  final String question;
+
+  const MyQuestions({Key? key, required this.question});
+
 
   @override
-  GeneralQuestions createState() => GeneralQuestions();
+  Questions createState() => Questions();
+
+
 }
 
-class GeneralQuestions extends State<MyQuestions> {
+class Questions extends State<MyQuestions> {
 
   @override
   Widget build(BuildContext context) {
@@ -53,24 +64,32 @@ class GeneralQuestions extends State<MyQuestions> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
+          Container(
+            margin: EdgeInsets.only(top: 20, bottom: 20),
             child: Text(
-              'Preguntas',
+              'Pregunta 1',
+              textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 24.0,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
-          Divider()
-    ]
-    ),
-
-
-
-
-
+          Container(
+            margin: EdgeInsets.only(top: 20, bottom: 20),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text(
+              'My text',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+        ],
+      ),
 
     );
 
