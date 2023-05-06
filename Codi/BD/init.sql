@@ -940,9 +940,69 @@ INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8431
 
 /* INSERTs table frequent_questions */
 
-INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES ('x', 'x', 'x', 'x', 'x', 'x');
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) 
+VALUES (
+    '¿Como usuario puedo recomendar la agregación de un producto que no aparece en la aplicación?', 
+    'Com a usuari puc recomanar l''agregació d''un producte que no apareix en l''aplicació?', 
+    'As a user, can I recommend the addition of a product that does not appear in the application?', 
+    'Si. Cuando introduzca un producto (desde cualquiera de los dos buscadores o el escaneo de código de barras) y este no está en nuestras bases de datos se os mostrara por una pantalla  un aviso y un botón "Reportar Producto". Debe presionar el botón para solicitar el producto.', 
+    'Si. Quan introdueixi un producte (des de qualsevol dels dos cercadors o l''escaneig de codi de barres) i aquest no estigui a les nostres bases de dades se us mostrarà per una pantalla un avís i un botó "Informar sobre producte". Ha de prémer el botó per sol·licitar el producte.', 
+    'Yes. When you enter a product (from either of the two search engines or barcode scanning) and it is not in our databases, you will be shown a notice and a "Report Product" button on the screen. You must press the button to request the product.'
+);
 
-INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES ('¿Como usuario puedo recomendar la agregación de un producto que no aparece en la aplicación?', 'Com a usuari puc recomanar lagregació dun producte que no apareix en laplicació?', 'As a user, can I recommend the addition of a product that does not appear in the application?', 'Si. Cuando introduzca un producto (desde cualquiera de los dos buscadores o el escaneo de código de barras) y este no está en nuestras bases de datos se os mostrara por una pantalla  un aviso y un botón (Reportar Producto). Debe presionar el botón para solicitar el producto.', 'Si. Quan introdueixi un producte (des de qualsevol dels dos cercadors o lescaneig de codi de barres) i aquest no estigui a les nostres bases de dades se us mostrarà per una pantalla un avís i un botó (Informar sobre producte). Ha de prémer el botó per sol·licitar el producte.', 'Yes. When you enter a product (from either of the two search engines or barcode scanning) and it is not in our databases, you will be shown a notice and a (Report Product) button on the screen. You must press the button to request the product.');
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    '¿Que significa que un ingrediente es dudoso?', 
+    'Què significa que un ingredient sigui dubtós?', 
+    'What does it mean when an ingredient is dubious?', 
+    'La presencia de un ingrediente dudoso puede significar dos cosas. En primer lugar, puede ser que el ingrediente en general no contenga sustancias que violen la restricción alimentaria, pero como este ingrediente no ha sido lo suficientemente investigado o no ha arrojado resultados estables y seguros en investigaciones sobre su contenido de la sustancia, se considera que puede contener esta sustancia restrictiva. En segundo lugar, puede ser que el alimento se produzca en una fábrica que procesa otros alimentos que contienen una sustancia que no cumple la restricción y, por lo tanto, existe una probabilidad de que esta sustancia haya caído o se haya mezclado con este alimento.', 
+    'La presència d''un ingredient dubtós pot significar dues coses. En primer lloc, pot ser que l''ingredient en general no contingui substàncies que violin la restricció alimentària, però com que aquest ingredient no ha estat prou investigat o no ha donat resultats estables i segurs en investigacions sobre el seu contingut de la substància, es considera que pot contenir aquesta substància restrictiva. En segon lloc, pot ser que l''aliment es produeixi en una fàbrica que processa altres aliments que contenen una substància que no compleix la restricció i, per tant, existeix una probabilitat que aquesta substància hagi caigut o s''hagi barrejat amb aquest aliment.', 
+    'The presence of a questionable ingredient can mean two things. Firstly, that the ingredient in general does not contain substances that violate the dietary restriction, but since this ingredient has not been sufficiently investigated or has not yielded stable and secure results in research on its content of the substance, it is considered that it may contain this restrictive substance. Secondly, it may be that the food is produced in a factory that processes other foods that contain a substance that does not comply with the restriction, and therefore there is a probability that this substance has fallen or been mixed with this food.'
+);
+
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    '¿Puedo consumir un producto que contiene ingredientes dudosos respecto a mis restricciones?', 
+    'Puc consumir un producte que conté ingredients dubtosos respecte a les meves restriccions?', 
+    'Can I consume a product that contains ingredients that are dubious with regard to my restrictions?', 
+    'No es recomendable consumir un producto que contenga ingredientes que no cumplan con vuestras restricciones alimentarias. El consumo de este producto es responsabilidad exclusiva del consumidor y dependerá del grado de sensibilidad o alergia que tenga a dicho ingrediente, pudiendo provocar reacciones negativas en su organismo.', 
+    'No és recomanable consumir un producte que contingui ingredients que no compleixin les vostres restriccions alimentàries. El consum d''aquest producte és responsabilitat exclusiva del consumidor i depèn del grau de sensibilitat o al·lèrgia que tingui a aquest ingredient, podent provocar reaccions negatives en el seu organisme.', 
+    'It is not advisable to consume a product that contains ingredients that do not comply with your dietary restrictions. The consumption of this product is the sole responsibility of the consumer and will depend on the degree of sensitivity or allergy they have to that ingredient, which can cause negative reactions in their body.'
+);
+
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    'Tengo restricciones alimentarias. ¿Esta aplicación puede ajustarse a ellas?', 
+    'Tinc restriccions alimentàries. Aquesta aplicació pot adaptar-se a elles?', 
+    'I have dietary restrictions. Can this app accommodate them?', 
+    'Sí, la aplicación ha sido creada precisamente para este propósito. Desde el icono de ajustes ubicado en la esquina superior de la pantalla principal, puede configurar sus restricciones alimentarias para que la aplicación pueda recomendarle alimentos adecuados a sus necesidades y mostrarle qué ingredientes en los productos que busque son los que hacen que el producto sea apto o no apto para usted.', 
+    'Sí, l''aplicació ha estat creada precisament per a aquesta finalitat. Des de la icona d''ajustos situada a la cantonada superior de la pantalla principal, pot configurar les seves restriccions alimentàries perquè l''aplicació pugui recomanar-li aliments adequats a les seves necessitats i mostrar-li quins ingredients en els productes que busqui són els que fan que el producte sigui apte o no apte per a vostè.', 
+    'Yes, the application has been created precisely for this purpose. From the settings icon located in the upper corner of the main screen, you can configure your dietary restrictions so that the application can recommend appropriate foods to meet your needs and show you which ingredients in the products you search for make the product suitable or unsuitable for you.'
+);
+
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    '¿Cómo puedo configurar mis restricciones alimentarias?', 
+    'Com puc configurar les meves restriccions alimentàries?', 
+    'How can I set up my dietary restrictions?', 
+    'Desde la pantalla principal, al presionar el icono de ajustes ubicado en la esquina superior derecha, tendrá acceso a la configuración de sus restricciones alimentarias.', 
+    'Des de la pantalla principal, en prémer la icona d''ajustos situada a la cantonada superior dreta, tindrà accés a la configuració de les seves restriccions alimentàries.', 
+    'From the main screen, by pressing the settings icon located in the upper-right corner, you will have access to the configuration of your dietary restrictions.'
+);
+
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    '¿Cómo puedo saber si un producto es apto para mis restricciones alimentarias?', 
+    'Com puc saber si un producte és apte per a les meves restriccions alimentàries?', 
+    'How can I tell if a product is suitable for my dietary restrictions?', 
+    'Puede verificar si un producto es adecuado para sus restricciones revisando los ingredientes del mismo. En la parte derecha de la tabla de ingredientes, proporcionamos información sobre si el ingrediente es apto, no apto o dudoso con respecto a sus restricciones. Además, en la pantalla principal de la aplicación, se le recomendarán únicamente productos que sean adecuados según sus restricciones.', 
+    'Pot comprovar si un producte és adequat per a les seves restriccions revisant els ingredients del mateix. A la part dreta de la taula d''ingredients, proporcionem informació sobre si l''ingredient és apte, no apte o dubtós amb respecte a les seves restriccions. A més, en la pantalla principal de l''aplicació, se li recomanaran únicament productes que siguin adequats segons les seves restriccions.', 
+    'You can determine whether a product is suitable for your restrictions by checking its ingredients. On the right-hand side of the ingredient table, we provide information on whether the ingredient is suitable, unsuitable, or dubious with respect to your restrictions. Additionally, on the main screen of the application, we will recommend only products that are suitable according to your restrictions.'
+);
+
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    'Una vez definidas mis restricciones alimentarias, ¿puedo volver a configurarlas?', 
+    'Un cop definides les meves restriccions alimentàries, puc tornar a configurar-les?', 
+    'Once my dietary restrictions are defined, can I reconfigure them?', 
+    'Sí. Puede modificar sus restricciones alimentarias cuantas veces lo desee. La aplicación se actualizará automáticamente para adaptarse a sus nuevas necesidades.', 
+    'Sí. Pot modificar les seves restriccions alimentàries tantes vegades com desitgi. L''aplicació s''actualitzarà automàticament per adaptar-se a les seves noves necessitats.', 
+    'Yes. You can modify your dietary restrictions as many times as you wish. The application will update automatically to adapt to your new needs.'
+);
 
 /* Other - for testing */
 
