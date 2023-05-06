@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 
 final http.Client client = http.Client();
-const String baseUrl = "http://192.168.1.26:8080";
+const String baseUrl = "http://10.10.7.201:8080";
 
 
 Future<Map<String, dynamic>> searchProductByBarcode(int barcode) async {
@@ -64,6 +64,21 @@ Future<Map<String, dynamic>> getPreferences() async {
 
 Future<Map<String, dynamic>> getReccomendations(String listPreferences) async {
   String uri = "$baseUrl/restrictions/$listPreferences/end";
+  final response = await client.get(Uri.parse(uri));
+
+  if (response.statusCode == 200) {
+    String data = response.body;
+
+    Map<String, dynamic> map = stringToMap(data);
+    return map;
+  } else {
+    print("statusCode=$response.statusCode");
+    throw Exception('Failed to get children');
+  }
+}
+
+Future<Map<String, dynamic>> getRefresh() async {
+  String uri = "$baseUrl/refresh/end";
   final response = await client.get(Uri.parse(uri));
 
   if (response.statusCode == 200) {

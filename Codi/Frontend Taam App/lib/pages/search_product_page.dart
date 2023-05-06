@@ -25,21 +25,44 @@ Future<Map<String, dynamic>> _searchByName(String nameString) async {
   return aux;
 }
 
-Future<Map<String, dynamic>?> _getRecommendations(List<String> listPreferences) async {
+Future<List<String>>? _getRecommendations(List<String> listPreferences) async {
   String preferences = listPreferences.join(", ");
-  Map<String, dynamic> aux = await getReccomendations(preferences);
-  return aux;
+  Map<String, dynamic> recommendations = await getReccomendations(preferences);
+
+  List<String> listRecommendations = [];
+  for (String value in recommendations.values) {
+    value = value.substring(1, value.length - 1); // elimina los corchetes del inicio y fin
+    _getPartsRecommendations(listRecommendations);
+    listRecommendations.add(value);
+  }
+
+  return listRecommendations;
+}
+
+List<String> _getPartsRecommendations(List<String> listRecommendations) {
+  List<String> listPartsRecommendations = [];
+  for (String parts in listRecommendations) {
+    List<String> partsRecommendations = parts.split(", ");
+    listPartsRecommendations.addAll(partsRecommendations);
+  }
+
+  return listPartsRecommendations;
+}
+
+Future<List<String>>? _getRefresh() async {
+  Map<String, dynamic> recommendations = await getRefresh();
+
+  List<String> listRecommendations = [];
+  for (String value in recommendations.values) {
+    value = value.substring(1, value.length - 1); // elimina los corchetes del inicio y fin
+    _getPartsRecommendations(listRecommendations);
+    listRecommendations.add(value);
+  }
+
+  return listRecommendations;
 }
 
 ///---------------------------------------------------------------------------------------------------------------------------------------------
-
-
-class MyData {
-  String title;
-  String subtitle;
-
-  MyData({required this.title, required this.subtitle});
-}
 
 class MySearchProduct extends StatefulWidget {
   const MySearchProduct({super.key});
@@ -58,12 +81,30 @@ class _MySearchProduct extends State<MySearchProduct> {
   final _focusNodeBarcode = FocusNode();
   late String scanResult;
   late PageConfiguration settings = new PageConfiguration();
-  
+  List<String>? _listRecommentadions = [];
+  List<String>? _listPartsRecommendations = [];
+
   @override
   void initState() {
     super.initState();
     _productController.addListener(_updateProductText);
     _barcodeController.addListener(_updateBarcodeText);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadRecommendations();
+  }
+
+  Future<void> _loadRecommendations() async {
+    final settingsProvider = Provider.of<SettingsProvider>(context);
+    List<String>? listRecommendations = await _getRecommendations(settingsProvider.foodPreferences);
+    List<String> listPartRecommendations = _getPartsRecommendations(listRecommendations!);
+    setState(() {
+      _listRecommentadions = listRecommendations;
+      _listPartsRecommendations = listPartRecommendations;
+    });
   }
 
   void _updateProductText(){
@@ -96,19 +137,6 @@ class _MySearchProduct extends State<MySearchProduct> {
 
     setState(() {
       loadingScreen = false;
-    });
-  }
-
-  Future<void> _reloadRecommendations() async {
-    setState(() {
-      loadingRecommendations = true;
-    });
-
-    // Aquí va la tarea asincrónica de búsqueda de productos o ingredientes
-    await Future.delayed(Duration(seconds: 2));
-
-    setState(() {
-      loadingRecommendations = false;
     });
   }
 
@@ -332,7 +360,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(right: 20.0),
+                          padding: EdgeInsets.only(right: 10.0),
                           child: Text(
                             AppLocalizations.of(context)!.titleRecomendaciones,
                             style: TextStyle(
@@ -342,8 +370,17 @@ class _MySearchProduct extends State<MySearchProduct> {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {
-                            _getRecommendations(settingsProvider.foodPreferences);
+                          onPressed: () async {
+                            setState(() {
+                              loadingRecommendations = true;
+                            });
+
+                            _listRecommentadions = await _getRefresh();
+                            _listPartsRecommendations = _getPartsRecommendations(_listRecommentadions!);
+
+                            setState(() {
+                              loadingRecommendations = false;
+                            });
                           },
                           icon: Icon(Icons.refresh),
                         ),
@@ -357,7 +394,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                         child: CircularProgressIndicator(),
                       ),)
                           : ListView.builder(
-                              itemCount: myData.length,
+                              itemCount: _listRecommentadions?.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return Padding(
                                   padding: EdgeInsets.symmetric(vertical: 4.0),
@@ -378,18 +415,28 @@ class _MySearchProduct extends State<MySearchProduct> {
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                         children: [
-                                          Image.asset(
-                                            myData[index].subtitle,
-                                            width: 100.0,
-                                            height: 100.0,
+                                          Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Image.asset(
+                                              "assets/glutenfree_stamp.png",
+                                              width: 100.0,
+                                              height: 100.0,
+                                            ),
                                           ),
-                                          Text(
-                                            myData[index].title,
+                                          Flexible(
+                                            child: Text(
+                                              _listPartsRecommendations![index*2],
+                                              softWrap: true,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                          /*Text(
+                                            _listPartsRecommendations![index+1],
                                             style: const TextStyle(
                                               fontSize: 20.0,
                                               fontWeight: FontWeight.bold,
                                             ),
-                                          ),
+                                          ),*/
                                         ],
                                       ),
                                     ),
@@ -417,9 +464,28 @@ class _MySearchProduct extends State<MySearchProduct> {
   }
 }
 
+class MyData {
+  String title;
+  String subtitle;
+
+  MyData({required this.title, required this.subtitle});
+}
 
 final List<MyData> myData = [
   MyData(title: 'Colacao', subtitle: 'assets/vegan_stamp.png'),
   MyData(title: 'Alimento 2', subtitle: 'assets/glutenfree_stamp.png'),
   MyData(title: 'Alimento 3', subtitle: 'assets/vegan_stamp.png'),
 ];
+
+/*Future<void> _reloadRecommendations() async {
+    setState(() {
+      loadingRecommendations = true;
+    });
+
+    // Aquí va la tarea asincrónica de búsqueda de productos o ingredientes
+    await Future.delayed(Duration(seconds: 2));
+
+    setState(() {
+      loadingRecommendations = false;
+    });
+  }*/

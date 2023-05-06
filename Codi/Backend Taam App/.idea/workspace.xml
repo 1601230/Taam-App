@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e281fec6-cc42-4ac0-86b1-95ed76687a61" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Frontend Taam App/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend Taam App/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend Taam App/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend Taam App/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend Taam App/lib/pages/search_product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend Taam App/lib/pages/search_product_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Frontend Taam App/lib/requests.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend Taam App/lib/requests.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +33,7 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "C:/Users/Oscar Pozo Fernandez/Documents/GitHub/Taam-App/Codi/Backend Taam App",
+    "last_opened_file_path": "C:/Users/opfer/Ejercicios TQS/Practica_2_Nueva/Taam-App/Codi/Backend Taam App/Backend Taam App",
     "settings.editor.selected.configurable": "AndroidSdkUpdater",
     "show.migrate.to.gradle.popup": "false"
   }
