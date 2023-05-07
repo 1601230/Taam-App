@@ -940,12 +940,133 @@ INSERT INTO public.products_ingredients(product_id, ingredient_id) VALUES ('8431
 
 /* INSERTs table frequent_questions */
 
-INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES ('x', 'x', 'x', 'x', 'x', 'x');
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) 
+VALUES (
+    '¿Como usuario puedo recomendar la agregación de un producto que no aparece en la aplicación?', 
+    'Com a usuari puc recomanar l''agregació d''un producte que no apareix en l''aplicació?', 
+    'As a user, can I recommend the addition of a product that does not appear in the application?', 
+    'Si. Cuando introduzca un producto (desde cualquiera de los dos buscadores o el escaneo de código de barras) y este no está en nuestras bases de datos se os mostrara por una pantalla  un aviso y un botón "Reportar Producto". Debe presionar el botón para solicitar el producto.', 
+    'Si. Quan introdueixi un producte (des de qualsevol dels dos cercadors o l''escaneig de codi de barres) i aquest no estigui a les nostres bases de dades se us mostrarà per una pantalla un avís i un botó "Informar sobre producte". Ha de prémer el botó per sol·licitar el producte.', 
+    'Yes. When you enter a product (from either of the two search engines or barcode scanning) and it is not in our databases, you will be shown a notice and a "Report Product" button on the screen. You must press the button to request the product.'
+);
 
-INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES ('¿Como usuario puedo recomendar la agregación de un producto que no aparece en la aplicación?', 'Com a usuari puc recomanar lagregació dun producte que no apareix en laplicació?', 'As a user, can I recommend the addition of a product that does not appear in the application?', 'Si. Cuando introduzca un producto (desde cualquiera de los dos buscadores o el escaneo de código de barras) y este no está en nuestras bases de datos se os mostrara por una pantalla  un aviso y un botón (Reportar Producto). Debe presionar el botón para solicitar el producto.', 'Si. Quan introdueixi un producte (des de qualsevol dels dos cercadors o lescaneig de codi de barres) i aquest no estigui a les nostres bases de dades se us mostrarà per una pantalla un avís i un botó (Informar sobre producte). Ha de prémer el botó per sol·licitar el producte.', 'Yes. When you enter a product (from either of the two search engines or barcode scanning) and it is not in our databases, you will be shown a notice and a (Report Product) button on the screen. You must press the button to request the product.');
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    '¿Que significa que un ingrediente es dudoso?', 
+    'Què significa que un ingredient sigui dubtós?', 
+    'What does it mean when an ingredient is dubious?', 
+    'La presencia de un ingrediente dudoso puede significar dos cosas. En primer lugar, puede ser que el ingrediente en general no contenga sustancias que violen la restricción alimentaria, pero como este ingrediente no ha sido lo suficientemente investigado o no ha arrojado resultados estables y seguros en investigaciones sobre su contenido de la sustancia, se considera que puede contener esta sustancia restrictiva. En segundo lugar, puede ser que el alimento se produzca en una fábrica que procesa otros alimentos que contienen una sustancia que no cumple la restricción y, por lo tanto, existe una probabilidad de que esta sustancia haya caído o se haya mezclado con este alimento.', 
+    'La presència d''un ingredient dubtós pot significar dues coses. En primer lloc, pot ser que l''ingredient en general no contingui substàncies que violin la restricció alimentària, però com que aquest ingredient no ha estat prou investigat o no ha donat resultats estables i segurs en investigacions sobre el seu contingut de la substància, es considera que pot contenir aquesta substància restrictiva. En segon lloc, pot ser que l''aliment es produeixi en una fàbrica que processa altres aliments que contenen una substància que no compleix la restricció i, per tant, existeix una probabilitat que aquesta substància hagi caigut o s''hagi barrejat amb aquest aliment.', 
+    'The presence of a questionable ingredient can mean two things. Firstly, that the ingredient in general does not contain substances that violate the dietary restriction, but since this ingredient has not been sufficiently investigated or has not yielded stable and secure results in research on its content of the substance, it is considered that it may contain this restrictive substance. Secondly, it may be that the food is produced in a factory that processes other foods that contain a substance that does not comply with the restriction, and therefore there is a probability that this substance has fallen or been mixed with this food.'
+);
+
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    '¿Puedo consumir un producto que contiene ingredientes dudosos respecto a mis restricciones?', 
+    'Puc consumir un producte que conté ingredients dubtosos respecte a les meves restriccions?', 
+    'Can I consume a product that contains ingredients that are dubious with regard to my restrictions?', 
+    'No es recomendable consumir un producto que contenga ingredientes que no cumplan con vuestras restricciones alimentarias. El consumo de este producto es responsabilidad exclusiva del consumidor y dependerá del grado de sensibilidad o alergia que tenga a dicho ingrediente, pudiendo provocar reacciones negativas en su organismo.', 
+    'No és recomanable consumir un producte que contingui ingredients que no compleixin les vostres restriccions alimentàries. El consum d''aquest producte és responsabilitat exclusiva del consumidor i depèn del grau de sensibilitat o al·lèrgia que tingui a aquest ingredient, podent provocar reaccions negatives en el seu organisme.', 
+    'It is not advisable to consume a product that contains ingredients that do not comply with your dietary restrictions. The consumption of this product is the sole responsibility of the consumer and will depend on the degree of sensitivity or allergy they have to that ingredient, which can cause negative reactions in their body.'
+);
+
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    'Tengo restricciones alimentarias. ¿Esta aplicación puede ajustarse a ellas?', 
+    'Tinc restriccions alimentàries. Aquesta aplicació pot adaptar-se a elles?', 
+    'I have dietary restrictions. Can this app accommodate them?', 
+    'Sí, la aplicación ha sido creada precisamente para este propósito. Desde el icono de ajustes ubicado en la esquina superior de la pantalla principal, puede configurar sus restricciones alimentarias para que la aplicación pueda recomendarle alimentos adecuados a sus necesidades y mostrarle qué ingredientes en los productos que busque son los que hacen que el producto sea apto o no apto para usted.', 
+    'Sí, l''aplicació ha estat creada precisament per a aquesta finalitat. Des de la icona d''ajustos situada a la cantonada superior de la pantalla principal, pot configurar les seves restriccions alimentàries perquè l''aplicació pugui recomanar-li aliments adequats a les seves necessitats i mostrar-li quins ingredients en els productes que busqui són els que fan que el producte sigui apte o no apte per a vostè.', 
+    'Yes, the application has been created precisely for this purpose. From the settings icon located in the upper corner of the main screen, you can configure your dietary restrictions so that the application can recommend appropriate foods to meet your needs and show you which ingredients in the products you search for make the product suitable or unsuitable for you.'
+);
+
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    '¿Cómo puedo configurar mis restricciones alimentarias?', 
+    'Com puc configurar les meves restriccions alimentàries?', 
+    'How can I set up my dietary restrictions?', 
+    'Desde la pantalla principal, al presionar el icono de ajustes ubicado en la esquina superior derecha, tendrá acceso a la configuración de sus restricciones alimentarias.', 
+    'Des de la pantalla principal, en prémer la icona d''ajustos situada a la cantonada superior dreta, tindrà accés a la configuració de les seves restriccions alimentàries.', 
+    'From the main screen, by pressing the settings icon located in the upper-right corner, you will have access to the configuration of your dietary restrictions.'
+);
+
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    '¿Cómo puedo saber si un producto es apto para mis restricciones alimentarias?', 
+    'Com puc saber si un producte és apte per a les meves restriccions alimentàries?', 
+    'How can I tell if a product is suitable for my dietary restrictions?', 
+    'Puede verificar si un producto es adecuado para sus restricciones revisando los ingredientes del mismo. En la parte derecha de la tabla de ingredientes, proporcionamos información sobre si el ingrediente es apto, no apto o dudoso con respecto a sus restricciones. Además, en la pantalla principal de la aplicación, se le recomendarán únicamente productos que sean adecuados según sus restricciones.', 
+    'Pot comprovar si un producte és adequat per a les seves restriccions revisant els ingredients del mateix. A la part dreta de la taula d''ingredients, proporcionem informació sobre si l''ingredient és apte, no apte o dubtós amb respecte a les seves restriccions. A més, en la pantalla principal de l''aplicació, se li recomanaran únicament productes que siguin adequats segons les seves restriccions.', 
+    'You can determine whether a product is suitable for your restrictions by checking its ingredients. On the right-hand side of the ingredient table, we provide information on whether the ingredient is suitable, unsuitable, or dubious with respect to your restrictions. Additionally, on the main screen of the application, we will recommend only products that are suitable according to your restrictions.'
+);
+
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    'Una vez definidas mis restricciones alimentarias, ¿puedo volver a configurarlas?', 
+    'Un cop definides les meves restriccions alimentàries, puc tornar a configurar-les?', 
+    'Once my dietary restrictions are defined, can I reconfigure them?', 
+    'Sí. Puede modificar sus restricciones alimentarias cuantas veces lo desee. La aplicación se actualizará automáticamente para adaptarse a sus nuevas necesidades.', 
+    'Sí. Pot modificar les seves restriccions alimentàries tantes vegades com desitgi. L''aplicació s''actualitzarà automàticament per adaptar-se a les seves noves necessitats.', 
+    'Yes. You can modify your dietary restrictions as many times as you wish. The application will update automatically to adapt to your new needs.'
+);
+
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    '¿Cómo puedo reportar un error o problema en la aplicación?',
+    'Com puc informar d''un error o problema a l''aplicació?',
+    'How can I report a bug or issue in the app?',
+    'En esta aplicación, diferenciamos entre dos tipos de errores. Si el error es que un producto no existe, se puede informar en el momento en que se busca el producto. La aplicación indicará que este no existe y, entonces, se mostrará un botón para reportar. Este botón enviará una notificación a los administradores para que añadan este producto a Taam App. En caso de que el error esté relacionado con el resultado de una comprobación, donde el usuario crea que es incorrecto (por ejemplo, si la aplicación indica un producto como apto y el usuario piensa lo contrario), hay un botón en la parte inferior de la pantalla donde se muestran los detalles del producto. Este botón permite enviar una incidencia a los administradores para que revisen el resultado.',
+    'En aquesta aplicació, diferenciem entre dos tipus d''errors. Si l"error és que un producte no existeix, es pot informar en el moment en què es busca el producte. L"aplicació indicarà que aquest no existeix i, aleshores, es mostrarà un botó per reportar. Aquest botó enviarà un avís als administradors perquè afegeixin aquest producte a Taam App. En cas que l"error estigui relacionat amb el resultat d"una comprovació, on l"usuari cregui que és incorrecte (per exemple, si l"aplicació indica un producte com a apte i l"usuari pensa el contrari), hi ha un botó a la part inferior de la pantalla on es mostren els detalls del producte. Aquest botó permet enviar una incidència als administradors perquè revisin el resultat.',
+    'In this application, we differentiate between two types of errors. If the error is that a product does not exist, it can be reported at the moment the product is searched for. The application will indicate that it does not exist, and then a button to report it will be shown. This button will send a notification to the administrators to add the product to Taam App. If the error is related to the result of a check, where the user believes it is incorrect (for example, if the application indicates a product as suitable and the user thinks otherwise), there is a button at the bottom of the screen showing the product details. This button allows sending an incident report to the administrators for review.'
+);
+
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    '¿Puedo cambiar el idioma de la aplicación?',    
+    'Puc canviar l''idioma de l''aplicació?',
+    'Can I change the language of the app?',
+    'Sí, la aplicación Taam App está disponible (actualmente) en tres idiomas diferentes: español, catalán e inglés. Para cambiar el idioma, es necesario acceder a la pantalla de configuración (para acceder a esta pantalla, se debe hacer clic en el engranaje que se encuentra en la parte superior derecha de la pantalla). Una vez en esta pantalla, se encontrará un menú desplegable para seleccionar el idioma deseado. A través de este menú desplegable, se puede seleccionar el idioma de preferencia y toda la aplicación se mostrará en ese idioma.',
+    'Sí, l"aplicació Taam App es troba disponible (actualment) en tres idiomes diferents: espanyol, català i anglès. Per canviar l"idioma, és necessari accedir a la pantalla de configuració (per accedir a aquesta pantalla, cal clicar a l"engranatge que es troba a la part superior dreta de la pantalla). Un cop en aquesta pantalla, es trobarà un desplegable per seleccionar l"idioma desitjat. A través d"aquest desplegable, es pot seleccionar l"idioma de preferència i tota l"aplicació es mostrarà en aquest idioma.',
+    'Yes, the Taam App is available (currently) in three different languages: Spanish, Catalan, and English. To change the language, you need to access the settings screen (to access this screen, you must click on the gear icon located at the top right of the screen). Once on this screen, you will find a drop-down menu to select the desired language. Through this drop-down menu, you can select the preferred language and the entire application will be displayed in that language.'
+);
+    
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    '¿La aplicación ofrece información nutricional de los productos?',
+    'L''aplicació ofereix informació nutricional dels productes?',
+    'Does the app provide nutritional information for products?',
+    'Nuestra aplicación no proporciona información nutricional, pero ofrece una lista completa de ingredientes de los productos, lo que proporciona a los usuarios una comprensión detallada de la composición de los productos.',
+    'La nostra aplicació no proporciona informació nutricional, però ofereix una llista completa d"ingredients dels productes, la qual proporciona als usuaris una comprensió detallada de la composició dels productes.',
+    'Our application does not provide nutritional information, but it does offer a complete list of ingredients for products, which provides users with a detailed understanding of the composition of the products.'
+);
+    
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    '¿Puedo buscar productos por marca o fabricante?',
+    'Puc cercar productes per marca o fabricant?',
+    'Can I search for products by brand or manufacturer?',
+    'Actualmente, la aplicación Taam App no dispone de la funcionalidad de búsqueda de productos por marca o fabricante. Solo ofrece la opción de buscarlos a través del código de barras (introduciéndolo manualmente o escaneándolo) o por nombre',
+    'Actualment, l"aplicació Taam App no disposa de la funcionalitat de cerca de productes per marca o fabricant. Només ofereix l"opció de buscar-los a través del codi de barres (introduint-lo manualment o escanejant-lo) o pel nom.',
+    'Currently, the Taam App does not have the functionality to search for products by brand or manufacturer. It only offers the option to search for them through the barcode (by manually entering it or scanning it) or by name.'
+);    
+
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    '¿Como puedo enviar una petición de pregunta?',
+    'Com puc enviar una sol·licitud de pregunta?',
+    'How can I submit a question request?',
+    'Para enviar una pregunta, debes acceder a la pantalla de preguntas frecuentes (la pantalla anterior a la actual) y hacer scroll hasta el final de la página, donde encontrarás la opción de enviar una pregunta. Al hacer clic en esta opción, se abrirá una ventana en la que podrás redactar tu consulta y enviarla. Tu mensaje será atendido por uno de los administradores y, si es necesario, se agregará a la sección de preguntas frecuentes con la respuesta correspondiente.',
+    'Per enviar una pregunta has d"accedir a la pantalla de preguntes freqüents (la pantalla anterior a l"actual) i fer scroll fins al final de la pàgina on trobaràs l"opció enviar dubte. En fer clic en aquesta opció, se t"obrirà una finestra on podràs redactar la teva consulta i enviar-la. El teu missatge serà atès per un dels administradors i, si s"escau, s"afegirà a la secció de preguntes freqüents amb la resposta.',
+    'To send a question, you must access the frequently asked questions screen (the screen prior to the current one) and scroll down to the bottom of the page, where you will find the option to send a question. When you click on this option, a window will open where you can write your query and send it. Your message will be attended by one of the administrators, and if necessary, it will be added to the frequently asked questions section with the corresponding answer.'
+);
+    
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    '¿Cómo puedo ver los ingredientes de un producto?',
+    'Com puc veure els ingredients d''un producte?',
+    'How can I see the ingredients of a product?',
+    'En el momento en que buscas un producto o haces clic en un producto recomendado, se abrirá una pantalla donde se mostrarán detalles de este, como si es adecuado según tus restricciones. En la misma pantalla podrás ver la lista de ingredientes del producto, que se mostrará justo debajo de la imagen del mismo.',
+    'En el moment en què busques un producte o cliques en un producte recomanat, se t"obrirà una pantalla on es mostraran detalls d"aquest, com ara si és apte segons les teves restriccions. A la mateixa pantalla podràs veure la llista d"ingredients del producte, la qual es mostrarà just a sota de la imatge del mateix.',
+    'When you search for a product or click on a recommended product, a screen will open displaying details about it, such as whether it is suitable according to your restrictions. On the same screen, you will be able to see the list of product ingredients, which will be displayed just below its image.'
+); 
+    
+INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
+    '¿Puedo buscar productos por el código de barras?',
+    'Puc cercar productes pel codi de barres?',
+    'Can I search for products by barcode?',
+    'Sí, puedes buscar productos por su código de barras. Desde la pantalla inicial de la aplicación, que se muestra después de indicar tus preferencias, tienes la opción de buscar un producto introduciendo manualmente su código de barras o escaneándolo. Además, también puedes buscar un producto por su nombre.',
+    'Sí, pots cercar productes pel seu codi de barres. Des de la pantalla inicial de l"aplicació, que es mostra després d"indicar les teves preferències, tens la opció de cercar un producte introduint manualment el seu codi de barres o escanejant-lo. A més, també pots cercar un producte pel seu nom.',
+    'Yes, you can search for products by their barcode. From the initial screen of the application, which is displayed after indicating your preferences, you have the option to search for a product by manually entering its barcode or scanning it. In addition, you can also search for a product by its name.'
+);
 
 /* Other - for testing */
 
 INSERT INTO public.question_requests(question_user) VALUES ('¿Como puedo avisar sobre un producto que he encontrado con restricciones incorrectas?');
-
-
