@@ -52,6 +52,16 @@ public class DataBase {
         return result;
     }
 
+    public ResultSet selectProductId() throws SQLException {
+        Connection conn = ConnectDB.getConnection();
+
+        String sql = "SELECT id FROM public.products;";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet result = stmt.executeQuery();
+
+        return result;
+    }
+
     public ResultSet selectIngredientIdName() throws SQLException {
         Connection conn = ConnectDB.getConnection();
 
@@ -87,8 +97,46 @@ public class DataBase {
         Connection conn = ConnectDB.getConnection();
 
         String sql = "INSERT INTO public.question_requests(question_user) VALUES (?)";
-        PreparedStatement stringSTMT = conn.prepareStatement(sql);
-        stringSTMT.setString(1, question);
-        stringSTMT.executeUpdate();
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, question);
+        stmt.executeUpdate();
+    }
+
+    public void insertNotFoundBarcode(String barcode) throws SQLException {
+        Connection conn = ConnectDB.getConnection();
+
+        String sql = "INSERT INTO public.notfound(barcode) VALUES (?)";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, barcode);
+        stmt.executeUpdate();
+    }
+
+    public void insertNotFoundName(String name) throws SQLException {
+        Connection conn = ConnectDB.getConnection();
+
+        String sql = "INSERT INTO public.notfound(name) VALUES (?)";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, name);
+        stmt.executeUpdate();
+    }
+
+    public void insertIncidentProduct(String observation, String barcode) throws SQLException {
+        Connection conn = ConnectDB.getConnection();
+
+        String sql = "INSERT INTO public.incidents(observation, product_id) VALUES (?, ?)";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, observation);
+        stmt.setString(2, barcode);
+        stmt.executeUpdate();
+    }
+
+    public void insertIncidentIngredient(String observation, Integer id) throws SQLException {
+        Connection conn = ConnectDB.getConnection();
+
+        String sql = "INSERT INTO public.incidents(observation, ingredient_id) VALUES (?, ?)";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, observation);
+        stmt.setInt(2, id);
+        stmt.executeUpdate();
     }
 }

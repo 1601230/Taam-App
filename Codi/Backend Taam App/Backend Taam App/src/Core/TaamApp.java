@@ -49,9 +49,7 @@ public class TaamApp {
     {
         return Configuration.getInstance().getRestrictionsList();
     }
-
-    public void setRestrictions(String token)
-    {
+    public void setRestrictions(String token) {
         if (token != null && !token.isEmpty())
         {
             String[] restrictionsToken = token.split(",");
@@ -72,6 +70,19 @@ public class TaamApp {
         Configuration.getInstance().setLanguage(language);
     }
 
+    public String textTransformer(String text)
+    {
+        text = text.replaceAll("(^\"|\"$|%5B|%5D|%22)", "");
+        text = text.replace("%20", " ");
+        text = text.toLowerCase()
+                .replaceAll("(%c3%a1|%c3%a4|%c3%a0|%c3%a2|%c3%81|%c3%84|%c3%80|%c3%82)", "a")
+                .replaceAll("(%c3%a9|%c3%ab|%c3%a8|%c3%aa|%c3%89|%c3%8b|%c3%88|%c3%8a)", "e")
+                .replaceAll("(%c3%ac|%c3%ad|%c3%ae|%c3%af|%c3%8c|%c3%8d|%c3%8e|%c3%8f)", "i")
+                .replaceAll("(%c3%b3|%c3%b6|%c3%b2|%c3%b4|%c3%93|%c3%94|%c3%92|%c3%96)", "o")
+                .replaceAll("(%c3%99|%c3%9a|%c3%9b|%c3%9c|%c3%b9|%c3%ba|%c3%bb|%c3%bc)", "u");
+
+        return text;
+    }
 
     public Product checkBarcode(String barcode) throws SQLException {
 
@@ -94,16 +105,7 @@ public class TaamApp {
         if(name == null){
             return null;
         }
-        name = name.replaceAll("(^\"|\"$|%5B|%5D|%22)", "");
-        name = name.replace("%20", " ");
-
-        String nameSearched = name.toLowerCase()
-                                .replaceAll("(\\s|')", "")
-                                .replaceAll("(%c3%a1|%c3%a4|%c3%a0|%c3%a2|%c3%81|%c3%84|%c3%80|%c3%82)", "a")
-                                .replaceAll("(%c3%a9|%c3%ab|%c3%a8|%c3%aa|%c3%89|%c3%8b|%c3%88|%c3%8a)", "e")
-                                .replaceAll("(%c3%ac|%c3%ad|%c3%ae|%c3%af|%c3%8c|%c3%8d|%c3%8e|%c3%8f)", "i")
-                                .replaceAll("(%c3%b3|%c3%b6|%c3%b2|%c3%b4|%c3%93|%c3%94|%c3%92|%c3%96)", "o")
-                                .replaceAll("(%c3%99|%c3%9a|%c3%9b|%c3%9c|%c3%b9|%c3%ba|%c3%bb|%c3%bc)", "u");
+        String nameSearched = textTransformer(name).replaceAll("(\\s|')", "");
 
         Map<String, Object> resultToBeReturnedToFlutter = new HashMap<String, Object>();
 
@@ -134,60 +136,29 @@ public class TaamApp {
         }
     }
     public void notFound() throws SQLException {
-        Connection conn = ConnectDB.getConnection();
-
         if (searcher.getBarcode() != null)
         {
-            String sql = "INSERT INTO public.notfound(barcode) VALUES (?)";
-            PreparedStatement stringSTMT = conn.prepareStatement(sql);
-            stringSTMT.setString(1, searcher.getBarcode());
-            stringSTMT.executeUpdate();
+            db.insertNotFoundBarcode(searcher.getBarcode());
         }
         else
         {
-            String sql = "INSERT INTO public.notfound(name) VALUES (?)";
-            PreparedStatement stringSTMT = conn.prepareStatement(sql);
-            stringSTMT.setString(1, searcher.getIngredientName());
-            stringSTMT.executeUpdate();
+            db.insertNotFoundName(searcher.getIngredientName());
         }
     }
-
     public void incident(String observation) throws SQLException {
-        Connection conn = ConnectDB.getConnection();
-
-        observation = observation.replaceAll("(^\"|\"$|%5B|%5D|%22)", "");
-        observation = observation.replace("%20", " ");
-
-        observation = observation.toLowerCase()
-                .replaceAll("(%c3%a1|%c3%a4|%c3%a0|%c3%a2|%c3%81|%c3%84|%c3%80|%c3%82)", "a")
-                .replaceAll("(%c3%a9|%c3%ab|%c3%a8|%c3%aa|%c3%89|%c3%8b|%c3%88|%c3%8a)", "e")
-                .replaceAll("(%c3%ac|%c3%ad|%c3%ae|%c3%af|%c3%8c|%c3%8d|%c3%8e|%c3%8f)", "i")
-                .replaceAll("(%c3%b3|%c3%b6|%c3%b2|%c3%b4|%c3%93|%c3%94|%c3%92|%c3%96)", "o")
-                .replaceAll("(%c3%99|%c3%9a|%c3%9b|%c3%9c|%c3%b9|%c3%ba|%c3%bb|%c3%bc)", "u");
+        observation = textTransformer(observation);
 
         if (searcher.getBarcode() != null)
         {
-            String sql = "INSERT INTO public.incidents(observation, product_id) VALUES (?, ?)";
-            PreparedStatement stringSTMT = conn.prepareStatement(sql);
-            stringSTMT.setString(1, observation);
-            stringSTMT.setString(2, searcher.getBarcode());
-            stringSTMT.executeUpdate();
+            db.insertIncidentProduct(observation, searcher.getBarcode());
         }
         else if(searcher.getProductName() != null)
         {
-            String sql = "INSERT INTO public.incidents(observation, product_id) VALUES (?, ?)";
-            PreparedStatement stringSTMT = conn.prepareStatement(sql);
-            stringSTMT.setString(1, observation);
-            stringSTMT.setString(2, product.getBarcode());
-            stringSTMT.executeUpdate();
+            db.insertIncidentProduct(observation, product.getBarcode());
         }
         else
         {
-            String sql = "INSERT INTO public.incidents(observation, ingredient_id) VALUES (?, ?)";
-            PreparedStatement stringSTMT = conn.prepareStatement(sql);
-            stringSTMT.setString(1, observation);
-            stringSTMT.setInt(2, ingredient.getId());
-            stringSTMT.executeUpdate();
+            db.insertIncidentIngredient(observation, ingredient.getId());
         }
     }
 
@@ -412,10 +383,7 @@ public class TaamApp {
         Map<String, Object> auxiliaryMap = new HashMap<String, Object>();
         recommendedProductsList.clear();
 
-        Connection conn = ConnectDB.getConnection();
-        String sql = "SELECT id FROM public.products;";
-        PreparedStatement stringSTMT = conn.prepareStatement(sql);
-        ResultSet result = stringSTMT.executeQuery();
+        ResultSet result = db.selectProductId();
 
         while (result.next())
         {
@@ -508,18 +476,8 @@ public class TaamApp {
 
         return answer;
     }
-
     public void saveQuestion(String question) throws SQLException {
-        question = question.replaceAll("(^\"|\"$|%5B|%5D|%22)", "");
-        question = question.replace("%20", " ");
-
-        question = question.toLowerCase()
-                .replaceAll("(%c3%a1|%c3%a4|%c3%a0|%c3%a2|%c3%81|%c3%84|%c3%80|%c3%82)", "a")
-                .replaceAll("(%c3%a9|%c3%ab|%c3%a8|%c3%aa|%c3%89|%c3%8b|%c3%88|%c3%8a)", "e")
-                .replaceAll("(%c3%ac|%c3%ad|%c3%ae|%c3%af|%c3%8c|%c3%8d|%c3%8e|%c3%8f)", "i")
-                .replaceAll("(%c3%b3|%c3%b6|%c3%b2|%c3%b4|%c3%93|%c3%94|%c3%92|%c3%96)", "o")
-                .replaceAll("(%c3%99|%c3%9a|%c3%9b|%c3%9c|%c3%b9|%c3%ba|%c3%bb|%c3%bc)", "u");
-
+        question = textTransformer(question);
         db.insertQuestion(question);
     }
 }
