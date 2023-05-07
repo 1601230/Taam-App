@@ -1023,7 +1023,7 @@ INSERT INTO public.frequent_questions(question_spanish, question_catalan, questi
 );
     
 INSERT INTO public.frequent_questions(question_spanish, question_catalan, question_english, response_spanish, response_catalan, response_english) VALUES (
-    '¿La aplicación ofrece información nutricional de los productos?'
+    '¿La aplicación ofrece información nutricional de los productos?',
     'L''aplicació ofereix informació nutricional dels productes?',
     'Does the app provide nutritional information for products?',
     'Nuestra aplicación no proporciona información nutricional, pero ofrece una lista completa de ingredientes de los productos, lo que proporciona a los usuarios una comprensión detallada de la composición de los productos.',
@@ -1070,5 +1070,3 @@ INSERT INTO public.frequent_questions(question_spanish, question_catalan, questi
 /* Other - for testing */
 
 INSERT INTO public.question_requests(question_user) VALUES ('¿Como puedo avisar sobre un producto que he encontrado con restricciones incorrectas?');
-
-
