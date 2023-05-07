@@ -491,7 +491,7 @@ public class TaamApp {
         ResultSet result = db.selectQuestions();
         while(result.next())
         {
-            String question = result.getString("response_"+Configuration.getInstance().getLanguage());
+            String question = result.getString("question_"+Configuration.getInstance().getLanguage());
             String id = result.getString("id");
             frequentquestions.put("|"+ id, question);
         }

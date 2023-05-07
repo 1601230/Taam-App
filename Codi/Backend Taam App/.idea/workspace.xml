@@ -58,7 +58,20 @@
       <recent name="Core" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.VeganTest">
+  <component name="RunManager" selected="Application.MainWebServer">
+    <configuration name="MainWebServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="WebServer.MainWebServer" />
+      <module name="Backend Taam App" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="WebServer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ConfigurationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Backend Taam App" />
       <extension name="coverage">
@@ -84,21 +97,6 @@
       </extension>
       <option name="PACKAGE_NAME" value="Core" />
       <option name="MAIN_CLASS_NAME" value="Core.Lactose_AllergicTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TeetotalTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Backend Taam App" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Core.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Core" />
-      <option name="MAIN_CLASS_NAME" value="Core.TeetotalTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -136,11 +134,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainWebServer" />
         <item itemvalue="JUnit.VeganTest" />
         <item itemvalue="JUnit.Tree_Nut_AllergicTest" />
         <item itemvalue="JUnit.Lactose_AllergicTest" />
         <item itemvalue="JUnit.ConfigurationTest" />
-        <item itemvalue="JUnit.TeetotalTest" />
       </list>
     </recent_temporary>
   </component>
