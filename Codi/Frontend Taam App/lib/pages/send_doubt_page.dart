@@ -27,28 +27,10 @@ class SendDoubtPage extends State<MyDoubt>{
       appBar: AppBar(
         title: Center(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Text(""),
-              IconButton(
-                alignment: Alignment.topCenter,
-                icon: Image.asset('assets/Logo_TaamApp_Home.png'),
-                onPressed: () {
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context)=> MyHomePage()),
-                          (route)=>route.isFirst
-                  );
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.settings),
-                onPressed: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PageConfiguration()),
-                  );
-                },
-              ),
+              Text("Enviar Dubte"),
+              Text("           ")
             ],
           ),
         ),
@@ -62,13 +44,12 @@ class SendDoubtPage extends State<MyDoubt>{
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(height: 16.0), // agregar un espacio en blanco por encima del TextField
-                  Text("Enviar dubte", style: TextStyle(fontSize: 24.0)),
+                  Text("Escriu el teu dubte...", style: TextStyle(fontSize: 24.0)),
                   SizedBox(height: 20.0),
                   Divider(),
-                  SizedBox(height: 25.0),
                   TextField(
                     maxLength: 200,
-                    maxLines: 20,
+                    maxLines: 10,
                     decoration: InputDecoration(
                       hintText: 'Escribe aquí',
                       border: OutlineInputBorder(),

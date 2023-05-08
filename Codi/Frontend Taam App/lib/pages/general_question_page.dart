@@ -37,8 +37,6 @@ Preguntas(question: 'Comer es vegano ?'),
 
 ];
 
-
-
 class GeneralQuestionsPage extends StatelessWidget {
 
   @override
@@ -49,29 +47,10 @@ class GeneralQuestionsPage extends StatelessWidget {
           appBar: AppBar(
             title: Center(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const Text(""),
-                  IconButton(
-                    alignment: Alignment.topCenter,
-                    icon: Image.asset('assets/Logo_TaamApp_Home.png'),
-                    onPressed: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (context) => MyHomePage()),
-                              (route) => route.isFirst
-                      );
-                    },
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.settings),
-                    onPressed: () async {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PageConfiguration()),
-                      );
-                    },
-                  ),
+                  Text("Preguntas"),
+                  Text("           ")
                 ],
               ),
             ),
@@ -84,8 +63,6 @@ class GeneralQuestionsPage extends StatelessWidget {
                   children: [
 
                     SizedBox(height: 50,),
-                    Text("Preguntas", style: TextStyle(fontSize: 30),),
-                    SizedBox(height: 35,),
 
                     Container(
                       width: 300,

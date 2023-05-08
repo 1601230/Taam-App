@@ -23,19 +23,10 @@ class _PageAboutUsState extends State<PageAboutUs> {
       appBar: AppBar(
         title: Center(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(""),
               Text(AppLocalizations.of(context)!.titleSobreNosotros),
-              IconButton(
-                icon: Icon(Icons.settings),
-                onPressed: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PageConfiguration()),
-                  );
-                },
-              ),
+              Text("           ")
             ],
           ),
         ),
