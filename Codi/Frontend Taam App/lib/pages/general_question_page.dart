@@ -20,9 +20,21 @@ class Preguntas {
 }
 
 final List<Preguntas> myQuestions = [
-Preguntas(question: 'Hola como estas ?'),
-Preguntas(question: 'Que tal el examen ?'),
-Preguntas(question: 'Buenos días ?')
+Preguntas(question: 'Es mi hamster comestible?'),
+Preguntas(question: 'Cuanta proteína contiene una paloma ?'),
+Preguntas(question: 'Comer es vegano ?'),
+  Preguntas(question: 'Ser vegano vale la pena ?'),
+  Preguntas(question: 'Estudiar vale la pena ?'),
+  Preguntas(question: 'Cual es el sentido de la vida ?'),
+  Preguntas(question: ' Kings league el domingo?'),
+  Preguntas(question: ' Kings league el domingo?'),
+  Preguntas(question: ' Kings league el domingo?'),
+  Preguntas(question: ' Kings league el domingo?'),
+  Preguntas(question: ' Kings league el domingo?'),
+  Preguntas(question: ' Kings league el domingo?'),
+  Preguntas(question: ' Kings league el domingo?'),Preguntas(question: ' Kings league el domingo?'),
+  Preguntas(question: ' Kings league el domingo?'),
+
 ];
 
 
@@ -71,72 +83,41 @@ class GeneralQuestionsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
 
-                    SizedBox(height: 25,),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Questions()),
-                      );
-                    },
-                    child:Container(
+                    SizedBox(height: 50,),
+                    Text("Preguntas", style: TextStyle(fontSize: 30),),
+                    SizedBox(height: 35,),
+
+                    Container(
                       width: 300,
-                      height: 100,
+                      height: 400,
                       decoration: BoxDecoration(
-                        border: Border.all(),
+                          border: Border.all(color: Colors.black)
                       ),
-                      child: Center(
-                        child: Text(
-                          'Pregunta 1',
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                    SizedBox(height: 16),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Question()),
-                        );
-                      },
-                      child:Container(
-                        width: 300,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          border: Border.all(),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Pregunta 2',
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
+                      child: ListView.builder(
+                        itemCount: myQuestions.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MyQuestions(
+                                      question: myQuestions[index].question
+                                  ),
+                                ),
+                              );
+                            },
+                            child: ListTile(
+                              leading: Icon(Icons.question_answer, size: 20),
+                              title: Text(myQuestions[index].question),
+                            ),
+                          );
+                        },
                       ),
                     ),
-                    SizedBox(height: 16),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Question()),
-                        );
-                      },
-                      child:Container(
-                        width: 300,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          border: Border.all(),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Pregunta 3',
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                    ),
+
+
+                    SizedBox(height: 30),
                     ElevatedButton(child: Text("Enviar dubte"),
                         style: ButtonStyle(
                             foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
@@ -145,7 +126,7 @@ class GeneralQuestionsPage extends StatelessWidget {
                         onPressed: (){
                           Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (BuildContext context) => SendDoubtPage(context),
+                              MaterialPageRoute(builder: (BuildContext context) => MyDoubt(context),
                               )
                           );
                         }
