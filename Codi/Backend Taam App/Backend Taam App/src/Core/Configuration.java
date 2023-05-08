@@ -6,9 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import java.util.*;
+
 public class Configuration {
     private static Configuration instance = null;
-    private String language = "spanish";
+    private String language = "english";
     private List<String> userRestrictionsList = new ArrayList<>();
     private List<String> restrictionsSpanishList = new ArrayList<>(Arrays.asList("Vegano", "Vegetariano", "Alérgico al gluten",
             "Alérgico a la lactosa", "Alérgico a los frutos secos", "Abstemio"));
@@ -23,15 +25,21 @@ public class Configuration {
     }
     public Visitor createConfiguration(String configuration)
     {
-        configuration = configuration.replaceAll("(^\"|\"$|%5B|%5D|%20|%22|\\s)", "").toLowerCase();
-        switch (configuration){
-            case "vegan": return new Vegan();
-            case "vegetarian": return new Vegetarian();
-            case "allergictogluten": return new Gluten_Allergic();
-            case "allergictolactose": return new Lactose_Allergic();
-            case "allergictonuts": return new Tree_Nut_Allergic();
-            case "teetotal": return new Teetotal();
-            default: return null;
+        if (configuration != null)
+        {
+            configuration = configuration.replaceAll("(^\"|\"$|%5B|%5D|%20|%22|\\s)", "").toLowerCase();
+            switch (configuration){
+                case "vegan": return new Vegan();
+                case "vegetarian": return new Vegetarian();
+                case "allergictogluten": return new GlutenAllergic();
+                case "allergictolactose": return new LactoseAllergic();
+                case "allergictonuts": return new TreeNutAllergic();
+                case "teetotal": return new Teetotal();
+                default: return null;
+            }
+        }else
+        {
+            return null;
         }
     }
 

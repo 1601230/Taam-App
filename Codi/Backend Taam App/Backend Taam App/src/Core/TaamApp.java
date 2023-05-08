@@ -1,9 +1,6 @@
 package Core;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
 
 import static Core.Edible.*;
@@ -15,8 +12,9 @@ import static Core.Edible.*;
  * the "singleton" pattern because we are only interested in having one instance of this module, so that each client
  * uses the same instance during all its requests to the server.
  */
-public class Taam_App {
-    private static Taam_App instance = null;
+public class TaamApp {
+    private static TaamApp instance = null;
+    private DataBase db = new DataBase();
     public static Searcher searcher = new Searcher();
     public static Product product = new Product();
     public static Ingredient ingredient = new Ingredient();
@@ -29,7 +27,7 @@ public class Taam_App {
      * instances from being created, as the aim is that only one instance is created and that the same instance is used at
      * all times. at all times. From this constructor the connection to the local database is established.
      */
-    private Taam_App()
+    private TaamApp()
     {
         ConnectDB.getConnection();
     }
@@ -38,10 +36,10 @@ public class Taam_App {
      * This method is used to retrieve the unique instance of the class "Taam App" (in case the instance is not created,
      * it is created using the private constructor).
      */
-    public static Taam_App getInstance()
+    public static TaamApp getInstance()
     {
         if (instance == null) {
-            instance = new Taam_App();
+            instance = new TaamApp();
         }
 
         return instance;
@@ -51,48 +49,63 @@ public class Taam_App {
     {
         return Configuration.getInstance().getRestrictionsList();
     }
-
-    public void setRestrictions(String token)
-    {
-        String[] restrictionsToken = token.split(",");
-        List<String> restrictionsList = new ArrayList<>();
-
-        for (String restriction : restrictionsToken)
+    public void setRestrictions(String token) {
+        if (token != null && !token.isEmpty())
         {
-            restriction = restriction.replaceAll("(^\"|\"$|%5B|%5D|%20|%22|\\s)", "");
-            restrictionsList.add(restriction);
-        }
+            String[] restrictionsToken = token.split(",");
+            List<String> restrictionsList = new ArrayList<>();
 
-        Configuration.getInstance().setUserRestrictionsList(restrictionsList);
+            for (String restriction : restrictionsToken)
+            {
+                restriction = restriction.replaceAll("(^\"|\"$|%5B|%5D|%20|%22|\\s)", "");
+                restrictionsList.add(restriction);
+            }
+            Configuration.getInstance().setUserRestrictionsList(restrictionsList);
+        }else {
+            Configuration.getInstance().setUserRestrictionsList(null);
+        }
     }
     public void setLanguage(String language)
     {
         Configuration.getInstance().setLanguage(language);
     }
 
-
-    public Product checkBarcode(String barcode) throws SQLException {
-
-        if (barcode.isEmpty())
-        {
-            return null;
-        } else
-        {
-            barcode = barcode.replaceAll("(^\"|\"$|%5B|%5D|%22|%20)", "");
-            return searcher.searchProductByBarcode(barcode);
-        }
-    }
-    public Map<String, Object> checkName(String name) throws SQLException {
-        name = name.replaceAll("(^\"|\"$|%5B|%5D|%22)", "");
-        name = name.replace("%20", " ");
-
-        String nameSearched = name.toLowerCase()
-                .replaceAll("(\\s|')", "")
+    public String textTransformer(String text)
+    {
+        text = text.replaceAll("(^\"|\"$|%5B|%5D|%22)", "");
+        text = text.replace("%20", " ");
+        text = text.toLowerCase()
                 .replaceAll("(%c3%a1|%c3%a4|%c3%a0|%c3%a2|%c3%81|%c3%84|%c3%80|%c3%82)", "a")
                 .replaceAll("(%c3%a9|%c3%ab|%c3%a8|%c3%aa|%c3%89|%c3%8b|%c3%88|%c3%8a)", "e")
                 .replaceAll("(%c3%ac|%c3%ad|%c3%ae|%c3%af|%c3%8c|%c3%8d|%c3%8e|%c3%8f)", "i")
                 .replaceAll("(%c3%b3|%c3%b6|%c3%b2|%c3%b4|%c3%93|%c3%94|%c3%92|%c3%96)", "o")
                 .replaceAll("(%c3%99|%c3%9a|%c3%9b|%c3%9c|%c3%b9|%c3%ba|%c3%bb|%c3%bc)", "u");
+
+        return text;
+    }
+
+    public Product checkBarcode(String barcode) throws SQLException {
+
+        if (barcode != null)
+        {
+            if (barcode.isEmpty())
+            {
+                return null;
+            } else
+            {
+                barcode = barcode.replaceAll("(^\"|\"$|%5B|%5D|%22|%20)", "");
+                return searcher.searchProductByBarcode(barcode);
+            }
+        }else
+        {
+            return null;
+        }
+    }
+    public Map<String, Object> checkName(String name) throws SQLException {
+        if(name == null){
+            return null;
+        }
+        String nameSearched = textTransformer(name).replaceAll("(\\s|')", "");
 
         Map<String, Object> resultToBeReturnedToFlutter = new HashMap<String, Object>();
 
@@ -123,67 +136,36 @@ public class Taam_App {
         }
     }
     public void notFound() throws SQLException {
-        Connection conn = ConnectDB.getConnection();
-
         if (searcher.getBarcode() != null)
         {
-            String sql = "INSERT INTO public.notfound(barcode) VALUES (?)";
-            PreparedStatement stringSTMT = conn.prepareStatement(sql);
-            stringSTMT.setString(1, searcher.getBarcode());
-            stringSTMT.executeUpdate();
+            db.insertNotFoundBarcode(searcher.getBarcode());
         }
         else
         {
-            String sql = "INSERT INTO public.notfound(name) VALUES (?)";
-            PreparedStatement stringSTMT = conn.prepareStatement(sql);
-            stringSTMT.setString(1, searcher.getIngredientName());
-            stringSTMT.executeUpdate();
+            db.insertNotFoundName(searcher.getIngredientName());
         }
     }
-
     public void incident(String observation) throws SQLException {
-        Connection conn = ConnectDB.getConnection();
-
-        observation = observation.replaceAll("(^\"|\"$|%5B|%5D|%22)", "");
-        observation = observation.replace("%20", " ");
-
-        observation = observation.toLowerCase()
-                .replaceAll("(%c3%a1|%c3%a4|%c3%a0|%c3%a2|%c3%81|%c3%84|%c3%80|%c3%82)", "a")
-                .replaceAll("(%c3%a9|%c3%ab|%c3%a8|%c3%aa|%c3%89|%c3%8b|%c3%88|%c3%8a)", "e")
-                .replaceAll("(%c3%ac|%c3%ad|%c3%ae|%c3%af|%c3%8c|%c3%8d|%c3%8e|%c3%8f)", "i")
-                .replaceAll("(%c3%b3|%c3%b6|%c3%b2|%c3%b4|%c3%93|%c3%94|%c3%92|%c3%96)", "o")
-                .replaceAll("(%c3%99|%c3%9a|%c3%9b|%c3%9c|%c3%b9|%c3%ba|%c3%bb|%c3%bc)", "u");
+        observation = textTransformer(observation);
 
         if (searcher.getBarcode() != null)
         {
-            String sql = "INSERT INTO public.incidents(observation, product_id) VALUES (?, ?)";
-            PreparedStatement stringSTMT = conn.prepareStatement(sql);
-            stringSTMT.setString(1, observation);
-            stringSTMT.setString(2, searcher.getBarcode());
-            stringSTMT.executeUpdate();
+            db.insertIncidentProduct(observation, searcher.getBarcode());
         }
         else if(searcher.getProductName() != null)
         {
-            String sql = "INSERT INTO public.incidents(observation, product_id) VALUES (?, ?)";
-            PreparedStatement stringSTMT = conn.prepareStatement(sql);
-            stringSTMT.setString(1, observation);
-            stringSTMT.setString(2, product.getBarcode());
-            stringSTMT.executeUpdate();
+            db.insertIncidentProduct(observation, product.getBarcode());
         }
         else
         {
-            String sql = "INSERT INTO public.incidents(observation, ingredient_id) VALUES (?, ?)";
-            PreparedStatement stringSTMT = conn.prepareStatement(sql);
-            stringSTMT.setString(1, observation);
-            stringSTMT.setInt(2, ingredient.getId());
-            stringSTMT.executeUpdate();
+            db.insertIncidentIngredient(observation, ingredient.getId());
         }
     }
 
     public Map<String, Object> checkProductBarcode(String barcode) throws SQLException {
-        product = Taam_App.getInstance().checkBarcode(barcode);
+        product = TaamApp.getInstance().checkBarcode(barcode);
 
-        if (product != null) {
+        if (product != null && Configuration.getInstance().getUserRestrictionsList() != null) {
             Map<String, Object> resultToBeReturnedToFlutter = new HashMap<String, Object>();
 
             List<String> ingredientList = new ArrayList<>();
@@ -193,6 +175,7 @@ public class Taam_App {
 
             resultToBeReturnedToFlutter.put("|Name", product.getProductName());
             resultToBeReturnedToFlutter.put("|Barcode", product.getBarcode());
+            resultToBeReturnedToFlutter.put("|Image", product.getImage());
             resultToBeReturnedToFlutter.put("|Ingredients", ingredientList);
 
             int resultEdible = 0;
@@ -279,6 +262,7 @@ public class Taam_App {
 
                 resultToBeReturnedToFlutter.put("|Name", product.getProductName());
                 resultToBeReturnedToFlutter.put("|Barcode", product.getBarcode());
+                resultToBeReturnedToFlutter.put("|Image", product.getImage());
                 resultToBeReturnedToFlutter.put("|Ingredients", ingredientList);
 
                 List<String> restrictions = Configuration.getInstance().getUserRestrictionsList();
@@ -399,10 +383,7 @@ public class Taam_App {
         Map<String, Object> auxiliaryMap = new HashMap<String, Object>();
         recommendedProductsList.clear();
 
-        Connection conn = ConnectDB.getConnection();
-        String sql = "SELECT id FROM public.products;";
-        PreparedStatement stringSTMT = conn.prepareStatement(sql);
-        ResultSet result = stringSTMT.executeQuery();
+        ResultSet result = db.selectProductId();
 
         while (result.next())
         {
@@ -412,6 +393,7 @@ public class Taam_App {
                 Product auxiliaryProduct = new Product();
                 auxiliaryProduct.setProductName((String) auxiliaryMap.get("|Name"));
                 auxiliaryProduct.setBarcode((String) auxiliaryMap.get("|Barcode"));
+                auxiliaryProduct.setImage((String) auxiliaryMap.get("|Image"));
 
                 recommendedProductsList.add(auxiliaryProduct);
             }
@@ -421,7 +403,8 @@ public class Taam_App {
         while ((counter < recommendedProductsList.size()) && (counter < 10))
         {
             recommendedProductsMap.put("|Product" + (counter+1),
-                    List.of(recommendedProductsList.get(counter).getProductName(), recommendedProductsList.get(counter).getBarcode()));
+                    List.of(recommendedProductsList.get(counter).getProductName(), recommendedProductsList.get(counter).getBarcode(),
+                            recommendedProductsList.get(counter).getImage()));
             counter = counter + 1;
         }
 
@@ -445,7 +428,8 @@ public class Taam_App {
                 }
                 indexList.add(randomIndex);
                 recommendedProductsMap.put("|Product" + (counter+1),
-                        List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode()));
+                        List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode(),
+                                recommendedProductsList.get(randomIndex).getImage()));
             }
         }
         else
@@ -460,11 +444,40 @@ public class Taam_App {
                 }
                 indexList.add(randomIndex);
                 recommendedProductsMap.put("|Product" + (counter+1),
-                        List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode()));
+                        List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode(),
+                                recommendedProductsList.get(randomIndex).getImage()));
                 counter = counter + 1;
             }
         }
 
         return recommendedProductsMap;
+    }
+
+    public Map<String, Object> getFrequentQuestions() throws SQLException {
+        Map<String, Object> frequentquestions = new HashMap<>();
+
+        ResultSet result = db.selectQuestions();
+        while(result.next())
+        {
+            String question = result.getString("question_"+Configuration.getInstance().getLanguage());
+            String id = result.getString("id");
+            frequentquestions.put("|"+ id, question);
+        }
+        return frequentquestions;
+    }
+    public Map<String, Object> getAnswer(String questionId) throws SQLException {
+        Map<String, Object> answer = new HashMap<String, Object>();
+
+        ResultSet result = db.selectAnswer(Integer.parseInt(questionId));
+        while (result.next()) {
+            String response = result.getString("response_"+Configuration.getInstance().getLanguage());
+            answer.put("|Answer", response);
+        }
+
+        return answer;
+    }
+    public void saveQuestion(String question) throws SQLException {
+        question = textTransformer(question);
+        db.insertQuestion(question);
     }
 }

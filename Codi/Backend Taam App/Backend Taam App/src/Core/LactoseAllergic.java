@@ -8,12 +8,25 @@ import java.util.List;
 
 import static Core.Edible.*;
 
-public class Lactose_Allergic implements Visitor{
+/**
+ * Meaning of the values associated with the ingredients in the database:
+ * 0: UNSUITABLE
+ * 1: SUITABLE
+ * 2: DOUBTFUL
+ */
+public class LactoseAllergic implements Visitor{
 
     @Override
     public Result checkProduct(List<Ingredient> ingredientsList) throws SQLException {
+
+        if(ingredientsList == null){
+            return null;
+
+        }
         Connection conn = ConnectDB.getConnection();
         Result result = new Result();
+
+        boolean ingredientFound = false;
 
         for (Ingredient ingredient : ingredientsList) {
             PreparedStatement stmt = conn.prepareStatement("SELECT lactose FROM public.ingredients WHERE id=?");
@@ -28,30 +41,42 @@ public class Lactose_Allergic implements Visitor{
                 {
                     result.doubtfulIngredientsList.add(ingredient);
                 }
-            }
-
-            if (!result.nonSuitableIngredientsList.isEmpty())
-            {
-                result.setResult(UNSUITABLE);
-            }else if (!result.doubtfulIngredientsList.isEmpty())
-            {
-                result.setResult(DOUBTFUL);
-            }else
-            {
-                result.setResult(SUITABLE);
+                ingredientFound = true;
             }
         }
+
+        if(ingredientFound == false){
+            return null;
+        }
+        if (!result.nonSuitableIngredientsList.isEmpty())
+        {
+            result.setResult(UNSUITABLE);
+        }else if (!result.doubtfulIngredientsList.isEmpty())
+        {
+            result.setResult(DOUBTFUL);
+        }else
+        {
+            result.setResult(SUITABLE);
+        }
+
         return result;
     }
 
     @Override
     public Result checkIngredient(Ingredient ingredient) throws SQLException {
+
+        if(ingredient == null){
+            return null;
+        }
+
         Connection conn = ConnectDB.getConnection();
         Result result = new Result();
 
         PreparedStatement stmt = conn.prepareStatement("SELECT lactose FROM public.ingredients WHERE id=?");
         stmt.setInt(1, ingredient.getId());
         ResultSet res = stmt.executeQuery();
+
+        boolean ingredientFound = false;
 
         while (res.next()) {
             if (res.getInt("lactose") == 0)
@@ -61,8 +86,12 @@ public class Lactose_Allergic implements Visitor{
             {
                 result.doubtfulIngredientsList.add(ingredient);
             }
+            ingredientFound = true;
         }
 
+        if(ingredientFound == false){
+            return null;
+        }
         if (!result.nonSuitableIngredientsList.isEmpty())
         {
             result.setResult(UNSUITABLE);
