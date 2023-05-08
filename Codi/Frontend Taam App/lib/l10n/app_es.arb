@@ -41,5 +41,19 @@
   "labeltextImagenIngredientes": "Imagen ingredientes",
   "titleInfoAdicional": "Información adicional:",
   "labeltextInfoAdicional": "Información Adicional",
-  "textBotonEnviarForm": "Enviar Formulario"
+  "textBotonEnviarForm": "Enviar Formulario",
+
+  "titlePaginaReporteProducto": "Pagina de reporte",
+  "titleTipoReporteAlimento": "¿Por qué quieres reportar el alimento?",
+  "textSeleccionPreferenciasIncorrectas": "Selecciona las preferencias incorrectas",
+  "titleOtrosMotivos": "Otros motivos:",
+  "textEscribeMotivos": "Escribe los motivos",
+  "textBotonEnviarReporte": "Enviar reporte",
+
+  "titleSobreNosotros": "Sobre nosotros",
+  "textNuestraEmpresa": "Nuestra empresa",
+  "textInfoNuestraEmpresa": "TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO",
+  "textObjetivo": "Nuestro objetivo es",
+  "textInfoObjetivo": "TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO"
+
 }

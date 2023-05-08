@@ -6,9 +6,11 @@ import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../requests.dart';
+import 'package:taam_app/pages/page_about_us.dart';
 import '../services/local_storage.dart';
 import '../services/locale_provider.dart';
 import '../services/settings_provder.dart';
+import 'general_question_page.dart';
 
 ///Funciones conectadas a back-end
 ///---------------------------------------------------------------------------------------------------------------------------------------------
@@ -73,6 +75,10 @@ class _PageConfigurationState extends State<PageConfiguration> {
           final settingsProvider = Provider.of<SettingsProvider>(context);
           final localeProvider = Provider.of<LocaleProvider>(context);
 
+          ///Inicializamos los valores de los diferentes campos con los valores pasados
+          ///por parametro en el constructor, para que así aparezcan los valores correspondientes
+          ///a la configuración indicada por el usuario, es a decir, que si el usuario tiene
+          ///la aplicación en Catalán, que en el campo del idioma ponga Catalán
           _selectedFoodPreferences = settingsProvider.foodPreferences;
           _selectionLanguageMessage = settingsProvider.appLanguage!;
 
@@ -147,17 +153,36 @@ class _PageConfigurationState extends State<PageConfiguration> {
                       children: [
                         Text(""),
                         Text(AppLocalizations.of(context)!.titleConfig),
-                        Text("        ")
+                        Text("   ")
                       ],
                     )
-                )
+                ),
+              actions: [
+                IconButton(
+                  icon: Icon(Icons.question_mark),
+                  onPressed: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => GeneralQuestionsPage()), //TODO: cambiar a pagina de preguntas
+                    );
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.info),
+                  onPressed: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PageAboutUs()),
+                    );
+                  },
+                ),
+              ],
             ),
             body: Container(
               margin: EdgeInsets.all(5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   ///Columna de cambio de idioma
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -247,7 +272,7 @@ class _PageConfigurationState extends State<PageConfiguration> {
                           value: _selectionThemeMessage,
                           onChanged: _handleSelectionThemeMessage,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ],
