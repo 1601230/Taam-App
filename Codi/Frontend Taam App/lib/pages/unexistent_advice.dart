@@ -1,45 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:taam_app/pages/page_configuration.dart';
-import 'package:taam_app/pages/reportIncorrectForm.dart';
-
+import 'package:taam_app/pages/incorrect_form_page.dart';
+import 'package:taam_app/pages/requestSendAdvice.dart';
 import '../main.dart';
 
-class NoExistentScreen extends StatelessWidget{
+class _NoExistentScreen extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
 
+
     return Scaffold(
           appBar: AppBar(
-            title: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  const Text(""),
-                  IconButton(
-                    alignment: Alignment.topCenter,
-                    icon: Image.asset('assets/Logo_TaamApp_Home.png'),
-                    onPressed: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (context)=> MyApp()),
-                              (route)=>route.isFirst
-                      );
-                    },
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.settings),
-                    onPressed: () async {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => PageConfiguration()),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
+    title: Center(
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        const Text(""),
+        IconButton(
+          alignment: Alignment.topCenter,
+          icon: Image.asset('assets/Logo_TaamApp_Home.png'),
+          onPressed: () {
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context)=> MyHomePage()),
+                    (route)=>route.isFirst
+            );
+          },
+        ),
+        IconButton(
+          icon: Icon(Icons.settings),
+          onPressed: () async {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => PageConfiguration()),
+            );
+          },
+        ),
+      ],
+    ),
+    ),
+    ),
           body: Column(
               children: <Widget>[
                 Divider(height: 1, thickness: 2),
@@ -49,9 +50,12 @@ class NoExistentScreen extends StatelessWidget{
                   height: 200,
                   decoration: BoxDecoration(
                       color: Colors.redAccent,
-                      border: Border.all(color: Colors.red, width: 3.0)
+                      border: Border.all(color: Colors.red, width: 3.0),
+                      borderRadius: BorderRadius.all(Radius.circular(20))
 
                   ),
+
+
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -67,6 +71,8 @@ class NoExistentScreen extends StatelessWidget{
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.red)
                   ),
                   onPressed: (){
+
+
                     /* TODO */
                   },
                   child: Text("Reportar Producte"),)

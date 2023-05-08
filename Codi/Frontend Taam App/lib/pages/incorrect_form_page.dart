@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:taam_app/pages/foodInformationScreen.dart';
+import 'package:taam_app/pages/food_information_page.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../main.dart';
 
 
-class NonExistentFoodPage extends StatelessWidget{
+class _NonExistentFoodPage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){

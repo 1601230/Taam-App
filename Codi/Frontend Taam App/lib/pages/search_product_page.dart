@@ -3,13 +3,12 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
-import 'package:taam_app/pages/foodInformationScreen.dart';
+import 'package:taam_app/pages/food_information_page.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taam_app/requests.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:taam_app/services/settings_provder.dart';
-
 import '../main.dart';
 
 ///Funciones conectadas a back-end

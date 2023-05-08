@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:taam_app/main.dart';
 import 'package:taam_app/pages/page_configuration.dart';
-import 'package:taam_app/pages/reportIncorrectForm.dart';
+import 'package:taam_app/pages/incorrect_form_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taam_app/pages/unexistent_advice.dart';
 
 class Ingredients {
   String title;
@@ -123,22 +124,19 @@ class _MyFoodScreen extends State<MyFoodScreen> {
                     );
                   },
                 ),
+                  )
+                ],
+              ),
+              SizedBox(height: 20),
 
-
-              )
-            ],
-          ),
-          SizedBox(height: 20),
-
-          GestureDetector(
-            onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => NonExistentFoodPage()));
-            },
-            child: SizedBox(
-              height: 50,
-              width: 50,
-              child: Image.asset("assets/glutenfree_stamp.png"),
-            ),
+              GestureDetector(
+                onTap: (){
+                },
+                child: SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: Image.asset("assets/glutenfree_stamp.png"),
+                ),
           )
         ],
       ),

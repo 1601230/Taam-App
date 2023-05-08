@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../requests.dart';
 import '../services/local_storage.dart';
 import '../services/locale_provider.dart';
