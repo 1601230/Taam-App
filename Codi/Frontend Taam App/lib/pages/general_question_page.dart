@@ -84,7 +84,7 @@ class GeneralQuestionsPage extends StatelessWidget {
                   children: [
 
                     SizedBox(height: 50,),
-                    Text("Preguntas", style: TextStyle(fontSize: 30),),
+                    Text(AppLocalizations.of(context)!.textPreguntas, style: TextStyle(fontSize: 30),),
                     SizedBox(height: 35,),
 
                     Container(

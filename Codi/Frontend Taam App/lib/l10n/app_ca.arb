@@ -46,7 +46,15 @@
 
   "titleSobreNosotros": "Sobre nosaltres",
   "textNuestraEmpresa": "La nostra empresa",
-  "textInfoNuestraEmpresa": "TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO",
+  "textInfoNuestraEmpresa": " ",
   "textObjetivo": "El nostre objectiu és",
-  "textInfoObjetivo": "TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO"
+  "textInfoObjetivo": " ",
+
+  "textPreguntas" : "Preguntes",
+  "textEnviarDuda" : "Enviar Dubte",
+
+  "textEnviado" : "Enviat",
+  "textAvisoEnviado" : "El dubte ha estat enviat correctament",
+  "textVolverADudas" : "Torna a la pàgina de dubtes"
+
 }

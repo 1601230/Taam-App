@@ -49,7 +49,7 @@ class _RequestAdvicePage extends StatelessWidget{
               width: 300,
               height: 200,
               decoration: BoxDecoration(
-                  color: Colors.greenAccent,
+                  color: Colors.green,
                   border: Border.all(color: Colors.green, width: 3.0),
                   borderRadius: BorderRadius.all(Radius.circular(20))
 
