@@ -399,13 +399,13 @@ class _MySearchProduct extends State<MySearchProduct> {
                                 return Padding(
                                   padding: EdgeInsets.symmetric(vertical: 4.0),
                                   child: GestureDetector(
-                                    onTap: () {
-                                      //Añadir navegación a la pantalla del producto
-                                      /*Navigator.push(
+                                    onTap: () async {
+                                      String productTap = _listPartsRecommendations![index*2];
+                                      Map<String, dynamic>? productByName = await _searchByName(productTap);
+                                      Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context)=> MyFoodScreen(productName: myData[index].title, productImage: myData[index].subtitle))
-                                      );*/
-                                      _searchProduct();
+                                          MaterialPageRoute(builder: (context)=> MyFoodScreen(product: productByName))
+                                      );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
