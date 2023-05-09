@@ -85,7 +85,7 @@ public class TaamApp {
     }
 
     /**
-     *This method is called from the checkProductBarcode method. The idea of this method is to retrieve the information
+     * This method is called from the checkProductBarcode method. The idea of this method is to retrieve the information
      * of a product given its barcode, if the product exists it returns the information of it within a Product instance
      * and if it does not exist it returns a null value.
      */
@@ -108,7 +108,7 @@ public class TaamApp {
     }
 
     /**
-     *This method is called from the checkProductIngredientName method. The idea of this method is to retrieve
+     * This method is called from the checkProductIngredientName method. The idea of this method is to retrieve
      * information about a product or an ingredient given its name. The user provides us with a name without specifying
      * whether it is the name of a product or an ingredient. The purpose of this method is to query if there is a product
      * with the given name, and if it exists, return its information. Otherwise, it searches for an ingredient with the
@@ -188,6 +188,12 @@ public class TaamApp {
         }
     }
 
+    /**
+     * This method is called from the WebServer when it receives a request for a barcode search from the application.
+     * This method retrieves the product being searched for, then checks if the product meets the restrictions indicated
+     * by the user, and finally returns the information of the product along with whether it is suitable. In case the
+     * product does not exist, it returns null.
+     */
     public Map<String, Object> checkProductBarcode(String barcode) throws SQLException {
         product = TaamApp.getInstance().checkBarcode(barcode);
 
@@ -269,6 +275,13 @@ public class TaamApp {
             return null;
         }
     }
+
+    /**
+     * This method is called from the WebServer when it receives the search request by name from the application. This
+     * method retrieves the product or ingredient being searched for, then checks if the product or ingredient meets the
+     * restrictions indicated by the user, and finally returns the information about the searched product or ingredient
+     * along with its suitability. If the product or ingredient does not exist, it returns null.
+     */
     public Map<String, Object> checkProductIngredientName(String name) throws SQLException {
         Map<String, Object> resultToBeReturnedToFlutter = new HashMap<String, Object>();
         Map<String, Object> returnCheckName = new HashMap<String, Object>();
@@ -404,6 +417,12 @@ public class TaamApp {
         }
     }
 
+    /**
+     * This method is called right after the user indicates their restrictions, the objective of this method is to
+     * generate a list with all the products that are suitable for the user according to their restrictions and then
+     * return 10 random products to the application to be shown as recommended products while the user indicates which
+     * product or ingredient they are interested in searching for.
+     */
     public Map<String, Object> recommendedProducts() throws SQLException {
         Map<String, Object> recommendedProductsMap = new HashMap<String, Object>();
         Map<String, Object> auxiliaryMap = new HashMap<String, Object>();
@@ -436,6 +455,12 @@ public class TaamApp {
 
         return recommendedProductsMap;
     }
+
+    /**
+     *When recommended products are displayed to the user, the user can refresh this list to see new recommended products.
+     * To achieve this, we have this method whose function is to take 10 random products from the list generated previously
+     * by the recommendedProducts method.
+     */
     public Map<String, Object> refreshRecommendedProducts()
     {
         Map<String, Object> recommendedProductsMap = new HashMap<String, Object>();
@@ -479,6 +504,11 @@ public class TaamApp {
         return recommendedProductsMap;
     }
 
+    /**
+     * This method is used to retrieve all the questions from the frequent_questions table and return them to the
+     * application, allowing the frequently asked questions displayed on the screen to be dynamic. This method returns
+     * the questions according to the language selected by the user in the configuration.
+     */
     public Map<String, Object> getFrequentQuestions() throws SQLException {
         Map<String, Object> frequentquestions = new HashMap<>();
 
@@ -491,6 +521,11 @@ public class TaamApp {
         }
         return frequentquestions;
     }
+
+    /**
+     * This method serves to return the answer to a specific question when the user clicks on a question in order to
+     * know its answer. This method returns the answer according to the language that the user has previously indicated.
+     */
     public Map<String, Object> getAnswer(String questionId) throws SQLException {
         Map<String, Object> answer = new HashMap<String, Object>();
 
@@ -502,6 +537,11 @@ public class TaamApp {
 
         return answer;
     }
+
+    /**
+     * This method is used to save the user's question requests in the database so that the administrator can review and
+     * decide which questions can be added to the frequent_questions table.
+     */
     public void saveQuestion(String question) throws SQLException {
         question = textTransformer(question);
         db.insertQuestion(question);
