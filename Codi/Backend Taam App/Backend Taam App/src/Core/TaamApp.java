@@ -25,7 +25,7 @@ public class TaamApp {
     /**
      * "Taam App" has a private constructor to create an instance of this class. It is private to prevent uncontrolled
      * instances from being created, as the aim is that only one instance is created and that the same instance is used at
-     * all times. at all times. From this constructor the connection to the local database is established.
+     * all times. From this constructor the connection to the local database is established.
      */
     private TaamApp()
     {
@@ -84,6 +84,11 @@ public class TaamApp {
         return text;
     }
 
+    /**
+     *This method is called from the checkProductBarcode method. The idea of this method is to retrieve the information
+     * of a product given its barcode, if the product exists it returns the information of it within a Product instance
+     * and if it does not exist it returns a null value.
+     */
     public Product checkBarcode(String barcode) throws SQLException {
 
         if (barcode != null)
@@ -101,6 +106,15 @@ public class TaamApp {
             return null;
         }
     }
+
+    /**
+     *This method is called from the checkProductIngredientName method. The idea of this method is to retrieve
+     * information about a product or an ingredient given its name. The user provides us with a name without specifying
+     * whether it is the name of a product or an ingredient. The purpose of this method is to query if there is a product
+     * with the given name, and if it exists, return its information. Otherwise, it searches for an ingredient with the
+     * specified name. If a product or ingredient exists, it returns a Map variable indicating whether it is a product or
+     * an ingredient, along with the retrieved information. If it does not exist, it returns a null value.
+     */
     public Map<String, Object> checkName(String name) throws SQLException {
         if(name == null){
             return null;
@@ -135,6 +149,11 @@ public class TaamApp {
             return resultToBeReturnedToFlutter;
         }
     }
+
+    /**
+     * This method is used to save in the notFound table of the database the information of the product or ingredient
+     * that a user has searched for and that does not exist in our database, and the user wishes to add it.
+     */
     public void notFound() throws SQLException {
         if (searcher.getBarcode() != null)
         {
@@ -145,6 +164,13 @@ public class TaamApp {
             db.insertNotFoundName(searcher.getIngredientName());
         }
     }
+
+    /**
+     * This method is used to save in the 'incidents' table of the database the observation that the user indicates in
+     * case he thinks that a result indicated by the application is incorrect. The objective is that the user can report
+     * an issue and that it is saved in the database so that later the administrator can review the case and determine if
+     * there is something wrong with the implementation or if there is any incorrect data in the database.
+     */
     public void incident(String observation) throws SQLException {
         observation = textTransformer(observation);
 
