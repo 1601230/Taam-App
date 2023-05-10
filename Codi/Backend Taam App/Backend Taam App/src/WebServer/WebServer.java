@@ -111,9 +111,15 @@ public class WebServer {
                         break;
 
                     case "language":
-                        String language = tokens[counter + 1];
-                        TaamApp.getInstance().setLanguage(language);
-                        counter = counter + 2;
+                        result = TaamApp.getInstance().setLanguage(Arrays.copyOfRange(tokens, counter + 1, tokens.length));
+                        if (result == null)
+                        {
+                            counter = counter + 2;
+                        }
+                        else
+                        {
+                            counter = counter + 3;
+                        }
                         break;
 
                     case "restrictionsList":
