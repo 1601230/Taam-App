@@ -1,5 +1,9 @@
 package Core;
 
+/**
+ * The Ingredient class is used to represent an ingredient of a product. It stores the necessary information of an
+ * ingredient, such as the identifier and the name of the ingredient.
+ */
 public class Ingredient {
     private String ingredient;
     private Integer id;

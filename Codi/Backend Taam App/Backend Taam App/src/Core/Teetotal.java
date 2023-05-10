@@ -15,6 +15,13 @@ import static Core.Edible.*;
  * 2: DOUBTFUL
  */
 
+/**
+ * The Teetotal class is responsible for indicating whether a given product or ingredient is suitable for a person who
+ * doesn't drink alcohol and doesn't eat products or ingredients made with it or its derivatives. This class applies the
+ * visitor pattern because the idea is to inherit the two methods that need to be implemented from the Visitor class, so
+ * that a variable of type Visitor can be called regardless of what type of restriction it is, making the code dynamic
+ * with respect to the restrictions that are added or removed.
+ */
 public class Teetotal implements Visitor{
 
     @Override

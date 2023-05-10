@@ -5,6 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * The DataBase class is responsible for having all the necessary methods to carry out all select and insert queries to
+ * the database. The objective is to abstract in the rest of the code the way in which the queries to the database are
+ * carried out and that these queries are carried out from the same place to make it easier to modify them.
+ */
 public class DataBase {
 
     public DataBase()

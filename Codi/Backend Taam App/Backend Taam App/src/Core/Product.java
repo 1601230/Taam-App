@@ -3,6 +3,10 @@ package Core;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Product class is used to represent a product. It stores the information retrieved from the database about a
+ * product, such as the list of ingredients, the barcode, etc.
+ */
 public class Product {
     private String productName;
     private String barcode;
