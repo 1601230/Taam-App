@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a0cac8a-06de-4f8a-987a-abf691d3421a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Configuration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Configuration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/DataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/DataBase.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/GlutenAllergic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/GlutenAllergic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/LactoseAllergic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/LactoseAllergic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/TaamApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/TaamApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Teetotal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Teetotal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/TreeNutAllergic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/TreeNutAllergic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Vegan.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Vegan.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Vegetarian.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Vegetarian.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/page_configuration.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/page_configuration.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +47,7 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "C:/Users/Oscar Pozo Fernandez/Documents/GitHub/Taam-App/Codi/Backend Taam App/Backend Taam App",
+    "last_opened_file_path": "C:/Users/Oscar Pozo Fernandez/Documents/GitHub/Taam-App/Codi/Frontend Taam App",
     "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",

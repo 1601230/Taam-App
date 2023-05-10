@@ -99,6 +99,13 @@ class _PageConfigurationState extends State<PageConfiguration> {
           _selectionLanguageMessage = settingsProvider.appLanguage!;
           _selectedFoodPreferences = settingsProvider.foodPreferences;
 
+          _selectedFoodPreferences.clear();
+          for (int i=0; i<_isChecked.length; i++) {
+            if (_isChecked[i]) {
+              _selectedFoodPreferences.add(_valuesFoodPreferences[i]);
+            }
+          }
+
           _appThemeItems.clear();
 
           if (settingsProvider.brightness == Brightness.light) {
@@ -254,7 +261,8 @@ class _PageConfigurationState extends State<PageConfiguration> {
                           Container(
                             margin: EdgeInsets.all(10),
                             child: Text(
-                              AppLocalizations.of(context)!.titlePreferenciasConfig,
+                              //AppLocalizations.of(context)!.titlePreferenciasConfig,
+                              _selectedFoodPreferences.toString(),
                               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                           ),
