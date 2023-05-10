@@ -131,6 +131,7 @@ public class Configuration {
 
     public void setUserRestrictionsList(List<String> userRestrictionsList)
     {
+        this.userRestrictionsList.clear();
         this.userRestrictionsList = userRestrictionsList;
     }
 
@@ -138,7 +139,12 @@ public class Configuration {
         return language;
     }
 
-    public Map<String,Object> setLanguage(String[] tokens)
+    public void setLanguage(String language)
+    {
+        this.language = language;
+    }
+
+    public Map<String, Object> changeRestrictionsLanguage(String[] tokens)
     {
         Map<String, Object> restrictionsTranslate= new HashMap<String, Object>();
 
@@ -182,28 +188,28 @@ public class Configuration {
 
             for (int counter = 0; counter < restrictionsList.size(); counter++)
             {
-                   int counterWhile = 0;
-                   boolean found = false;
-                   while ((counterWhile < oldRestrictionsLanguage.size()) && (found == false))
-                   {
-                       String auxRestriction = oldRestrictionsLanguage.get(counterWhile);
-                       auxRestriction = auxRestriction.toLowerCase().replaceAll("(à|á)", "a")
-                                                   .replaceAll("(è|é)", "e")
-                                                   .replaceAll("(ì|í)", "i")
-                                                   .replaceAll("(ò|ó)", "o")
-                                                   .replaceAll("(ù|ú)", "u")
-                                                   .replaceAll("(·|\\s)", "");
-                       if (restrictionsList.get(counter).equals(auxRestriction))
-                       {
-                           restrictionsListTranslate.add(newRestrictionsLanguage.get(counterWhile));
-                           found = true;
-                           counterWhile = 0;
-                       }
-                       else
-                       {
-                           counterWhile = counterWhile + 1;
-                       }
-                   }
+                int counterWhile = 0;
+                boolean found = false;
+                while ((counterWhile < oldRestrictionsLanguage.size()) && (found == false))
+                {
+                    String auxRestriction = oldRestrictionsLanguage.get(counterWhile);
+                    auxRestriction = auxRestriction.toLowerCase().replaceAll("(à|á)", "a")
+                            .replaceAll("(è|é)", "e")
+                            .replaceAll("(ì|í)", "i")
+                            .replaceAll("(ò|ó)", "o")
+                            .replaceAll("(ù|ú)", "u")
+                            .replaceAll("(·|\\s)", "");
+                    if (restrictionsList.get(counter).equals(auxRestriction))
+                    {
+                        restrictionsListTranslate.add(newRestrictionsLanguage.get(counterWhile));
+                        found = true;
+                        counterWhile = 0;
+                    }
+                    else
+                    {
+                        counterWhile = counterWhile + 1;
+                    }
+                }
             }
 
             restrictionsTranslate.put("|Translate", restrictionsListTranslate);
@@ -213,7 +219,6 @@ public class Configuration {
             restrictionsTranslate = null;
         }
 
-        this.language = textTransformer(tokens[0]).replaceAll(",", "");
         return restrictionsTranslate;
     }
 }

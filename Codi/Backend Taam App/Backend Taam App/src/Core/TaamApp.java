@@ -65,9 +65,9 @@ public class TaamApp {
             Configuration.getInstance().setUserRestrictionsList(null);
         }
     }
-    public Map<String,Object> setLanguage(String[] tokens)
+    public void setLanguage(String language)
     {
-        return Configuration.getInstance().setLanguage(tokens);
+        Configuration.getInstance().setLanguage(language);
     }
 
     public String textTransformer(String text)
@@ -545,5 +545,10 @@ public class TaamApp {
     public void saveQuestion(String question) throws SQLException {
         question = textTransformer(question);
         db.insertQuestion(question);
+    }
+
+    public Map<String, Object> changeRestrictionsLanguage(String[] tokens)
+    {
+        return Configuration.getInstance().changeRestrictionsLanguage(tokens);
     }
 }
