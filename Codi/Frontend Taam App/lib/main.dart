@@ -52,9 +52,10 @@ class _MyAppState extends State<MyApp> {
       builder: (context,_) {
         final watch = Provider.of<SettingsProvider>(context);
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Main',
           theme: ThemeData(
-            primarySwatch: Colors.deepPurple,
+            primarySwatch: Colors.green,
             brightness: watch.brightness,
           ),
           supportedLocales: L10n.all,

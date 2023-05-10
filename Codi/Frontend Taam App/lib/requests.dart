@@ -94,8 +94,7 @@ Future<Map<String, dynamic>> getRefresh() async {
 
 
 Map<String, dynamic> stringToMap(String data) {
-  data = data.replaceAll("Ã±", 'ñ');
-  data = data.replaceAll("Ã©", 'é');
+  data = textTransformer(data);
   var map = <String, dynamic>{};
   if (data.trim().startsWith('{') && data.trim().endsWith('}')) {
     data = data.substring(1, data.length - 1);
@@ -118,5 +117,28 @@ Map<String, dynamic> stringToMap(String data) {
     });
   }
   return map;
+}
+
+String textTransformer(String data) {
+  data = data.replaceAll("Ã±", 'ñ');
+  data = data.replaceAll("Ã©", 'é');
+  data = data.replaceAll("Ã¨", 'è');
+  data = data.replaceAll("lÂ·l", 'l·l');
+  data = data.replaceAll("Ã¡", 'á');
+  data = data.replaceAll("Ã¤", 'ä');
+  data = data.replaceAll("Ã¨", 'è');
+  data = data.replaceAll("Ã©", 'é');
+  data = data.replaceAll("Ã«", 'ë');
+  data = data.replaceAll("Ã²", 'ò');
+  data = data.replaceAll("Ã³", 'ó');
+  data = data.replaceAll("Ã¶", 'ö');
+  data = data.replaceAll("Ã¬", 'ì');
+  data = data.replaceAll("Ã­", 'í');
+  data = data.replaceAll("Ã¯", 'ï');
+  data = data.replaceAll("Ã¹", 'ù');
+  data = data.replaceAll("Ãº", 'ú');
+  data = data.replaceAll("Ã¼", 'ü');
+  data = data.replaceAll("Ã", 'à');
+  return data;
 }
 

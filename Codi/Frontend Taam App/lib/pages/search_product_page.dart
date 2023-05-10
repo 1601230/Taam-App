@@ -31,21 +31,25 @@ Future<List<String>>? _getRecommendations(List<String> listPreferences) async {
   List<String> listRecommendations = [];
   for (String value in recommendations.values) {
     value = value.substring(1, value.length - 1); // elimina los corchetes del inicio y fin
-    _getPartsRecommendations(listRecommendations);
+    _getNamesRecommendations(listRecommendations);
     listRecommendations.add(value);
   }
 
   return listRecommendations;
 }
 
-List<String> _getPartsRecommendations(List<String> listRecommendations) {
+List<String> _getNamesRecommendations(List<String> listRecommendations) {
   List<String> listPartsRecommendations = [];
+  List<String> listNamesRecommendations = [];
   for (String parts in listRecommendations) {
     List<String> partsRecommendations = parts.split(", ");
     listPartsRecommendations.addAll(partsRecommendations);
   }
+  for (var i=0; i<listPartsRecommendations.length; i+=3) {
+    listNamesRecommendations.add(listPartsRecommendations[i]);
+  }
 
-  return listPartsRecommendations;
+  return listNamesRecommendations;
 }
 
 Future<List<String>>? _getRefresh() async {
@@ -54,7 +58,7 @@ Future<List<String>>? _getRefresh() async {
   List<String> listRecommendations = [];
   for (String value in recommendations.values) {
     value = value.substring(1, value.length - 1); // elimina los corchetes del inicio y fin
-    _getPartsRecommendations(listRecommendations);
+    _getNamesRecommendations(listRecommendations);
     listRecommendations.add(value);
   }
 
@@ -99,10 +103,10 @@ class _MySearchProduct extends State<MySearchProduct> {
   Future<void> _loadRecommendations() async {
     final settingsProvider = Provider.of<SettingsProvider>(context);
     List<String>? listRecommendations = await _getRecommendations(settingsProvider.foodPreferences);
-    List<String> listPartRecommendations = _getPartsRecommendations(listRecommendations!);
+    List<String> listNameRecommendations = _getNamesRecommendations(listRecommendations!);
     setState(() {
       _listRecommentadions = listRecommendations;
-      _listPartsRecommendations = listPartRecommendations;
+      _listPartsRecommendations = listNameRecommendations;
     });
   }
 
@@ -375,7 +379,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                             });
 
                             _listRecommentadions = await _getRefresh();
-                            _listPartsRecommendations = _getPartsRecommendations(_listRecommentadions!);
+                            _listPartsRecommendations = _getNamesRecommendations(_listRecommentadions!);
 
                             setState(() {
                               loadingRecommendations = false;
@@ -399,7 +403,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                                   padding: EdgeInsets.symmetric(vertical: 4.0),
                                   child: GestureDetector(
                                     onTap: () async {
-                                      String productTap = _listPartsRecommendations![index*2];
+                                      String productTap = _listPartsRecommendations![index];
                                       Map<String, dynamic>? productByName = await _searchByName(productTap);
                                       Navigator.push(
                                           context,
@@ -424,7 +428,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                                           ),
                                           Flexible(
                                             child: Text(
-                                              _listPartsRecommendations![index*2],
+                                              _listPartsRecommendations![index],
                                               softWrap: true,
                                               overflow: TextOverflow.ellipsis,
                                             ),

@@ -10,6 +10,7 @@ class LocalStorage {
   static const _keyBrightness = 'brightness';
   static const _keyFoodPreferences = 'foodPreferences';
   static const _keyLocale = 'appLocale';
+  static const _keyChecked = 'checkedState';
 
   static Future init() async =>
     _preferences = await SharedPreferences.getInstance();
@@ -26,6 +27,11 @@ class LocalStorage {
   static Future setLocale(Locale locale) async =>
     await _preferences.setString(_keyLocale, locale.toString());
 
+  static Future saveCheckedState(List<bool> isChecked) async {
+    List<String> checkedStateAsString = isChecked.map((item) => item.toString()).toList();
+    await _preferences.setStringList(_keyChecked, checkedStateAsString);
+  }
+
   static String? getLanguage() =>
       _preferences.getString(_keyLanguage);
 
@@ -39,9 +45,8 @@ class LocalStorage {
     }
   }
 
-  static List<String>? getFoodPreferences(){
+  static List<String>? getFoodPreferences() =>
     _preferences.getStringList(_keyFoodPreferences);
-  }
 
   static Locale? getLocale() {
     final localeString = _preferences.getString(_keyLocale);
@@ -54,6 +59,19 @@ class LocalStorage {
         return const Locale('es');
       default:
         return const Locale('en');
+    }
+  }
+
+  static Future<List<bool>> loadCheckedState(int length) async {
+    List<String>? checkedStateAsString = _preferences.getStringList(_keyChecked);
+    if (checkedStateAsString == null) {
+      List<bool> checked = [];
+      for(int i = 0; i < length; i++) {
+        checked.add(false);
+      }
+      return checked;
+    } else {
+      return checkedStateAsString.map((item) => item == 'true').toList();
     }
   }
 }

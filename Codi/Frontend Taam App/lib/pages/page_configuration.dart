@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -19,15 +20,16 @@ void _setLanguageServer(String language) {
     case "Español": setLanguageServer("spanish"); break;
     case "English": setLanguageServer("english"); break;
     case "Català": setLanguageServer("catalan"); break;
+    default: break;
   }
 }
 
-/*Future<String> _getPreferences() async {
+Future<String> _getPreferences() async {
   Map<String, dynamic> aux = await getPreferences();
   String stringPreferences = jsonEncode(aux);
   String preferencesContent = stringPreferences.substring(stringPreferences.indexOf('[') + 1, stringPreferences.indexOf(']'));
   return preferencesContent;
-}*/
+}
 
 ///---------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -50,18 +52,33 @@ class _PageConfigurationState extends State<PageConfiguration> {
   List<String> _appThemeItems = [];
   String _selectionThemeMessage = '';
 
+  List<bool> _isChecked = [];
+
   @override
   void initState() {
     super.initState();
-    //_loadPreferences();
   }
 
-  /*Future<void> _loadPreferences() async {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadPreferences();
+  }
+
+  Future<void> _loadPreferences() async {
     String preferences = await _getPreferences();
-    setState(() {
+    setState(()  {
       _valuesFoodPreferences = preferences.split(", ");
     });
-  }*/
+    List<bool> checkedAux = await LocalStorage.loadCheckedState(_valuesFoodPreferences.length);
+    setState(() {
+      _isChecked = checkedAux;
+    });
+  }
+
+  void _saveCheckedState() async {
+    await LocalStorage.saveCheckedState(_isChecked);
+  }
 
   ///Inicializamos los valores de los diferentes campos con los valores pasados
   ///por parametro en el constructor, para que así aparezcan los valores correspondientes
@@ -79,17 +96,8 @@ class _PageConfigurationState extends State<PageConfiguration> {
           ///por parametro en el constructor, para que así aparezcan los valores correspondientes
           ///a la configuración indicada por el usuario, es a decir, que si el usuario tiene
           ///la aplicación en Catalán, que en el campo del idioma ponga Catalán
-          _selectedFoodPreferences = settingsProvider.foodPreferences;
           _selectionLanguageMessage = settingsProvider.appLanguage!;
-
-          _valuesFoodPreferences.clear();
-          _valuesFoodPreferences.add(AppLocalizations.of(context)!.textVegetarianoDialog);
-          _valuesFoodPreferences.add(AppLocalizations.of(context)!.textVeganoDialog);
-          _valuesFoodPreferences.add(AppLocalizations.of(context)!.textCeliacoDialog);
-          _valuesFoodPreferences.add(AppLocalizations.of(context)!.textAlergicoLactosaDialog);
-          _valuesFoodPreferences.add(AppLocalizations.of(context)!.textAlergicoFrutosSecoDialog);
-          _valuesFoodPreferences.add(AppLocalizations.of(context)!.textAbstemio);
-
+          _selectedFoodPreferences = settingsProvider.foodPreferences;
 
           _appThemeItems.clear();
 
@@ -140,8 +148,7 @@ class _PageConfigurationState extends State<PageConfiguration> {
             await LocalStorage.setLanguage(_selectionLanguageMessage);
 
             _setLanguageServer(_selectionLanguageMessage);
-
-            setState(() {});
+            _loadPreferences();
           }
           ///---------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -178,106 +185,116 @@ class _PageConfigurationState extends State<PageConfiguration> {
                 ),
               ],
             ),
-            body: Container(
-              margin: EdgeInsets.all(5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ///Columna de cambio de idioma
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        child: Text(
-                            AppLocalizations.of(context)!.titleIdiomaConfig,
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold)
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: DropdownButton(
-                          items: _appLanguage.map((String itemsValues) {
-                            return DropdownMenuItem(
-                              value: itemsValues,
-                              child: Text(itemsValues),
-                            );
-                          }).toList(),
-
-                          ///value: _selectionLanguageMessage,
-                          value: settingsProvider.appLanguage,
-                            onChanged: _handleSelectionLanguageMessage,
-                        ),
-                      )
-                    ],
-                  ),
-
-                  ///Columna preferencias alimentarias
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        child: Text(
-                            AppLocalizations.of(context)!.titlePreferenciasConfig,
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold)
-                        ),
-                      ),
-                      Padding(
-                          padding: EdgeInsets.all(10),
-                          child: MultiSelectDialogField(
-                            title: Text(
-                                AppLocalizations.of(context)!.textSeleccionaPrefsDialog),
-                            buttonText: Text(AppLocalizations.of(context)!.textSeleccionaPrefsConfig),
-                            confirmText: Text(AppLocalizations.of(context)!.textConfirmarDialog),
-                            cancelText: Text(AppLocalizations.of(context)!.textCancelarDialog),
-                            initialValue: _selectedFoodPreferences,
-                            items: _valuesFoodPreferences.map((option) =>
-                                MultiSelectItem<String>(option, option))
-                                .toList(),
-                            onConfirm: (selectedItems) async {
-                              _selectedFoodPreferences = selectedItems;
-                              ///Actualizamos las preferencias en el main
-                              settingsProvider.setFoodPreferences!(selectedItems);
-                              await LocalStorage.setFoodPreferences(selectedItems);
-                            },
+            body:
+            SingleChildScrollView(
+              child: Container(
+                constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+                margin: EdgeInsets.all(5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                      // Columna de cambio de idioma
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            child: Text(
+                                AppLocalizations.of(context)!.titleIdiomaConfig,
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold)
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(10),
+                            child: DropdownButton(
+                              items: _appLanguage.map((String itemsValues) {
+                                return DropdownMenuItem(
+                                  value: itemsValues,
+                                  child: Text(itemsValues),
+                                );
+                              }).toList(),
+                              value: settingsProvider.appLanguage,
+                              onChanged: _handleSelectionLanguageMessage,
+                            ),
                           )
-                      )
+                        ],
+                      ),
+                      // Columna tema de la aplicación
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            child: Text(
+                                AppLocalizations.of(context)!.titleTemaAppConfig,
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold)
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(10),
+                            child: DropdownButton(
+                              items: _appThemeItems.map((String itemsValues) {
+                                return DropdownMenuItem(
+                                  value: itemsValues,
+                                  child: Text(itemsValues),
+                                );
+                              }).toList(),
+                              value: _selectionThemeMessage,
+                              onChanged: _handleSelectionThemeMessage,
+                            ),
+                          ),
+                        ],
+                      ),
+                      // Columna preferencias alimentarias
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            child: Text(
+                              AppLocalizations.of(context)!.titlePreferenciasConfig,
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(0),
+                            child: Container(
+                              width: 300,
+                              height: 350,
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: _valuesFoodPreferences.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return CheckboxListTile(
+                                    title: Text(_valuesFoodPreferences[index]),
+                                    value: _isChecked[index],
+                                    onChanged: (value) async {
+                                      setState(() {
+                                        _isChecked[index] = value!;
+                                        _saveCheckedState();
+                                      });
+                                      if (_isChecked[index] == true) {
+                                        _selectedFoodPreferences.add(_valuesFoodPreferences[index]);
+                                      } else {
+                                        if(_selectedFoodPreferences.contains(_valuesFoodPreferences[index]))
+                                          _selectedFoodPreferences.remove(_valuesFoodPreferences[index]);
+                                      }
+                                      settingsProvider.setFoodPreferences(_selectedFoodPreferences);
+                                      await LocalStorage.setFoodPreferences(_selectedFoodPreferences);
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-
-                  ///Columna tema de la aplicación
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        child: Text(
-                            AppLocalizations.of(context)!.titleTemaAppConfig,
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold)
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: DropdownButton(
-                          items: _appThemeItems.map((String itemsValues) {
-                            return DropdownMenuItem(
-                              value: itemsValues,
-                              child: Text(itemsValues),
-                            );
-                          }).toList(),
-                          value: _selectionThemeMessage,
-                          onChanged: _handleSelectionThemeMessage,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+                ),
+            )
           );
         }
     );
