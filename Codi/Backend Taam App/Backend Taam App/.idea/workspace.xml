@@ -5,36 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a0cac8a-06de-4f8a-987a-abf691d3421a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/ConfigurationTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/GlutenAllergicTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/LactoseAllergicTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/SearcherTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/TaamAppTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/TeetotalTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/TreeNutAllergicTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/VeganTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/VegetarianTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Frontend Taam App/assets/Logo_TaamApp_Home(2).PNG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Configuration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Configuration.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/DataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/DataBase.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/GlutenAllergic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/GlutenAllergic.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/LactoseAllergic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/LactoseAllergic.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Searcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Searcher.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/TaamApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/TaamApp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Teetotal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Teetotal.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/TreeNutAllergic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/TreeNutAllergic.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Vegan.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Vegan.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Vegetarian.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/Vegetarian.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/WebServer/WebServer$SocketThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/WebServer/WebServer$SocketThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/assets/Logo_TaamApp.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/assets/Logo_TaamApp.PNG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/assets/Logo_TaamApp_Home.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/assets/Logo_TaamApp_Home.PNG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/page_configuration.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/page_configuration.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/search_product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/search_product_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/requests.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/requests.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/services/local_storage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/services/local_storage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,25 +43,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/opfer/Ejercicios TQS/Practica_2_Nueva/Taam-App/Codi/Frontend Taam App&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "last_opened_file_path": "C:/Users/Oscar Pozo Fernandez/Documents/GitHub/Taam-App/Codi/Backend Taam App/Backend Taam App",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "AndroidSdkUpdater",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\UAB\3r Curs\Laboratori Integrat de Software\Taam App\Taam-App\Codi\Backend Taam App\Backend Taam App\src\WebServer" />
@@ -134,12 +115,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Core/TaamApp.java</url>
-          <line>165</line>
+          <line>197</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Core/DataBase.java</url>
-          <line>17</line>
+          <line>22</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
