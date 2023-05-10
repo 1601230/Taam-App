@@ -138,8 +138,82 @@ public class Configuration {
         return language;
     }
 
-    public void setLanguage(String language)
+    public Map<String,Object> setLanguage(String[] tokens)
     {
-        this.language = language;
+        Map<String, Object> restrictionsTranslate= new HashMap<String, Object>();
+
+        if (!tokens[1].equals("end"))
+        {
+            String restrictions = textTransformer(tokens[1]);
+
+            String[] array = restrictions.split(",");
+            List<String> restrictionsList = Arrays.asList(array);
+            List<String> restrictionsListTranslate = new ArrayList<>();
+
+            List<String> newRestrictionsLanguage;
+            switch (textTransformer(tokens[0]).replaceAll(",", "")){
+                case "spanish":
+                    newRestrictionsLanguage = restrictionsSpanishList;
+                    break;
+                case "catalan":
+                    newRestrictionsLanguage = restrictionsCatalanList;
+                    break;
+                case "english":
+                    newRestrictionsLanguage = restrictionsEnglishList;
+                    break;
+                default:
+                    return null;
+            }
+
+            List<String> oldRestrictionsLanguage;
+            switch (language){
+                case "spanish":
+                    oldRestrictionsLanguage = restrictionsSpanishList;
+                    break;
+                case "catalan":
+                    oldRestrictionsLanguage = restrictionsCatalanList;
+                    break;
+                case "english":
+                    oldRestrictionsLanguage = restrictionsEnglishList;
+                    break;
+                default:
+                    return null;
+            }
+
+            for (int counter = 0; counter < restrictionsList.size(); counter++)
+            {
+                   int counterWhile = 0;
+                   boolean found = false;
+                   while ((counterWhile < oldRestrictionsLanguage.size()) && (found == false))
+                   {
+                       String auxRestriction = oldRestrictionsLanguage.get(counterWhile);
+                       auxRestriction = auxRestriction.toLowerCase().replaceAll("(à|á)", "a")
+                                                   .replaceAll("(è|é)", "e")
+                                                   .replaceAll("(ì|í)", "i")
+                                                   .replaceAll("(ò|ó)", "o")
+                                                   .replaceAll("(ù|ú)", "u")
+                                                   .replaceAll("(·|\\s)", "");
+                       if (restrictionsList.get(counter).equals(auxRestriction))
+                       {
+                           restrictionsListTranslate.add(newRestrictionsLanguage.get(counterWhile));
+                           found = true;
+                           counterWhile = 0;
+                       }
+                       else
+                       {
+                           counterWhile = counterWhile + 1;
+                       }
+                   }
+            }
+
+            restrictionsTranslate.put("|Translate", restrictionsListTranslate);
+        }
+        else
+        {
+            restrictionsTranslate = null;
+        }
+
+        this.language = textTransformer(tokens[0]).replaceAll(",", "");
+        return restrictionsTranslate;
     }
 }

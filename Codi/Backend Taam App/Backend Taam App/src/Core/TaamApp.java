@@ -65,9 +65,9 @@ public class TaamApp {
             Configuration.getInstance().setUserRestrictionsList(null);
         }
     }
-    public void setLanguage(String language)
+    public Map<String,Object> setLanguage(String[] tokens)
     {
-        Configuration.getInstance().setLanguage(language);
+        return Configuration.getInstance().setLanguage(tokens);
     }
 
     public String textTransformer(String text)
