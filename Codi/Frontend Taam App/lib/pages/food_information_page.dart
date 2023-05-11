@@ -23,6 +23,11 @@ Future<Map<String, dynamic>> _searchByName(String nameString) async {
   return aux;
 }
 
+Future<List<String>> _changeRestrictionsLanguage(List<String> listPreferences) async {
+  Map<String, dynamic> aux = await changeRestrictionsLanguage(listPreferences);
+  List<String> resultList = aux.values.toList().map((element) => element.toString()).toList();
+  return resultList;
+}
 
 ///productImage tendrá un formato URL
 class MyFoodScreen extends StatefulWidget {
@@ -72,13 +77,25 @@ class _MyFoodScreen extends State<MyFoodScreen> {
       return AppLocalizations.of(context)!.textApto;
     }
 
-    String _getInfoProduct() {
+    Future<String> _getInfoProduct() async {
       String infoCompleta = "";
+      List<String> listPreferences = [];
       for(int i=1; i<settingsProvider.foodPreferences.length+1; i++) {
-        switch(product["RestrictionEdible"+i.toString()]) {
-          case "SUITABLE": infoCompleta = infoCompleta + "\n${product["Restriction"+i.toString()]}: ${AppLocalizations.of(context)!.textApto}"; break;
-          case "UNSUITABLE": infoCompleta = infoCompleta + "\n${product["Restriction"+i.toString()]}: ${AppLocalizations.of(context)!.textNoApto}"; break;
-          case "DOUBTFUL": infoCompleta = infoCompleta + "\n${product["Restriction"+i.toString()]}: ${AppLocalizations.of(context)!.textDudoso}"; break;
+        listPreferences.add(product["Restriction"+i.toString()]);
+      }
+
+      List<String> listPreferencesTranslated = await _changeRestrictionsLanguage(listPreferences);
+      String str = listPreferencesTranslated[0].substring(1, listPreferencesTranslated[0].length - 1);
+      List<String> lista = str.split(',').map((element) => element.trim()).toList();
+
+      for(int i=1; i<lista.length+1; i++) {
+        String restriccionEsApto = product["RestrictionEdible"+i.toString()];
+        //infoCompleta = infoCompleta + "\n${lista[i-1]}: ${AppLocalizations.of(context)!.textNoApto}";
+        switch(restriccionEsApto) {
+          case "SUITABLE": infoCompleta = infoCompleta + "\n${lista[i-1]}: ${AppLocalizations.of(context)!.textApto}\n"; break;
+          case "UNSUITABLE": infoCompleta = infoCompleta + "\n${lista[i-1]}: ${AppLocalizations.of(context)!.textNoApto}\n"; break;
+          case "DOUBTFUL": infoCompleta = infoCompleta + "\n${lista[i-1]}: ${AppLocalizations.of(context)!.textDudoso}\n"; break;
+          default: break;
         }
       }
       return infoCompleta;
@@ -164,13 +181,14 @@ class _MyFoodScreen extends State<MyFoodScreen> {
                 icon: Icon(
                     Icons.info,
                     color: _getColorForAptoValue(esApto),),
-                onPressed: () {
+                onPressed: () async {
+                  String infoProduct = await _getInfoProduct();
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
                         title: Text('Información'),
-                        content: Text(_getInfoProduct()),
+                        content: Text(infoProduct),
                         actions: [
                           TextButton(
                             child: Text('Cerrar'),
@@ -205,14 +223,6 @@ class _MyFoodScreen extends State<MyFoodScreen> {
                       leading: Icon(Icons.restaurant, size: 20),
                       title: Text(listIngredients![index]),
                       subtitle: Text(_isSuitable(listIngredients![index])),
-                      onTap: () async {
-                        String ingredientTap = listIngredients![index];
-                        Map<String, dynamic>? ingredientByName = await _searchByName(ingredientTap);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context)=> MyFoodScreen(product: ingredientByName))
-                        );
-                      },
                     );
                   },
                 ),

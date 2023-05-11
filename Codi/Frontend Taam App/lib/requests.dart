@@ -63,7 +63,8 @@ Future<Map<String, dynamic>> getPreferences() async {
 }
 
 Future<Map<String, dynamic>> getReccomendations(String listPreferences) async {
-  String uri = "$baseUrl/restrictions/$listPreferences/end";
+  String listCleaned = textCleaner(listPreferences);
+  String uri = "$baseUrl/restrictions/$listCleaned/end";
   final response = await client.get(Uri.parse(uri));
 
   if (response.statusCode == 200) {
@@ -79,6 +80,23 @@ Future<Map<String, dynamic>> getReccomendations(String listPreferences) async {
 
 Future<Map<String, dynamic>> getRefresh() async {
   String uri = "$baseUrl/refresh/end";
+  final response = await client.get(Uri.parse(uri));
+
+  if (response.statusCode == 200) {
+    String data = response.body;
+
+    Map<String, dynamic> map = stringToMap(data);
+    return map;
+  } else {
+    print("statusCode=$response.statusCode");
+    throw Exception('Failed to get children');
+  }
+}
+
+Future<Map<String, dynamic>> changeRestrictionsLanguage(List<String> listPreferences) async {
+  String resultado = listPreferences.join(', ');
+  String listCleaned = textCleaner(resultado);
+  String uri = "$baseUrl/changeRestrictionsLanguage/$listCleaned/end";
   final response = await client.get(Uri.parse(uri));
 
   if (response.statusCode == 200) {
@@ -139,6 +157,27 @@ String textTransformer(String data) {
   data = data.replaceAll("Ãº", 'ú');
   data = data.replaceAll("Ã¼", 'ü');
   data = data.replaceAll("Ã", 'à');
+  return data;
+}
+
+String textCleaner(String data) {
+  data = data.replaceAll("à", 'a');
+  data = data.replaceAll("á", 'a');
+  data = data.replaceAll("ä", 'a');
+  data = data.replaceAll("è", 'e');
+  data = data.replaceAll("é", 'e');
+  data = data.replaceAll("ë", 'e');
+  data = data.replaceAll("ò", 'o');
+  data = data.replaceAll("ó", 'o');
+  data = data.replaceAll("ö", 'o');
+  data = data.replaceAll("ì", 'i');
+  data = data.replaceAll("í­", 'i');
+  data = data.replaceAll("ï", 'i');
+  data = data.replaceAll("ù", 'u');
+  data = data.replaceAll("ú", 'u');
+  data = data.replaceAll("ü", 'u');
+  data = data.replaceAll("l·l", 'll');
+
   return data;
 }
 
