@@ -143,4 +143,70 @@ public class Configuration {
     {
         this.language = language;
     }
+
+    public Map<String, Object> changeRestrictionsLanguage(String restrictions)
+    {
+        Map<String, Object> restrictionsTranslate= new HashMap<String, Object>();
+
+        restrictions = textTransformer(restrictions);
+        String[] array = restrictions.split(",");
+        List<String> restrictionsList = Arrays.asList(array);
+        List<String> restrictionsListTranslate = new ArrayList<>();
+
+        List<String> currentRestrictionsLanguage;
+        switch (language){
+            case "spanish":
+                currentRestrictionsLanguage = restrictionsSpanishList;
+                break;
+            case "catalan":
+                currentRestrictionsLanguage = restrictionsCatalanList;
+                break;
+            case "english":
+                currentRestrictionsLanguage = restrictionsEnglishList;
+                break;
+            default:
+                return null;
+        }
+
+        for (int counter = 0; counter < restrictionsList.size(); counter++)
+        {
+            switch (restrictionsList.get(counter)){
+                case "vegan":
+                case "vega":
+                case "vegano":
+                    restrictionsListTranslate.add(currentRestrictionsLanguage.get(0));
+                    break;
+                case "vegetarian":
+                case "vegaria":
+                case "vegetariano":
+                    restrictionsListTranslate.add(currentRestrictionsLanguage.get(1));
+                    break;
+                case "allergictogluten":
+                case "allergicalgluten":
+                case "alergicoalgluten":
+                    restrictionsListTranslate.add(currentRestrictionsLanguage.get(2));
+                    break;
+                case "allergictolactose":
+                case "allergicalalactosa":
+                case "alergicoalalactosa":
+                    restrictionsListTranslate.add(currentRestrictionsLanguage.get(3));
+                    break;
+                case "allergictonuts":
+                case "allergicalafruitaseca":
+                case "alergicoalosfrutossecos":
+                    restrictionsListTranslate.add(currentRestrictionsLanguage.get(4));
+                    break;
+                case "teetotal":
+                case "abstemi":
+                case "abstemio":
+                    restrictionsListTranslate.add(currentRestrictionsLanguage.get(5));
+                    break;
+                default:
+                    return null;
+            }
+        }
+
+        restrictionsTranslate.put("|Translate", restrictionsListTranslate);
+        return restrictionsTranslate;
+    }
 }
