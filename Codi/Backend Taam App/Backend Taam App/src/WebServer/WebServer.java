@@ -167,8 +167,9 @@ public class WebServer {
                         break;
 
                     case "changeRestrictionsLanguage":
-                        result = TaamApp.getInstance().changeRestrictionsLanguage(Arrays.copyOfRange(tokens, counter + 1, tokens.length));
-                        counter = counter + 3;
+                        String restrictions = tokens[counter + 1];
+                        result = TaamApp.getInstance().changeRestrictionsLanguage(restrictions);
+                        counter = counter + 2;
                         break;
 
                     default:
