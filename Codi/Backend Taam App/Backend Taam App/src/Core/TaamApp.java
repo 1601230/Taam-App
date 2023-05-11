@@ -546,9 +546,4 @@ public class TaamApp {
         question = textTransformer(question);
         db.insertQuestion(question);
     }
-
-    public Map<String, Object> changeRestrictionsLanguage(String[] tokens)
-    {
-        return Configuration.getInstance().changeRestrictionsLanguage(tokens);
-    }
 }
