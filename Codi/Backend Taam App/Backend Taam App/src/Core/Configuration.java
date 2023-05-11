@@ -43,7 +43,7 @@ public class Configuration {
 
     public String textTransformer(String text)
     {
-        text = text.replaceAll("(^\"|\"$|%5B|%5D|%20|%22|%C2%B7|\\s)", "");
+        text = text.replaceAll("(^\"|\"$|%5B|%5D|%20|%22|%C2%B7|%C2%A0|\\s)", "");
         text = text.replace("%20", " ");
         text = text.toLowerCase()
                 .replaceAll("(%c3%a1|%c3%a4|%c3%a0|%c3%a2|%c3%81|%c3%84|%c3%80|%c3%82)", "a")
@@ -70,7 +70,7 @@ public class Configuration {
                 case "vegano":
                     return new Vegan();
                 case "vegetarian":
-                case "vegaria":
+                case "vegetaria":
                 case "vegetariano":
                     return new Vegetarian();
                 case "allergictogluten":
@@ -177,7 +177,7 @@ public class Configuration {
                     restrictionsListTranslate.add(currentRestrictionsLanguage.get(0));
                     break;
                 case "vegetarian":
-                case "vegaria":
+                case "vegetaria":
                 case "vegetariano":
                     restrictionsListTranslate.add(currentRestrictionsLanguage.get(1));
                     break;

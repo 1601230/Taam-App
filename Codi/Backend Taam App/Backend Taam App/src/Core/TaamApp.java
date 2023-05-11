@@ -57,7 +57,7 @@ public class TaamApp {
 
             for (String restriction : restrictionsToken)
             {
-                restriction = restriction.replaceAll("(^\"|\"$|%5B|%5D|%20|%22|\\s)", "");
+                restriction = restriction.replaceAll("(^\"|\"$|%5B|%5D|%20|%22|%C2%A0|\\s)", "");
                 restrictionsList.add(restriction);
             }
             Configuration.getInstance().setUserRestrictionsList(restrictionsList);
@@ -72,7 +72,7 @@ public class TaamApp {
 
     public String textTransformer(String text)
     {
-        text = text.replaceAll("(^\"|\"$|%5B|%5D|%22)", "");
+        text = text.replaceAll("(^\"|\"$|%5B|%5D|%22|%C2%A0)", "");
         text = text.replace("%20", " ");
         text = text.toLowerCase()
                 .replaceAll("(%c3%a1|%c3%a4|%c3%a0|%c3%a2|%c3%81|%c3%84|%c3%80|%c3%82)", "a")
