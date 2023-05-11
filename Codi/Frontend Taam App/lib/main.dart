@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:taam_app/l10n/l10n.dart';
 import 'package:taam_app/pages/incorrect_form_page.dart';
+import 'package:taam_app/pages/page_about_us.dart';
 import 'package:taam_app/services/local_storage.dart';
 import 'package:taam_app/services/locale_provider.dart';
 import 'package:taam_app/services/settings_provder.dart';
@@ -130,6 +131,24 @@ class MyHomePage extends StatelessWidget {
                         );
                     },
                     child: Text(AppLocalizations.of(context)!.textBotonIniciar),
+                  ),
+                  const Padding(padding: EdgeInsets.only(top: 10)),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => PageAboutUs()),
+                      );
+                    },
+                    child: Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.textAboutUsRedirection,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.blue
+                        ),
+                      ),
+                    ),
                   ),
                   SizedBox(height: 30),
                 ],

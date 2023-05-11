@@ -47,38 +47,15 @@ class _PageAboutUsState extends State<PageAboutUs> {
                     )
                   ),
                 ),
-                Center(
-                  child: Card(
-                    child: Text(
+                Card(
+                  child: Text(
                       AppLocalizations.of(context)!.textInfoNuestraEmpresa,
                       textAlign: TextAlign.justify,
                     ),
                   )
-                )
               ],
             ),
             SizedBox(height: 20),
-            Column(
-              children: [
-                Center(
-                  child: Text(
-                    AppLocalizations.of(context)!.textObjetivo,
-                      style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold
-                    )
-                  ),
-                ),
-                Center(
-                  child: Card(
-                    child: Text(
-                      AppLocalizations.of(context)!.textInfoObjetivo,
-                      textAlign: TextAlign.justify,
-                    ),
-                  )
-                )
-              ],
-            ),
           ],
         )
       ),
