@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 import 'package:taam_app/main.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'package:taam_app/pages/incorrect_form_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taam_app/pages/page_report_product.dart';
 import 'package:taam_app/pages/unexistent_advice.dart';
+import 'package:taam_app/services/local_storage.dart';
 
 import '../requests.dart';
+import '../services/settings_provder.dart';
 
 class Ingredients {
   String title;
@@ -36,9 +39,11 @@ class _MyFoodScreen extends State<MyFoodScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final settingsProvider = Provider.of<SettingsProvider>(context);
     String? ingredients = product["Ingredients"].substring(1, product["Ingredients"].length - 1);
     String? unsuitableIngredients = product["ListIngredientsUNSUITABLE"].substring(1, product["ListIngredientsUNSUITABLE"].length - 1);
     String? doubtfulIngredients = product["ListIngredientsDOUBTFUL"].substring(1, product["ListIngredientsDOUBTFUL"].length - 1);
+
     List<String>? listIngredients = ingredients?.split(", ");
     List<String>? listUnsuitableIngredients = unsuitableIngredients?.split(", ");
     List<String>? listDoubtfulIngredients = doubtfulIngredients?.split(", ");
@@ -65,6 +70,28 @@ class _MyFoodScreen extends State<MyFoodScreen> {
         }
       }
       return AppLocalizations.of(context)!.textApto;
+    }
+
+    String _getInfoProduct() {
+      String infoCompleta = "";
+      for(int i=1; i<settingsProvider.foodPreferences.length+1; i++) {
+        switch(product["RestrictionEdible"+i.toString()]) {
+          case "SUITABLE": infoCompleta = infoCompleta + "\n${product["Restriction"+i.toString()]}: ${AppLocalizations.of(context)!.textApto}"; break;
+          case "UNSUITABLE": infoCompleta = infoCompleta + "\n${product["Restriction"+i.toString()]}: ${AppLocalizations.of(context)!.textNoApto}"; break;
+          case "DOUBTFUL": infoCompleta = infoCompleta + "\n${product["Restriction"+i.toString()]}: ${AppLocalizations.of(context)!.textDudoso}"; break;
+        }
+      }
+      return infoCompleta;
+    }
+
+    Color _getColorForAptoValue(String aptoValue) {
+      if (aptoValue == 'Apto') {
+        return Colors.green;
+      } else if (aptoValue == 'Dudoso') {
+        return Colors.orange;
+      } else {
+        return Colors.red;
+      }
     }
 
     return Scaffold(
@@ -122,11 +149,47 @@ class _MyFoodScreen extends State<MyFoodScreen> {
             ),
           ),
           SizedBox(height: 20),
-          Text(esApto),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                esApto,
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: _getColorForAptoValue(esApto)
+                ),
+              ),
+              IconButton(
+                icon: Icon(
+                    Icons.info,
+                    color: _getColorForAptoValue(esApto),),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Información'),
+                        content: Text(_getInfoProduct()),
+                        actions: [
+                          TextButton(
+                            child: Text('Cerrar'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                padding: const EdgeInsets.symmetric(vertical: 4.0),
                 child: Text(AppLocalizations.of(context)!.textInfoConsumicion),
               ),
               Container(
