@@ -67,7 +67,7 @@ class SendDoubtPage extends State<MyDoubt>{
         ElevatedButton(child: Text(AppLocalizations.of(context)!.titleEnviarPregunta),
             style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.grey)
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200)
             ),
             onPressed: (){
               Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => ConfirmDoubtAdvice()));

@@ -68,7 +68,7 @@ class _GeneralQuestionsPageState extends State<GeneralQuestionsPage> {
               ElevatedButton(child: Text(AppLocalizations.of(context)!.textButtonEnviarDuda),
                   style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.grey)
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200)
                   ),
                   onPressed: (){
                     Navigator.push(

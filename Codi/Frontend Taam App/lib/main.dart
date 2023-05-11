@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
           debugShowCheckedModeBanner: false,
           title: 'Main',
           theme: ThemeData(
-            primarySwatch: Colors.green,
+            primarySwatch: Colors.teal,
             brightness: watch.brightness,
           ),
           supportedLocales: L10n.all,
@@ -130,6 +130,10 @@ class MyHomePage extends StatelessWidget {
                             MaterialPageRoute(builder: (context)=> const MySearchProduct())
                         );
                     },
+                    style: ButtonStyle(
+                        foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200)
+                    ),
                     child: Text(AppLocalizations.of(context)!.textBotonIniciar),
                   ),
                   const Padding(padding: EdgeInsets.only(top: 10)),
