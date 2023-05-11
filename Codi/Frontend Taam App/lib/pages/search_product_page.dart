@@ -31,7 +31,18 @@ Future<List<String>>? _getRecommendations(List<String> listPreferences) async {
   List<String> listRecommendations = [];
   for (String value in recommendations.values) {
     value = value.substring(1, value.length - 1); // elimina los corchetes del inicio y fin
-    _getNamesRecommendations(listRecommendations);
+    listRecommendations.add(value);
+  }
+
+  return listRecommendations;
+}
+
+Future<List<String>?> _getRefresh() async {
+  Map<String, dynamic> recommendations = await getRefresh();
+
+  List<String> listRecommendations = [];
+  for (String value in recommendations.values) {
+    value = value.substring(1, value.length - 1); // elimina los corchetes del inicio y fin
     listRecommendations.add(value);
   }
 
@@ -52,17 +63,18 @@ List<String> _getNamesRecommendations(List<String> listRecommendations) {
   return listNamesRecommendations;
 }
 
-Future<List<String>>? _getRefresh() async {
-  Map<String, dynamic> recommendations = await getRefresh();
-
-  List<String> listRecommendations = [];
-  for (String value in recommendations.values) {
-    value = value.substring(1, value.length - 1); // elimina los corchetes del inicio y fin
-    _getNamesRecommendations(listRecommendations);
-    listRecommendations.add(value);
+List<String> _getImagesRecommendations(List<String> listRecommendations) {
+  List<String> listPartsRecommendations = [];
+  List<String> listNamesRecommendations = [];
+  for (String parts in listRecommendations) {
+    List<String> partsRecommendations = parts.split(", ");
+    listPartsRecommendations.addAll(partsRecommendations);
+  }
+  for (var i=2; i<listPartsRecommendations.length; i+=3) {
+    listNamesRecommendations.add(listPartsRecommendations[i]);
   }
 
-  return listRecommendations;
+  return listNamesRecommendations;
 }
 
 ///---------------------------------------------------------------------------------------------------------------------------------------------
@@ -85,7 +97,8 @@ class _MySearchProduct extends State<MySearchProduct> {
   late String scanResult;
   late PageConfiguration settings = new PageConfiguration();
   List<String>? _listRecommentadions = [];
-  List<String>? _listPartsRecommendations = [];
+  List<String>? _listNamesRecommendations = [];
+  List<String>? _listImagesRecommendations = [];
 
   @override
   void initState() {
@@ -104,9 +117,11 @@ class _MySearchProduct extends State<MySearchProduct> {
     final settingsProvider = Provider.of<SettingsProvider>(context);
     List<String>? listRecommendations = await _getRecommendations(settingsProvider.foodPreferences);
     List<String> listNameRecommendations = _getNamesRecommendations(listRecommendations!);
+    List<String> listImagesRecommendations = _getImagesRecommendations(listRecommendations!);
     setState(() {
       _listRecommentadions = listRecommendations;
-      _listPartsRecommendations = listNameRecommendations;
+      _listNamesRecommendations = listNameRecommendations;
+      _listImagesRecommendations = listImagesRecommendations;
     });
   }
 
@@ -379,7 +394,8 @@ class _MySearchProduct extends State<MySearchProduct> {
                             });
 
                             _listRecommentadions = await _getRefresh();
-                            _listPartsRecommendations = _getNamesRecommendations(_listRecommentadions!);
+                            _listNamesRecommendations = _getNamesRecommendations(_listRecommentadions!);
+                            _listImagesRecommendations = _getImagesRecommendations(_listRecommentadions!);
 
                             setState(() {
                               loadingRecommendations = false;
@@ -402,14 +418,6 @@ class _MySearchProduct extends State<MySearchProduct> {
                                 return Padding(
                                   padding: EdgeInsets.symmetric(vertical: 4.0),
                                   child: GestureDetector(
-                                    onTap: () async {
-                                      String productTap = _listPartsRecommendations![index];
-                                      Map<String, dynamic>? productByName = await _searchByName(productTap);
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(builder: (context)=> MyFoodScreen(product: productByName))
-                                      );
-                                    },
                                     child: Container(
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey, width: 1.0),
@@ -428,7 +436,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                                           ),
                                           Flexible(
                                             child: Text(
-                                              _listPartsRecommendations![index],
+                                              _listNamesRecommendations![index],
                                               softWrap: true,
                                               overflow: TextOverflow.ellipsis,
                                             ),

@@ -54,6 +54,9 @@
   "textNuestraEmpresa": "Nuestra empresa",
   "textInfoNuestraEmpresa": "TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO",
   "textObjetivo": "Nuestro objetivo es",
-  "textInfoObjetivo": "TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO"
+  "textInfoObjetivo": "TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO",
 
+  "textApto": "Apto",
+  "textNoApto": "No Apto",
+  "textDudoso": "Dudoso"
 }

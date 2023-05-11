@@ -261,8 +261,7 @@ class _PageConfigurationState extends State<PageConfiguration> {
                           Container(
                             margin: EdgeInsets.all(10),
                             child: Text(
-                              //AppLocalizations.of(context)!.titlePreferenciasConfig,
-                              _selectedFoodPreferences.toString(),
+                              AppLocalizations.of(context)!.titlePreferenciasConfig,
                               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                           ),

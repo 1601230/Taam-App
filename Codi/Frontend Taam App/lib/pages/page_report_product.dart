@@ -36,15 +36,7 @@ class _PageReportProductState extends State<PageReportProduct> {
                 children: [
                   Text(""),
                   Text(AppLocalizations.of(context)!.titlePaginaReporteProducto),
-                  IconButton(
-                    icon: Icon(Icons.settings),
-                    onPressed: () async {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => PageConfiguration()),
-                      );
-                    },
-                  ),
+                  Text("         ")
                 ],
               ),
 

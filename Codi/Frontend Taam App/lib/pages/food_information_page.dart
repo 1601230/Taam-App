@@ -7,10 +7,17 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taam_app/pages/page_report_product.dart';
 import 'package:taam_app/pages/unexistent_advice.dart';
 
+import '../requests.dart';
+
 class Ingredients {
   String title;
   String restrictions;
   Ingredients({required this.title, required this.restrictions});
+}
+
+Future<Map<String, dynamic>> _searchByName(String nameString) async {
+  Map<String, dynamic> aux = await searchByName(nameString);
+  return aux;
 }
 
 
@@ -30,13 +37,34 @@ class _MyFoodScreen extends State<MyFoodScreen> {
   @override
   Widget build(BuildContext context) {
     String? ingredients = product["Ingredients"].substring(1, product["Ingredients"].length - 1);
+    String? unsuitableIngredients = product["ListIngredientsUNSUITABLE"].substring(1, product["ListIngredientsUNSUITABLE"].length - 1);
+    String? doubtfulIngredients = product["ListIngredientsDOUBTFUL"].substring(1, product["ListIngredientsDOUBTFUL"].length - 1);
     List<String>? listIngredients = ingredients?.split(", ");
+    List<String>? listUnsuitableIngredients = unsuitableIngredients?.split(", ");
+    List<String>? listDoubtfulIngredients = doubtfulIngredients?.split(", ");
 
     late String esApto;
     if (product["Edible"] == "SUITABLE") {
-      esApto = "Apto";
+      esApto = AppLocalizations.of(context)!.textApto;
+    } else if(product["Edible"] == "UNSUITABLE"){
+      esApto = AppLocalizations.of(context)!.textNoApto;
     } else {
-      esApto = "No Apto";
+      esApto = AppLocalizations.of(context)!.textDudoso;
+    }
+
+    String _isSuitable(String ingredient) {
+      String isSuitable = "";
+      for(var listUnsuitableIngredient in listUnsuitableIngredients!) {
+        if(listUnsuitableIngredient == ingredient) {
+          return AppLocalizations.of(context)!.textNoApto;
+        }
+      }
+      for(var listDoubtfulIngredient in listDoubtfulIngredients!) {
+        if(listDoubtfulIngredient == ingredient) {
+          return AppLocalizations.of(context)!.textDudoso;
+        }
+      }
+      return AppLocalizations.of(context)!.textApto;
     }
 
     return Scaffold(
@@ -47,7 +75,7 @@ class _MyFoodScreen extends State<MyFoodScreen> {
             children: <Widget>[
               const Text(""),
               IconButton(
-                alignment: Alignment.topCenter,
+                alignment: Alignment.center,
                 icon: Image.asset('assets/Logo_TaamApp_Home.png'),
                 onPressed: () {
                   Navigator.of(context).pushAndRemoveUntil(
@@ -56,15 +84,7 @@ class _MyFoodScreen extends State<MyFoodScreen> {
                   );
                 },
               ),
-              IconButton(
-                icon: Icon(Icons.settings),
-                onPressed: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PageConfiguration()),
-                  );
-                },
-              ),
+              Text("        ")
             ],
           ),
         ),
@@ -121,7 +141,15 @@ class _MyFoodScreen extends State<MyFoodScreen> {
                     return ListTile(
                       leading: Icon(Icons.restaurant, size: 20),
                       title: Text(listIngredients![index]),
-                      subtitle: Text("Apto"),
+                      subtitle: Text(_isSuitable(listIngredients![index])),
+                      onTap: () async {
+                        String ingredientTap = listIngredients![index];
+                        Map<String, dynamic>? ingredientByName = await _searchByName(ingredientTap);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context)=> MyFoodScreen(product: ingredientByName))
+                        );
+                      },
                     );
                   },
                 ),

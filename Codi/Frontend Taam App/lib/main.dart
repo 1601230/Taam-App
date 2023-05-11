@@ -15,6 +15,7 @@ import 'package:taam_app/pages/questions_page.dart';
 import 'pages/search_product_page.dart';
 import 'pages/unexistent_advice.dart';
 import 'pages/requestSendAdvice.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/src/material_localizations.dart';
 import 'package:flutter_localizations/src/cupertino_localizations.dart';
@@ -123,10 +124,10 @@ class MyHomePage extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context)=> const MySearchProduct())
-                      );
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context)=> const MySearchProduct())
+                        );
                     },
                     child: Text(AppLocalizations.of(context)!.textBotonIniciar),
                   ),
