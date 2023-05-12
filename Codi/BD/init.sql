@@ -81,65 +81,65 @@ ALTER TABLE products_ingredients
 
 /* INSERTs table products */
 
-INSERT INTO public.products(id, name, image) VALUES ('8410714102129', 'White sugar', '1hiEmBj3bMMiCyKQNUKrBNxhAvxyvp0TR');
+INSERT INTO public.products(id, name, image) VALUES ('8410714102129', 'White sugar', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F8410714102129.jpg?alt=media&token=611b62e9-d22e-4ab7-ae51-64302980ad03');
 
-INSERT INTO public.products(id, name, image) VALUES ('5053990156009', 'Chips Pringels Originals', '1BMBKbNCPyCL751eQOwJZwcgMA5YDE-z3');
+INSERT INTO public.products(id, name, image) VALUES ('5053990156009', 'Chips Pringels Originals', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F5053990156009.jpg?alt=media&token=e4af47d8-726a-45b8-84ea-6c621ef9ab20');
 
-INSERT INTO public.products(id, name, image) VALUES ('5053827206730', 'Kelloggs Corn Flakes', '1kLpaCUKYLpX6MuJ9SzAxG5LJexliN6gd');
+INSERT INTO public.products(id, name, image) VALUES ('5053827206730', 'Kelloggs Corn Flakes', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F5053827206730.jpg?alt=media&token=484f290f-f935-4ee8-ad33-e389dceb458c');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000156112', 'Cereales Avena Crunchy 85% Avena Integral y Bajo Contenido en Azucar - Hacendado', '1UNGVikXXXNvqXCVFxRCShA8gYeti7i7P');
+INSERT INTO public.products(id, name, image) VALUES ('8480000156112', 'Cereales Avena Crunchy 85% Avena Integral y Bajo Contenido en Azucar - Hacendado', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F8480000156112.jpg?alt=media&token=bfda95c4-fd9b-49c4-b5e0-8bd22679fe73');
 
-INSERT INTO public.products(id, name, image) VALUES ('8412598000010', 'Special beer - Estrella Galicia', '1i861b1pagpixaEvB2uw3JHbvRBpr5dl1');
+INSERT INTO public.products(id, name, image) VALUES ('8412598000010', 'Special beer - Estrella Galicia', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F8412598000010.jpg?alt=media&token=730b5380-6ec8-478a-9ff0-d9c562f7c92b');
 
-INSERT INTO public.products(id, name, image) VALUES ('8410184030137', 'White and red quinoa - Brillante', '1sBY0VqC0abWlnYEOZCCsQqG_X6P67x00');
+INSERT INTO public.products(id, name, image) VALUES ('8410184030137', 'White and red quinoa - Brillante', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F8410184030137.jpg?alt=media&token=b93e19ae-d424-4645-a599-a36c90cf06ff');
 
-INSERT INTO public.products(id, name, image) VALUES ('5013665111610', 'Lightly Salted Low Fat Corn Cakes', '1Mi7QxaAlsVTBAoFk6ruhHNiaBqZFShno');
+INSERT INTO public.products(id, name, image) VALUES ('5013665111610', 'Lightly Salted Low Fat Corn Cakes', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F5013665111610.jpg?alt=media&token=c1e1d8c6-46c0-4773-a0c6-465b9abd2c02);
 
-INSERT INTO public.products(id, name, image) VALUES ('8410076481597', 'Tortilla Nachips Original-Old El Paso', '1K5e8U0OLCt6uPS7UZgRA7CgrrFmPLtrH');
+INSERT INTO public.products(id, name, image) VALUES ('8410076481597', 'Tortilla Nachips Original-Old El Paso', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F8410076481597.jpg?alt=media&token=0ae663d2-b0c6-48d1-b09f-43870ac1e60d');
 
-INSERT INTO public.products(id, name, image) VALUES ('8057432464032', 'Grissini Breadsticks', '1vsJ67GFha9c4AYWcR6uwOznCTsVsWzr8');
+INSERT INTO public.products(id, name, image) VALUES ('8057432464032', 'Grissini Breadsticks', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F8057432464032.jpg?alt=media&token=dcf210c2-c0a7-48e9-97aa-36d83438e8b9');
 
-INSERT INTO public.products(id, name, image) VALUES ('5060490400259', 'Corn Smoked BBQ Crunchy Corn', '1G7krUXXtJeGg_8Szud10GWp14B_3vbnv');
+INSERT INTO public.products(id, name, image) VALUES ('5060490400259', 'Corn Smoked BBQ Crunchy Corn', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F5060490400259.jpg?alt=media&token=947c4919-41b3-49b5-96c6-ad943ab92f5d');
 
-INSERT INTO public.products(id, name, image) VALUES ('3046920029759', 'Dark Chocolate 90% cocoa - Lindt', '1-JyPgfTAJ4xV9h30PNNtFRyYuk1hvnFv');
+INSERT INTO public.products(id, name, image) VALUES ('3046920029759', 'Dark Chocolate 90% cocoa - Lindt', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F3046920029759.jpg?alt=media&token=bbff0ce5-3633-4712-85e7-3bbc5bd2ede4');
 
-INSERT INTO public.products(id, name, image) VALUES ('5060283760003', 'Proper Corn', '1GB0Y4YH4QHAy_gJ71VB7dD-q1ebrWreP');
+INSERT INTO public.products(id, name, image) VALUES ('5060283760003', 'Proper Corn', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F5060283760003.jpg?alt=media&token=e95ed41c-97f9-468f-97ed-f471a028f1b2');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000171320', 'Tomate Frito', '16BAYmRe6Q4aDHxjkpuccqtEwXLWz5LwK');
+INSERT INTO public.products(id, name, image) VALUES ('8480000171320', 'Tomate Frito', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F8480000171320.jpg?alt=media&token=ce22cfdf-10a0-4aaa-92d8-3550de94593c');
 
-INSERT INTO public.products(id, name, image) VALUES ('8076800376999', 'Lasagne alluovo', '1SkM8zFMK6S0pP4T7u5d3MVaCTXHNYAC3');
+INSERT INTO public.products(id, name, image) VALUES ('8076800376999', 'Lasagne alluovo', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F8076800376999.jpg?alt=media&token=03a73877-407c-4d37-b8e1-f12212aeea7a');
 
-INSERT INTO public.products(id, name, image) VALUES ('8710411045058', 'Pate darachide', '14dPgDNudg_hc6J721XfbC0bVzCmGKQmS');
+INSERT INTO public.products(id, name, image) VALUES ('8710411045058', 'Pate darachide', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F8710411045058.jpg?alt=media&token=9933e482-5ffa-4e88-9b12-3e37a563cb1e');
 
-INSERT INTO public.products(id, name, image) VALUES ('3228022170175', 'Comte Le Montarlier', '1pdEOXGa8AJl8gREqiiaE4johcPxqKpbi');
+INSERT INTO public.products(id, name, image) VALUES ('3228022170175', 'Comte Le Montarlier', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F3228022170175.jpg?alt=media&token=ebda7699-e30e-46dd-85e7-f0416c93aead');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000205124', 'Yogur griego natural', '1KbCRYS8o-G8rlzfHaCm3sMlXFYX32YI8');
+INSERT INTO public.products(id, name, image) VALUES ('8480000205124', 'Yogur griego natural', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F8480000205124.jpg?alt=media&token=a2edba97-8a32-45a9-8dac-ec8ae301b7d5');
 
-INSERT INTO public.products(id, name, image) VALUES ('20816445', 'Nuts Royal', '1KJFU9TSfa0QZ_fdILcXshR_gz9IcqPRk');
+INSERT INTO public.products(id, name, image) VALUES ('20816445', 'Nuts Royal', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F20816445.jpg?alt=media&token=920a095d-e99d-4bc6-b8b1-d71cade9795a');
 
-INSERT INTO public.products(id, name, image) VALUES ('20131968', 'Requeson tipo cottage light', '1anBKDbrcrqT5og-kUHIU7tl1Veikqvd_');
+INSERT INTO public.products(id, name, image) VALUES ('20131968', 'Requeson tipo cottage light', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F20131968.jpg?alt=media&token=96059109-c52d-400a-a487-f824a3793a7a');
 
-INSERT INTO public.products(id, name, image) VALUES ('20034658', 'Salmon ahumado', '16KPFl4ytZPSBVa2R3YX3YdyoR7Sgnx8t');
+INSERT INTO public.products(id, name, image) VALUES ('20034658', 'Salmon ahumado', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F20034658.jpg?alt=media&token=c4ed8f12-293f-45ab-9d9b-dbedf5190b98');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000183118', 'Filetes de Caballa del Sur en Aceite de Oliva Bajo en sal', '1gN4i60-YzA4vYB9IViMBMfccRxQkYkfC');
+INSERT INTO public.products(id, name, image) VALUES ('8480000183118', 'Filetes de Caballa del Sur en Aceite de Oliva Bajo en sal', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F8480000183118.jpg?alt=media&token=2d12480d-0894-43b3-a06c-9ff5f5032ec1');
 
-INSERT INTO public.products(id, name, image) VALUES ('3245414658769', 'Tiramisu - Carrefour', '1BAaJxM2VQ51Y0Kw29tIgtaVHgS1gU1BW');
+INSERT INTO public.products(id, name, image) VALUES ('3245414658769', 'Tiramisu - Carrefour', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F3245414658769.jpg?alt=media&token=754cf689-5e66-404e-8f57-44d887789a7b');
 
-INSERT INTO public.products(id, name, image) VALUES ('7613039490266', 'Nesquik - Nestle', '11WDCTDpI6uqL_MKQD92KcDeJcq6-ATVw');
+INSERT INTO public.products(id, name, image) VALUES ('7613039490266', 'Nesquik - Nestle', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F7613039490266.jpg?alt=media&token=51dc2542-efcc-48c1-9484-25f68bdf2eb0');
 
-INSERT INTO public.products(id, name, image) VALUES ('4008400811727', 'Mon cheri', '1ke9uD5AUBIM8sP6iCCOwv1_GN-X3wMtq');
+INSERT INTO public.products(id, name, image) VALUES ('4008400811727', 'Mon cheri', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F4008400811727.jpg?alt=media&token=1b07d8b5-fbfc-42d2-817a-b9940f96ce7c');
 
-INSERT INTO public.products(id, name, image) VALUES ('787692838349', 'White Chocolaty Macadamia', '10D4H6NEhAcDKIriX3XDWY9s9g5YtDuu2');
+INSERT INTO public.products(id, name, image) VALUES ('787692838349', 'White Chocolaty Macadamia', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F787692838349.jpg?alt=media&token=53ba7df8-d60c-4475-9d4e-69396c6cc36d');
 
-INSERT INTO public.products(id, name, image) VALUES ('4025700001962', 'Chocolate blanco - Milka', '1usWRQsaA81Cm2ouA-TGdJg8fPNkKcq_1');
+INSERT INTO public.products(id, name, image) VALUES ('4025700001962', 'Chocolate blanco - Milka', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F4025700001962.jpg?alt=media&token=b7fccad8-889a-4e38-a6a9-31ec71634d9c');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000120373', 'Chocolate con almendras - Hacendado', '1PyItvJAj03LZmu7tqx97qXUNk4iUqELw');
+INSERT INTO public.products(id, name, image) VALUES ('8480000120373', 'Chocolate con almendras - Hacendado', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F8480000120373.jpg?alt=media&token=31e677e2-46a4-4a22-a8d9-e7b046290009');
 
-INSERT INTO public.products(id, name, image) VALUES ('3560070118373', 'Vikoroff vodka', '1vw1QdgQXhAVVVlMA7sSQ7-BBRv3qBRHY');
+INSERT INTO public.products(id, name, image) VALUES ('3560070118373', 'Vikoroff vodka', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F3560070118373.jpg?alt=media&token=23422693-87d1-498c-ab4c-98077e777e63');
 
-INSERT INTO public.products(id, name, image) VALUES ('704039019803', 'Fudge - Jack Daniels', '1EqEQzl7xyTA296nQBstsELcExDChfP0q');
+INSERT INTO public.products(id, name, image) VALUES ('704039019803', 'Fudge - Jack Daniels', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F704039019803.jpg?alt=media&token=8fa536b4-eb0a-4330-8f45-539b60ce2b02');
 
-INSERT INTO public.products(id, name, image) VALUES ('20150907', 'Arandanos deshidratados - Alesto', '1TD5RSTadzdr4HbpMJxiuC6pui8vrRXd1');
+INSERT INTO public.products(id, name, image) VALUES ('20150907', 'Arandanos deshidratados - Alesto', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F20150907.jpg?alt=media&token=cd440f0f-344a-470b-b406-a1c532e23bbe');
 
 INSERT INTO public.products(id, name, image) VALUES ('7300400481595', 'Tartine croustillante Authentique - Wasa', '1T2CM8d8-viUtCCTIEosthLZ4Z_iT3rUt');
 
