@@ -224,8 +224,8 @@ public class TaamApp {
                 visitor = Configuration.getInstance().createConfiguration(userRestrictionsList.get(counter));
                 result = visitor.checkProduct(product.getProductIngredientsList());
 
-                resultToBeReturnedToFlutter.put("||Restriction|" + (counter+1), userRestrictionsList.get(counter));
-                resultToBeReturnedToFlutter.put("||RestrictionEdible|" + (counter+1), result.getResult().toString());
+                resultToBeReturnedToFlutter.put("||Restriction" + (counter+1) + "|", userRestrictionsList.get(counter));
+                resultToBeReturnedToFlutter.put("||RestrictionEdible" + (counter+1) + "|", result.getResult().toString());
 
                 if (result.getResult() != SUITABLE)
                 {
@@ -320,8 +320,8 @@ public class TaamApp {
                     visitor = Configuration.getInstance().createConfiguration(restrictions.get(counter));
                     result = visitor.checkProduct(product.productIngredientsList);
 
-                    resultToBeReturnedToFlutter.put("||Restriction|" + (counter+1), userRestrictionsList.get(counter));
-                    resultToBeReturnedToFlutter.put("||RestrictionEdible|" + (counter+1), result.getResult().toString());
+                    resultToBeReturnedToFlutter.put("||Restriction" + (counter+1) + "|", userRestrictionsList.get(counter));
+                    resultToBeReturnedToFlutter.put("||RestrictionEdible" + (counter+1) + "|", result.getResult().toString());
 
                     if (result.getResult() != SUITABLE)
                     {
@@ -386,8 +386,8 @@ public class TaamApp {
                     visitor = Configuration.getInstance().createConfiguration(restrictions.get(counter));
                     result = visitor.checkIngredient(ingredient);
 
-                    resultToBeReturnedToFlutter.put("||Restriction|" + (counter+1), userRestrictionsList.get(counter));
-                    resultToBeReturnedToFlutter.put("||RestrictionEdible|" + (counter+1), result.getResult().toString());
+                    resultToBeReturnedToFlutter.put("||Restriction" + (counter+1) + "|", userRestrictionsList.get(counter));
+                    resultToBeReturnedToFlutter.put("||RestrictionEdible" + (counter+1) + "|", result.getResult().toString());
 
                     if ((resultEdible != 1) && (result.getResult() == UNSUITABLE))
                     {
