@@ -7,6 +7,7 @@ import 'package:taam_app/pages/page_configuration.dart';
 import 'package:taam_app/pages/questions_page.dart';
 import 'package:taam_app/pages/send_doubt_page.dart';
 import '../main.dart';
+import '../requests.dart';
 import '../services/local_storage.dart';
 import '../services/locale_provider.dart';
 import '../services/settings_provder.dart';
@@ -17,10 +18,25 @@ class Item {
   bool isExpanded;
 
   Item({
-    required this.headerValue,
-    required this.expandedValue,
+    this.headerValue = "",
+    this.expandedValue = "",
     this.isExpanded = false,
   });
+}
+
+Future<List<String>> _getQuestions() async {
+  Map<String, dynamic> preguntas = await getQuestions();
+  List<String> listaPreguntas = [];
+  for(int i=1; i<preguntas.length+1; i++) {
+    listaPreguntas.add(preguntas["${i}"]);
+  }
+  return listaPreguntas;
+}
+
+Future<String> _getAnswers(int index) async {
+  Map<String, dynamic> respuestas = await getAnswer(index+1);
+
+  return respuestas["Answer"];
 }
 
 class GeneralQuestionsPage extends StatefulWidget {
@@ -29,84 +45,112 @@ class GeneralQuestionsPage extends StatefulWidget {
 }
 
 class _GeneralQuestionsPageState extends State<GeneralQuestionsPage> {
-  final List<Item> _items = <Item>[
-    Item(
-      headerValue: 'Pregunta 1',
-      expandedValue: 'Respuesta pregunta 1',
-    ),
-    Item(
-      headerValue: 'Pregunta 2',
-      expandedValue: 'Respuesta pregunta 2',
-    ),
-    Item(
-      headerValue: 'Pregunta 3',
-      expandedValue: 'Respuesta pregunta 3',
-    ),
-  ];
+  List<String> preguntas = [];
+  String respuesta = "";
+  List<Item> _itemsList = [];
+  int contador = 0;
 
+  Future<List<Item>> _loadQuestions() async {
+    contador++;
+    if(contador == 1) {
+      preguntas.clear();
+      _itemsList.clear();
+      preguntas = await _getQuestions();
+      for (int i = 0; i < preguntas.length; i++) {
+        respuesta = await _getAnswers(i);
+        if(_itemsList.length != preguntas.length) {
+          var item = Item(
+            headerValue: preguntas[i].replaceAll("Â¿", "¿"),
+            expandedValue: respuesta,
+          );
+          _itemsList.add(item);
+        }
+      }
+    }
+    return _itemsList;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(AppLocalizations.of(context)!.titlePreguntasFrecuentes),
-              Text("           ")
-            ],
+      return Scaffold(
+        appBar: AppBar(
+          title: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(AppLocalizations.of(context)!.titlePreguntasFrecuentes),
+                Text("           ")
+              ],
+            ),
           ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            children: [
-              _buildPanel(),
-              SizedBox(height: 30),
-              ElevatedButton(child: Text(AppLocalizations.of(context)!.textButtonEnviarDuda),
-                  style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200)
+        body: FutureBuilder<List<Item>>(
+          future: _loadQuestions(),
+          builder: (BuildContext context, AsyncSnapshot<List<Item>> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text('Error loading questions'),
+              );
+            } else {
+              return SingleChildScrollView(
+                child: Container(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: ExpansionPanelList(
+                          expansionCallback: (int index, bool isExpanded) {
+                            setState(() {
+                              _itemsList[index].isExpanded = !isExpanded;
+                            });
+                          },
+                          children: _itemsList.map<ExpansionPanel>((Item item) {
+                            return ExpansionPanel(
+                              headerBuilder: (BuildContext context, bool isExpanded) {
+                                return ListTile(
+                                  title: Text(
+                                    item.headerValue,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                );
+                              },
+                              body: ListTile(
+                                title: Text(item.expandedValue),
+                              ),
+                              isExpanded: item.isExpanded,
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      SizedBox(height: 30),
+                      ElevatedButton(
+                        child: Text(AppLocalizations.of(context)!.textButtonEnviarDuda),
+                        style: ButtonStyle(
+                          foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (BuildContext context) => MyDoubt(context)),
+                          );
+                        },
+                      ),
+                    ],
                   ),
-                  onPressed: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (BuildContext context) => MyDoubt(context),
-                        )
-                    );
-                  }
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPanel() {
-    return ExpansionPanelList(
-      expansionCallback: (int index, bool isExpanded) {
-        setState(() {
-          _items[index].isExpanded = !isExpanded;
-        });
-      },
-      children: _items.map<ExpansionPanel>((Item item) {
-        return ExpansionPanel(
-          headerBuilder: (BuildContext context, bool isExpanded) {
-            return ListTile(
-              title: Text(item.headerValue),
-            );
+                ),
+              );
+            }
           },
-          body: ListTile(
-            title: Text(item.expandedValue),
-          ),
-          isExpanded: item.isExpanded,
-        );
-      }).toList(),
-    );
+        ),
+      );
+    }
   }
-}
 
 

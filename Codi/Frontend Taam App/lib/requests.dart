@@ -113,6 +113,36 @@ void setReportProductText(String textReport) async {
   }
 }
 
+Future<Map<String, dynamic>> getQuestions() async {
+  String uri = "$baseUrl/getQuestions/end";
+  final response = await client.get(Uri.parse(uri));
+
+  if (response.statusCode == 200) {
+    String data = response.body;
+
+    Map<String, dynamic> map = stringToMap(data);
+    return map;
+  } else {
+    print("statusCode=$response.statusCode");
+    throw Exception('Failed to get children');
+  }
+}
+
+Future<Map<String, dynamic>> getAnswer(int index) async {
+  String uri = "$baseUrl/getAnswer/$index/end";
+  final response = await client.get(Uri.parse(uri));
+
+  if (response.statusCode == 200) {
+    String data = response.body;
+
+    Map<String, dynamic> map = stringToMap(data);
+    return map;
+  } else {
+    print("statusCode=$response.statusCode");
+    throw Exception('Failed to get children');
+  }
+}
+
 Future<Map<String, dynamic>> changeRestrictionsLanguage(List<String> listPreferences) async {
   String resultado = listPreferences.join(', ');
   String listCleaned = textCleaner(resultado);

@@ -31,33 +31,41 @@ class _PageAboutUsState extends State<PageAboutUs> {
           ),
         ),
       ),
-      body: Container(
+      body: SingleChildScrollView(
+      child: Container(
         margin: EdgeInsets.all(15),
         /// Apartado de nuestra empresa
         child: Column(
           children: [
             Column(
               children: [
-                Center(
-                  child: Text(
-                    AppLocalizations.of(context)!.textNuestraEmpresa,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold
-                    )
+                Padding(
+                  padding: EdgeInsets.only(top: 8.0, bottom: 10.0), // Ajusta el valor según tus necesidades
+                  child: Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.textNuestraEmpresa,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
                 Card(
-                  child: Text(
+                  child: Padding(
+                    padding: EdgeInsets.all(6.0), // Ajusta el valor según tus necesidades
+                    child: Text(
                       AppLocalizations.of(context)!.textInfoNuestraEmpresa,
                       textAlign: TextAlign.justify,
                     ),
-                  )
+                  ),
+                ),
               ],
             ),
             SizedBox(height: 20),
           ],
         )
+      ),
       ),
     );
   }
