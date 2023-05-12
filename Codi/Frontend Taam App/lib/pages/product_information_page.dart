@@ -43,6 +43,7 @@ class _MyProductScreen extends State<MyProductScreen> {
     String? ingredients = product["Ingredients"].substring(1, product["Ingredients"].length - 1);
     String? unsuitableIngredients = product["ListIngredientsUNSUITABLE"].substring(1, product["ListIngredientsUNSUITABLE"].length - 1);
     String? doubtfulIngredients = product["ListIngredientsDOUBTFUL"].substring(1, product["ListIngredientsDOUBTFUL"].length - 1);
+    String? image = product["Image"];
 
     List<String>? listIngredients = ingredients?.split(", ");
     List<String>? listUnsuitableIngredients = unsuitableIngredients?.split(", ");
@@ -141,17 +142,17 @@ class _MyProductScreen extends State<MyProductScreen> {
             child: Column(
               children: [
                 Expanded(
-                  child: Image.asset(
-                    'assets/almento_foto.png',
-                    fit: BoxFit.cover,
-                  ),
+                  child: Image.network(
+                    image!,
+                    height: 150,
+                    width: 150,
+                  )
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.restaurant, size: 20),
                       Text(
                         product["Name"]
                       ),
@@ -242,7 +243,7 @@ class _MyProductScreen extends State<MyProductScreen> {
               child: const Icon(
                 Icons.error_outline,
                 color: Colors.red,
-                size: 50,
+                size: 35,
               )
           )
         ],
