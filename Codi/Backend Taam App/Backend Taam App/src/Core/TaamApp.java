@@ -174,7 +174,11 @@ public class TaamApp {
      * there is something wrong with the implementation or if there is any incorrect data in the database.
      */
     public void incident(String observation) throws SQLException {
-        observation = textTransformer(observation);
+        observation = textTransformer(observation).replaceAll("interroganteinicial", "¿")
+                                                  .replaceAll("interrogantefinal", "?")
+                                                  .replaceAll("barrasiete", "/")
+                                                  .replaceAll("barrasieteinvertida", "\\")
+                                                  .replaceAll("%0a", " ");
 
         if (searcher.getBarcode() != null)
         {
