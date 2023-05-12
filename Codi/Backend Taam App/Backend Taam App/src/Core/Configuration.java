@@ -115,13 +115,13 @@ public class Configuration {
 
         switch (language){
             case "spanish":
-                restrictionsList.put("|Restrictions List|", restrictionsSpanishList);
+                restrictionsList.put("||Restrictions List|", restrictionsSpanishList);
                 break;
             case "catalan":
-                restrictionsList.put("|Restrictions List|", restrictionsCatalanList);
+                restrictionsList.put("||Restrictions List|", restrictionsCatalanList);
                 break;
             case "english":
-                restrictionsList.put("|Restrictions List|", restrictionsEnglishList);
+                restrictionsList.put("||Restrictions List|", restrictionsEnglishList);
                 break;
             default:
                 return null;
@@ -212,7 +212,7 @@ public class Configuration {
             }
         }
 
-        restrictionsTranslate.put("|Translate|", restrictionsListTranslate);
+        restrictionsTranslate.put("||Translate|", restrictionsListTranslate);
         return restrictionsTranslate;
     }
 }
