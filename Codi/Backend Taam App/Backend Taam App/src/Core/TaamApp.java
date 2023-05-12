@@ -133,8 +133,8 @@ public class TaamApp {
 
             if (ingredient != null)
             {
-                resultToBeReturnedToFlutter.put("|Type|", "Ingredient");
-                resultToBeReturnedToFlutter.put("|Element|", ingredient);
+                resultToBeReturnedToFlutter.put("||Type|", "Ingredient");
+                resultToBeReturnedToFlutter.put("||Element|", ingredient);
 
                 return resultToBeReturnedToFlutter;
             }
@@ -145,8 +145,8 @@ public class TaamApp {
         }
         else
         {
-            resultToBeReturnedToFlutter.put("|Type|", "Product");
-            resultToBeReturnedToFlutter.put("|Element|", product);
+            resultToBeReturnedToFlutter.put("||Type|", "Product");
+            resultToBeReturnedToFlutter.put("||Element|", product);
 
             return resultToBeReturnedToFlutter;
         }
@@ -211,10 +211,10 @@ public class TaamApp {
                 ingredientList.add(auxiliaryIngredient.getIngredient());
             }
 
-            resultToBeReturnedToFlutter.put("|Name|", product.getProductName());
-            resultToBeReturnedToFlutter.put("|Barcode|", product.getBarcode());
-            resultToBeReturnedToFlutter.put("|Image|", product.getImage());
-            resultToBeReturnedToFlutter.put("|Ingredients|", ingredientList);
+            resultToBeReturnedToFlutter.put("||Name|", product.getProductName());
+            resultToBeReturnedToFlutter.put("||Barcode|", product.getBarcode());
+            resultToBeReturnedToFlutter.put("||Image|", product.getImage());
+            resultToBeReturnedToFlutter.put("||Ingredients|", ingredientList);
 
             int resultEdible = 0;
             List<String> nonSuitableIngredientsList = new ArrayList<>();
@@ -224,8 +224,8 @@ public class TaamApp {
                 visitor = Configuration.getInstance().createConfiguration(userRestrictionsList.get(counter));
                 result = visitor.checkProduct(product.getProductIngredientsList());
 
-                resultToBeReturnedToFlutter.put("|Restriction|" + (counter+1), userRestrictionsList.get(counter));
-                resultToBeReturnedToFlutter.put("|RestrictionEdible|" + (counter+1), result.getResult().toString());
+                resultToBeReturnedToFlutter.put("||Restriction|" + (counter+1), userRestrictionsList.get(counter));
+                resultToBeReturnedToFlutter.put("||RestrictionEdible|" + (counter+1), result.getResult().toString());
 
                 if (result.getResult() != SUITABLE)
                 {
@@ -258,21 +258,21 @@ public class TaamApp {
 
             if (resultEdible == 0)
             {
-                resultToBeReturnedToFlutter.put("|Edible|", SUITABLE);
+                resultToBeReturnedToFlutter.put("||Edible|", SUITABLE);
             }
             else
             {
                 if (resultEdible == 1)
                 {
-                    resultToBeReturnedToFlutter.put("|Edible|", UNSUITABLE);
+                    resultToBeReturnedToFlutter.put("||Edible|", UNSUITABLE);
                 }
                 else
                 {
-                    resultToBeReturnedToFlutter.put("|Edible|", DOUBTFUL);
+                    resultToBeReturnedToFlutter.put("||Edible|", DOUBTFUL);
                 }
             }
-            resultToBeReturnedToFlutter.put("|ListIngredientsUNSUITABLE|", nonSuitableIngredientsList);
-            resultToBeReturnedToFlutter.put("|ListIngredientsDOUBTFUL|", doubtfulIngredientsList);
+            resultToBeReturnedToFlutter.put("||ListIngredientsUNSUITABLE|", nonSuitableIngredientsList);
+            resultToBeReturnedToFlutter.put("||ListIngredientsDOUBTFUL|", doubtfulIngredientsList);
 
             return resultToBeReturnedToFlutter;
         }else
@@ -294,9 +294,9 @@ public class TaamApp {
 
         if (returnCheckName != null)
         {
-            if (returnCheckName.get("|Type|") == "Product")
+            if (returnCheckName.get("||Type|") == "Product")
             {
-                product = (Product) returnCheckName.get("|Element|");
+                product = (Product) returnCheckName.get("||Element|");
 
                 List<String> ingredientList = new ArrayList<>();
                 for (Ingredient auxiliaryIngredient : product.getProductIngredientsList())
@@ -304,10 +304,10 @@ public class TaamApp {
                     ingredientList.add(auxiliaryIngredient.getIngredient());
                 }
 
-                resultToBeReturnedToFlutter.put("|Name|", product.getProductName());
-                resultToBeReturnedToFlutter.put("|Barcode|", product.getBarcode());
-                resultToBeReturnedToFlutter.put("|Image|", product.getImage());
-                resultToBeReturnedToFlutter.put("|Ingredients|", ingredientList);
+                resultToBeReturnedToFlutter.put("||Name|", product.getProductName());
+                resultToBeReturnedToFlutter.put("||Barcode|", product.getBarcode());
+                resultToBeReturnedToFlutter.put("||Image|", product.getImage());
+                resultToBeReturnedToFlutter.put("||Ingredients|", ingredientList);
 
                 List<String> restrictions = Configuration.getInstance().getUserRestrictionsList();
 
@@ -320,8 +320,8 @@ public class TaamApp {
                     visitor = Configuration.getInstance().createConfiguration(restrictions.get(counter));
                     result = visitor.checkProduct(product.productIngredientsList);
 
-                    resultToBeReturnedToFlutter.put("|Restriction|" + (counter+1), userRestrictionsList.get(counter));
-                    resultToBeReturnedToFlutter.put("|RestrictionEdible|" + (counter+1), result.getResult().toString());
+                    resultToBeReturnedToFlutter.put("||Restriction|" + (counter+1), userRestrictionsList.get(counter));
+                    resultToBeReturnedToFlutter.put("||RestrictionEdible|" + (counter+1), result.getResult().toString());
 
                     if (result.getResult() != SUITABLE)
                     {
@@ -354,28 +354,28 @@ public class TaamApp {
 
                 if (resultEdible == 0)
                 {
-                    resultToBeReturnedToFlutter.put("|Edible|", SUITABLE);
+                    resultToBeReturnedToFlutter.put("||Edible|", SUITABLE);
                 }
                 else
                 {
                     if (resultEdible == 1)
                     {
-                        resultToBeReturnedToFlutter.put("|Edible|", UNSUITABLE);
+                        resultToBeReturnedToFlutter.put("||Edible|", UNSUITABLE);
                     }
                     else
                     {
-                        resultToBeReturnedToFlutter.put("|Edible|", DOUBTFUL);
+                        resultToBeReturnedToFlutter.put("||Edible|", DOUBTFUL);
                     }
                 }
-                resultToBeReturnedToFlutter.put("|ListIngredientsUNSUITABLE|", nonSuitableIngredientsList);
-                resultToBeReturnedToFlutter.put("|ListIngredientsDOUBTFUL|", doubtfulIngredientsList);
+                resultToBeReturnedToFlutter.put("||ListIngredientsUNSUITABLE|", nonSuitableIngredientsList);
+                resultToBeReturnedToFlutter.put("||ListIngredientsDOUBTFUL|", doubtfulIngredientsList);
             }
             else
             {
-                ingredient = (Ingredient) returnCheckName.get("|Element|");
+                ingredient = (Ingredient) returnCheckName.get("||Element|");
 
-                resultToBeReturnedToFlutter.put("|Name|", ingredient.getIngredient());
-                resultToBeReturnedToFlutter.put("|Id|", ingredient.getId());
+                resultToBeReturnedToFlutter.put("||Name|", ingredient.getIngredient());
+                resultToBeReturnedToFlutter.put("||Id|", ingredient.getId());
 
                 List<String> restrictions = Configuration.getInstance().getUserRestrictionsList();
 
@@ -386,8 +386,8 @@ public class TaamApp {
                     visitor = Configuration.getInstance().createConfiguration(restrictions.get(counter));
                     result = visitor.checkIngredient(ingredient);
 
-                    resultToBeReturnedToFlutter.put("|Restriction|" + (counter+1), userRestrictionsList.get(counter));
-                    resultToBeReturnedToFlutter.put("|RestrictionEdible|" + (counter+1), result.getResult().toString());
+                    resultToBeReturnedToFlutter.put("||Restriction|" + (counter+1), userRestrictionsList.get(counter));
+                    resultToBeReturnedToFlutter.put("||RestrictionEdible|" + (counter+1), result.getResult().toString());
 
                     if ((resultEdible != 1) && (result.getResult() == UNSUITABLE))
                     {
@@ -401,15 +401,15 @@ public class TaamApp {
 
                 if (resultEdible == 0)
                 {
-                    resultToBeReturnedToFlutter.put("|Edible|", SUITABLE);
+                    resultToBeReturnedToFlutter.put("||Edible|", SUITABLE);
                 }
                 else if (resultEdible == 1)
                 {
-                    resultToBeReturnedToFlutter.put("|Edible|", UNSUITABLE);
+                    resultToBeReturnedToFlutter.put("||Edible|", UNSUITABLE);
                 }
                 else
                 {
-                    resultToBeReturnedToFlutter.put("|Edible|", DOUBTFUL);
+                    resultToBeReturnedToFlutter.put("||Edible|", DOUBTFUL);
                 }
             }
 
@@ -437,12 +437,12 @@ public class TaamApp {
         while (result.next())
         {
             auxiliaryMap = this.checkProductBarcode(result.getString("id"));
-            if (auxiliaryMap.get("|Edible|") == SUITABLE)
+            if (auxiliaryMap.get("||Edible|") == SUITABLE)
             {
                 Product auxiliaryProduct = new Product();
-                auxiliaryProduct.setProductName((String) auxiliaryMap.get("|Name|"));
-                auxiliaryProduct.setBarcode((String) auxiliaryMap.get("|Barcode|"));
-                auxiliaryProduct.setImage((String) auxiliaryMap.get("|Image|"));
+                auxiliaryProduct.setProductName((String) auxiliaryMap.get("||Name|"));
+                auxiliaryProduct.setBarcode((String) auxiliaryMap.get("||Barcode|"));
+                auxiliaryProduct.setImage((String) auxiliaryMap.get("||Image|"));
 
                 recommendedProductsList.add(auxiliaryProduct);
             }
@@ -451,7 +451,7 @@ public class TaamApp {
         int counter = 0;
         while ((counter < recommendedProductsList.size()) && (counter < 10))
         {
-            recommendedProductsMap.put("|Product|" + (counter+1),
+            recommendedProductsMap.put("||Product|" + (counter+1),
                     List.of(recommendedProductsList.get(counter).getProductName(), recommendedProductsList.get(counter).getBarcode(),
                             recommendedProductsList.get(counter).getImage()));
             counter = counter + 1;
@@ -482,7 +482,7 @@ public class TaamApp {
                     randomIndex = random.nextInt(recommendedProductsList.size());
                 }
                 indexList.add(randomIndex);
-                recommendedProductsMap.put("|Product|" + (counter+1),
+                recommendedProductsMap.put("||Product|" + (counter+1),
                         List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode(),
                                 recommendedProductsList.get(randomIndex).getImage()));
             }
@@ -498,7 +498,7 @@ public class TaamApp {
                     randomIndex = random.nextInt(recommendedProductsList.size());
                 }
                 indexList.add(randomIndex);
-                recommendedProductsMap.put("|Product|" + (counter+1),
+                recommendedProductsMap.put("||Product|" + (counter+1),
                         List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode(),
                                 recommendedProductsList.get(randomIndex).getImage()));
                 counter = counter + 1;
@@ -521,7 +521,7 @@ public class TaamApp {
         {
             String question = result.getString("question_"+Configuration.getInstance().getLanguage());
             String id = result.getString("id");
-            frequentquestions.put("|"+ id +"|", question);
+            frequentquestions.put("||"+ id +"|", question);
         }
         return frequentquestions;
     }
@@ -536,7 +536,7 @@ public class TaamApp {
         ResultSet result = db.selectAnswer(Integer.parseInt(questionId));
         while (result.next()) {
             String response = result.getString("response_"+Configuration.getInstance().getLanguage());
-            answer.put("|Answer|", response);
+            answer.put("||Answer|", response);
         }
 
         return answer;
