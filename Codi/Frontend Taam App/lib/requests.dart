@@ -139,8 +139,8 @@ Map<String, dynamic> stringToMap(String data) {
     if (data.endsWith(',')) {
       data = data.substring(0, data.length - 1);
     }
-    data.split('|').forEach((element) {
-      var keyValue = element.split('=');
+    data.split('||').forEach((element) {
+      var keyValue = element.split('|=');
       if (keyValue.length == 2) {
         var key = keyValue[0].trim();
         var value = keyValue[1].trim();

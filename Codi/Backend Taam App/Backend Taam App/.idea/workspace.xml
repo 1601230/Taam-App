@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a0cac8a-06de-4f8a-987a-abf691d3421a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/search_product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/search_product_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
-    </list>
+    <list default="true" id="9a0cac8a-06de-4f8a-987a-abf691d3421a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
