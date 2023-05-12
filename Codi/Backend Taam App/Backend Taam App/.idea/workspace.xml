@@ -6,13 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9a0cac8a-06de-4f8a-987a-abf691d3421a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_ca.arb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_ca.arb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_en.arb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_en.arb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_es.arb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_es.arb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/general_question_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/general_question_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/page_about_us.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/page_about_us.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/requests.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/requests.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

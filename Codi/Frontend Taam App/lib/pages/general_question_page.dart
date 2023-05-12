@@ -87,70 +87,60 @@ class _GeneralQuestionsPageState extends State<GeneralQuestionsPage> {
         body: FutureBuilder<List<Item>>(
           future: _loadQuestions(),
           builder: (BuildContext context, AsyncSnapshot<List<Item>> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (snapshot.hasError) {
-              return Center(
-                child: Text('Error loading questions'),
-              );
-            } else {
-              return SingleChildScrollView(
-                child: Container(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: ExpansionPanelList(
-                          expansionCallback: (int index, bool isExpanded) {
-                            setState(() {
-                              _itemsList[index].isExpanded = !isExpanded;
-                            });
-                          },
-                          children: _itemsList.map<ExpansionPanel>((Item item) {
-                            return ExpansionPanel(
-                              headerBuilder: (BuildContext context, bool isExpanded) {
-                                return ListTile(
-                                  title: Text(
-                                    item.headerValue,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                );
-                              },
-                              body: ListTile(
-                                title: Text(item.expandedValue),
-                              ),
-                              isExpanded: item.isExpanded,
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                      SizedBox(height: 30),
-                      ElevatedButton(
-                        child: Text(AppLocalizations.of(context)!.textButtonEnviarDuda),
-                        style: ButtonStyle(
-                          foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (BuildContext context) => MyDoubt(context)),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            }
-          },
-        ),
-      );
-    }
+          return SingleChildScrollView(
+            child: Container(
+              child: Column(
+                children: [
+                  _buildPanel(),
+                  SizedBox(height: 30),
+                  ElevatedButton(child: Text(AppLocalizations.of(context)!.textButtonEnviarDuda),
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200)
+                    ),
+                    onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (BuildContext context) => MyDoubt(context))
+                      );
+                    }
+                  )
+                ],
+              ),
+            ),
+          );
+        }
+      ),
+    );
   }
-
-
+  Widget _buildPanel() {
+    return ExpansionPanelList(
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          _itemsList[index].isExpanded = !isExpanded;
+        });
+      },
+      children: _itemsList.map<ExpansionPanel>((Item item) {
+        return ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return ListTile(
+              title: Text(
+                item.headerValue,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            );
+          },
+          body: ListTile(
+            title: Padding(
+              padding: EdgeInsets.only(bottom: 8.0), // Ajusta el valor de padding según tus necesidades
+              child: Text(item.expandedValue),
+            ),
+          ),
+          isExpanded: item.isExpanded,
+        );
+      }).toList(),
+    );
+  }
+}
