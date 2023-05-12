@@ -451,7 +451,7 @@ public class TaamApp {
         int counter = 0;
         while ((counter < recommendedProductsList.size()) && (counter < 10))
         {
-            recommendedProductsMap.put("||Product|" + (counter+1),
+            recommendedProductsMap.put("||Product" + (counter+1) + "|",
                     List.of(recommendedProductsList.get(counter).getProductName(), recommendedProductsList.get(counter).getBarcode(),
                             recommendedProductsList.get(counter).getImage()));
             counter = counter + 1;
@@ -482,7 +482,7 @@ public class TaamApp {
                     randomIndex = random.nextInt(recommendedProductsList.size());
                 }
                 indexList.add(randomIndex);
-                recommendedProductsMap.put("||Product|" + (counter+1),
+                recommendedProductsMap.put("||Product" + (counter+1) + "|",
                         List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode(),
                                 recommendedProductsList.get(randomIndex).getImage()));
             }
@@ -498,7 +498,7 @@ public class TaamApp {
                     randomIndex = random.nextInt(recommendedProductsList.size());
                 }
                 indexList.add(randomIndex);
-                recommendedProductsMap.put("||Product|" + (counter+1),
+                recommendedProductsMap.put("||Product" + (counter+1) + "|",
                         List.of(recommendedProductsList.get(randomIndex).getProductName(), recommendedProductsList.get(randomIndex).getBarcode(),
                                 recommendedProductsList.get(randomIndex).getImage()));
                 counter = counter + 1;
