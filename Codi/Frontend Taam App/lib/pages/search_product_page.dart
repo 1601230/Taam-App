@@ -424,7 +424,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                                           Align(
                                             alignment: Alignment.centerLeft,
                                             child: Image.network(
-                                              _listNewImages[index],
+                                              _listImagesRecommendations![index],
                                               height: 100,
                                               width: 100,
                                             )
