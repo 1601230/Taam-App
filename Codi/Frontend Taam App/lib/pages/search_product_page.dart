@@ -99,6 +99,7 @@ class _MySearchProduct extends State<MySearchProduct> {
   List<String>? _listRecommentadions = [];
   List<String>? _listNamesRecommendations = [];
   List<String>? _listImagesRecommendations = [];
+  List<String> _listNewImages = [];
 
   @override
   void initState() {
@@ -122,6 +123,17 @@ class _MySearchProduct extends State<MySearchProduct> {
       _listRecommentadions = listRecommendations;
       _listNamesRecommendations = listNameRecommendations;
       _listImagesRecommendations = listImagesRecommendations;
+      _listNewImages.clear();
+      _listNewImages.add("https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F13179515.jpeg?alt=media&token=8cc13aa0-08cb-402e-92a1-e958858f5334");
+      _listNewImages.add("https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F20034658.jpg?alt=media&token=c4ed8f12-293f-45ab-9d9b-dbedf5190b98");
+      _listNewImages.add("https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F20047238.jpeg?alt=media&token=bcaeb706-3985-4cea-a252-19d581f7c7a1");
+      _listNewImages.add("https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F20131968.jpg?alt=media&token=96059109-c52d-400a-a487-f824a3793a7a");
+      _listNewImages.add("https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F20150907.jpg?alt=media&token=cd440f0f-344a-470b-b406-a1c532e23bbe");
+      _listNewImages.add("https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F20408923.jpg?alt=media&token=b566c639-b546-4d4f-bbc5-e11171483b7e");
+      _listNewImages.add("https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F20413422.jpg?alt=media&token=f643d15f-b5c1-479d-a0ad-603ca1f19542");
+      _listNewImages.add("https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F20816445.jpg?alt=media&token=920a095d-e99d-4bc6-b8b1-d71cade9795a");
+      _listNewImages.add("https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F3033491588136.jpg?alt=media&token=a6d40785-539e-4c1e-a161-c314f1d0fab3");
+      _listNewImages.add("https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F3046920029759.jpg?alt=media&token=bbff0ce5-3633-4712-85e7-3bbc5bd2ede4");
     });
   }
 
@@ -418,6 +430,14 @@ class _MySearchProduct extends State<MySearchProduct> {
                                 return Padding(
                                   padding: EdgeInsets.symmetric(vertical: 4.0),
                                   child: GestureDetector(
+                                    onTap: () async {
+                                      String productTap = _listNamesRecommendations![index];
+                                      Map<String, dynamic>? productByNameTap = await _searchByName(productTap);
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context)=> MyFoodScreen(product: productByNameTap))
+                                      );
+                                    },
                                     child: Container(
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey, width: 1.0),
@@ -428,11 +448,11 @@ class _MySearchProduct extends State<MySearchProduct> {
                                         children: [
                                           Align(
                                             alignment: Alignment.centerLeft,
-                                            child: Image.asset(
-                                              "assets/glutenfree_stamp.png",
-                                              width: 100.0,
-                                              height: 100.0,
-                                            ),
+                                            child: Image.network(
+                                              _listNewImages[index],
+                                              height: 100,
+                                              width: 100,
+                                            )
                                           ),
                                           Flexible(
                                             child: Text(

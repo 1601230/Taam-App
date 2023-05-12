@@ -264,10 +264,9 @@ public class TaamApp {
                 {
                     resultToBeReturnedToFlutter.put("|Edible", DOUBTFUL);
                 }
-
-                resultToBeReturnedToFlutter.put("|ListIngredientsUNSUITABLE", nonSuitableIngredientsList);
-                resultToBeReturnedToFlutter.put("|ListIngredientsDOUBTFUL", doubtfulIngredientsList);
             }
+            resultToBeReturnedToFlutter.put("|ListIngredientsUNSUITABLE", nonSuitableIngredientsList);
+            resultToBeReturnedToFlutter.put("|ListIngredientsDOUBTFUL", doubtfulIngredientsList);
 
             return resultToBeReturnedToFlutter;
         }else
@@ -361,10 +360,9 @@ public class TaamApp {
                     {
                         resultToBeReturnedToFlutter.put("|Edible", DOUBTFUL);
                     }
-
-                    resultToBeReturnedToFlutter.put("|ListIngredientsUNSUITABLE", nonSuitableIngredientsList);
-                    resultToBeReturnedToFlutter.put("|ListIngredientsDOUBTFUL", doubtfulIngredientsList);
                 }
+                resultToBeReturnedToFlutter.put("|ListIngredientsUNSUITABLE", nonSuitableIngredientsList);
+                resultToBeReturnedToFlutter.put("|ListIngredientsDOUBTFUL", doubtfulIngredientsList);
             }
             else
             {

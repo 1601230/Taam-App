@@ -12,17 +12,6 @@ import 'package:taam_app/services/local_storage.dart';
 import '../requests.dart';
 import '../services/settings_provder.dart';
 
-class Ingredients {
-  String title;
-  String restrictions;
-  Ingredients({required this.title, required this.restrictions});
-}
-
-Future<Map<String, dynamic>> _searchByName(String nameString) async {
-  Map<String, dynamic> aux = await searchByName(nameString);
-  return aux;
-}
-
 Future<List<String>> _changeRestrictionsLanguage(List<String> listPreferences) async {
   Map<String, dynamic> aux = await changeRestrictionsLanguage(listPreferences);
   List<String> resultList = aux.values.toList().map((element) => element.toString()).toList();
@@ -90,7 +79,6 @@ class _MyFoodScreen extends State<MyFoodScreen> {
 
       for(int i=1; i<lista.length+1; i++) {
         String restriccionEsApto = product["RestrictionEdible"+i.toString()];
-        //infoCompleta = infoCompleta + "\n${lista[i-1]}: ${AppLocalizations.of(context)!.textNoApto}";
         switch(restriccionEsApto) {
           case "SUITABLE": infoCompleta = infoCompleta + "\n${lista[i-1]}: ${AppLocalizations.of(context)!.textApto}\n"; break;
           case "UNSUITABLE": infoCompleta = infoCompleta + "\n${lista[i-1]}: ${AppLocalizations.of(context)!.textNoApto}\n"; break;
@@ -172,15 +160,15 @@ class _MyFoodScreen extends State<MyFoodScreen> {
               Text(
                 esApto,
                 style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: _getColorForAptoValue(esApto)
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: _getColorForAptoValue(esApto)
                 ),
               ),
               IconButton(
                 icon: Icon(
-                    Icons.info,
-                    color: _getColorForAptoValue(esApto),),
+                  Icons.info,
+                  color: _getColorForAptoValue(esApto),),
                 onPressed: () async {
                   String infoProduct = await _getInfoProduct();
                   showDialog(
@@ -226,10 +214,10 @@ class _MyFoodScreen extends State<MyFoodScreen> {
                     );
                   },
                 ),
-                  )
-                ],
-              ),
-              SizedBox(height: 20),
+              )
+            ],
+          ),
+          SizedBox(height: 20),
 
           GestureDetector(
               onTap: (){
