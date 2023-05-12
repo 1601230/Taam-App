@@ -49,7 +49,7 @@ class ConfirmDoubtAdvice extends StatelessWidget{
               width: 300,
               height: 200,
               decoration: BoxDecoration(
-                  color: Colors.greenAccent,
+                  color: Colors.green.shade300,
                   border: Border.all(color: Colors.green, width: 3.0),
                   borderRadius: BorderRadius.all(Radius.circular(20))
 
@@ -68,7 +68,7 @@ class ConfirmDoubtAdvice extends StatelessWidget{
             ElevatedButton(
               style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.green)
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200)
               ),
               onPressed: (){
                 Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MySearchProduct()));

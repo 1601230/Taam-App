@@ -11,109 +11,102 @@ import '../services/local_storage.dart';
 import '../services/locale_provider.dart';
 import '../services/settings_provder.dart';
 
+class Item {
+  String headerValue;
+  String expandedValue;
+  bool isExpanded;
 
-class Preguntas {
-
-  String question;
-  Preguntas({required this.question});
-
+  Item({
+    required this.headerValue,
+    required this.expandedValue,
+    this.isExpanded = false,
+  });
 }
 
-final List<Preguntas> myQuestions = [
-Preguntas(question: 'Es mi hamster comestible?'),
-Preguntas(question: 'Cuanta proteína contiene una paloma ?'),
-Preguntas(question: 'Comer es vegano ?'),
-  Preguntas(question: 'Ser vegano vale la pena ?'),
-  Preguntas(question: 'Estudiar vale la pena ?'),
-  Preguntas(question: 'Cual es el sentido de la vida ?'),
-  Preguntas(question: ' Kings league el domingo?'),
-  Preguntas(question: ' Kings league el domingo?'),
-  Preguntas(question: ' Kings league el domingo?'),
-  Preguntas(question: ' Kings league el domingo?'),
-  Preguntas(question: ' Kings league el domingo?'),
-  Preguntas(question: ' Kings league el domingo?'),
-  Preguntas(question: ' Kings league el domingo?'),Preguntas(question: ' Kings league el domingo?'),
-  Preguntas(question: ' Kings league el domingo?'),
+class GeneralQuestionsPage extends StatefulWidget {
+  @override
+  State<GeneralQuestionsPage> createState() => _GeneralQuestionsPageState();
+}
 
-];
+class _GeneralQuestionsPageState extends State<GeneralQuestionsPage> {
+  final List<Item> _items = <Item>[
+    Item(
+      headerValue: 'Pregunta 1',
+      expandedValue: 'Respuesta pregunta 1',
+    ),
+    Item(
+      headerValue: 'Pregunta 2',
+      expandedValue: 'Respuesta pregunta 2',
+    ),
+    Item(
+      headerValue: 'Pregunta 3',
+      expandedValue: 'Respuesta pregunta 3',
+    ),
+  ];
 
-class GeneralQuestionsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: Scaffold(
-          appBar: AppBar(
-            title: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text("Preguntas"),
-                  Text("           ")
-                ],
-              ),
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(AppLocalizations.of(context)!.titlePreguntasFrecuentes),
+              Text("           ")
+            ],
           ),
-            body: Center(
-
-                child: Column(
-
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-
-                    SizedBox(height: 50,),
-
-                    Container(
-                      width: 300,
-                      height: 400,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black)
-                      ),
-                      child: ListView.builder(
-                        itemCount: myQuestions.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => MyQuestions(
-                                      question: myQuestions[index].question
-                                  ),
-                                ),
-                              );
-                            },
-                            child: ListTile(
-                              leading: Icon(Icons.question_answer, size: 20),
-                              title: Text(myQuestions[index].question),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-
-
-                    SizedBox(height: 30),
-                    ElevatedButton(child: Text("Enviar dubte"),
-                        style: ButtonStyle(
-                            foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                            backgroundColor: MaterialStateProperty.all<Color>(Colors.grey)
-                        ),
-                        onPressed: (){
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (BuildContext context) => MyDoubt(context),
-                              )
-                          );
-                        }
-                    )
-                  ],
-
-                )
-
-            ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: [
+              _buildPanel(),
+              SizedBox(height: 30),
+              ElevatedButton(child: Text(AppLocalizations.of(context)!.textButtonEnviarDuda),
+                  style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200)
+                  ),
+                  onPressed: (){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (BuildContext context) => MyDoubt(context),
+                        )
+                    );
+                  }
+              )
+            ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPanel() {
+    return ExpansionPanelList(
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          _items[index].isExpanded = !isExpanded;
+        });
+      },
+      children: _items.map<ExpansionPanel>((Item item) {
+        return ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return ListTile(
+              title: Text(item.headerValue),
+            );
+          },
+          body: ListTile(
+            title: Text(item.expandedValue),
+          ),
+          isExpanded: item.isExpanded,
+        );
+      }).toList(),
     );
   }
 }
+
+

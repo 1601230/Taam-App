@@ -177,16 +177,7 @@ class _PageConfigurationState extends State<PageConfiguration> {
                   onPressed: () async {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => GeneralQuestionsPage()), //TODO: cambiar a pagina de preguntas
-                    );
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.info),
-                  onPressed: () async {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => PageAboutUs()),
+                      MaterialPageRoute(builder: (context) => GeneralQuestionsPage()),
                     );
                   },
                 ),

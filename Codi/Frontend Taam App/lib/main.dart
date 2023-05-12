@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:taam_app/l10n/l10n.dart';
 import 'package:taam_app/pages/incorrect_form_page.dart';
+import 'package:taam_app/pages/page_about_us.dart';
 import 'package:taam_app/services/local_storage.dart';
 import 'package:taam_app/services/locale_provider.dart';
 import 'package:taam_app/services/settings_provder.dart';
@@ -56,7 +57,7 @@ class _MyAppState extends State<MyApp> {
           debugShowCheckedModeBanner: false,
           title: 'Main',
           theme: ThemeData(
-            primarySwatch: Colors.green,
+            primarySwatch: Colors.teal,
             brightness: watch.brightness,
           ),
           supportedLocales: L10n.all,
@@ -129,7 +130,29 @@ class MyHomePage extends StatelessWidget {
                             MaterialPageRoute(builder: (context)=> const MySearchProduct())
                         );
                     },
+                    style: ButtonStyle(
+                        foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200)
+                    ),
                     child: Text(AppLocalizations.of(context)!.textBotonIniciar),
+                  ),
+                  const Padding(padding: EdgeInsets.only(top: 10)),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => PageAboutUs()),
+                      );
+                    },
+                    child: Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.textAboutUsRedirection,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.blue
+                        ),
+                      ),
+                    ),
                   ),
                   SizedBox(height: 30),
                 ],

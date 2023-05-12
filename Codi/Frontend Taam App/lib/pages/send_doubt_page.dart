@@ -5,6 +5,7 @@ import 'package:taam_app/pages/incorrect_form_page.dart';
 import 'package:taam_app/pages/search_product_page.dart';
 import 'package:taam_app/pages/confirm_doubt_page.dart';
 import '../main.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class MyDoubt extends StatefulWidget {
@@ -44,14 +45,17 @@ class SendDoubtPage extends State<MyDoubt>{
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(height: 16.0), // agregar un espacio en blanco por encima del TextField
-                  Text("Escriu el teu dubte...", style: TextStyle(fontSize: 24.0)),
+                  Text(
+                      AppLocalizations.of(context)!.textEscribePregunta,
+                    style: TextStyle(fontSize: 24.0)
+                  ),
                   SizedBox(height: 20.0),
                   Divider(),
                   TextField(
                     maxLength: 200,
                     maxLines: 10,
                     decoration: InputDecoration(
-                      hintText: 'Escribe aquí',
+                      hintText: AppLocalizations.of(context)!.textEscibeAqui,
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -60,10 +64,10 @@ class SendDoubtPage extends State<MyDoubt>{
                 ],
               ),
             ),
-        ElevatedButton(child: Text("Enviar dubte"),
+        ElevatedButton(child: Text(AppLocalizations.of(context)!.titleEnviarPregunta),
             style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.grey)
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200)
             ),
             onPressed: (){
               Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => ConfirmDoubtAdvice()));
