@@ -93,6 +93,26 @@ Future<Map<String, dynamic>> getRefresh() async {
   }
 }
 
+void setReportedProduct() async {
+  String uri = "$baseUrl/notFound/end";
+  final response = await client.get(Uri.parse(uri));
+
+  if (response.statusCode != 200) {
+    print("statusCode=$response.statusCode");
+    throw Exception('Failed to get children');
+  }
+}
+
+void setReportProductText(String textReport) async {
+  String uri = "$baseUrl/incident/$textReport/end";
+  final response = await client.get(Uri.parse(uri));
+
+  if (response.statusCode != 200) {
+    print("statusCode=$response.statusCode");
+    throw Exception('Failed to get children');
+  }
+}
+
 Future<Map<String, dynamic>> changeRestrictionsLanguage(List<String> listPreferences) async {
   String resultado = listPreferences.join(', ');
   String listCleaned = textCleaner(resultado);

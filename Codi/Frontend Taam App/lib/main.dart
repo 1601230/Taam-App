@@ -5,7 +5,7 @@ import 'package:taam_app/pages/incorrect_form_page.dart';
 import 'package:taam_app/services/local_storage.dart';
 import 'package:taam_app/services/locale_provider.dart';
 import 'package:taam_app/services/settings_provder.dart';
-import 'package:taam_app/pages/food_information_page.dart';
+import 'package:taam_app/pages/product_information_page.dart';
 import 'package:taam_app/requests.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'package:taam_app/pages/confirm_doubt_page.dart';

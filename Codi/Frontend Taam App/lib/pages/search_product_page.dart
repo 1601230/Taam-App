@@ -3,8 +3,10 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
-import 'package:taam_app/pages/food_information_page.dart';
+import 'package:taam_app/pages/ingredient_information_page.dart';
+import 'package:taam_app/pages/product_information_page.dart';
 import 'package:taam_app/pages/page_configuration.dart';
+import 'package:taam_app/pages/unexistent_advice.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taam_app/requests.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -157,19 +159,6 @@ class _MySearchProduct extends State<MySearchProduct> {
     super.dispose();
   }
 
-  Future<void> _searchProduct() async {
-    setState(() {
-      loadingScreen = true;
-    });
-
-    // Aquí va la tarea asincrónica de búsqueda de productos o ingredientes
-    await Future.delayed(Duration(seconds: 2));
-
-    setState(() {
-      loadingScreen = false;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final settingsProvider = Provider.of<SettingsProvider>(context);
@@ -256,7 +245,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                     keyboardType: TextInputType.text,
 
                     onEditingComplete: () async {
-                      _focusNodeProduct.unfocus();
+                        _focusNodeProduct.unfocus();
 
                       if (_productController.text.isEmpty) {
                         Fluttertoast.showToast(
@@ -272,19 +261,19 @@ class _MySearchProduct extends State<MySearchProduct> {
                         Map<String, dynamic>? productByName = await _searchByName(_productController.text);
 
                         if (productByName.isEmpty) {
-                          Fluttertoast.showToast(
-                              msg: "Producto no existente",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.CENTER,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.red,
-                              textColor: Colors.white,
-                              fontSize: 16.0
-                          );
-                        } else{
                           Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context)=> MyFoodScreen(product: productByName))
+                              MaterialPageRoute(builder: (context)=> NoExistentScreen())
+                          );
+                        } else if(productByName.containsKey("Barcode")){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context)=> MyProductScreen(product: productByName))
+                          );
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context)=> MyIngredientScreen(ingredient: productByName))
                           );
                         }
                       }
@@ -316,7 +305,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                             } else{
                               Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context)=> MyFoodScreen(product: productScanned))
+                                  MaterialPageRoute(builder: (context)=> MyProductScreen(product: productScanned))
                               );
                             }
                           },
@@ -345,7 +334,7 @@ class _MySearchProduct extends State<MySearchProduct> {
 
                         if (_barcodeController.text.isEmpty) {
                           Fluttertoast.showToast(
-                              msg: "Producto vacio",
+                              msg: "Escribe un codigo de barras",
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.CENTER,
                               timeInSecForIosWeb: 1,
@@ -357,19 +346,14 @@ class _MySearchProduct extends State<MySearchProduct> {
                           Map<String, dynamic>? productByBarcode = await _searchProductByBarcode(_barcodeController.text);
 
                           if (productByBarcode.isEmpty) {
-                            Fluttertoast.showToast(
-                                msg: "Producto no existente",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.red,
-                                textColor: Colors.white,
-                                fontSize: 16.0
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context)=> NoExistentScreen())
                             );
                           } else{
                             Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context)=> MyFoodScreen(product: productByBarcode))
+                                MaterialPageRoute(builder: (context)=> MyProductScreen(product: productByBarcode))
                             );
                           }
                         }
@@ -431,11 +415,13 @@ class _MySearchProduct extends State<MySearchProduct> {
                                   padding: EdgeInsets.symmetric(vertical: 4.0),
                                   child: GestureDetector(
                                     onTap: () async {
+                                      _focusNodeBarcode.unfocus();
+                                      _focusNodeProduct.unfocus();
                                       String productTap = _listNamesRecommendations![index];
                                       Map<String, dynamic>? productByNameTap = await _searchByName(productTap);
                                       Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context)=> MyFoodScreen(product: productByNameTap))
+                                          MaterialPageRoute(builder: (context)=> MyProductScreen(product: productByNameTap))
                                       );
                                     },
                                     child: Container(

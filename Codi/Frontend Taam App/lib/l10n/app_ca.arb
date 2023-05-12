@@ -37,10 +37,10 @@
   "labeltextInfoAdicional": "Informació Addicional",
   "textBotonEnviarForm": "Enviar Formulari",
 
-  "titlePaginaReporteProducto": "Pàgina de report",
+  "titlePaginaReporteProducto": "Reportar Aliment",
   "titleTipoReporteAlimento": "Per què vols reportar l'aliment?",
   "textSeleccionPreferenciasIncorrectas": "Selecciona les preferències incorrectes",
-  "titleOtrosMotivos": "Altres motius:",
+  "titleOtrosMotivos": "Explica'ns la causa del report:",
   "textEscribeMotivos": "Escriu els motius",
   "textBotonEnviarReporte": "Enviar report",
 
@@ -52,5 +52,15 @@
 
   "textApto": "Apte",
   "textNoApto": "No Apte",
-  "textDudoso": "Dubtós"
+  "textDudoso": "Dubtós",
+
+  "textInfoIngrediente": "Informació de l'ingredient:",
+  "textProductoNoExiste": "El producte introduït no es troba a la aplicació",
+  "textReportarProducto": "Reportar Producte",
+  "textProductoReported": "Producte reportat correctament",
+  "textAvisoProductoAnadido": "El teu informe serà revisat tan aviat com sigui possible",
+  "textGracias": "Gràcies per l'ajuda!!",
+  "textVolverBuscador" : "Tornar al buscador",
+  "textIntroduceReporte": "Si us plau, introduïu els motius del report"
+
 }

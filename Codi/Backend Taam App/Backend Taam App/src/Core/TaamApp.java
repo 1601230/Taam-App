@@ -79,7 +79,9 @@ public class TaamApp {
                 .replaceAll("(%c3%a9|%c3%ab|%c3%a8|%c3%aa|%c3%89|%c3%8b|%c3%88|%c3%8a)", "e")
                 .replaceAll("(%c3%ac|%c3%ad|%c3%ae|%c3%af|%c3%8c|%c3%8d|%c3%8e|%c3%8f)", "i")
                 .replaceAll("(%c3%b3|%c3%b6|%c3%b2|%c3%b4|%c3%93|%c3%94|%c3%92|%c3%96)", "o")
-                .replaceAll("(%c3%99|%c3%9a|%c3%9b|%c3%9c|%c3%b9|%c3%ba|%c3%bb|%c3%bc)", "u");
+                .replaceAll("(%c3%99|%c3%9a|%c3%9b|%c3%9c|%c3%b9|%c3%ba|%c3%bb|%c3%bc)", "u")
+                .replaceAll("(%c3%b1)", "ñ")
+                .replaceAll("(%c3%a7)", "ç");
 
         return text;
     }
@@ -172,7 +174,11 @@ public class TaamApp {
      * there is something wrong with the implementation or if there is any incorrect data in the database.
      */
     public void incident(String observation) throws SQLException {
-        observation = textTransformer(observation);
+        observation = textTransformer(observation).replaceAll("interroganteinicial", "¿")
+                                                  .replaceAll("interrogantefinal", "?")
+                                                  .replaceAll("barrasiete", "/")
+                                                  .replaceAll("barrasieteinvertida", "\\")
+                                                  .replaceAll("%0a", " ");
 
         if (searcher.getBarcode() != null)
         {

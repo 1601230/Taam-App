@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:taam_app/main.dart';
+import 'package:taam_app/pages/ingredient_information_page.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'package:taam_app/pages/incorrect_form_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -12,6 +13,11 @@ import 'package:taam_app/services/local_storage.dart';
 import '../requests.dart';
 import '../services/settings_provder.dart';
 
+Future<Map<String, dynamic>> _searchByName(String nameString) async {
+  Map<String, dynamic> aux = await searchByName(nameString);
+  return aux;
+}
+
 Future<List<String>> _changeRestrictionsLanguage(List<String> listPreferences) async {
   Map<String, dynamic> aux = await changeRestrictionsLanguage(listPreferences);
   List<String> resultList = aux.values.toList().map((element) => element.toString()).toList();
@@ -19,17 +25,17 @@ Future<List<String>> _changeRestrictionsLanguage(List<String> listPreferences) a
 }
 
 ///productImage tendrá un formato URL
-class MyFoodScreen extends StatefulWidget {
+class MyProductScreen extends StatefulWidget {
   final Map<String, dynamic>? product;
-  const MyFoodScreen({Key? key, required this.product}) : super(key: key);
+  const MyProductScreen({Key? key, required this.product}) : super(key: key);
 
   @override
-  _MyFoodScreen createState() => _MyFoodScreen(product!);
+  _MyProductScreen createState() => _MyProductScreen(product!);
 }
 
-class _MyFoodScreen extends State<MyFoodScreen> {
+class _MyProductScreen extends State<MyProductScreen> {
   Map<String, dynamic> product;
-  _MyFoodScreen(this.product);
+  _MyProductScreen(this.product);
 
   @override
   Widget build(BuildContext context) {
@@ -90,9 +96,9 @@ class _MyFoodScreen extends State<MyFoodScreen> {
     }
 
     Color _getColorForAptoValue(String aptoValue) {
-      if (aptoValue == 'Apto') {
+      if (aptoValue == AppLocalizations.of(context)!.textApto) {
         return Colors.green;
-      } else if (aptoValue == 'Dudoso') {
+      } else if (aptoValue == AppLocalizations.of(context)!.textDudoso) {
         return Colors.orange;
       } else {
         return Colors.red;
@@ -146,7 +152,9 @@ class _MyFoodScreen extends State<MyFoodScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.restaurant, size: 20),
-                      Text(product["Name"]),
+                      Text(
+                        product["Name"]
+                      ),
                     ],
                   ),
                 ),
@@ -211,6 +219,14 @@ class _MyFoodScreen extends State<MyFoodScreen> {
                       leading: Icon(Icons.restaurant, size: 20),
                       title: Text(listIngredients![index]),
                       subtitle: Text(_isSuitable(listIngredients![index])),
+                      onTap: () async {
+                        String ingredientTap = listIngredients![index];
+                        Map<String, dynamic>? ingredientByNameTap = await _searchByName(ingredientTap);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context)=> MyIngredientScreen(ingredient: ingredientByNameTap))
+                        );
+                      },
                     );
                   },
                 ),

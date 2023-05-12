@@ -37,10 +37,10 @@
   "labeltextInfoAdicional": "Additional Information",
   "textBotonEnviarForm": "Send Form",
 
-  "titlePaginaReporteProducto": "Report page",
+  "titlePaginaReporteProducto": "Report Food",
   "titleTipoReporteAlimento": "Why do you want to report the food?",
   "textSeleccionPreferenciasIncorrectas": "Select the wrong preferences",
-  "titleOtrosMotivos": "Other reasons:",
+  "titleOtrosMotivos": "Explain the reason for the report:",
   "textEscribeMotivos": "Write the reasons",
   "textBotonEnviarReporte": "Send report",
 
@@ -52,5 +52,15 @@
 
   "textApto": "Suitable",
   "textNoApto": "Unsuitable",
-  "textDudoso": "Doubtful"
+  "textDudoso": "Doubtful",
+
+  "textInfoIngrediente": "Ingredient's information:",
+  "textProductoNoExiste": "The entered product is not found in the application:",
+  "textReportarProducto": "Report Product",
+  "textProductoReported": "Product reported successfully",
+  "textAvisoProductoAnadido": "Your report will be reviewed as soon as possible",
+  "textGracias": "Thank you for your help!!",
+  "textVolverBuscador" : "Back to search page",
+  "textIntroduceReporte": "Please enter the reasons for the report"
+
 }
