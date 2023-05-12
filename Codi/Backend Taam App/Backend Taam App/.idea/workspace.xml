@@ -5,21 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a0cac8a-06de-4f8a-987a-abf691d3421a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/ingredient_information_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/product_reported_properly.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Backend Taam App/Core/TaamApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Backend Taam App/Core/TaamApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/TaamApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/TaamApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_ca.arb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_ca.arb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_en.arb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_en.arb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_es.arb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/l10n/app_es.arb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/food_information_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/product_information_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/incorrect_form_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/incorrect_form_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/page_report_product.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/page_report_product.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/search_product_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/search_product_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/unexistent_advice.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/pages/unexistent_advice.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/lib/requests.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/lib/requests.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend Taam App/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend Taam App/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
