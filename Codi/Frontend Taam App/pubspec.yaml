@@ -32,8 +32,8 @@ dependencies:
   intl: ^0.17.0
   flutter:
     sdk: flutter
-
-
+  multi_select_flutter: ^4.0.0
+  provider: ^6.0.5
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -41,6 +41,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  build_runner:
+  flutter_gen_runner:
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -48,16 +52,29 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  fluttertoast: ^8.0.9
+  shared_preferences: ^2.1.0
+  intl: ^0.17.0
+  scroll_to_index: ^2.0.0
 
+  cupertino_icons: ^1.0.4
+  flutter_barcode_scanner: ^2.0.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+    - assets/almento_foto.png
+    - assets/glutenfree_stamp.png
+    - assets/vegan_stamp.png
+    - assets/Logo_TaamApp.png
+    - assets/Logo_TaamApp_Home.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
+  generate: true
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:

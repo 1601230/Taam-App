@@ -551,7 +551,7 @@ public class TaamApp {
                                             .replaceAll("interrogantefinal", "?")
                                             .replaceAll("barrasiete", "/")
                                             .replaceAll("barrasieteinvertida", "\\")
-                                            .replaceAll("%0a", " ");;
+                                            .replaceAll("%0a", " ");
         db.insertQuestion(question);
     }
 

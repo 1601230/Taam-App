@@ -1,5 +1,11 @@
 package Core;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import java.util.*;
 
 /**
@@ -13,11 +19,11 @@ public class Configuration {
     private String language = "english";
     private List<String> userRestrictionsList = new ArrayList<>();
     private List<String> restrictionsSpanishList = new ArrayList<>(Arrays.asList("Vegano", "Vegetariano", "Alérgico al gluten",
-                                                                         "Alérgico a la lactosa", "Alérgico a los frutos secos", "Abstemio"));
+            "Alérgico a la lactosa", "Alérgico a los frutos secos", "Abstemio"));
     private List<String> restrictionsCatalanList = new ArrayList<>(Arrays.asList("Vegà", "Vegetarià", "Al·lèrgic al gluten",
-                                                                         "Al·lèrgic a la lactosa", "Al·lèrgic a la fruita seca", "Abstemi"));
+            "Al·lèrgic a la lactosa", "Al·lèrgic a la fruita seca", "Abstemi"));
     private List<String> restrictionsEnglishList = new ArrayList<>(Arrays.asList("Vegan", "Vegetarian", "Allergic to gluten",
-                                                                         "Allergic to lactose", "Allergic to nuts", "Teetotal"));
+            "Allergic to lactose", "Allergic to nuts", "Teetotal"));
 
     /**
      * "Configuration" has a private constructor to create an instance of this class. It is private to prevent uncontrolled

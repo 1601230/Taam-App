@@ -1,0 +1,80 @@
+{
+  "language": "Español",
+  "@language": {
+    "description": "The current Language"
+  },
+  "textBienvenida": "Su selector de comida de confianza",
+  "@textBienvenida": {
+    "description": "Frase de bienvenida de la aplicación"
+  },
+  "textBotonIniciar": "INICIAR",
+  "textAboutUsRedirection": "Sobre Nosotros",
+
+  "titleConfig": "Configuración",
+  "titleIdiomaConfig": "Idioma",
+  "titlePreferenciasConfig": "Preferencias alimentarias",
+  "textSeleccionaPrefsConfig": "Selecciona tus preferencias",
+  "textSeleccionaPrefsDialog": "Selecciona tus preferencias alimentarias",
+  "textVegetarianoDialog": "Vegetariano",
+  "textVeganoDialog": "Vegano",
+  "textCeliacoDialog": "Celiaco",
+  "textAlergicoLactosaDialog": "Alérgico a la lactosa",
+  "textAlergicoFrutosSecoDialog": "Alérgico a los frutos secos",
+  "textAbstemio": "Abstemio",
+  "textConfirmarDialog": "Confirmar",
+  "textCancelarDialog": "Cancelar",
+  "titleTemaAppConfig": "Tema de la aplicación",
+  "textClaro": "Claro",
+  "textOscuro": "Oscuro",
+
+  "textBuscadorProducto": "Buscar producto/ingrediente...",
+  "textBuscadorCodigo": "Introducir código de barras...",
+  "titleRecomendaciones": "Recomendaciones",
+
+  "textInfoConsumicion": "Información sobre la consumición",
+
+  "titleFormProdIncorrecto": "Formulario del Producto",
+  "titleIntroduceNombreForm": "Introduce el nombre del Producto",
+  "labelTextNombreProd": "Nombre del producto",
+  "titleProporcionaInfoForm": "Proporciona las siguientes imagenes:",
+  "labeltextImagenProd": "Imagen del producto",
+  "labeltextImagenCodigo": "Imagen del codigo de barras",
+  "labeltextImagenIngredientes": "Imagen ingredientes",
+  "titleInfoAdicional": "Información adicional:",
+  "labeltextInfoAdicional": "Información Adicional",
+  "textBotonEnviarForm": "Enviar Formulario",
+
+  "titlePaginaReporteProducto": "Reportar Alimento",
+  "titleTipoReporteAlimento": "¿Por qué quieres reportar el alimento?",
+  "textSeleccionPreferenciasIncorrectas": "Selecciona las preferencias incorrectas",
+  "titleOtrosMotivos": "Explicanos la causa del reporte:",
+  "textEscribeMotivos": "Escribe los motivos",
+  "textBotonEnviarReporte": "Enviar reporte",
+
+  "titleSobreNosotros": "Sobre Nosotros",
+  "textNuestraEmpresa": "Nuestra empresa",
+  "textObjetivo": "Nuestro objetivo es",
+  "textInfoNuestraEmpresa": "¡Bienvenidos a Taam App! Somos un grupo de estudiantes comprometidos en proporcionar una aplicación que facilite a los usuarios la verificación de los alimentos que pueden consumir de acuerdo con sus restricciones alimenticias personales o impuestas por su estado de salud.\n\nEl nombre \"Taam\" proviene del árabe y significa \"Alimento\". Este nombre refleja nuestra dedicación a promover una alimentación adecuada y segura, brindando a nuestros usuarios una herramienta práctica y útil que les permita tomar decisiones informadas sobre su dieta y estilo de vida. Reconocemos la importancia de una alimentación equilibrada y queremos asegurarnos de que nuestros usuarios tengan acceso a la información relevante que necesitan.\n\nTaam App ha sido desarrollada con pasión y está en línea con nuestro compromiso de ofrecer una solución gratuita y sin ánimo de lucro. Creemos en el acceso equitativo a la información y en empoderar a las personas para que tomen decisiones saludables y conscientes.\n\nNuestra aplicación proporciona una interfaz intuitiva y fácil de usar, donde los usuarios pueden ingresar sus restricciones alimenticias y recibir información instantánea sobre la aptitud de los alimentos para su consumo. Ya sea que sigan una dieta vegetariana, sean alérgicos a ciertos ingredientes o tengan restricciones dietéticas específicas, Taam App les brinda la tranquilidad de saber qué alimentos son adecuados para ellos.\n\nNos enorgullece ofrecer una experiencia confiable y precisa. Nuestro equipo trabaja arduamente para mantener actualizada nuestra base de datos de alimentos y restricciones, asegurándonos de que la información que brindamos sea confiable y de calidad.\n\nEn Taam App, nos preocupamos por la salud y el bienestar de nuestros usuarios. Valoramos la privacidad y la seguridad de la información personal, y nos comprometemos a protegerla en todo momento.\n\n¡Únete a nuestra comunidad y descubre cómo Taam App puede facilitar tu vida y ayudarte a tomar decisiones alimenticias más informadas! Juntos, podemos construir un camino hacia una vida más saludable y equilibrada",
+  "textInfoObjetivo": "TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO",
+
+  "titlePreguntasFrecuentes": "Preguntas frecuentes",
+  "textButtonEnviarDuda": "Enviar otra Pregunta",
+
+  "titleEnviarPregunta": "Enviar duda",
+  "textEscribePregunta": "Escribe tu pregunta",
+  "textEscibeAqui": "Escribe aquí",
+
+  "textApto": "Apto",
+  "textNoApto": "No Apto",
+  "textDudoso": "Dudoso",
+
+  "textInfoIngrediente": "Información del ingrediente:",
+  "textProductoNoExiste": "El producto introducido no se encuentra en la aplicación:",
+  "textReportarProducto": "Reportar Producto",
+  "textProductoReported" : "Producto reportado correctamente",
+  "textAvisoProductoAnadido": "Tu reporte será revisado lo antes posible",
+  "textGracias": "Gracias por la ayuda!!",
+  "textVolverBuscador" : "Volver al buscador",
+  "textIntroduceReporte": "Porfavor, introduzca los motivos del reporte"
+
+}
