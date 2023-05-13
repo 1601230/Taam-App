@@ -75,91 +75,98 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePage();
+}
+
+class _MyHomePage extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-        providers: [
-          ChangeNotifierProvider<SettingsProvider>(create: (_) => SettingsProvider())
-        ],
-        builder: (context,_) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Spacer(),
-                    IconButton(
-                      icon: Icon(Icons.settings),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => PageConfiguration()),
-                        );
-                      },
-                    ),
-                  ],
+     final settingsProvider = Provider.of<SettingsProvider>(context);
+      return Scaffold(
+        appBar: AppBar(
+          title: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Spacer(),
+                IconButton(
+                  icon: Icon(Icons.settings),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PageConfiguration()),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(top: 120.0),
+                child: Image.asset(
+                  'assets/Logo_TaamApp.png',
+                  width: 200,
+                  height: 200,
                 ),
               ),
-            ),
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(top: 120.0),
-                    child: Image.asset(
-                      'assets/Logo_TaamApp.png',
-                      width: 200,
-                      height: 200,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 8, bottom: 100.0),
-                    child: Text(
-                        AppLocalizations.of(context)!.textBienvenida
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context)=> const MySearchProduct())
-                        );
-                    },
-                    style: ButtonStyle(
-                        foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200)
-                    ),
-                    child: Text(AppLocalizations.of(context)!.textBotonIniciar),
-                  ),
-                  const Padding(padding: EdgeInsets.only(top: 10)),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => PageAboutUs()),
-                      );
-                    },
-                    child: Center(
-                      child: Text(
-                        AppLocalizations.of(context)!.textAboutUsRedirection,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.blue
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                ],
+              Padding(
+                padding: EdgeInsets.only(top: 8, bottom: 100.0),
+                child: Text(
+                    AppLocalizations.of(context)!.textBienvenida
+                ),
               ),
-            ),
-          );
-        }
-    );
+              ElevatedButton(
+                onPressed: () {
+                  if(settingsProvider.foodPreferences.isNotEmpty) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context)=> const MySearchProduct())
+                    );
+                  } else {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context)=> const PageConfiguration())
+                    );
+                  }
+                },
+                style: ButtonStyle(
+                    foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200)
+                ),
+                child: Text(AppLocalizations.of(context)!.textBotonIniciar),
+              ),
+              const Padding(padding: EdgeInsets.only(top: 10)),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PageAboutUs()),
+                  );
+                },
+                child: Center(
+                  child: Text(
+                    AppLocalizations.of(context)!.textAboutUsRedirection,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.blue
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 30),
+            ],
+          ),
+        ),
+      );
   }
 }

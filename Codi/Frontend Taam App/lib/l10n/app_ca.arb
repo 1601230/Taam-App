@@ -69,6 +69,8 @@
   "textAvisoProductoAnadido": "El teu informe serà revisat tan aviat com sigui possible",
   "textGracias": "Gràcies per l'ajuda!!",
   "textVolverBuscador" : "Tornar al buscador",
-  "textIntroduceReporte": "Si us plau, introduïu els motius del report"
+  "textIntroduceReporte": "Si us plau, introduïu els motius del report",
+
+  "textIntroduceRestricciones": "Si us plau, indroduïu les seves restriccions alimentaries"
 
 }

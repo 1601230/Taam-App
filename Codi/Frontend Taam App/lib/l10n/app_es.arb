@@ -75,6 +75,7 @@
   "textAvisoProductoAnadido": "Tu reporte será revisado lo antes posible",
   "textGracias": "Gracias por la ayuda!!",
   "textVolverBuscador" : "Volver al buscador",
-  "textIntroduceReporte": "Porfavor, introduzca los motivos del reporte"
+  "textIntroduceReporte": "Porfavor, introduzca los motivos del reporte",
+  "textIntroduceRestricciones": "Por favor, introduzca sus restricciones alimentarias"
 
 }

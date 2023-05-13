@@ -436,13 +436,6 @@ class _MySearchProduct extends State<MySearchProduct> {
                                               overflow: TextOverflow.ellipsis,
                                             ),
                                           ),
-                                          /*Text(
-                                            _listPartsRecommendations![index+1],
-                                            style: const TextStyle(
-                                              fontSize: 20.0,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),*/
                                         ],
                                       ),
                                     ),

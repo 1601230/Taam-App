@@ -69,6 +69,7 @@
   "textAvisoProductoAnadido": "Your report will be reviewed as soon as possible",
   "textGracias": "Thank you for your help!!",
   "textVolverBuscador" : "Back to search page",
-  "textIntroduceReporte": "Please enter the reasons for the report"
+  "textIntroduceReporte": "Please enter the reasons for the report",
+  "textIntroduceRestricciones": "Please enter your dietary restrictions"
 
 }

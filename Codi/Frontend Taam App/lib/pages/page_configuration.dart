@@ -12,6 +12,7 @@ import '../services/local_storage.dart';
 import '../services/locale_provider.dart';
 import '../services/settings_provder.dart';
 import 'general_question_page.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 ///Funciones conectadas a back-end
 ///---------------------------------------------------------------------------------------------------------------------------------------------
@@ -161,11 +162,29 @@ class _PageConfigurationState extends State<PageConfiguration> {
 
           return Scaffold(
             appBar: AppBar(
+                automaticallyImplyLeading: false,
                 title: Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(""),
+                        IconButton(
+                          icon: Icon(Icons.arrow_back),
+                          onPressed: () {
+                            if(settingsProvider.foodPreferences.isEmpty) {
+                              Fluttertoast.showToast(
+                                  msg: AppLocalizations.of(context)!.textIntroduceRestricciones,
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.CENTER,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0
+                              );
+                            } else {
+                              Navigator.pop(context);
+                            }
+                          },
+                        ),
                         Text(AppLocalizations.of(context)!.titleConfig),
                         Text("   ")
                       ],
