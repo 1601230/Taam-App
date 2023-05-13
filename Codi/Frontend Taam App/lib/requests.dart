@@ -113,6 +113,16 @@ void setReportProductText(String textReport) async {
   }
 }
 
+void sendQuestion(String question) async {
+  String uri = "$baseUrl/sendQuestion/$question/end";
+  final response = await client.get(Uri.parse(uri));
+
+  if (response.statusCode != 200) {
+    print("statusCode=$response.statusCode");
+    throw Exception('Failed to get children');
+  }
+}
+
 Future<Map<String, dynamic>> getQuestions() async {
   String uri = "$baseUrl/getQuestions/end";
   final response = await client.get(Uri.parse(uri));

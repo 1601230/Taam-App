@@ -71,9 +71,10 @@ class ConfirmDoubtAdvice extends StatelessWidget{
                   backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200)
               ),
               onPressed: (){
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MySearchProduct()));
-
-
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context)=> MySearchProduct()),
+                        (route)=>route.isFirst
+                );
               },
               child: Text("Torna a la pagina dels dubtes"),)
           ]

@@ -4,9 +4,14 @@ import 'package:taam_app/pages/page_configuration.dart';
 import 'package:taam_app/pages/incorrect_form_page.dart';
 import 'package:taam_app/pages/search_product_page.dart';
 import 'package:taam_app/pages/confirm_doubt_page.dart';
+import 'package:taam_app/requests.dart';
 import '../main.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
+Future<void> _sendQuestion(String question) async {
+  sendQuestion(question);
+}
 
 class MyDoubt extends StatefulWidget {
   @override
@@ -18,8 +23,29 @@ class MyDoubt extends StatefulWidget {
 
 
 class SendDoubtPage extends State<MyDoubt>{
+  var _textReport;
+  final _textController = TextEditingController();
 
-  String _text = '';
+  @override
+  void initState() {
+    super.initState();
+    _textController.addListener(_updateText);
+  }
+
+  void _updateText() {
+    setState(() {
+      _textReport = _textController.text;
+    });
+  }
+
+  String textCleaner(String data) {
+    data = data.replaceAll("?", ' INTERROGANTEFINAL');
+    data = data.replaceAll("¿", 'INTERROGANTEINICIAL ');
+    data = data.replaceAll("/", ' BARRASIETE ');
+    data = data.replaceAll("\\", ' BARRASIETEINVERTIDA ');
+
+    return data;
+  }
 
   @override
   Widget build(BuildContext context){
@@ -36,8 +62,8 @@ class SendDoubtPage extends State<MyDoubt>{
           ),
         ),
       ),
-      body: Column(
-
+      body: SingleChildScrollView(
+        child: Column(
           children: <Widget> [
             Padding(
               padding: EdgeInsets.all(16.0), // ajustar el valor del relleno según sea necesario
@@ -51,9 +77,10 @@ class SendDoubtPage extends State<MyDoubt>{
                   ),
                   SizedBox(height: 20.0),
                   Divider(),
-                  TextField(
+                  TextFormField(
+                    controller: _textController,
                     maxLength: 200,
-                    maxLines: 10,
+                    maxLines: 7,
                     decoration: InputDecoration(
                       hintText: AppLocalizations.of(context)!.textEscibeAqui,
                       border: OutlineInputBorder(),
@@ -69,12 +96,31 @@ class SendDoubtPage extends State<MyDoubt>{
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200)
             ),
-            onPressed: (){
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => ConfirmDoubtAdvice()));
-            }
-        )
-    ]
+            onPressed: () {
+              String question = textCleaner(_textController.text);
+              if (_textController.text.isEmpty) {
+                Fluttertoast.showToast(
+                    msg: AppLocalizations.of(context)!.textIntroduceReporte,
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    fontSize: 16.0
+                );
+              } else {
+                _sendQuestion(question);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ConfirmDoubtAdvice())
+                );
+              }
+            },
+          )
+        ]
       )
-            );
+     )
+    );
   }
 }
