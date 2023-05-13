@@ -547,7 +547,11 @@ public class TaamApp {
      * decide which questions can be added to the frequent_questions table.
      */
     public void saveQuestion(String question) throws SQLException {
-        question = textTransformer(question);
+        question = textTransformer(question).replaceAll("interroganteinicial", "¿")
+                                            .replaceAll("interrogantefinal", "?")
+                                            .replaceAll("barrasiete", "/")
+                                            .replaceAll("barrasieteinvertida", "\\")
+                                            .replaceAll("%0a", " ");;
         db.insertQuestion(question);
     }
 
