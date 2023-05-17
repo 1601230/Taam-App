@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 
 final http.Client client = http.Client();
-const String baseUrl = "http://172.29.176.1:8080";
+const String baseUrl = "http://192.168.132.238:8080";
 
 
 Future<Map<String, dynamic>> searchProductByBarcode(int barcode) async {

@@ -2,49 +2,86 @@
 
    skinparam classAttributeIconSize 0
 
-   class "Client"
+   class "TaamApp"
    {
-        + {static} main() : void
-   }
-
-   class "Taam App"
-   {
-        - {static} instance : Taam App
-        + {static} getInstance() : Taam App
+        - {static} instance : TaamApp
+        - db : DataBase
+        + {static} searcher : Searcher
+        + {static} product : Product
+        + {static} ingredient : Ingredient
+        + {static} result : Result
+        + {static} visitor : Visitor
+        + {static} getInstance() : TaamApp
+        + checkBarcode(barcode : String) : Product
+        + checkName(name: String) : Map<String, Object>
+        + notFound() : void   
+        + incident(observation : String) : void  
+        + checkProductBarcode(barcode: String) : Map<String, Object>
+        + checkProductIngredientName(name : String) : Map<String, Object>
+        + recommendedProducts() : Map<String, Object>
+        + refreshRecommendedProducts() : Map<String, Object>
+        + getFrequentQuestions() : Map<String, Object>
+        + getAnswer(questionId : String) : Map<String, Object>
+        + saveQuestion(question : String) : void
+        + changeRestrictionsLanguage(restrictions: String) : Map<String, Object>
    }
 
    class "Searcher"
    {
-        - elementName : String
-        - barcode : Integer
-        + Searcher(elementName: String, barcode : Integer) : void
-        + searchProductByName(elementName : String) : Product
-        + searchProductByBarcode(barcode : Integer) : Product
-        + searchIngredient(elementName : String) : boolean
+        - productName : String
+        - barcode : String
+        - ingredientName : String
+        - db : DataBase
+        + Searcher(elementName: String, barcode : String)
+        + searchProductByName(nameSearched : String) : Product
+        + searchProductByBarcode(barcode : String) : Product
+        + searchIngredient(nameSearched : String) : boolean
+   }
+
+   class "DataBase"
+   {
+        + selectProductName(barcode : String) : ResultSet
+        + selectProductIngredientsId(barcode : String) : ResultSet
+        + selectProductIngredientName(ingredient_id : Integer) : ResultSet
+        + selectProductIdName() : ResultSet
+        + selectProductId() : ResultSet
+        + selectIngredientIdName() : ResultSet
+        + selectQuestions() : ResultSet
+        + selectAnswer(questionId : Integer) : ResultSet
+        + insertQuestion(question : String) : void
+        + insertNotFoundBarcode(barcode : String) : void
+        + insertNotFoundName(name : String) : void
+        + insertIncidentProduct(observation : String, barcode : String) : void
+        + insertIncidentIngredient(observation : String, barcode : Integer) : void
    }
 
    class "Configuration"
    {
-        - {static} instance : Filter
+        - {static} instance : Configuration
         - language : String
-        + {static} getInstance() : Filter
-   }
-
-   class "Restriction"
-   {
-        - preferences : String
+        - userRestrictionsList : List<String>
+        - restrictionsSpanishList : List<String>
+        - restrictionsCatalanList : List<String>
+        - restrictionsEnglishList : List<String>
+        + {static} getInstance() : Configuration
+        + textTransformer(text : String) : String 
+        + createConfiguration(configuration : String) : Visitor
+        + getRestrictionsList() : Map<String, Object>
+        + changeRestrictionsLanguage(restrictions : String) : Map<String, Object>
    }
 
    class "Product"
    {
         - productName : String
-        - barcode : Integer
+        - barcode : String
+        - image : String
    }
    
    class "Ingredient"
    {
         - ingredientName : String
-        - identifier : Integer
+        - id : Integer
+        + Ingredient(ingredientName: String, id : String)
    }
 
    enum "Edible" 
@@ -56,12 +93,7 @@
 
    class "Result"
    {
-        - successfulSearch : boolean
         - result : Edible
-   }
-
-   class "Recommendations"
-   {
    }
 
    interface "Visitor"
@@ -106,22 +138,19 @@
      + checkIngredient(ingredient: Ingredient) : Result
    }
 
-   
-   "Client" .. "Taam App" : instantiates
-   "Taam App" --> "Configuration"
-   "Taam App" --> "Searcher"
-   "Taam App" --> "Visitor"
-   "Taam App" --> "Recommendations"
-   "Taam App" --> "Result" : searchResult
-   "Taam App" --> "Product" : searchedProduct
-   "Configuration" o--> "1..*" "Restriction" : userRestrictionsList
+  
+   "TaamApp" --> "Configuration"
+   "TaamApp" --> "Searcher"
+   "TaamApp" --> "Visitor"
+   "TaamApp" --> "DataBase"
+   "TaamApp" o--> "1..*" "Product" : recommendedProductsList
+   "Searcher" --> "DataBase"
    "Vegan" --|> "Visitor" 
    "Vegetarian" --|> "Visitor"
    "Gluten Allergic" --|> "Visitor"
    "Lactose Allergic" --|> "Visitor"
    "Tree Nut Allergic" --|> "Visitor"
    "Teetotal" --|> "Visitor"
-   "Recommendations" o--> "0..*" "Producte" : recommendedProductsList
    "Product" o--> "1..*" "Ingredient" : productIngredientsList
    "Result" o--> "0..*" "Ingredient" : nonSuitableIngredientsList
    "Result" o--> "0..*" "Ingredient" : doubtfulIngredientsList
