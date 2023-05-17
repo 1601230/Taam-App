@@ -60,6 +60,37 @@ class _PageAboutUsState extends State<PageAboutUs> {
                     ),
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsets.only(top: 8.0, bottom: 10.0),
+                  child: Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.textTitleContacto,
+                      textAlign: TextAlign.justify,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 8.0, bottom: 10.0),
+                  child: Center(
+                    child: Text(
+                      "E-mail: atencionalcliente@taamApp.com",
+                      textAlign: TextAlign.justify,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child: Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.textTelefono,
+                      textAlign: TextAlign.justify,
+                    ),
+                  ),
+                ),
               ],
             ),
             SizedBox(height: 20),
