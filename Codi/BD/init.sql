@@ -87,7 +87,7 @@ INSERT INTO public.products(id, name, image) VALUES ('5053990156009', 'Chips Pri
 
 INSERT INTO public.products(id, name, image) VALUES ('5053827206730', 'Kelloggs Corn Flakes', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F5053827206730.jpg?alt=media&token=484f290f-f935-4ee8-ad33-e389dceb458c');
 
-INSERT INTO public.products(id, name, image) VALUES ('8480000156112', 'Cereales Avena Crunchy 85% Avena Integral y Bajo Contenido en Azucar - Hacendado', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F8480000156112.jpg?alt=media&token=bfda95c4-fd9b-49c4-b5e0-8bd22679fe73');
+INSERT INTO public.products(id, name, image) VALUES ('8480000156112', 'Cereales Avena Crunchy - Hacendado', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F8480000156112.jpg?alt=media&token=bfda95c4-fd9b-49c4-b5e0-8bd22679fe73');
 
 INSERT INTO public.products(id, name, image) VALUES ('8412598000010', 'Special beer - Estrella Galicia', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F8412598000010.jpg?alt=media&token=730b5380-6ec8-478a-9ff0-d9c562f7c92b');
 
