@@ -9,6 +9,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taam_app/pages/page_report_product.dart';
 import 'package:taam_app/pages/unexistent_advice.dart';
 import 'package:taam_app/services/local_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 import '../requests.dart';
 import '../services/settings_provder.dart';
@@ -130,54 +132,66 @@ class _MyProductScreen extends State<MyProductScreen> {
       ),
 
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Divider(height: 1, thickness: 2),
-          SizedBox(height: 20),
           Container(
             width: 300,
             height: 200,
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.black)
-            ),
             child: Column(
               children: [
-                Expanded(
-                  child: Image.network(
-                    image!,
-                    height: 150,
-                    width: 150,
-                  )
-                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        product["Name"]
+                      Container(
+                        width: 300,
+                        padding: EdgeInsets.only(bottom: 10.0), // Agrega el padding deseado
+                        child: Center(
+                          child: Text(
+                            product["Name"],
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.lato(
+                              fontSize: 22.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
                       ),
                     ],
                   ),
                 ),
+                Expanded(
+                    child: Image.network(
+                      image!,
+                      height: 150,
+                      width: 150,
+                    )
+                ),
               ],
             ),
           ),
-          SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                esApto,
-                style: TextStyle(
+              Padding(
+                padding: EdgeInsets.all(10.0), // Agrega el padding deseado
+                child: Text(
+                  esApto,
+                  style: GoogleFonts.lato(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: _getColorForAptoValue(esApto)
+                    color: _getColorForAptoValue(esApto),
+                  ),
                 ),
               ),
               IconButton(
                 icon: Icon(
                   Icons.info,
-                  color: _getColorForAptoValue(esApto),),
+                  color: _getColorForAptoValue(esApto),
+                ),
                 onPressed: () async {
                   String infoProduct = await _getInfoProduct();
                   showDialog(
@@ -201,51 +215,93 @@ class _MyProductScreen extends State<MyProductScreen> {
               ),
             ],
           ),
+          Divider(
+            color: Colors.grey,
+            thickness: 1.0,
+            indent: 45.0,
+            endIndent: 45.0,
+          ),
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4.0),
-                child: Text(AppLocalizations.of(context)!.textInfoConsumicion),
+                padding: const EdgeInsets.only(bottom: 12.0),
+                child: Text(
+                  AppLocalizations.of(context)!.textInfoConsumicion,
+                  style: GoogleFonts.lato(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               Container(
                 width: 300,
                 height: 200,
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black)
-                ),
-                child: ListView.builder(
-                  itemCount: listIngredients?.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      leading: Icon(Icons.restaurant, size: 20),
-                      title: Text(listIngredients![index]),
-                      subtitle: Text(_isSuitable(listIngredients![index])),
-                      onTap: () async {
-                        String ingredientTap = listIngredients![index];
-                        Map<String, dynamic>? ingredientByNameTap = await _searchByName(ingredientTap);
-                        Navigator.push(
+                child: Scrollbar(
+                  isAlwaysShown: true,
+                  controller: ScrollController(),
+                  child: ListView.builder(
+                    itemCount: listIngredients?.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTile(
+                        leading: Icon(Icons.local_dining_outlined, size: 20),
+                        title: Text(
+                          listIngredients![index],
+                          style: GoogleFonts.lato(),
+                        ),
+                        subtitle: Text(
+                          _isSuitable(listIngredients![index]),
+                          style: GoogleFonts.lato(
+                            color: _getColorForAptoValue(_isSuitable(listIngredients![index])),
+                          ),
+                        ),
+                        onTap: () async {
+                          String ingredientTap = listIngredients![index];
+                          Map<String, dynamic>? ingredientByNameTap = await _searchByName(ingredientTap);
+                          Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context)=> MyIngredientScreen(ingredient: ingredientByNameTap))
-                        );
-                      },
-                    );
-                  },
+                            MaterialPageRoute(builder: (context) => MyIngredientScreen(ingredient: ingredientByNameTap)),
+                          );
+                        },
+                      );
+                    },
+                  ),
                 ),
               )
             ],
           ),
-          SizedBox(height: 20),
-
-          GestureDetector(
-              onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => PageReportProduct()));
-              },
-              child: const Icon(
-                Icons.error_outline,
-                color: Colors.red,
-                size: 35,
-              )
-          )
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => PageReportProduct()));
+                },
+                child: const Padding(
+                  padding: EdgeInsets.only(right: 4.0), // Ajusta el valor de padding según tus necesidades
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Icon(
+                      Icons.error_outline,
+                      color: Colors.red,
+                      size: 35,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 2.0),
+                child: Text(
+                  "Reportar", // Ajusta el espaciado según tus necesidades
+                  style: GoogleFonts.lato(
+                    letterSpacing: 1.2,
+                    color: Colors.red,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
 

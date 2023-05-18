@@ -7,6 +7,8 @@ import 'package:taam_app/pages/requestSendAdvice.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../main.dart';
 import '../requests.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 Future<void> _setReportedProduct() async {
   setReportedProduct();
@@ -46,22 +48,35 @@ class NoExistentScreen extends StatelessWidget{
                   width: 300,
                   height: 200,
                   decoration: BoxDecoration(
-                      color: Colors.redAccent,
+                      color: Colors.red.shade700,
                       border: Border.all(color: Colors.red, width: 3.0),
                       borderRadius: BorderRadius.all(Radius.circular(20))
-
                   ),
 
 
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('ERROR'),
-                      Text(''),
-                      Text(
-                        AppLocalizations.of(context)!.textProductoNoExiste,
-                        textAlign: TextAlign.center,
-                      )
+                      Padding(
+                        padding: EdgeInsets.all(10.0), // Ajusta el valor del padding según tus necesidades
+                        child: Text(
+                          'ERROR',
+                          style: GoogleFonts.lato(
+                              fontSize: 18.0,
+                              color: Colors.white), // Ajusta el tamaño de la letra según tus necesidades
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(10.0), // Ajusta el valor del padding según tus necesidades
+                        child: Text(
+                          AppLocalizations.of(context)!.textProductoNoExiste,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.lato(
+                              fontSize: 18.0,
+                              color: Colors.white
+                          ), // Ajusta el tamaño de la letra según tus necesidades
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -69,7 +84,7 @@ class NoExistentScreen extends StatelessWidget{
                 ElevatedButton(
                   style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.red)
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.amber.shade700)
                   ),
                   onPressed: (){
                     _setReportedProduct();
@@ -78,7 +93,13 @@ class NoExistentScreen extends StatelessWidget{
                         MaterialPageRoute(builder: (context)=> ProductReportedCorrectlyPage())
                     );
                   },
-                  child: Text(AppLocalizations.of(context)!.textReportarProducto),)
+                  child: Text(
+                      AppLocalizations.of(context)!.textReportarProducto,
+                      style: GoogleFonts.lato(
+                        color: Colors.white
+                      ),
+                  )
+                )
               ]
           ),
         );

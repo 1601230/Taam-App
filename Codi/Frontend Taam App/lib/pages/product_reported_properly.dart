@@ -6,6 +6,7 @@ import 'package:taam_app/pages/requestSendAdvice.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taam_app/pages/search_product_page.dart';
 import '../main.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProductReportedCorrectlyPage extends StatelessWidget{
 
@@ -42,7 +43,7 @@ class ProductReportedCorrectlyPage extends StatelessWidget{
               width: 300,
               height: 200,
               decoration: BoxDecoration(
-                  color: Colors.green,
+                  color: Colors.green.shade400,
                   border: Border.all(color: Colors.green, width: 3.0),
                   borderRadius: BorderRadius.all(Radius.circular(20))
 
@@ -50,18 +51,39 @@ class ProductReportedCorrectlyPage extends StatelessWidget{
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    AppLocalizations.of(context)!.textProductoReported,
-                    textAlign: TextAlign.center,
+                  Padding(
+                    padding: EdgeInsets.all(10.0), // Ajusta el padding según tus necesidades
+                    child: Text(
+                      AppLocalizations.of(context)!.textProductoReported,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lato(
+                          fontSize: 18.0,
+                          color: Colors.white
+                      ), // Aplica la fuente deseada
+                    ),
                   ),
-                  Text(
-                    AppLocalizations.of(context)!.textAvisoProductoAnadido,
-                    textAlign: TextAlign.center,
+                  Padding(
+                    padding: EdgeInsets.all(10.0), // Ajusta el padding según tus necesidades
+                    child: Text(
+                      AppLocalizations.of(context)!.textAvisoProductoAnadido,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lato(
+                          fontSize: 18.0,
+                          color: Colors.white
+                      ), // Aplica la fuente deseada
+                    ),
                   ),
-                  Text(
-                    AppLocalizations.of(context)!.textGracias,
-                    textAlign: TextAlign.center,
-                  )
+                  Padding(
+                    padding: EdgeInsets.all(10.0), // Ajusta el padding según tus necesidades
+                    child: Text(
+                      AppLocalizations.of(context)!.textGracias,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lato(
+                          fontSize: 18.0,
+                          color: Colors.white
+                      ), // Aplica la fuente deseada
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -69,7 +91,7 @@ class ProductReportedCorrectlyPage extends StatelessWidget{
             ElevatedButton(
               style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.green)
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.amber.shade700)
               ),
               onPressed: (){
                 Navigator.of(context).pushAndRemoveUntil(
@@ -77,8 +99,14 @@ class ProductReportedCorrectlyPage extends StatelessWidget{
                         (route)=>route.isFirst
                 );
               },
-              child: Text(AppLocalizations.of(context)!.textVolverBuscador),)
-          ]
+              child: Text(
+                AppLocalizations.of(context)!.textVolverBuscador,
+                style: GoogleFonts.lato(
+                  color: Colors.white
+                ),
+              ),
+            )
+         ]
       ),
     );
   }

@@ -12,6 +12,7 @@ import 'package:taam_app/requests.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:taam_app/services/settings_provder.dart';
 import '../main.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 ///Funciones conectadas a back-end
 ///---------------------------------------------------------------------------------------------------------------------------------------------
@@ -224,11 +225,11 @@ class _MySearchProduct extends State<MySearchProduct> {
                       contentPadding: EdgeInsets.all(8),
                       enabledBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        borderSide: BorderSide(color: Colors.grey, width: 2),
+                        borderSide: BorderSide(color: Colors.grey, width: 1),
                       ),
                       focusedBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        borderSide: BorderSide(color: Colors.grey, width: 2),
+                        borderSide: BorderSide(color: Colors.grey, width: 1),
                       ),
                     ),
                     keyboardType: TextInputType.text,
@@ -310,11 +311,11 @@ class _MySearchProduct extends State<MySearchProduct> {
                           contentPadding: EdgeInsets.all(8),
                           enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: BorderSide(color: Colors.grey, width: 2)
+                          borderSide: BorderSide(color: Colors.grey, width: 1)
                         ),
                         focusedBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: BorderSide(color: Colors.grey, width: 2),
+                          borderSide: BorderSide(color: Colors.grey, width: 1),
                         ),
                       ),
                       keyboardType: TextInputType.number,
@@ -353,26 +354,28 @@ class _MySearchProduct extends State<MySearchProduct> {
                     padding: EdgeInsets.symmetric(vertical: 8.0),
                     child: Divider(
                       height: 10, // Altura de la línea
-                      thickness: 2, // Grosor de la línea
+                      thickness: 1, // Grosor de la línea
                       color: Colors.grey, // Color de la línea
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 8.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
                           padding: EdgeInsets.only(right: 10.0),
                           child: Text(
                             AppLocalizations.of(context)!.titleRecomendaciones,
-                            style: TextStyle(
+                            style: GoogleFonts.lato(
+                              color: Colors.black87,
                               fontSize: 30.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                         IconButton(
+                          iconSize: 30,
                           onPressed: () async {
                             setState(() {
                               loadingRecommendations = true;
@@ -415,25 +418,35 @@ class _MySearchProduct extends State<MySearchProduct> {
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.grey, width: 1.0),
-                                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                                        border: BorderDirectional(
+                                          bottom: BorderSide(color: Colors.grey, width: 1.0),
+                                        ),
                                       ),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                         children: [
-                                          Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Image.network(
-                                              _listImagesRecommendations![index],
-                                              height: 100,
-                                              width: 100,
-                                            )
+                                          Padding(
+                                            padding: EdgeInsets.all(10.0), // Ajusta el valor de padding según tus necesidades
+                                            child: Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: Image.network(
+                                                _listImagesRecommendations![index],
+                                                height: 100,
+                                                width: 100,
+                                              ),
+                                            ),
                                           ),
-                                          Flexible(
-                                            child: Text(
-                                              _listNamesRecommendations![index],
-                                              softWrap: true,
-                                              overflow: TextOverflow.ellipsis,
+                                          Expanded(
+                                            child: Container(
+                                              //alignment: Alignment.center,
+                                              padding: EdgeInsets.all(10.0),
+                                              child: Text(
+                                                _listNamesRecommendations![index],
+                                                softWrap: true,
+                                                style: GoogleFonts.lato(
+                                                  fontSize: 16.0,
+                                                  //fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ],
