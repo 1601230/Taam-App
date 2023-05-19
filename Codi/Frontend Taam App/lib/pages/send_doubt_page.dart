@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:taam_app/pages/page_configuration.dart';
-import 'package:taam_app/pages/incorrect_form_page.dart';
-import 'package:taam_app/pages/search_product_page.dart';
 import 'package:taam_app/pages/confirm_doubt_page.dart';
 import 'package:taam_app/requests.dart';
-import '../main.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 Future<void> _sendQuestion(String question) async {
   sendQuestion(question);
@@ -56,7 +54,15 @@ class SendDoubtPage extends State<MyDoubt>{
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text("Enviar Dubte"),
+              Text(
+                AppLocalizations.of(context)!.titleEnviarPregunta,
+                style: GoogleFonts.lato(
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1,
+                    fontSize: 18.0,
+                    color: Colors.white
+                ), //
+              ),
               Text("           ")
             ],
           ),
@@ -72,29 +78,35 @@ class SendDoubtPage extends State<MyDoubt>{
                 children: <Widget>[
                   SizedBox(height: 16.0), // agregar un espacio en blanco por encima del TextField
                   Text(
-                      AppLocalizations.of(context)!.textEscribePregunta,
-                    style: TextStyle(fontSize: 24.0)
+                    AppLocalizations.of(context)!.textEscribePregunta,
+                    style: GoogleFonts.lato(
+                      letterSpacing: 0.5,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22.0,
+                    ), //
                   ),
                   SizedBox(height: 20.0),
-                  Divider(),
-                  TextFormField(
-                    controller: _textController,
-                    maxLength: 200,
-                    maxLines: 7,
-                    decoration: InputDecoration(
-                      hintText: AppLocalizations.of(context)!.textEscibeAqui,
-                      border: OutlineInputBorder(),
+                  Padding(
+                    padding: EdgeInsets.only(top: 5),
+                    child: TextFormField(
+                      controller: _textController,
+                      maxLines: null,
+                      maxLength: 500, // Permite múltiples líneas de texto
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: AppLocalizations.of(context)!.textEscibeAqui,
+                      ),
                     ),
                   ),
                   SizedBox(height: 16.0), // agregar un espacio en blanco por debajo del TextField
-
                 ],
               ),
             ),
-        ElevatedButton(child: Text(AppLocalizations.of(context)!.titleEnviarPregunta),
-            style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200)
+        ElevatedButton(
+          style: ButtonStyle(
+                minimumSize: MaterialStateProperty.all(const Size(150, 50)),
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.amber.shade700)
             ),
             onPressed: () {
               String question = textCleaner(_textController.text);
@@ -117,6 +129,14 @@ class SendDoubtPage extends State<MyDoubt>{
                 );
               }
             },
+          child: Text(
+            AppLocalizations.of(context)!.textEnviarPregunta,
+            style: GoogleFonts.lato(
+              letterSpacing: 1,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           )
         ]
       )

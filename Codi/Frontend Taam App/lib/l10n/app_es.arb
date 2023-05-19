@@ -9,6 +9,7 @@
   },
   "textBotonIniciar": "INICIAR",
   "textAboutUsRedirection": "Sobre Nosotros",
+  "textFACRedirection": "FAQs",
 
   "titleConfig": "Configuración",
   "titleIdiomaConfig": "Idioma",
@@ -30,6 +31,8 @@
   "textBuscadorProducto": "Buscar producto/ingrediente...",
   "textBuscadorCodigo": "Introducir código de barras...",
   "titleRecomendaciones": "Recomendaciones",
+  "textBarcodeVacio": "Introduce un código de barras",
+  "textProductNameVacio": "Introduce el nombre de un producto",
 
   "textInfoConsumicion": "Información sobre la consumición",
 
@@ -59,11 +62,12 @@
   "textTelefono": "Teléfono: 934 56 78 12",
   "textInfoObjetivo": "TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO",
 
-  "titlePreguntasFrecuentes": "Preguntas frecuentes",
+  "titlePreguntasFrecuentes": "Preguntas Frecuentes",
   "textButtonEnviarDuda": "Enviar otra Pregunta",
 
-  "titleEnviarPregunta": "Enviar duda",
-  "textEscribePregunta": "Escribe tu pregunta",
+  "titleEnviarPregunta": "Enviar Cuestión",
+  "textEnviarPregunta": "Enviar cuestión",
+  "textEscribePregunta": "Escribe tu pregunta:",
   "textEscibeAqui": "Escribe aquí",
 
   "textApto": "Apto",
@@ -78,6 +82,8 @@
   "textGracias": "Gracias por la ayuda!!",
   "textVolverBuscador" : "Volver al buscador",
   "textIntroduceReporte": "Porfavor, introduzca los motivos del reporte",
-  "textIntroduceRestricciones": "Por favor, introduzca sus restricciones alimentarias"
+  "textIntroduceRestricciones": "Por favor, introduzca sus restricciones alimentarias",
+  "textVolverPaginaPreguntas": "Vuelve a FAQs",
+  "textEnviado": "CUESTIÓN ENVIADA"
 
 }

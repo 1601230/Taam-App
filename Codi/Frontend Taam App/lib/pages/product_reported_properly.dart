@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:taam_app/pages/page_configuration.dart';
-import 'package:taam_app/pages/incorrect_form_page.dart';
-import 'package:taam_app/pages/requestSendAdvice.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taam_app/pages/search_product_page.dart';
 import '../main.dart';
@@ -30,7 +27,7 @@ class ProductReportedCorrectlyPage extends StatelessWidget{
                   );
                 },
               ),
-              Text("  ")
+              Text("")
             ],
           ),
         ),
@@ -46,7 +43,6 @@ class ProductReportedCorrectlyPage extends StatelessWidget{
                   color: Colors.green.shade400,
                   border: Border.all(color: Colors.green, width: 3.0),
                   borderRadius: BorderRadius.all(Radius.circular(20))
-
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -57,6 +53,7 @@ class ProductReportedCorrectlyPage extends StatelessWidget{
                       AppLocalizations.of(context)!.textProductoReported,
                       textAlign: TextAlign.center,
                       style: GoogleFonts.lato(
+                          letterSpacing: 0.5,
                           fontSize: 18.0,
                           color: Colors.white
                       ), // Aplica la fuente deseada
@@ -68,6 +65,7 @@ class ProductReportedCorrectlyPage extends StatelessWidget{
                       AppLocalizations.of(context)!.textAvisoProductoAnadido,
                       textAlign: TextAlign.center,
                       style: GoogleFonts.lato(
+                          letterSpacing: 0.5,
                           fontSize: 18.0,
                           color: Colors.white
                       ), // Aplica la fuente deseada
@@ -79,6 +77,7 @@ class ProductReportedCorrectlyPage extends StatelessWidget{
                       AppLocalizations.of(context)!.textGracias,
                       textAlign: TextAlign.center,
                       style: GoogleFonts.lato(
+                          letterSpacing: 0.5,
                           fontSize: 18.0,
                           color: Colors.white
                       ), // Aplica la fuente deseada
@@ -90,7 +89,8 @@ class ProductReportedCorrectlyPage extends StatelessWidget{
             SizedBox(height: 50),
             ElevatedButton(
               style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                  minimumSize: MaterialStateProperty.all(const Size(150, 50)),
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                   backgroundColor: MaterialStateProperty.all<Color>(Colors.amber.shade700)
               ),
               onPressed: (){
@@ -102,7 +102,9 @@ class ProductReportedCorrectlyPage extends StatelessWidget{
               child: Text(
                 AppLocalizations.of(context)!.textVolverBuscador,
                 style: GoogleFonts.lato(
-                  color: Colors.white
+                  letterSpacing: 1,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             )

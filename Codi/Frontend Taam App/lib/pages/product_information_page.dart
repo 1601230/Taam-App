@@ -3,12 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:taam_app/main.dart';
 import 'package:taam_app/pages/ingredient_information_page.dart';
-import 'package:taam_app/pages/page_configuration.dart';
-import 'package:taam_app/pages/incorrect_form_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taam_app/pages/page_report_product.dart';
-import 'package:taam_app/pages/unexistent_advice.dart';
-import 'package:taam_app/services/local_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
@@ -152,6 +148,7 @@ class _MyProductScreen extends State<MyProductScreen> {
                             product["Name"],
                             textAlign: TextAlign.center,
                             style: GoogleFonts.lato(
+                              letterSpacing: 1.2,
                               fontSize: 22.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -181,6 +178,7 @@ class _MyProductScreen extends State<MyProductScreen> {
                 child: Text(
                   esApto,
                   style: GoogleFonts.lato(
+                    letterSpacing: 1.2,
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                     color: _getColorForAptoValue(esApto),
@@ -215,8 +213,8 @@ class _MyProductScreen extends State<MyProductScreen> {
               ),
             ],
           ),
-          Divider(
-            color: Colors.grey,
+          const Divider(
+            color: Colors.black12,
             thickness: 1.0,
             indent: 45.0,
             endIndent: 45.0,
@@ -228,6 +226,7 @@ class _MyProductScreen extends State<MyProductScreen> {
                 child: Text(
                   AppLocalizations.of(context)!.textInfoConsumicion,
                   style: GoogleFonts.lato(
+                    letterSpacing: 1.2,
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
                   ),

@@ -3,6 +3,7 @@
   "textBienvenida": "El seu selector de menjar de confiança",
   "textBotonIniciar": "INICIAR",
   "textAboutUsRedirection": "Sobre Nosaltres",
+  "textFACRedirection": "FAQs",
 
   "titleConfig": "Configuració",
   "titleIdiomaConfig": "Llengua",
@@ -24,6 +25,8 @@
   "textBuscadorProducto": "Cercar producte/ingredient...",
   "textBuscadorCodigo": "Introduir codi de barres...",
   "titleRecomendaciones": "Recomanacions",
+  "textBarcodeVacio": "Introdueix un codi de barres",
+  "textProductNameVacio": "Introdueix el nom d'un producte",
 
   "textInfoConsumicion": "Informació sobre la consumició",
 
@@ -53,11 +56,12 @@
   "textTelefono": "Telèfon: 934 56 78 12",
   "textInfoObjetivo": "TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO",
 
-  "titlePreguntasFrecuentes": "Preguntes freqüents",
+  "titlePreguntasFrecuentes": "Preguntes Freqüents",
   "textButtonEnviarDuda": "Enviar altre pregunta",
 
-  "titleEnviarPregunta": "Enviar pregunta",
-  "textEscribePregunta": "Escriu la teva pregunta",
+  "titleEnviarPregunta": "Enviar Qüestió",
+  "textEnviarPregunta": "Enviar qüestió",
+  "textEscribePregunta": "Escriu la teva pregunta:",
   "textEscibeAqui": "Escriu aquí",
 
   "textApto": "Apte",
@@ -73,6 +77,7 @@
   "textVolverBuscador" : "Tornar al buscador",
   "textIntroduceReporte": "Si us plau, introduïu els motius del report",
 
-  "textIntroduceRestricciones": "Si us plau, indroduïu les seves restriccions alimentaries"
-
+  "textIntroduceRestricciones": "Si us plau, indroduïu les seves restriccions alimentaries",
+  "textVolverPaginaPreguntas": "Torna a FAQs",
+  "textEnviado": "QÜESTIÓ ENVIADA"
 }

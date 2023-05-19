@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:taam_app/pages/page_configuration.dart';
-import 'package:taam_app/pages/incorrect_form_page.dart';
 import 'package:taam_app/pages/product_reported_properly.dart';
-import 'package:taam_app/pages/requestSendAdvice.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../main.dart';
 import '../requests.dart';
@@ -35,7 +32,7 @@ class NoExistentScreen extends StatelessWidget{
             );
           },
         ),
-        Text("        ")
+        Text("           ")
       ],
     ),
     ),
@@ -62,6 +59,7 @@ class NoExistentScreen extends StatelessWidget{
                         child: Text(
                           'ERROR',
                           style: GoogleFonts.lato(
+                              letterSpacing: 0.5,
                               fontSize: 18.0,
                               color: Colors.white), // Ajusta el tamaño de la letra según tus necesidades
                         ),
@@ -72,6 +70,7 @@ class NoExistentScreen extends StatelessWidget{
                           AppLocalizations.of(context)!.textProductoNoExiste,
                           textAlign: TextAlign.center,
                           style: GoogleFonts.lato(
+                              letterSpacing: 0.5,
                               fontSize: 18.0,
                               color: Colors.white
                           ), // Ajusta el tamaño de la letra según tus necesidades
@@ -83,8 +82,9 @@ class NoExistentScreen extends StatelessWidget{
                 SizedBox(height: 50),
                 ElevatedButton(
                   style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.amber.shade700)
+                    minimumSize: MaterialStateProperty.all(const Size(150, 50)),
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.amber.shade700),
+                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                   ),
                   onPressed: (){
                     _setReportedProduct();
@@ -94,10 +94,12 @@ class NoExistentScreen extends StatelessWidget{
                     );
                   },
                   child: Text(
-                      AppLocalizations.of(context)!.textReportarProducto,
-                      style: GoogleFonts.lato(
-                        color: Colors.white
-                      ),
+                    AppLocalizations.of(context)!.textReportarProducto,
+                    style: GoogleFonts.lato(
+                      letterSpacing: 1,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   )
                 )
               ]

@@ -202,15 +202,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                       hintStyle: const TextStyle(color: Colors.grey),
                       prefixIcon:  IconButton(
                         onPressed: () {
-                          Fluttertoast.showToast(
-                              msg: "Product Name is empty",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.CENTER,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.red,
-                              textColor: Colors.white,
-                              fontSize: 16.0
-                          );
+
                         },
                         icon: const Icon(Icons.search),
                       ),
@@ -239,7 +231,7 @@ class _MySearchProduct extends State<MySearchProduct> {
 
                       if (_productController.text.isEmpty) {
                         Fluttertoast.showToast(
-                            msg: "Product Name is empty",
+                            msg: AppLocalizations.of(context)!.textProductNameVacio,
                             toastLength: Toast.LENGTH_SHORT,
                             gravity: ToastGravity.CENTER,
                             timeInSecForIosWeb: 1,
@@ -283,14 +275,9 @@ class _MySearchProduct extends State<MySearchProduct> {
                             Map<String, dynamic>? productScanned = await _searchProductByBarcode(scannedBarcode);
 
                             if (productScanned.isEmpty) {
-                              Fluttertoast.showToast(
-                                  msg: "Producto no existente",
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  gravity: ToastGravity.CENTER,
-                                  timeInSecForIosWeb: 1,
-                                  backgroundColor: Colors.red,
-                                  textColor: Colors.white,
-                                  fontSize: 16.0
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context)=> NoExistentScreen())
                               );
                             } else{
                               Navigator.push(
@@ -324,7 +311,7 @@ class _MySearchProduct extends State<MySearchProduct> {
 
                         if (_barcodeController.text.isEmpty) {
                           Fluttertoast.showToast(
-                              msg: "Escribe un codigo de barras",
+                              msg: AppLocalizations.of(context)!.textBarcodeVacio,
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.CENTER,
                               timeInSecForIosWeb: 1,
@@ -368,6 +355,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                           child: Text(
                             AppLocalizations.of(context)!.titleRecomendaciones,
                             style: GoogleFonts.lato(
+                              letterSpacing: 0.5,
                               color: Colors.black87,
                               fontSize: 30.0,
                               fontWeight: FontWeight.bold,
@@ -419,7 +407,7 @@ class _MySearchProduct extends State<MySearchProduct> {
                                     child: Container(
                                       decoration: BoxDecoration(
                                         border: BorderDirectional(
-                                          bottom: BorderSide(color: Colors.grey, width: 1.0),
+                                          bottom: BorderSide(color: Colors.black12, width: 1.0),
                                         ),
                                       ),
                                       child: Row(
@@ -467,7 +455,7 @@ class _MySearchProduct extends State<MySearchProduct> {
 
   Future scanBarcode() async {
     scanResult = await FlutterBarcodeScanner.scanBarcode(
-        "#36013F", //Color de la linia de escaneo
+        "#4fb9af", //Color de la linia de escaneo
         AppLocalizations.of(context)!.textCancelarDialog, //Texto del botón cancelar
         true, //Mostrar o no mostrar icono de flash
         ScanMode.BARCODE //El tipo de código que queremos leer
@@ -475,29 +463,3 @@ class _MySearchProduct extends State<MySearchProduct> {
     return scanResult;
   }
 }
-
-class MyData {
-  String title;
-  String subtitle;
-
-  MyData({required this.title, required this.subtitle});
-}
-
-final List<MyData> myData = [
-  MyData(title: 'Colacao', subtitle: 'assets/vegan_stamp.png'),
-  MyData(title: 'Alimento 2', subtitle: 'assets/glutenfree_stamp.png'),
-  MyData(title: 'Alimento 3', subtitle: 'assets/vegan_stamp.png'),
-];
-
-/*Future<void> _reloadRecommendations() async {
-    setState(() {
-      loadingRecommendations = true;
-    });
-
-    // Aquí va la tarea asincrónica de búsqueda de productos o ingredientes
-    await Future.delayed(Duration(seconds: 2));
-
-    setState(() {
-      loadingRecommendations = false;
-    });
-  }*/

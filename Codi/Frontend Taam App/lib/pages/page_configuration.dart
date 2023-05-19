@@ -13,6 +13,8 @@ import '../services/locale_provider.dart';
 import '../services/settings_provder.dart';
 import 'general_question_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 ///Funciones conectadas a back-end
 ///---------------------------------------------------------------------------------------------------------------------------------------------
@@ -185,22 +187,26 @@ class _PageConfigurationState extends State<PageConfiguration> {
                             }
                           },
                         ),
-                        Text(AppLocalizations.of(context)!.titleConfig),
-                        Text("   ")
+                        Text(
+                          AppLocalizations.of(context)!.titleConfig,
+                          style: GoogleFonts.lato(
+                            letterSpacing: 1,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.question_mark),
+                          onPressed: () async {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => GeneralQuestionsPage()),
+                            );
+                          },
+                        ),
                       ],
                     )
                 ),
-              actions: [
-                IconButton(
-                  icon: Icon(Icons.question_mark),
-                  onPressed: () async {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => GeneralQuestionsPage()),
-                    );
-                  },
-                ),
-              ],
             ),
             body:
             SingleChildScrollView(
@@ -217,9 +223,12 @@ class _PageConfigurationState extends State<PageConfiguration> {
                           Container(
                             margin: EdgeInsets.all(10),
                             child: Text(
-                                AppLocalizations.of(context)!.titleIdiomaConfig,
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold)
+                              AppLocalizations.of(context)!.titleIdiomaConfig,
+                              style: GoogleFonts.lato(
+                                letterSpacing: 0.5,
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                           Padding(
@@ -228,7 +237,12 @@ class _PageConfigurationState extends State<PageConfiguration> {
                               items: _appLanguage.map((String itemsValues) {
                                 return DropdownMenuItem(
                                   value: itemsValues,
-                                  child: Text(itemsValues),
+                                  child: Text(
+                                    itemsValues,
+                                    style: GoogleFonts.lato(
+                                      letterSpacing: 0.5,
+                                    ),
+                                  ),
                                 );
                               }).toList(),
                               value: settingsProvider.appLanguage,
@@ -244,9 +258,12 @@ class _PageConfigurationState extends State<PageConfiguration> {
                           Container(
                             margin: EdgeInsets.all(10),
                             child: Text(
-                                AppLocalizations.of(context)!.titleTemaAppConfig,
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold)
+                              AppLocalizations.of(context)!.titleTemaAppConfig,
+                              style: GoogleFonts.lato(
+                                letterSpacing: 0.5,
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                           Padding(
@@ -255,7 +272,12 @@ class _PageConfigurationState extends State<PageConfiguration> {
                               items: _appThemeItems.map((String itemsValues) {
                                 return DropdownMenuItem(
                                   value: itemsValues,
-                                  child: Text(itemsValues),
+                                  child: Text(
+                                    itemsValues,
+                                    style: GoogleFonts.lato(
+                                      letterSpacing: 0.5,
+                                    ),
+                                  ),
                                 );
                               }).toList(),
                               value: _selectionThemeMessage,
@@ -272,7 +294,11 @@ class _PageConfigurationState extends State<PageConfiguration> {
                             margin: EdgeInsets.all(10),
                             child: Text(
                               AppLocalizations.of(context)!.titlePreferenciasConfig,
-                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                              style: GoogleFonts.lato(
+                                letterSpacing: 0.5,
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                           Padding(
@@ -285,7 +311,12 @@ class _PageConfigurationState extends State<PageConfiguration> {
                                 itemCount: _valuesFoodPreferences.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return CheckboxListTile(
-                                    title: Text(_valuesFoodPreferences[index]),
+                                    title: Text(
+                                      _valuesFoodPreferences[index],
+                                      style: GoogleFonts.lato(
+                                        letterSpacing: 0.5,
+                                      ),
+                                    ),
                                     value: _isChecked[index],
                                     onChanged: (value) async {
                                       setState(() {
