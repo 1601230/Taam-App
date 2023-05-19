@@ -3,6 +3,7 @@
   "textBienvenida": "Your trusted food selector",
   "textBotonIniciar": "START",
   "textAboutUsRedirection": "About Us",
+  "textFACRedirection": "FAQs",
 
   "titleConfig": "Settings",
   "titleIdiomaConfig": "Language",
@@ -24,6 +25,8 @@
   "textBuscadorProducto": "Search for product/ingredient...",
   "textBuscadorCodigo": "Enter barcode...",
   "titleRecomendaciones": "Recommendations",
+  "textBarcodeVacio": "Insert a barcode",
+  "textProductNameVacio": "Insert a product name",
 
   "textInfoConsumicion": "Consumption information",
 
@@ -42,7 +45,7 @@
   "titleTipoReporteAlimento": "Why do you want to report the food?",
   "textSeleccionPreferenciasIncorrectas": "Select the wrong preferences",
   "titleOtrosMotivos": "Explain the reason for the report:",
-  "textEscribeMotivos": "Write the reasons",
+  "textEscribeMotivos": "Write down the reasons",
   "textBotonEnviarReporte": "Send report",
 
   "titleSobreNosotros": "About Us",
@@ -53,18 +56,19 @@
   "textTelefono": "Phone: 934 56 78 12",
   "textInfoObjetivo": "TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO",
 
-  "titlePreguntasFrecuentes": "Frequent questions",
+  "titlePreguntasFrecuentes": "Frequent Questions",
   "textButtonEnviarDuda": "Send another question",
 
-  "titleEnviarPregunta": "Send question",
-  "textEscribePregunta": "Write your question",
+  "titleEnviarPregunta": "Send Question",
+  "textEnviarPregunta": "Send question",
+  "textEscribePregunta": "Write down your question:",
   "textEscibeAqui": "Write here",
 
   "textApto": "Suitable",
   "textNoApto": "Unsuitable",
   "textDudoso": "Doubtful",
 
-  "textInfoIngrediente": "Ingredient's information:",
+  "textInfoIngrediente": "Ingredient information:",
   "textProductoNoExiste": "The entered product is not found in the application:",
   "textReportarProducto": "Report Product",
   "textProductoReported": "Product reported successfully",
@@ -72,6 +76,8 @@
   "textGracias": "Thank you for your help!!",
   "textVolverBuscador" : "Back to search page",
   "textIntroduceReporte": "Please enter the reasons for the report",
-  "textIntroduceRestricciones": "Please enter your dietary restrictions"
+  "textIntroduceRestricciones": "Please enter your dietary restrictions",
+  "textVolverPaginaPreguntas": "Go back to FAQs",
+  "textEnviado": "QUESTION SENT"
 
 }

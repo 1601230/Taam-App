@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:taam_app/l10n/l10n.dart';
-import 'package:taam_app/pages/incorrect_form_page.dart';
 import 'package:taam_app/pages/page_about_us.dart';
 import 'package:taam_app/services/local_storage.dart';
 import 'package:taam_app/services/locale_provider.dart';
 import 'package:taam_app/services/settings_provder.dart';
-import 'package:taam_app/pages/product_information_page.dart';
-import 'package:taam_app/requests.dart';
 import 'package:taam_app/pages/page_configuration.dart';
-import 'package:taam_app/pages/confirm_doubt_page.dart';
 import 'package:taam_app/pages/general_question_page.dart';
-import 'package:taam_app/pages/send_doubt_page.dart';
-import 'package:taam_app/pages/questions_page.dart';
 import 'pages/search_product_page.dart';
-import 'pages/unexistent_advice.dart';
-import 'pages/requestSendAdvice.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/src/material_localizations.dart';
 import 'package:flutter_localizations/src/cupertino_localizations.dart';
 import 'package:flutter_localizations/src/widgets_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -109,61 +102,117 @@ class _MyHomePage extends State<MyHomePage> {
         ),
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(top: 120.0),
-                child: Image.asset(
-                  'assets/Logo_TaamApp.png',
-                  width: 200,
-                  height: 200,
+              Divider(),
+              Column(
+                children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 120.0),
+                  child: Image.asset(
+                    'assets/Logo_TaamApp.png',
+                    width: 200,
+                    height: 200,
+                  ),
                 ),
-              ),
               Padding(
-                padding: EdgeInsets.only(top: 8, bottom: 100.0),
+                padding: EdgeInsets.only(top: 8, bottom: 40.0),
                 child: Text(
-                    AppLocalizations.of(context)!.textBienvenida
+                  AppLocalizations.of(context)!.textBienvenida,
+                  style: GoogleFonts.lato(
+                    letterSpacing: 1,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               ElevatedButton(
                 onPressed: () {
-                  if(settingsProvider.foodPreferences.isNotEmpty) {
+                  if (settingsProvider.foodPreferences.isNotEmpty) {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context)=> const MySearchProduct())
+                      context,
+                      MaterialPageRoute(builder: (context) => const MySearchProduct()),
                     );
                   } else {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context)=> const PageConfiguration())
+                      context,
+                      MaterialPageRoute(builder: (context) => const PageConfiguration()),
                     );
                   }
                 },
                 style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200)
+                  minimumSize: MaterialStateProperty.all(const Size(120, 50)),
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.amber.shade700),
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                 ),
-                child: Text(AppLocalizations.of(context)!.textBotonIniciar),
-              ),
-              const Padding(padding: EdgeInsets.only(top: 10)),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PageAboutUs()),
-                  );
-                },
-                child: Center(
-                  child: Text(
-                    AppLocalizations.of(context)!.textAboutUsRedirection,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.blue
-                    ),
+                child: Text(
+                  AppLocalizations.of(context)!.textBotonIniciar,
+                  style: GoogleFonts.lato(
+                    letterSpacing: 1,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+            ],
+          ),
+              const Padding(padding: EdgeInsets.only(top: 50)),
+              Container(
+                height: 60,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PageAboutUs()),
+                        );
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.info_outline,
+                            color: Colors.cyan,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.textAboutUsRedirection,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: Colors.cyan,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => GeneralQuestionsPage()),
+                        );
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.question_answer,
+                            color: Colors.cyan,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.textFACRedirection,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: Colors.cyan,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

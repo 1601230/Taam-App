@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:taam_app/pages/page_configuration.dart';
-import 'package:taam_app/pages/incorrect_form_page.dart';
-import 'package:taam_app/pages/requestSendAdvice.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taam_app/pages/search_product_page.dart';
 import '../main.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProductReportedCorrectlyPage extends StatelessWidget{
 
@@ -29,7 +27,7 @@ class ProductReportedCorrectlyPage extends StatelessWidget{
                   );
                 },
               ),
-              Text("  ")
+              Text("")
             ],
           ),
         ),
@@ -42,34 +40,58 @@ class ProductReportedCorrectlyPage extends StatelessWidget{
               width: 300,
               height: 200,
               decoration: BoxDecoration(
-                  color: Colors.green,
+                  color: Colors.green.shade400,
                   border: Border.all(color: Colors.green, width: 3.0),
                   borderRadius: BorderRadius.all(Radius.circular(20))
-
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    AppLocalizations.of(context)!.textProductoReported,
-                    textAlign: TextAlign.center,
+                  Padding(
+                    padding: EdgeInsets.all(10.0), // Ajusta el padding según tus necesidades
+                    child: Text(
+                      AppLocalizations.of(context)!.textProductoReported,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lato(
+                          letterSpacing: 0.5,
+                          fontSize: 18.0,
+                          color: Colors.white
+                      ), // Aplica la fuente deseada
+                    ),
                   ),
-                  Text(
-                    AppLocalizations.of(context)!.textAvisoProductoAnadido,
-                    textAlign: TextAlign.center,
+                  Padding(
+                    padding: EdgeInsets.all(10.0), // Ajusta el padding según tus necesidades
+                    child: Text(
+                      AppLocalizations.of(context)!.textAvisoProductoAnadido,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lato(
+                          letterSpacing: 0.5,
+                          fontSize: 18.0,
+                          color: Colors.white
+                      ), // Aplica la fuente deseada
+                    ),
                   ),
-                  Text(
-                    AppLocalizations.of(context)!.textGracias,
-                    textAlign: TextAlign.center,
-                  )
+                  Padding(
+                    padding: EdgeInsets.all(10.0), // Ajusta el padding según tus necesidades
+                    child: Text(
+                      AppLocalizations.of(context)!.textGracias,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lato(
+                          letterSpacing: 0.5,
+                          fontSize: 18.0,
+                          color: Colors.white
+                      ), // Aplica la fuente deseada
+                    ),
+                  ),
                 ],
               ),
             ),
             SizedBox(height: 50),
             ElevatedButton(
               style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.green)
+                  minimumSize: MaterialStateProperty.all(const Size(150, 50)),
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.amber.shade700)
               ),
               onPressed: (){
                 Navigator.of(context).pushAndRemoveUntil(
@@ -77,8 +99,16 @@ class ProductReportedCorrectlyPage extends StatelessWidget{
                         (route)=>route.isFirst
                 );
               },
-              child: Text(AppLocalizations.of(context)!.textVolverBuscador),)
-          ]
+              child: Text(
+                AppLocalizations.of(context)!.textVolverBuscador,
+                style: GoogleFonts.lato(
+                  letterSpacing: 1,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )
+         ]
       ),
     );
   }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:taam_app/pages/page_configuration.dart';
-import 'package:taam_app/pages/incorrect_form_page.dart';
-import 'package:taam_app/pages/search_product_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../main.dart';
+import 'general_question_page.dart';
 
 class ConfirmDoubtAdvice extends StatelessWidget{
 
@@ -13,11 +13,11 @@ class ConfirmDoubtAdvice extends StatelessWidget{
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Center(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Text(""),
               IconButton(
                 alignment: Alignment.topCenter,
                 icon: Image.asset('assets/Logo_TaamApp_Home.png'),
@@ -25,15 +25,6 @@ class ConfirmDoubtAdvice extends StatelessWidget{
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(builder: (context)=> MyHomePage()),
                           (route)=>route.isFirst
-                  );
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.settings),
-                onPressed: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PageConfiguration()),
                   );
                 },
               ),
@@ -49,34 +40,47 @@ class ConfirmDoubtAdvice extends StatelessWidget{
               width: 300,
               height: 200,
               decoration: BoxDecoration(
-                  color: Colors.green.shade300,
+                  color: Colors.green.shade400,
                   border: Border.all(color: Colors.green, width: 3.0),
                   borderRadius: BorderRadius.all(Radius.circular(20))
-
               ),
-
-
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('ENVIAT'),
-                  Text('El dubte ha estat enviat correctament')
+                  Text(
+                    AppLocalizations.of(context)!.textEnviado,
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.lato(
+                        letterSpacing: 0.5,
+                        fontSize: 18.0,
+                        color: Colors.white
+                    ), // Aplica la fuente deseada
+                  )
                 ],
               ),
             ),
             SizedBox(height: 50),
             ElevatedButton(
               style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200)
+                  minimumSize: MaterialStateProperty.all(const Size(150, 50)),
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.amber.shade700)
               ),
               onPressed: (){
                 Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context)=> MySearchProduct()),
+                    MaterialPageRoute(builder: (context)=> GeneralQuestionsPage()),
                         (route)=>route.isFirst
                 );
               },
-              child: Text("Torna a la pagina dels dubtes"),)
+              child: Text(
+                AppLocalizations.of(context)!.textVolverPaginaPreguntas,
+                style: GoogleFonts.lato(
+                  letterSpacing: 1,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                )
+              )
+            )
           ]
       ),
     );

@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taam_app/pages/page_configuration.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:taam_app/pages/product_reported_properly.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 import '../requests.dart';
@@ -67,7 +68,14 @@ class _PageReportProductState extends State<PageReportProduct> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(""),
-              Text(AppLocalizations.of(context)!.titlePaginaReporteProducto),
+              Text(
+                AppLocalizations.of(context)!.titlePaginaReporteProducto,
+                style: GoogleFonts.lato(
+                  letterSpacing: 1,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               Text("         ")
             ],
           ),
@@ -84,10 +92,14 @@ class _PageReportProductState extends State<PageReportProduct> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      margin: EdgeInsets.all(10),
+                      margin: EdgeInsets.only(top: 20, bottom: 15, left: 10),
                       child: Text(
                         AppLocalizations.of(context)!.titleOtrosMotivos,
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.lato(
+                          letterSpacing: 0.5,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     Padding(
@@ -111,10 +123,11 @@ class _PageReportProductState extends State<PageReportProduct> {
               child: Center(
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(const Size(150, 50))
+                    minimumSize: MaterialStateProperty.all(const Size(150, 50)),
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.amber.shade700),
+                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                   ),
                   onPressed: () {
-                    _focustext.unfocus();
                     String reporteFinal = textCleaner(_textController.text);
                     if(_textController.text.isEmpty) {
                       Fluttertoast.showToast(
@@ -134,7 +147,14 @@ class _PageReportProductState extends State<PageReportProduct> {
                       );
                     }
                   },
-                  child: Text(AppLocalizations.of(context)!.textBotonEnviarReporte),
+                  child: Text(
+                    AppLocalizations.of(context)!.textBotonEnviarReporte,
+                    style: GoogleFonts.lato(
+                      letterSpacing: 1,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                  ),
+                  ),
                 ),
               ),
             )

@@ -1,16 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:multi_select_flutter/multi_select_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taam_app/pages/page_configuration.dart';
-import 'package:taam_app/pages/questions_page.dart';
 import 'package:taam_app/pages/send_doubt_page.dart';
-import '../main.dart';
 import '../requests.dart';
-import '../services/local_storage.dart';
-import '../services/locale_provider.dart';
-import '../services/settings_provder.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class Item {
   String headerValue;
@@ -78,7 +72,14 @@ class _GeneralQuestionsPageState extends State<GeneralQuestionsPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(AppLocalizations.of(context)!.titlePreguntasFrecuentes),
+                Text(
+                  AppLocalizations.of(context)!.titlePreguntasFrecuentes,
+                  style: GoogleFonts.lato(
+                    letterSpacing: 1,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 Text("           ")
               ],
             ),
@@ -87,60 +88,95 @@ class _GeneralQuestionsPageState extends State<GeneralQuestionsPage> {
         body: FutureBuilder<List<Item>>(
           future: _loadQuestions(),
           builder: (BuildContext context, AsyncSnapshot<List<Item>> snapshot) {
-          return SingleChildScrollView(
-            child: Container(
-              child: Column(
-                children: [
-                  _buildPanel(),
-                  SizedBox(height: 30),
-                  ElevatedButton(child: Text(AppLocalizations.of(context)!.textButtonEnviarDuda),
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.teal.shade200)
+            return Stack(
+              children: [
+                SingleChildScrollView(
+                  child: Container(
+                    child: Column(
+                      children: [
+                        _buildPanel(),
+                        Divider(
+                          height: 100,
+                        ),
+                      ],
                     ),
-                    onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (BuildContext context) => MyDoubt(context))
-                      );
-                    }
-                  )
-                ],
-              ),
-            ),
-          );
-        }
-      ),
-    );
-  }
-  Widget _buildPanel() {
-    return ExpansionPanelList(
-      expansionCallback: (int index, bool isExpanded) {
-        setState(() {
-          _itemsList[index].isExpanded = !isExpanded;
-        });
-      },
-      children: _itemsList.map<ExpansionPanel>((Item item) {
-        return ExpansionPanel(
-          headerBuilder: (BuildContext context, bool isExpanded) {
-            return ListTile(
-              title: Text(
-                item.headerValue,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: Container(
+                    color: Colors.white, // Establecer el color de fondo como blanco
+                    child: Padding(
+                      padding: EdgeInsets.all(20.0),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          minimumSize: MaterialStateProperty.all(const Size(150, 50)),
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.amber.shade700),
+                          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (BuildContext context) => MyDoubt(context))
+                          );
+                        },
+                        child: Text(
+                          AppLocalizations.of(context)!.textButtonEnviarDuda,
+                          style: GoogleFonts.lato(
+                            letterSpacing: 1,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             );
           },
-          body: ListTile(
-            title: Padding(
-              padding: EdgeInsets.only(bottom: 8.0), // Ajusta el valor de padding según tus necesidades
-              child: Text(item.expandedValue),
+        ),
+      );
+  }
+  Widget _buildPanel() {
+    return Padding(
+      padding: EdgeInsets.only(top: 15.0), // Ajusta el valor de padding según tus necesidades
+      child: ExpansionPanelList(
+        expansionCallback: (int index, bool isExpanded) {
+          setState(() {
+            _itemsList[index].isExpanded = !isExpanded;
+          });
+        },
+        children: _itemsList.map<ExpansionPanel>((Item item) {
+          return ExpansionPanel(
+            headerBuilder: (BuildContext context, bool isExpanded) {
+              return ListTile(
+                title: Text(
+                  item.headerValue,
+                  style: GoogleFonts.lato(
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              );
+            },
+            body: ListTile(
+              title: Padding(
+                padding: EdgeInsets.only(bottom: 15.0), // Ajusta el valor de padding según tus necesidades
+                child: Text(
+                  item.expandedValue,
+                  style: GoogleFonts.lato(
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ),
             ),
-          ),
-          isExpanded: item.isExpanded,
-        );
-      }).toList(),
+            isExpanded: item.isExpanded,
+          );
+        }).toList(),
+      ),
     );
   }
 }
