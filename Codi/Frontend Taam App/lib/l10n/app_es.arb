@@ -10,6 +10,7 @@
   "textBotonIniciar": "INICIAR",
   "textAboutUsRedirection": "Sobre Nosotros",
   "textFACRedirection": "FAQs",
+  "textEncuesta": "Encuesta",
 
   "titleConfig": "Configuración",
   "titleIdiomaConfig": "Idioma",
@@ -61,6 +62,7 @@
   "textTitleContacto": "Contacto",
   "textTelefono": "Teléfono: 934 56 78 12",
   "textInfoObjetivo": "TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO",
+  "textEmail": "atencionalcliente@taamApp.com",
 
   "titlePreguntasFrecuentes": "Preguntas Frecuentes",
   "textButtonEnviarDuda": "Enviar otra Pregunta",
