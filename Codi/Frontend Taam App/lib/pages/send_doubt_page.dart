@@ -5,6 +5,7 @@ import 'package:taam_app/requests.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
 
 
 Future<void> _sendQuestion(String question) async {
@@ -109,6 +110,7 @@ class SendDoubtPage extends State<MyDoubt>{
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.amber.shade700)
             ),
             onPressed: () {
+              SystemChannels.textInput.invokeMethod('TextInput.hide');
               String question = textCleaner(_textController.text);
               if (_textController.text.isEmpty) {
                 Fluttertoast.showToast(

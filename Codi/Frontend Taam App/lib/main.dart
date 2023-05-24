@@ -13,7 +13,7 @@ import 'package:flutter_localizations/src/material_localizations.dart';
 import 'package:flutter_localizations/src/cupertino_localizations.dart';
 import 'package:flutter_localizations/src/widgets_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -80,6 +80,9 @@ class _MyHomePage extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
      final settingsProvider = Provider.of<SettingsProvider>(context);
+     final Uri _urlSpanish = Uri.parse('https://docs.google.com/forms/d/e/1FAIpQLSf5VNsQ0XZzVUexzUPYntTl7W1628_xRUNF1t7VmeMo0Qck8A/viewform');
+     final Uri _urlCatalan = Uri.parse('https://docs.google.com/forms/d/e/1FAIpQLSc7vey1H6DQHgWKVadpHDFbUaKE6CP6HQq5VdCUsqm9I_0yQA/viewform');
+     final Uri _urlEnglish = Uri.parse('https://docs.google.com/forms/d/e/1FAIpQLSe2E3Td31bY3518-o4ue7M8ZDVsnkz51GHGH6eAPO7z3TZTwQ/viewform');
       return Scaffold(
         appBar: AppBar(
           title: Center(
@@ -210,6 +213,31 @@ class _MyHomePage extends State<MyHomePage> {
                         ],
                       ),
                     ),
+                    GestureDetector(
+                      onTap: () {
+                        switch(settingsProvider.appLanguage) {
+                          case 'Español': _launchUrl(_urlSpanish); break;
+                          case 'Català': _launchUrl(_urlCatalan); break;
+                          case 'English': _launchUrl(_urlEnglish); break;
+                        }
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.poll,
+                            color: Colors.cyan,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.textEncuesta,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: Colors.cyan,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -217,5 +245,11 @@ class _MyHomePage extends State<MyHomePage> {
           ),
         ),
       );
+  }
+}
+
+Future<void> _launchUrl(final _url) async {
+  if (!await launchUrl(_url)) {
+    throw Exception('Could not launch $_url');
   }
 }

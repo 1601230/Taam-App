@@ -1,18 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:multi_select_flutter/multi_select_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taam_app/pages/page_configuration.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:taam_app/pages/product_reported_properly.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-
+import 'package:flutter/services.dart';
 import '../requests.dart';
-import '../services/local_storage.dart';
-import '../services/locale_provider.dart';
-import '../services/settings_provder.dart';
 
 Future<void> _setReportProductText(String textReport) async {
   setReportProductText(textReport);
@@ -128,6 +121,7 @@ class _PageReportProductState extends State<PageReportProduct> {
                     foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                   ),
                   onPressed: () {
+                    SystemChannels.textInput.invokeMethod('TextInput.hide');
                     String reporteFinal = textCleaner(_textController.text);
                     if(_textController.text.isEmpty) {
                       Fluttertoast.showToast(

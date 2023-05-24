@@ -87,7 +87,7 @@ class _PageAboutUsState extends State<PageAboutUs> {
                     padding: EdgeInsets.only(top: 8.0, bottom: 10.0),
                     child: Center(
                       child: Text(
-                        "E-mail: atencionalcliente@taamApp.com",
+                        AppLocalizations.of(context)!.textEmail,
                         textAlign: TextAlign.justify,
                         style: GoogleFonts.lato(
                           letterSpacing: 0.5,
