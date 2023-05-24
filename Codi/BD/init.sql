@@ -101,7 +101,7 @@ INSERT INTO public.products(id, name, image) VALUES ('8057432464032', 'Grissini 
 
 INSERT INTO public.products(id, name, image) VALUES ('5060490400259', 'Corn Smoked BBQ Crunchy Corn', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F5060490400259.jpg?alt=media&token=947c4919-41b3-49b5-96c6-ad943ab92f5d');
 
-INSERT INTO public.products(id, name, image) VALUES ('3046920029759', 'Dark Chocolate 90% cocoa - Lindt', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F3046920029759.jpg?alt=media&token=bbff0ce5-3633-4712-85e7-3bbc5bd2ede4');
+INSERT INTO public.products(id, name, image) VALUES ('3046920029759', 'Dark Chocolate 90 cocoa - Lindt', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F3046920029759.jpg?alt=media&token=bbff0ce5-3633-4712-85e7-3bbc5bd2ede4');
 
 INSERT INTO public.products(id, name, image) VALUES ('5060283760003', 'Proper Corn', 'https://firebasestorage.googleapis.com/v0/b/taam-app.appspot.com/o/Product%20images%2F5060283760003.jpg?alt=media&token=e95ed41c-97f9-468f-97ed-f471a028f1b2');
 

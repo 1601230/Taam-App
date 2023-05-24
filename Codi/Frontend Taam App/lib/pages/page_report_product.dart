@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:multi_select_flutter/multi_select_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taam_app/pages/page_configuration.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:taam_app/pages/product_reported_properly.dart';
 import 'package:google_fonts/google_fonts.dart';
