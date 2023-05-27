@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a07870be-6eb6-47e6-af6b-dbb6ca0e3e1b" name="Changes" comment="" />
+    <list default="true" id="a07870be-6eb6-47e6-af6b-dbb6ca0e3e1b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Documentació/PROTOTIP BAIX NIVELL.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documentació/PROTOTIP BAIX NIVELL.png" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,10 +28,12 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "true",
+    "dart.analysis.tool.window.visible": "false",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "show.migrate.to.gradle.popup": "false",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
